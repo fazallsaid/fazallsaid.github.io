@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konversi Satuan Panjang</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 100%;
+            max-width: 600px;
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+        }
+        td {
+            padding: 10px;
+            vertical-align: middle;
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        input[type="button"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 5px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        input[type="button"]:hover {
+            background-color: #45a049;
+        }
+        a {
+            text-decoration: none;
+        }
+        iframe {
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Konversi Satuan Panjang</h1>
+        <table>
+            <tr>
+                <td>Satuan Awal:</td>
+                <td>
+                    <select id="unitFrom">
+                        <option value="km">km</option>
+                        <option value="hm">hm</option>
+                        <option value="dam">dam</option>
+                        <option value="m">m</option>
+                        <option value="dm">dm</option>
+                        <option value="cm">cm</option>
+                        <option value="mm">mm</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Masukan nilai:</td>
+                <td><input type="text" id="valueInput" placeholder="Masukan nilai"></td>
+            </tr>
+            <tr>
+                <td>Konversi ke:</td>
+                <td>
+                    <select id="unitTo">
+                        <option value="km">km</option>
+                        <option value="hm">hm</option>
+                        <option value="dam">dam</option>
+                        <option value="m">m</option>
+                        <option value="dm">dm</option>
+                        <option value="cm">cm</option>
+                        <option value="mm">mm</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="button" value="Konversi" onclick="convert()">
+                    <input type="button" value="Reset" onclick="reset()">
+                </td>
+            </tr>
+        </table>
+        <div class="result" id="result"></div>
+        <iframe width="350" height="315" src="https://www.youtube.com/embed/vrv1GIcOvzY?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+    <script>
+        function convert() {
+            const unitFrom = document.getElementById('unitFrom').value;
+            const unitTo = document.getElementById('unitTo').value;
+            const valueInput = parseFloat(document.getElementById('valueInput').value);
+
+            if (isNaN(valueInput)) {
+                alert("Masukkan nilai yang valid.");
+                return;
+            }
+
+            const units = {
+                'km': 1e3,
+                'hm': 1e2,
+                'dam': 1e1,
+                'm': 1,
+                'dm': 1e-1,
+                'cm': 1e-2,
+                'mm': 1e-3
+            };
+
+            const result = valueInput * (units[unitFrom] / units[unitTo]);
+            document.getElementById('result').textContent = `${valueInput} ${unitFrom} = ${result} ${unitTo}`;
+        }
+
+        function reset() {
+            document.getElementById('unitFrom').value = 'm';
+            document.getElementById('unitTo').value = 'cm';
+            document.getElementById('valueInput').value = '';
+            document.getElementById('result').textContent = '';
+        }
+    </script>
+</body>
+</html>
