@@ -1,0 +1,8 @@
+.kartu{
+    background-color: #FED0BB;
+}
+
+.kartu:hover{
+    background-color: #B23A48;
+    color: #ffff;
+}
