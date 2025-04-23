@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fazal Said | A Passionate Backend Developer in Laravel</title>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @keyframes float {
@@ -27,9 +27,45 @@
             transition: transform 0.3s ease;
             transform: translateY(100%);
         }
+
+        .font-fira-code{
+            font-family: 'Fira Code';
+        }
+
+        /* New styles for mobile menu */
+        #mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100vh;
+            background: white;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            transition: right 0.3s ease;
+            z-index: 1000;
+        }
+
+        #mobile-menu.active {
+            right: 0;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            display: none;
+        }
+
+        .overlay.active {
+            display: block;
+        }
     </style>
 </head>
-<body class="font-manrope bg-white text-gray-900">
+<body class="font-fira-code bg-white text-gray-900">
     <!-- Navbar -->
     <nav class="fixed top-0 left-0 w-full p-6 bg-white shadow-md z-50">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
@@ -58,16 +94,23 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden mt-16 bg-white shadow-lg">
+        <div id="mobile-menu">
             <div class="flex flex-col gap-4 p-6">
+                <button id="close-menu" class="self-end p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
                 <a href="#home" class="hover:text-[#623cea] transition-colors">Home</a>
                 <a href="#about" class="hover:text-[#623cea] transition-colors">About</a>
                 <a href="#projects" class="hover:text-[#623cea] transition-colors">Projects</a>
                 <a href="#contact" class="hover:text-[#623cea] transition-colors">Contact</a>
             </div>
         </div>
+        <div class="overlay"></div>
     </nav>
 
+    <!-- Rest of the content remains the same -->
     <!-- Hero Section -->
     <section id="home" class="min-h-screen flex flex-col justify-center px-8 md:px-24 lg:px-48 pt-24">
         <div class="max-w-2xl mx-auto text-center">
@@ -92,22 +135,43 @@
         </div>
     </section>
 
+    <!-- About Section -->
+    <section id="about" class="py-24 px-8 md:px-24 bg-gray-50">
+        <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-12 items-center">
+            <div class="w-full md:w-1/2">
+                <img src="logo/fazal.jpg" alt="John Doe" 
+                     class="w-full rounded-3xl shadow-xl border-4 border-white">
+            </div>
+            <div class="w-full md:w-1/2">
+                <h2 class="gradient-text text-4xl font-bold mb-6">About Me</h2>
+                <p class="text-gray-700 leading-relaxed mb-6" style="white-space: pre-line;">
+                    Web Developer focusing on PHP programming language, in Laravel framework.
+                    With 7+ years of experience in the language, I have created several websites with various purposes. Starting from websites for exams, reporting, music rental, etc.
+
+                    If you want to get a website at an affordable price, contact me.
+                </p>
+            </div>
+        </div>
+    </section>
+
     <!-- Projects Section -->
     <section class="py-24 px-8 md:px-24">
+        <h1 class="text-4xl font-bold text-center mb-12">Projects</h1>
         <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+            <!-- awal card -->
             <div class="project-card group rounded-3xl overflow-hidden shadow-lg 
                        hover:shadow-2xl transition-shadow relative">
-                <img src="project1.jpg" alt="Project" 
+                <img src="projects/krs_jawa.jpg" alt="Project" 
                      class="w-full h-64 object-cover transform transition-all 
                             group-hover:scale-110">
                 <div class="p-6">
-                    <h3 class="text-xl font-bold mb-4">E-Commerce Ecosystem</h3>
+                    <h3 class="text-xl font-bold mb-4">Klinik Rumah Swadaya Jawa III (PUPR</h3>
                     <div class="flex gap-4 mb-4">
-                        <span class="px-4 py-2 bg-gray-100 rounded-full text-sm">React</span>
-                        <span class="px-4 py-2 bg-gray-100 rounded-full text-sm">Node.js</span>
+                        <span class="px-4 py-2 bg-gray-100 rounded-full text-sm">PHP</span>
+                        <span class="px-4 py-2 bg-gray-100 rounded-full text-sm">Laravel 11</span>
                     </div>
                     <p class="text-gray-600 mb-6">
-                        Full-stack solution with AI-powered recommendations
+                        A goverment website to give more information for any citizens who want to build a house.
                     </p>
                     <a href="#" class="gradient-text font-bold flex items-center gap-2">
                         Case Study
@@ -116,51 +180,54 @@
                         </svg>
                     </a>
                 </div>
-                <div class="project-overlay absolute inset-0 bg-white bg-opacity-90 
-                           flex items-center justify-center">
-                    <div class="text-center p-8">
-                        <h4 class="text-2xl font-bold mb-4">Project Stats</h4>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <div class="text-3xl font-bold">23k</div>
-                                <div class="text-gray-600">Users</div>
-                            </div>
-                            <div>
-                                <div class="text-3xl font-bold">99.9%</div>
-                                <div class="text-gray-600">Uptime</div>
-                            </div>
-                        </div>
+            </div>
+
+            <div class="project-card group rounded-3xl overflow-hidden shadow-lg 
+                       hover:shadow-2xl transition-shadow relative">
+                <img src="projects/sihandarung.jpg" alt="Project" 
+                     class="w-full h-64 object-cover transform transition-all 
+                            group-hover:scale-110">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-4">Sihandarung</h3>
+                    <div class="flex gap-4 mb-4">
+                        <span class="px-4 py-2 bg-gray-100 rounded-full text-sm">PHP</span>
+                        <span class="px-4 py-2 bg-gray-100 rounded-full text-sm">Laravel 11</span>
                     </div>
+                    <p class="text-gray-600 mb-6">
+                        An internal company website that aims to facilitate the company and each division in making their work reports.
+                    </p>
+                    <a href="#" class="gradient-text font-bold flex items-center gap-2">
+                        Case Study
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="project-card group rounded-3xl overflow-hidden shadow-lg 
+                       hover:shadow-2xl transition-shadow relative">
+                <img src="projects/menapak.jpg" alt="Project" 
+                     class="w-full h-64 object-cover transform transition-all 
+                            group-hover:scale-110">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-4">Menapak Indonesia</h3>
+                    <div class="flex gap-4 mb-4">
+                        <span class="px-4 py-2 bg-gray-100 rounded-full text-sm">PHP</span>
+                        <span class="px-4 py-2 bg-gray-100 rounded-full text-sm">Laravel 11</span>
+                    </div>
+                    <p class="text-gray-600 mb-6">
+                        A humanitarian organization website, which aims to provide information related to the activities and latest news about the organization.
+                    </p>
+                    <a href="#" class="gradient-text font-bold flex items-center gap-2">
+                        Case Study
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                    </a>
                 </div>
             </div>
             <!-- Repeat project cards -->
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-24 px-8 md:px-24 bg-gray-50">
-        <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-12 items-center">
-            <div class="w-full md:w-1/2">
-                <img src="avatar.jpg" alt="John Doe" 
-                     class="w-full rounded-3xl shadow-xl border-4 border-white">
-            </div>
-            <div class="w-full md:w-1/2">
-                <h2 class="gradient-text text-4xl font-bold mb-6">About Me</h2>
-                <p class="text-gray-700 leading-relaxed mb-6">
-                    Web developer with 8+ years experience creating high-performance applications. 
-                    Focused on clean code, user-centric design, and scalable architectures.
-                </p>
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="p-4 bg-white rounded-xl shadow-md">
-                        <div class="text-2xl font-bold">150+</div>
-                        <div class="text-gray-600">Projects Delivered</div>
-                    </div>
-                    <div class="p-4 bg-white rounded-xl shadow-md">
-                        <div class="text-2xl font-bold">98%</div>
-                        <div class="text-gray-600">Client Satisfaction</div>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -185,25 +252,43 @@
 
     <script>
         // Cursor follower
-        document.addEventListener('mousemove', (e) => {
-            const follower = document.querySelector('.follower');
-            follower.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-            follower.style.opacity = 1;
-        });
+        const follower = document.querySelector('.follower');
+        
+        if (follower) {
+            document.addEventListener('mousemove', (e) => {
+                follower.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+                follower.style.opacity = 1;
+            });
 
-        document.querySelectorAll('button, a').forEach(item => {
-            item.addEventListener('mouseenter', () => {
-                document.querySelector('.follower').style.transform = 'scale(2)';
+            document.querySelectorAll('button, a').forEach(item => {
+                item.addEventListener('mouseenter', () => {
+                    follower.style.transform = 'scale(2)';
+                });
+                item.addEventListener('mouseleave', () => {
+                    follower.style.transform = 'scale(1)';
+                });
             });
-            item.addEventListener('mouseleave', () => {
-                document.querySelector('.follower').style.transform = 'scale(1)';
-            });
-        });
+        }
 
         // Mobile menu
-        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const overlay = document.querySelector('.overlay');
+        const closeMenuBtn = document.getElementById('close-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            overlay.classList.add('active');
+        });
+
+        closeMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+
+        overlay.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            overlay.classList.remove('active');
         });
     </script>
 </body>
