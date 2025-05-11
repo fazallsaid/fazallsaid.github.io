@@ -795,10 +795,9 @@
         });
 
         // GANTI DENGAN URL WEB APP APPS SCRIPT ANDA YANG SUDAH DI-DEPLOY
-        const appsScriptUrl = 'https://script.google.com/macros/s/AKfycbwF9wpu8zAunfd0sKtZA10hnaSQGhqNwpx3nJIsxiS2jJy3mn_BQ8LW_gDgPORXx8wO/exec';
-
         const visitorCountDisplay = document.getElementById('visitor-count-display');
         const visitorLocationDisplay = document.getElementById('visitor-location-display');
+        const appsScriptUrl = 'https://script.google.com/macros/s/AKfycbwF9wpu8zAunfd0sKtZA10hnaSQGhqNwpx3nJIsxiS2jJy3mn_BQ8LW_gDgPORXx8wO/exec'; // Ganti dengan URL Google Apps Script Anda
 
         async function fetchLocationAndLogVisitor() {
             let locationInfo = {
@@ -808,32 +807,29 @@
             };
 
             try {
-                // 1. Dapatkan data lokasi dari API geolokasi IP menggunakan geojs.io
-                // URL untuk geojs.io yang mengembalikan JSON
-                const geoApiUrl = 'https://get.geojs.io/v1/ip/geo.json';
-                const geoResponse = await fetch(geoApiUrl);
-                
-                if (geoResponse.ok) { // geojs.io langsung mengembalikan data jika sukses (status 200 OK)
-                    const geoData = await geoResponse.json();
-                    // Sesuaikan dengan nama field dari geojs.io
-                    locationInfo.city = geoData.city || 'Unknown';
-                    locationInfo.region = geoData.region || 'Unknown'; // geojs.io menggunakan 'region'
-                    locationInfo.country = geoData.country || 'Unknown';
-                    
+                // 1. Dapatkan data lokasi dari API geolokasi IP menggunakan ipinfo.io
+                const ipinfoApiUrl = 'https://ipinfo.io/json?token=a32fa547659ba3'; // Ganti dengan token Anda
+                const ipinfoResponse = await fetch(ipinfoApiUrl);
+
+                if (ipinfoResponse.ok) {
+                    const ipinfoData = await ipinfoResponse.json();
+                    locationInfo.city = ipinfoData.city || 'Unknown';
+                    locationInfo.region = ipinfoData.region || 'Unknown';
+                    locationInfo.country = ipinfoData.country || 'Unknown';
+
                     if (visitorLocationDisplay) {
                         visitorLocationDisplay.textContent = `${locationInfo.city}, ${locationInfo.region}, ${locationInfo.country}`;
                     }
                 } else {
-                    // Jika geoResponse.ok false, berarti ada error HTTP (misalnya 403, 404, 500)
-                    console.warn('API Geolokasi (geojs.io) gagal:', geoResponse.status, await geoResponse.text());
+                    console.warn('API Geolokasi (ipinfo.io) gagal:', ipinfoResponse.status, await ipinfoResponse.text());
                     if (visitorLocationDisplay) visitorLocationDisplay.textContent = 'Tidak diketahui (API Error)';
                 }
             } catch (geoError) {
-                console.error('Error saat mengambil data geolokasi (geojs.io):', geoError);
+                console.error('Error saat mengambil data geolokasi (ipinfo.io):', geoError);
                 if (visitorLocationDisplay) visitorLocationDisplay.textContent = 'Error mencari lokasi';
             }
 
-            // 2. Kirim data ke Google Apps Script menggunakan POST (bagian ini tetap sama)
+            // 2. Kirim data ke Google Apps Script menggunakan POST
             try {
                 const formData = new URLSearchParams();
                 formData.append('city', locationInfo.city);
@@ -851,7 +847,7 @@
                 if (scriptResponse.ok) {
                     const data = await scriptResponse.json();
                     if (data.status === "success") {
-                        console.log('Pengunjung berhasil dicatat (via geojs.io):', data);
+                        console.log('Pengunjung berhasil dicatat (via ipinfo.io):', data);
                         if (visitorCountDisplay && data.newCount !== undefined) {
                             visitorCountDisplay.textContent = data.newCount;
                         }
