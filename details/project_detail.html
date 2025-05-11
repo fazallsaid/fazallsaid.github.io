@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Detail - [Nama Proyek] / Fazal Said</title>
+    <style>
+        /* Tambahkan style khusus untuk detail proyek jika perlu */
+        .detail-section {
+            padding: 2rem 0;
+            border-bottom: 1px solid #E5E7EB;
+        }
+        .detail-section:last-child {
+            border-bottom: none;
+        }
+        .timeline {
+            list-style: none;
+            padding-left: 0;
+        }
+        .timeline-item {
+            margin-bottom: 1rem;
+        }
+        .timeline-date {
+            font-weight: bold;
+            margin-right: 1rem;
+        }
+    </style>
+</head>
+<body class="font-fira-code bg-white dark:bg-dark text-gray-900 dark:text-light transition-colors duration-300">
+
+    <nav class="fixed top-0 left-0 w-full p-6 bg-white dark:bg-dark shadow-md z-50 transition-colors duration-300">
+        </nav>
+
+    <div class="container mx-auto mt-24 py-8 px-8 md:px-24">
+        <h1 class="text-4xl font-bold text-center mb-8">[Nama Proyek]</h1>
+
+        <section class="detail-section">
+            <h2 class="text-2xl font-bold mb-4">Overview</h2>
+            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                [Deskripsi lengkap proyek. Jelaskan tujuan, fitur utama, dan teknologi yang digunakan.]
+            </p>
+        </section>
+
+        <section class="detail-section">
+            <h2 class="text-2xl font-bold mb-4">Timeline</h2>
+            <ul class="timeline">
+                <li class="timeline-item">
+                    <span class="timeline-date">Januari 2024</span> - Perencanaan proyek dan pengumpulan kebutuhan.
+                </li>
+                <li class="timeline-item">
+                    <span class="timeline-date">Februari 2024</span> - Desain antarmuka dan basis data.
+                </li>
+                <li class="timeline-item">
+                    <span class="timeline-date">Maret - April 2024</span> - Pengembangan fitur utama.
+                </li>
+                <li class="timeline-item">
+                    <span class="timeline-date">Mei 2024</span> - Peluncuran proyek.
+                </li>
+            </ul>
+        </section>
+
+        <section class="detail-section">
+            <h2 class="text-2xl font-bold mb-4">Screenshots</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <img src="[path/ke/screenshot1.jpg]" alt="Screenshot 1" class="rounded-lg shadow-md">
+                <img src="[path/ke/screenshot2.jpg]" alt="Screenshot 2" class="rounded-lg shadow-md">
+                </div>
+        </section>
+
+        <section class="detail-section">
+            <h2 class="text-2xl font-bold mb-4">Teknologi yang Digunakan</h2>
+            <div class="flex gap-4">
+                <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">PHP</span>
+                <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Laravel 11</span>
+                </div>
+        </section>
+
+        <section class="detail-section">
+            <h2 class="text-2xl font-bold mb-4">Kontribusi</h2>
+            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                [Jelaskan peran Anda dalam proyek ini. Jika ada tim, sebutkan kontribusi tim.]
+            </p>
+        </section>
+
+        </div>
+
+    <footer id="contact" class="py-12 px-8 md:px-24 bg-white dark:bg-dark border-t dark:border-gray-800">
+        </footer>
+
+    </body>
+    <script>
+        function getParameterByName(name, url = window.location.href) {
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        const projectId = getParameterByName('project');
+        console.log("Project ID:", projectId);
+    </script>
+</html>
