@@ -808,36 +808,33 @@
             };
 
             try {
-                // 1. Dapatkan data lokasi dari API geolokasi IP
-                // Menggunakan ip-api.com (gratis, tidak perlu API key untuk penggunaan dasar)
-                // Parameter fields membatasi data yang diminta untuk efisiensi
-                const geoResponse = await fetch('http://ip-api.com/json/?fields=status,message,country,regionName,city');
+                // 1. Dapatkan data lokasi dari API geolokasi IP menggunakan geojs.io
+                // URL untuk geojs.io yang mengembalikan JSON
+                const geoApiUrl = 'https://get.geojs.io/v1/ip/geo.json';
+                const geoResponse = await fetch(geoApiUrl);
                 
-                if (geoResponse.ok) {
+                if (geoResponse.ok) { // geojs.io langsung mengembalikan data jika sukses (status 200 OK)
                     const geoData = await geoResponse.json();
-                    if (geoData.status === 'success') {
-                        locationInfo.city = geoData.city || 'Unknown';
-                        locationInfo.region = geoData.regionName || 'Unknown';
-                        locationInfo.country = geoData.country || 'Unknown';
-                        if (visitorLocationDisplay) {
-                            visitorLocationDisplay.textContent = `${locationInfo.city}, ${locationInfo.region}, ${locationInfo.country}`;
-                        }
-                    } else {
-                        console.warn('API Geolokasi gagal:', geoData.message);
-                        if (visitorLocationDisplay) visitorLocationDisplay.textContent = 'Tidak diketahui';
+                    // Sesuaikan dengan nama field dari geojs.io
+                    locationInfo.city = geoData.city || 'Unknown';
+                    locationInfo.region = geoData.region || 'Unknown'; // geojs.io menggunakan 'region'
+                    locationInfo.country = geoData.country || 'Unknown';
+                    
+                    if (visitorLocationDisplay) {
+                        visitorLocationDisplay.textContent = `${locationInfo.city}, ${locationInfo.region}, ${locationInfo.country}`;
                     }
                 } else {
-                    console.warn('Gagal menghubungi API Geolokasi, status:', geoResponse.status);
-                    if (visitorLocationDisplay) visitorLocationDisplay.textContent = 'Tidak diketahui';
+                    // Jika geoResponse.ok false, berarti ada error HTTP (misalnya 403, 404, 500)
+                    console.warn('API Geolokasi (geojs.io) gagal:', geoResponse.status, await geoResponse.text());
+                    if (visitorLocationDisplay) visitorLocationDisplay.textContent = 'Tidak diketahui (API Error)';
                 }
             } catch (geoError) {
-                console.error('Error saat mengambil data geolokasi:', geoError);
+                console.error('Error saat mengambil data geolokasi (geojs.io):', geoError);
                 if (visitorLocationDisplay) visitorLocationDisplay.textContent = 'Error mencari lokasi';
             }
 
-            // 2. Kirim data ke Google Apps Script menggunakan POST
+            // 2. Kirim data ke Google Apps Script menggunakan POST (bagian ini tetap sama)
             try {
-                // Siapkan data untuk dikirim sebagai x-www-form-urlencoded
                 const formData = new URLSearchParams();
                 formData.append('city', locationInfo.city);
                 formData.append('region', locationInfo.region);
@@ -846,19 +843,15 @@
                 const scriptResponse = await fetch(appsScriptUrl, {
                     method: 'POST',
                     headers: {
-                        // Tipe konten ini cocok dengan e.parameter di Apps Script
                         'Content-Type': 'application/x-www-form-urlencoded',
                     },
-                    body: formData.toString() // Mengubah objek URLSearchParams menjadi string
-                    // redirect: 'follow' // Bisa ditambahkan jika Apps Script melakukan redirect, tapi seringnya tidak perlu untuk API sederhana.
+                    body: formData.toString()
                 });
 
-                // Meskipun Apps Script merespons dengan 302 (redirect) untuk beberapa POST,
-                // kita tetap coba parse JSON jika responsnya OK (2xx)
                 if (scriptResponse.ok) {
                     const data = await scriptResponse.json();
                     if (data.status === "success") {
-                        console.log('Pengunjung berhasil dicatat:', data);
+                        console.log('Pengunjung berhasil dicatat (via geojs.io):', data);
                         if (visitorCountDisplay && data.newCount !== undefined) {
                             visitorCountDisplay.textContent = data.newCount;
                         }
@@ -867,21 +860,14 @@
                         if (visitorCountDisplay) visitorCountDisplay.textContent = 'Error';
                     }
                 } else {
-                    // Jika status tidak OK (misalnya 4xx, 5xx)
-                    // atau jika itu adalah 302 dan Anda tidak mengharapkan body JSON yang bisa diparse.
-                    // Untuk Apps Script, jika data berhasil ditulis, itu sudah cukup baik.
                     console.warn('Panggilan ke Apps Script mungkin berhasil (data mungkin tercatat), tetapi respons tidak OK atau bukan JSON:', scriptResponse.status);
-                     if (visitorCountDisplay) {
-                         // Kita tidak bisa mendapatkan newCount jika respons tidak bisa diparse
-                         visitorCountDisplay.textContent = "Dicatat"; // Atau biarkan "Memuat..."
-                     }
-                     // Coba log error dari Apps Script jika ada
-                     try {
-                        const errorData = await scriptResponse.json();
+                    if (visitorCountDisplay) {
+                        visitorCountDisplay.textContent = "Dicatat";
+                    }
+                    try {
+                        const errorData = await scriptResponse.json(); // Coba parse error jika ada
                         console.error('Pesan error dari Apps Script:', errorData.message);
-                     } catch(e) {
-                        // Tidak ada JSON error body
-                     }
+                    } catch(e) { /* Tidak ada JSON error body */ }
                 }
             } catch (scriptError) {
                 console.error('Error saat mengirim data ke Apps Script:', scriptError);
@@ -889,7 +875,6 @@
             }
         }
 
-        // Panggil fungsi saat halaman selesai dimuat
         window.addEventListener('load', fetchLocationAndLogVisitor);
     </script>
 </body>
