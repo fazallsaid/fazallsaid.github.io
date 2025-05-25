@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freebies | Fazal Said</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF6B6B',
+                        secondary: '#4ECDC4',
+                        accent: '#45B7D1',
+                        dark: '#2C3E50',
+                        light: '#F7F9FC'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0); }
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 50%, #45B7D1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% 200%;
+            animation: gradient 8s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .gradient-border {
+            position: relative;
+            background: linear-gradient(135deg, #FF6B6B, #4ECDC4, #45B7D1);
+            padding: 2px;
+            border-radius: 1.5rem;
+        }
+
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #FF6B6B, #4ECDC4, #45B7D1);
+            border-radius: 1.5rem;
+            z-index: -1;
+            opacity: 0.5;
+            filter: blur(10px);
+        }
+
+        .font-fira-code {
+            font-family: 'Fira Code';
+        }
+
+        /* Mobile menu styles */
+        #mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100vh;
+            background: white;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            transition: right 0.3s ease;
+            z-index: 1000;
+        }
+
+        .dark #mobile-menu {
+            background: #2C3E50;
+        }
+
+        #mobile-menu.active {
+            right: 0;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            display: none;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        .freebie-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .freebie-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .download-btn {
+            transition: all 0.3s ease;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+    </style>
+</head>
+<body class="font-fira-code bg-white dark:bg-dark text-gray-900 dark:text-light transition-colors duration-300">
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 w-full p-6 bg-white dark:bg-dark shadow-md z-50 transition-colors duration-300">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <!-- Brand -->
+            <div class="gradient-text text-2xl font-bold">
+                <a href="../">
+                    <img src="../logo/fazal-dark.png" class="block dark:hidden" style="width: 10%;" alt="Fazal Said Logo Light" />
+                    <img src="../logo/fazal-white.png" class="hidden dark:block" style="width: 10%;" alt="Fazal Said Logo Dark" />
+                </a>
+            </div>
+
+            <!-- Center Menu -->
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html#home" class="hover:text-primary dark:hover:text-primary transition-colors">Home</a>
+                <a href="index.html#about" class="hover:text-primary dark:hover:text-primary transition-colors">About</a>
+                <a href="freebies/" class="hover:text-primary dark:hover:text-primary transition-colors">Freebies</a>
+                <a href="index.html#projects" class="hover:text-primary dark:hover:text-primary transition-colors">Projects</a>
+                <a href="index.html#contact" class="hover:text-primary dark:hover:text-primary transition-colors">Contact</a>
+            </div>
+
+            <!-- Theme Toggle & Mobile Menu -->
+            <div class="flex gap-4">
+                <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
+                    <svg id="theme-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path id="sun-icon" class="hidden dark:block" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        <path id="moon-icon" class="block dark:hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                    </svg>
+                </button>
+                <button class="md:hidden p-2" id="mobile-menu-btn">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu">
+            <div class="flex flex-col gap-4 p-6">
+                <button id="close-menu" class="self-end p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+                <a href="index.html#home" class="hover:text-primary dark:hover:text-primary transition-colors">Home</a>
+                <a href="index.html#about" class="hover:text-primary dark:hover:text-primary transition-colors">About</a>
+                <a href="freebies.html" class="hover:text-primary dark:hover:text-primary transition-colors">Freebies</a>
+                <a href="index.html#projects" class="hover:text-primary dark:hover:text-primary transition-colors">Projects</a>
+                <a href="index.html#contact" class="hover:text-primary dark:hover:text-primary transition-colors">Contact</a>
+            </div>
+        </div>
+        <div class="overlay"></div>
+    </nav>
+
+    <!-- Freebies Section -->
+    <section class="pt-32 pb-24 px-8 md:px-24">
+        <div class="max-w-6xl mx-auto">
+            <h1 class="gradient-text text-4xl md:text-5xl font-bold text-center mb-4">Freebies</h1>
+            <p class="text-gray-600 dark:text-gray-400 text-center mb-12 text-lg">
+                Free resources and tools to help you in your development journey and your playground.
+            </p>
+
+            <!-- Freebies Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Freebie Card 1 -->
+                <div class="freebie-card bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg">
+                    <img src="../files/lyrics.png" alt="Laravel Starter Kit" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-gray-100">Song Lyrics with Python</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">
+                            A script that can make a lyrics animation, whatever what you write in script.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Python</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Song Lyrics</span>
+                        </div>
+                        <a href="https://fazallsaid.gumroad.com/l/python-lyrics" class="download-btn gradient-border block text-center py-2 px-4 font-bold text-gray-900 dark:text-gray-100">
+                            Download Now
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Add more freebie cards as needed -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-8 md:px-24 bg-white dark:bg-dark border-t dark:border-gray-800">
+        <div class="max-w-6xl mx-auto text-center">
+            <p class="text-gray-600 dark:text-gray-400">© 2025 Fazal Said. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        
+        // Check for saved theme preference or use system preference
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        } else {
+            html.classList.remove('dark');
+        }
+
+        // Toggle theme
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+        });
+
+        // Mobile menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const overlay = document.querySelector('.overlay');
+        const closeMenuBtn = document.getElementById('close-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            overlay.classList.add('active');
+        });
+
+        closeMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+
+        overlay.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+    </script>
+</body>
+</html> 
