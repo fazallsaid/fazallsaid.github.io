@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sketch Demo</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f7f9fc; /* Light background */
+            color: #2c3e50; /* Dark text for light mode */
+        }
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #2c3e50; /* Dark background */
+                color: #f7f9fc; /* Light text for dark mode */
+            }
+        }
+        .mermaid {
+            width: 95%;
+            height: 95%;
+            max-width: 100%;
+            max-height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="mermaid" id="sketch-container"></div>
+
+    <script>
+        mermaid.initialize({ startOnLoad: false });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const sketchContent = urlParams.get('content');
+
+            if (sketchContent) {
+                const decodedSketchContent = decodeURIComponent(sketchContent);
+                const sketchContainer = document.getElementById('sketch-container');
+                
+                // Render the Mermaid diagram
+                mermaid.render('demo-sketch', decodedSketchContent).then(({ svg, bindFunctions }) => {
+                    sketchContainer.innerHTML = svg;
+                    if (bindFunctions) bindFunctions();
+                }).catch(error => {
+                    console.error('Mermaid rendering error:', error);
+                    sketchContainer.textContent = 'Error rendering sketch.';
+                });
+            } else {
+                document.getElementById('sketch-container').textContent = 'No sketch content provided.';
+            }
+        });
+    </script>
+</body>
+</html> 

@@ -6,6 +6,7 @@
     <title>Fazal Said | A Passionate Backend Developer in Laravel</title>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -279,7 +280,7 @@
             </div>
             <div class="w-full md:w-1/2">
                 <h2 class="gradient-text text-4xl font-bold mb-6">About Me</h2>
-                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-6" style="white-space: pre-line;">
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-6 text-justify" style="white-space: pre-line;">
                     Web Developer focusing on PHP programming language, in Laravel framework.
                     With 7+ years of experience in the language, I have created several websites with various purposes. Starting from websites for exams, reporting, music rental, etc.
 
@@ -652,8 +653,8 @@
     <section id="collab" class="py-24 px-8 md:px-24 bg-gray-50 dark:bg-gray-800">
         <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-12 items-center">
             <div class="w-full md:w-full">
-                <h2 class="gradient-text text-4xl font-bold mb-6">Collaboration</h2>
-                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-6" style="white-space: pre-line;">
+                <h2 class="gradient-text text-4xl font-bold mb-6 text-center">Collaboration</h2>
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-6 text-justify" style="white-space: pre-line;">
                     I am open to collaborative projects, whether it's for a new project or an old project that I have developed, and one of them is the Databank of Universities project.
 
                     This project focuses on developing API/Rest API for university data across Indonesia. The goal is, so that developers or parties who want to use this data, can access it easily (of course it must be used as wisely as possible).
@@ -664,11 +665,54 @@
         </div>
     </section>
 
+    <!-- AI Tools -->
+    <section id="ai-sketch" class="py-24 px-8 md:px-24">
+        <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-12 items-center">
+            <div class="w-full md:w-full">
+                <h2 class="gradient-text text-4xl text-center font-bold mb-6">No idea where to start?</h2>
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-6 text-justify" style="white-space: pre-line;">
+                    My AI tool is ready to help you design sketch diagrams and basic views, and consult for additional features.
+                </p>
+                <div class="max-w-4xl mx-auto bg-white dark:bg-gray-800 rounded-3xl shadow-lg p-8">
+                    <form id="sketch-form" class="space-y-6">
+                        <div>
+                            <label for="website-name" class="block text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">Website Name</label>
+                            <input type="text" id="website-name" name="websiteName" class="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="e.g., My Awesome Blog">
+                        </div>
+                        <div>
+                            <label for="website-category" class="block text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">Website Category</label>
+                            <input type="text" id="website-category" name="websiteCategory" class="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="e.g., Personal Blog, E-commerce, Portfolio">
+                        </div>
+                        <div>
+                            <label for="about-website" class="block text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">About Website</label>
+                            <textarea id="about-website" name="aboutWebsite" rows="4" class="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Describe your website, its purpose, and key features."></textarea>
+                        </div>
+                        <div>
+                            <label for="website-features" class="block text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">Specific Features</label>
+                            <textarea id="website-features" name="websiteFeatures" rows="4" class="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="List desired features, e.g., image gallery, contact form, testimonials section..."></textarea>
+                        </div>
+                        <button type="submit" class="gradient-border group px-8 py-4 bg-white dark:bg-dark rounded-full shadow-lg hover:shadow-xl transition-all overflow-hidden w-full">
+                            <span class="relative z-10 font-bold text-gray-900 dark:text-gray-100">Generate Sketch</span>
+                            <span class="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-20 group-hover:opacity-50 transition-opacity"></span>
+                        </button>
+                    </form>
+                    <div id="sketch-results" class="mt-12 hidden">
+                        <h3 class="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100 text-center">Generated Sketch</h3>
+                        <div id="sketch-display" class="bg-gray-100 dark:bg-gray-700 rounded-lg p-6 flex justify-center items-center relative min-h-[300px]">
+                            <p id="sketch-placeholder" class="text-gray-500 dark:text-gray-400">Sketch will appear here...</p>
+                            <div id="mermaid-diagram" class="hidden"></div>
+                            <button id="view-sketch-demo" class="absolute bottom-4 right-4 bg-primary text-white px-4 py-2 rounded-full hidden">View Demo</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- Media Section -->
     <section id="touch" class="py-24 px-8 md:px-24 bg-gray-50 dark:bg-gray-800">
         <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-12 items-center">
             <div class="w-full md:w-full">
-                <h2 class="gradient-text text-4xl font-bold mb-6">Touch Me</h2>
+                <h2 class="gradient-text text-4xl text-center font-bold mb-6">Touch Me</h2>
                 <iframe src="https://widget.tagembed.com/2171743" style="width:100%;height:600px;border:none;"></iframe>
             </div>
         </div>
@@ -677,7 +721,13 @@
     <!-- Modal -->
     <div class="modal" id="previewModal">
         <div class="modal-content">
-            <button class="modal-close" id="closeModal">
+            <button id="screenshot-btn" class="modal-close" style="right: 4.5rem; background: rgba(0, 128, 0, 0.7);" title="Download Screenshot">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+            </button>
+            <button class="modal-close" id="closeModal" title="Close">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
@@ -771,15 +821,26 @@
         const loading = document.querySelector('.loading');
         const previewButtons = document.querySelectorAll('.preview-btn');
 
+        const openModal = () => {
+            modal.classList.add('active');
+            loading.style.display = 'block';
+            previewFrame.style.display = 'none';
+            previewFrame.src = 'about:blank'; // Clear previous content
+            previewFrame.srcdoc = '';      // Clear previous content
+        };
+
+        const hideModal = () => {
+            modal.classList.remove('active');
+            previewFrame.src = 'about:blank';
+            previewFrame.srcdoc = '';
+        };
+
         previewButtons.forEach(button => {
             button.addEventListener('click', () => {
                 const url = button.getAttribute('data-url');
-                modal.classList.add('active');
-                loading.style.display = 'block';
-                previewFrame.style.display = 'none';
-                
+                if (!url) return;
+                openModal();
                 previewFrame.src = url;
-                
                 previewFrame.onload = () => {
                     loading.style.display = 'none';
                     previewFrame.style.display = 'block';
@@ -787,24 +848,13 @@
             });
         });
 
-        closeModal.addEventListener('click', () => {
-            modal.classList.remove('active');
-            previewFrame.src = '';
-        });
-
-        // Close modal when clicking outside
+        closeModal.addEventListener('click', hideModal);
         modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.classList.remove('active');
-                previewFrame.src = '';
-            }
+            if (e.target === modal) hideModal();
         });
-
-        // Close modal with Escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && modal.classList.contains('active')) {
-                modal.classList.remove('active');
-                previewFrame.src = '';
+                hideModal();
             }
         });
 
@@ -887,5 +937,171 @@
 
         window.addEventListener('load', fetchLocationAndLogVisitor);
     </script>
+
+    <!-- Include Mermaid.js for diagram rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js"></script>
+<script>
+    mermaid.initialize({ startOnLoad: false });
+
+    // --- LOGIKA GENERATOR SKETSA AI ---
+    const apiKey = 'AIzaSyDJobYTsoELPiHdOgyI7WMPIobLdgJ8n-8'; // <-- PENTING: PASTE KUNCI API ANDA DI SINI
+    const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+
+    const sketchForm = document.getElementById('sketch-form');
+    const sketchResults = document.getElementById('sketch-results');
+    const sketchPlaceholder = document.getElementById('sketch-placeholder');
+    const sketchDisplay = document.getElementById('sketch-display');
+    const viewSketchDemoBtn = document.getElementById('view-sketch-demo');
+
+    const cleanApiResponse = (rawText) => {
+        return rawText.replace(/```(html|mermaid)?\n/g, '').replace(/```/g, '').trim();
+    };
+
+    sketchForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const websiteName = document.getElementById('website-name').value;
+        const websiteCategory = document.getElementById('website-category').value;
+        const aboutWebsite = document.getElementById('about-website').value;
+        // Ambil nilai dari input fitur baru
+        const websiteFeatures = document.getElementById('website-features').value;
+
+        if (!websiteName || !websiteCategory || !aboutWebsite) {
+            alert('Mohon isi nama, kategori, dan deskripsi website.');
+            return;
+        }
+
+        // --- Reset UI dan Status Loading ---
+        sketchResults.classList.remove('hidden');
+        sketchDisplay.classList.remove('justify-center', 'items-center'); // Hapus centering sementara
+        sketchPlaceholder.textContent = 'Sedang membuat preview tampilan... Mohon tunggu.';
+        sketchPlaceholder.classList.remove('hidden');
+        viewSketchDemoBtn.classList.add('hidden');
+        viewSketchDemoBtn.removeAttribute('data-html-content');
+
+        // --- PROMPT BARU YANG LEBIH CANGGIH ---
+        const htmlPrompt = `
+        Act as a world-class UI/UX designer and senior frontend developer.
+        Your task is to create several standalone HTML files for website wireframes using only Tailwind CSS.
+        The design should be MODERN, FRESH, ELEGANT and NOT MONOTON. Use a nice color palette, typography, and lots of spacing.
+        Responses should be raw HTML code ONLY, starting directly with \`<!DOCTYPE html>\`. Do not include explanations or fence markers.
+
+        Here are the project details:
+        - Website Name: "${websiteName}"
+        - Website Category: "${websiteCategory}"
+        - About The Website: "${aboutWebsite}"
+        - Required Features (must be included): "${websiteFeatures}"
+
+        Required Structure:
+        1.  Modern and responsive header with navigation links.
+        2.  An engaging Hero section with a clear title, short description, and main call-to-action button.
+        3.  A Features section that visually displays key features. If users request a gallery, testimonials, or contact form, make it a visually appealing section for them. Use placeholder images (for example, from https://placehold.co/600x400) if needed.
+        4.  "About Us" section.
+        5.  A clean and simple footer with social media icon links and copyright text.
+        If multiple pages are desired from the features, create more than one page.
+        Make sure the entire layout is responsive and looks good on mobile devices.
+        `;
+
+        try {
+            console.log("Requesting HTML wireframe with advanced prompt...");
+            const htmlResponse = await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    contents: [{ parts: [{ text: htmlPrompt }] }],
+                    generationConfig: {
+                        temperature: 0.7, // Sedikit lebih kreatif
+                    },
+                    safetySettings: [
+                        { "category": "HARM_CATEGORY_HARASSMENT", "threshold": "BLOCK_NONE" },
+                        { "category": "HARM_CATEGORY_HATE_SPEECH", "threshold": "BLOCK_NONE" },
+                        { "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT", "threshold": "BLOCK_NONE" },
+                        { "category": "HARM_CATEGORY_DANGEROUS_CONTENT", "threshold": "BLOCK_NONE" }
+                    ]
+                })
+            });
+
+            if (!htmlResponse.ok) {
+                const errorData = await htmlResponse.json();
+                throw new Error(`API Error: ${errorData.error.message}`);
+            }
+            
+            const htmlJson = await htmlResponse.json();
+            
+            if (!htmlJson.candidates || !htmlJson.candidates[0].content) {
+                throw new Error("Invalid response structure from API.");
+            }
+
+            const htmlCode = cleanApiResponse(htmlJson.candidates[0].content.parts[0].text);
+            
+            console.log("HTML code received.");
+
+            // Atur ulang display untuk memusatkan tombol
+            sketchDisplay.classList.add('justify-center', 'items-center');
+            sketchPlaceholder.classList.add('hidden');
+            
+            viewSketchDemoBtn.setAttribute('data-html-content', htmlCode);
+            viewSketchDemoBtn.classList.remove('hidden'); // Tampilkan tombol di tengah
+
+        } catch (error) {
+            console.error('Error during AI Sketch Generation:', error);
+            sketchPlaceholder.textContent = `Terjadi kesalahan: ${error.message}.`;
+            sketchPlaceholder.classList.remove('hidden');
+        }
+    });
+
+    // --- Event listener untuk tombol "View Demo" ---
+    viewSketchDemoBtn.addEventListener('click', () => {
+        const htmlContent = viewSketchDemoBtn.getAttribute('data-html-content');
+        if (!htmlContent) {
+            alert('Tidak ada konten demo yang bisa ditampilkan.');
+            return;
+        }
+        openModal();
+        previewFrame.srcdoc = htmlContent;
+        previewFrame.onload = () => {
+            loading.style.display = 'none';
+            previewFrame.style.display = 'block';
+        };
+    });
+
+    // --- LOGIKA BARU UNTUK SCREENSHOT ---
+    const screenshotBtn = document.getElementById('screenshot-btn');
+    screenshotBtn.addEventListener('click', () => {
+        const iframe = document.getElementById('previewFrame');
+        const iframeContent = iframe.contentWindow.document.body;
+
+        if (!iframeContent) {
+            alert("Konten demo belum siap untuk di-screenshot.");
+            return;
+        }
+        
+        // Beri feedback ke user
+        screenshotBtn.style.background = "rgba(255, 165, 0, 0.7)"; // Ubah warna jadi oranye
+        
+        html2canvas(iframeContent, {
+            width: iframeContent.scrollWidth,
+            height: iframeContent.scrollHeight,
+            windowWidth: iframeContent.scrollWidth,
+            windowHeight: iframeContent.scrollHeight,
+            useCORS: true,
+            allowTaint: true
+        }).then(canvas => {
+            const link = document.createElement('a');
+            link.download = 'website-sketch.png';
+            link.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+            link.click();
+            link.remove();
+            
+            // Kembalikan warna tombol
+            screenshotBtn.style.background = "rgba(0, 128, 0, 0.7)";
+        }).catch(err => {
+            console.error("Gagal melakukan screenshot:", err);
+            alert("Maaf, terjadi kesalahan saat mengambil screenshot.");
+            // Kembalikan warna tombol
+            screenshotBtn.style.background = "rgba(0, 128, 0, 0.7)";
+        });
+    });
+</script>
 </body>
 </html>
