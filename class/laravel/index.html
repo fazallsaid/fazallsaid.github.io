@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roadmap Pembelajaran Laravel | Fazal Said</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF6B6B',
+                        secondary: '#4ECDC4',
+                        accent: '#45B7D1',
+                        dark: '#2C3E50',
+                        light: '#F7F9FC'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-text {
+            background: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 50%, #45B7D1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% 200%;
+            animation: gradient 8s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .font-fira-code {
+            font-family: 'Fira Code';
+        }
+
+        /* Modal styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            max-width: 90%;
+            max-height: 90%;
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+
+        .dark .modal-content {
+            background: #2C3E50;
+            color: #F7F9FC;
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .dark .close-modal {
+            color: #ccc;
+        }
+
+        .sub-material-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .sub-material-card {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+        }
+
+        .dark .sub-material-card {
+            background: #34495e;
+            border-color: #2c3e50;
+        }
+
+        .sub-material-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .roadmap-section {
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .roadmap-section:hover {
+            background-color: rgba(255, 107, 107, 0.1);
+        }
+
+        .dark .roadmap-section:hover {
+            background-color: rgba(255, 107, 107, 0.2);
+        }
+    </style>
+</head>
+<body class="font-fira-code bg-light dark:bg-dark text-gray-900 dark:text-light transition-colors duration-300">
+    <div class="max-w-4xl mx-auto p-8">
+        <h1 class="gradient-text text-4xl font-bold text-center mb-8">Roadmap Pembelajaran Laravel</h1>
+        <p class="text-gray-600 dark:text-gray-400 text-center mb-12">
+            Panduan langkah demi langkah untuk mempelajari framework Laravel dari dasar hingga mahir.
+        </p>
+
+        <div class="space-y-6">
+            <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg roadmap-section" onclick="openModal('modal-1')">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-bold text-primary">1. Persiapan Lingkungan</h2>
+                    <button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors">
+                        Lihat Materi
+                    </button>
+                </div>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                    <li>Install PHP versi 8.3</li>
+                    <li>Install Composer (dependency manager untuk PHP)</li>
+                    <li>Setup web server dengan XAMPP</li>
+                </ul>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg roadmap-section" onclick="openModal('modal-2')">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-bold text-primary">2. Instalasi Laravel</h2>
+                    <button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors">
+                        Lihat Materi
+                    </button>
+                </div>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                    <li>Buat project Laravel baru menggunakan Composer</li>
+                    <li>Jalankan server development</li>
+                    <li>Familiar dengan struktur folder Laravel</li>
+                </ul>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg roadmap-section" onclick="openModal('modal-3')">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-bold text-primary">3. Konsep Dasar MVC</h2>
+                    <button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors">
+                        Lihat Materi
+                    </button>
+                </div>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                    <li>Pahami Model-View-Controller pattern</li>
+                    <li>Buat route sederhana</li>
+                    <li>Buat controller pertama</li>
+                    <li>Return dari controller</li>
+                </ul>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg roadmap-section" onclick="openModal('modal-4')">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-bold text-primary">4. Routing dan Views</h2>
+                    <button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors">
+                        Lihat Materi
+                    </button>
+                </div>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                    <li>HTTP methods (GET, POST, PUT, DELETE)</li>
+                    <li>Route parameters dan named routes</li>
+                    <li>Membuat file blade</li>
+                    <li>Layout dan partial views</li>
+                </ul>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg roadmap-section" onclick="openModal('modal-5')">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-bold text-primary">5. Database dan Eloquent ORM</h2>
+                    <button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors">
+                        Lihat Materi
+                    </button>
+                </div>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                    <li>Konfigurasi database</li>
+                    <li>Migrations untuk membuat tabel</li>
+                    <li>Eloquent models</li>
+                    <li>CRUD operations dengan Eloquent</li>
+                </ul>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg roadmap-section" onclick="openModal('modal-6')">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-bold text-primary">6. Forms dan Validation</h2>
+                    <button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors">
+                        Lihat Materi
+                    </button>
+                </div>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                    <li>CSRF protection</li>
+                    <li>Form requests</li>
+                    <li>Validation rules</li>
+                </ul>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg roadmap-section" onclick="openModal('modal-7')">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-bold text-primary">7. Authentication dan Authorization</h2>
+                    <button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors">
+                        Lihat Materi
+                    </button>
+                </div>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                    <li>User registration dan login</li>
+                    <li>Role-based access control</li>
+                </ul>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg roadmap-section" onclick="openModal('modal-9')">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-bold text-primary">9. Testing dan Deployment</h2>
+                    <button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors">
+                        Lihat Materi
+                    </button>
+                </div>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                    <li>Unit testing dengan PHPUnit</li>
+                    <li>Feature testing</li>
+                    <li>Deployment ke production</li>
+                    <li>Environment configuration</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="text-center mt-12">
+            <a href="../../class" class="inline-block px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors">
+                Kembali ke Daftar Kelas
+            </a>
+        </div>
+    </div>
+
+    <!-- Modals for sub-materials -->
+    <div id="modal-1" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('modal-1')">&times;</button>
+            <h3 class="text-2xl font-bold mb-4 text-primary">1. Persiapan Lingkungan</h3>
+            <div class="sub-material-grid">
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Install PHP</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Panduan instalasi PHP versi 8.3</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Install Composer</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Dependency manager untuk PHP</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Setup Web Server</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Konfigurasi XAMPP</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-2" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('modal-2')">&times;</button>
+            <h3 class="text-2xl font-bold mb-4 text-primary">2. Instalasi Laravel</h3>
+            <div class="sub-material-grid">
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Create New Project</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Menggunakan Composer create-project</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Run Development Server</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Menggunakan perintah php artisan serve</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Folder Structure</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Memahami struktur direktori Laravel</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-3" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('modal-3')">&times;</button>
+            <h3 class="text-2xl font-bold mb-4 text-primary">3. Konsep Dasar MVC</h3>
+            <div class="sub-material-grid">
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">MVC Pattern</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Penjelasan Model-View-Controller</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Basic Routing</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Membuat route sederhana</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Controllers</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Membuat dan menggunakan controller</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Return</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Berbagai cara return</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-4" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('modal-4')">&times;</button>
+            <h3 class="text-2xl font-bold mb-4 text-primary">4. Routing dan Views</h3>
+            <div class="sub-material-grid">
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">HTTP Methods</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">GET, POST, PUT, DELETE</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Route Parameters</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Parameter dan named routes</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Blade Files</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Membuat file blade</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Membuat template layout sederhana</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Membuat layout dan partial views</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-5" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('modal-5')">&times;</button>
+            <h3 class="text-2xl font-bold mb-4 text-primary">5. Database dan Eloquent ORM</h3>
+            <div class="sub-material-grid">
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Database Config</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Konfigurasi koneksi database</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Migrations</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Membuat dan menjalankan migrations</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Eloquent Models</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Membuat dan menggunakan models</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">CRUD Operations</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Create, Read, Update, Delete</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-6" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('modal-6')">&times;</button>
+            <h3 class="text-2xl font-bold mb-4 text-primary">6. Forms dan Validation - Sub Materi</h3>
+            <div class="sub-material-grid">
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">CSRF Protection</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Cross-Site Request Forgery</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Form Requests</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Custom form request classes</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Validation Rules</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Built-in dan custom validation</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Error Handling</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Menampilkan dan menangani error</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-7" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('modal-7')">&times;</button>
+            <h3 class="text-2xl font-bold mb-4 text-primary">7. Authentication dan Authorization</h3>
+            <div class="sub-material-grid">
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">User Registration</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Membuat sistem registrasi</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Login System</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Implementasi login dan logout</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-9" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('modal-9')">&times;</button>
+            <h3 class="text-2xl font-bold mb-4 text-primary">8. Testing dan Deployment</h3>
+            <div class="sub-material-grid">
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Unit Testing</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Testing dengan PHPUnit</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Feature Testing</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">End-to-end testing</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Deployment</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Deploy ke production server</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Environment Config in Production</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Konfigurasi environment</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        // Close modal when clicking outside
+        document.addEventListener('click', function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('active');
+            }
+        });
+
+        // Close modal with ESC key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                document.querySelectorAll('.modal.active').forEach(modal => {
+                    modal.classList.remove('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

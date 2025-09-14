@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roadmap Pembelajaran HTML, CSS, dan JavaScript | Fazal Said</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF6B6B',
+                        secondary: '#4ECDC4',
+                        accent: '#45B7D1',
+                        dark: '#2C3E50',
+                        light: '#F7F9FC'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-text {
+            background: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 50%, #45B7D1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% 200%;
+            animation: gradient 8s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .font-fira-code {
+            font-family: 'Fira Code';
+        }
+
+        /* Modal styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            max-width: 90%;
+            max-height: 90%;
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+
+        .dark .modal-content {
+            background: #2C3E50;
+            color: #F7F9FC;
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .dark .close-modal {
+            color: #ccc;
+        }
+
+        .sub-material-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .sub-material-card {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+        }
+
+        .dark .sub-material-card {
+            background: #34495e;
+            border-color: #2c3e50;
+        }
+
+        .sub-material-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .roadmap-section {
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .roadmap-section:hover {
+            background-color: rgba(255, 107, 107, 0.1);
+        }
+
+        .dark .roadmap-section:hover {
+            background-color: rgba(255, 107, 107, 0.2);
+        }
+    </style>
+</head>
+<body class="font-fira-code bg-light dark:bg-dark text-gray-900 dark:text-light transition-colors duration-300">
+    <div class="max-w-4xl mx-auto p-8">
+        <h1 class="gradient-text text-4xl font-bold text-center mb-8">Roadmap Pembelajaran HTML, CSS, dan JavaScript</h1>
+        <p class="text-gray-600 dark:text-gray-400 text-center mb-12">
+            Panduan lengkap untuk menguasai teknologi front-end: HTML, CSS, dan JavaScript.
+        </p>
+
+        <div class="space-y-6">
+            <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg roadmap-section" onclick="openModal('modal-1')">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-bold text-primary">1. HTML Fundamentals</h2>
+                    <button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors">
+                        Lihat Materi
+                    </button>
+                </div>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                    <li>Struktur dasar HTML (DOCTYPE, html, head, body)</li>
+                    <li>Heading, paragraph, dan text elements</li>
+                    <li>Links dan navigation</li>
+                    <li>Images dan multimedia</li>
+                    <li>Lists (ordered dan unordered)</li>
+                    <li>Tables</li>
+                    <li>Forms dan input elements</li>
+                    <li>Semantic HTML (header, nav, main, footer, etc.)</li>
+                </ul>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg roadmap-section" onclick="openModal('modal-2')">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-bold text-primary">2. CSS Basics</h2>
+                    <button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors">
+                        Lihat Materi
+                    </button>
+                </div>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                    <li>CSS syntax dan cara menghubungkan ke HTML</li>
+                    <li>Selectors (element, class, id, attribute)</li>
+                    <li>Colors, fonts, dan text styling</li>
+                    <li>Box model (margin, border, padding, content)</li>
+                    <li>Display properties (block, inline, inline-block)</li>
+                    <li>Positioning (static, relative, absolute, fixed)</li>
+                    <li>Float dan clear</li>
+                </ul>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg roadmap-section" onclick="openModal('modal-3')">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-bold text-primary">3. CSS Layout dan Responsive Design</h2>
+                    <button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors">
+                        Lihat Materi
+                    </button>
+                </div>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                    <li>Flexbox untuk layout modern</li>
+                    <li>CSS Grid system</li>
+                    <li>Media queries untuk responsive design</li>
+                    <li>Mobile-first approach</li>
+                    <li>CSS frameworks introduction (Bootstrap, Tailwind CSS)</li>
+                </ul>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg roadmap-section" onclick="openModal('modal-4')">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-bold text-primary">4. CSS Advanced</h2>
+                    <button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors">
+                        Lihat Materi
+                    </button>
+                </div>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                    <li>CSS animations dan transitions</li>
+                    <li>Transform dan keyframes</li>
+                    <li>Pseudo-classes dan pseudo-elements</li>
+                    <li>CSS variables (custom properties)</li>
+                    <li>CSS preprocessors (Sass/SCSS)</li>
+                </ul>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg roadmap-section" onclick="openModal('modal-5')">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-bold text-primary">5. JavaScript Fundamentals</h2>
+                    <button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors">
+                        Lihat Materi
+                    </button>
+                </div>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                    <li>JavaScript syntax dan variables (var, let, const)</li>
+                    <li>Data types (primitive dan reference)</li>
+                    <li>Operators dan expressions</li>
+                    <li>Functions (declaration, expression, arrow functions)</li>
+                    <li>Scope dan hoisting</li>
+                    <li>Arrays dan objects</li>
+                    <li>Control flow (if/else, loops, switch)</li>
+                </ul>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg roadmap-section" onclick="openModal('modal-6')">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-bold text-primary">6. DOM Manipulation</h2>
+                    <button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors">
+                        Lihat Materi
+                    </button>
+                </div>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                    <li>Document Object Model (DOM) concept</li>
+                    <li>Selecting elements (getElementById, querySelector)</li>
+                    <li>Changing content dan attributes</li>
+                    <li>Event listeners dan event handling</li>
+                    <li>Creating dan removing elements</li>
+                    <li>Traversing the DOM</li>
+                </ul>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg roadmap-section" onclick="openModal('modal-7')">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-bold text-primary">7. JavaScript Advanced</h2>
+                    <button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors">
+                        Lihat Materi
+                    </button>
+                </div>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                    <li>Asynchronous JavaScript (callbacks, promises, async/await)</li>
+                    <li>AJAX dan Fetch API</li>
+                    <li>ES6+ features (destructuring, spread operator, modules)</li>
+                    <li>Error handling dengan try/catch</li>
+                    <li>Local storage dan session storage</li>
+                    <li>Regular expressions</li>
+                </ul>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg roadmap-section" onclick="openModal('modal-8')">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-bold text-primary">8. Front-End Frameworks</h2>
+                    <button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors">
+                        Lihat Materi
+                    </button>
+                </div>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                    <li>Introduction to React.js</li>
+                    <li>Vue.js basics</li>
+                    <li>Angular fundamentals</li>
+                    <li>State management (Redux, Vuex)</li>
+                    <li>Build tools (Webpack, Vite)</li>
+                </ul>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg roadmap-section" onclick="openModal('modal-9')">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-bold text-primary">9. Tools dan Best Practices</h2>
+                    <button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors">
+                        Lihat Materi
+                    </button>
+                </div>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                    <li>Version control dengan Git</li>
+                    <li>Package managers (npm, yarn)</li>
+                    <li>Code editors (VS Code)</li>
+                    <li>Browser developer tools</li>
+                    <li>Testing (Jest, Cypress)</li>
+                    <li>Performance optimization</li>
+                    <li>Accessibility (a11y)</li>
+                </ul>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg roadmap-section" onclick="openModal('modal-10')">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-bold text-primary">10. Project Building</h2>
+                    <button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors">
+                        Lihat Materi
+                    </button>
+                </div>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                    <li>Building responsive websites</li>
+                    <li>Creating interactive web applications</li>
+                    <li>API integration</li>
+                    <li>Deployment ke hosting</li>
+                    <li>Portfolio development</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="text-center mt-12">
+            <a href="../index.html" class="inline-block px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors">
+                Kembali ke Daftar Kelas
+            </a>
+        </div>
+    </div>
+
+    <!-- Modals for sub-materials -->
+    <div id="modal-1" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('modal-1')">&times;</button>
+            <h3 class="text-2xl font-bold mb-4 text-primary">1. HTML Fundamentals - Sub Materi</h3>
+            <div class="sub-material-grid">
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">HTML Structure</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">DOCTYPE, html, head, body elements</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Text Elements</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Headings, paragraphs, text formatting</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Links & Navigation</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Anchor tags dan navigation</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Multimedia</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Images, audio, video elements</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Lists & Tables</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Ordered lists, unordered lists, tables</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Forms</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Input elements dan form handling</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Semantic HTML</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Header, nav, main, footer, etc.</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-2" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('modal-2')">&times;</button>
+            <h3 class="text-2xl font-bold mb-4 text-primary">2. CSS Basics - Sub Materi</h3>
+            <div class="sub-material-grid">
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">CSS Syntax</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Selectors, properties, values</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">CSS Selectors</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Element, class, id, attribute selectors</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Colors & Fonts</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Color properties dan typography</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Box Model</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Margin, border, padding, content</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Display Property</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Block, inline, inline-block</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Positioning</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Static, relative, absolute, fixed</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Float & Clear</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">CSS float property dan clearing</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-3" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('modal-3')">&times;</button>
+            <h3 class="text-2xl font-bold mb-4 text-primary">3. CSS Layout dan Responsive Design - Sub Materi</h3>
+            <div class="sub-material-grid">
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Flexbox</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Flexible box layout module</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">CSS Grid</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Grid layout system</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Media Queries</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Responsive breakpoints</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Mobile-First</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Mobile-first responsive design</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">CSS Frameworks</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Bootstrap, Tailwind CSS introduction</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-4" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('modal-4')">&times;</button>
+            <h3 class="text-2xl font-bold mb-4 text-primary">4. CSS Advanced - Sub Materi</h3>
+            <div class="sub-material-grid">
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Animations</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">CSS transitions dan animations</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Transforms</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Scale, rotate, translate, skew</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Pseudo-elements</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">::before, ::after, ::first-line</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">CSS Variables</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Custom properties</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Sass/SCSS</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">CSS preprocessor</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-5" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('modal-5')">&times;</button>
+            <h3 class="text-2xl font-bold mb-4 text-primary">5. JavaScript Fundamentals - Sub Materi</h3>
+            <div class="sub-material-grid">
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">JS Syntax</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Basic syntax dan statements</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Variables</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">var, let, const declarations</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Data Types</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Primitive dan reference types</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Functions</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Declaration, expression, arrow functions</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Arrays & Objects</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Working with arrays dan objects</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Control Flow</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">If/else, loops, switch statements</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-6" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('modal-6')">&times;</button>
+            <h3 class="text-2xl font-bold mb-4 text-primary">6. DOM Manipulation - Sub Materi</h3>
+            <div class="sub-material-grid">
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">DOM Concept</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Understanding Document Object Model</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Selecting Elements</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">getElementById, querySelector methods</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Changing Content</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">innerHTML, textContent, attributes</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Event Handling</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">addEventListener, event objects</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Creating Elements</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">createElement, appendChild methods</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">DOM Traversal</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">parentNode, childNodes, siblings</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-7" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('modal-7')">&times;</button>
+            <h3 class="text-2xl font-bold mb-4 text-primary">7. JavaScript Advanced - Sub Materi</h3>
+            <div class="sub-material-grid">
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Asynchronous JS</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Callbacks, promises, async/await</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">AJAX & Fetch</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">XMLHttpRequest dan Fetch API</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">ES6+ Features</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Destructuring, spread operator, modules</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Error Handling</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Try/catch blocks</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Web Storage</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Local storage dan session storage</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Regular Expressions</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Pattern matching dengan RegExp</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-8" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('modal-8')">&times;</button>
+            <h3 class="text-2xl font-bold mb-4 text-primary">8. Front-End Frameworks - Sub Materi</h3>
+            <div class="sub-material-grid">
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">React.js</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Components, JSX, props, state</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Vue.js</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Vue instance, templates, directives</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Angular</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Components, modules, services</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">State Management</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Redux, Vuex, Context API</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Build Tools</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Webpack, Vite, Babel</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-9" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('modal-9')">&times;</button>
+            <h3 class="text-2xl font-bold mb-4 text-primary">9. Tools dan Best Practices - Sub Materi</h3>
+            <div class="sub-material-grid">
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Git Version Control</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Git commands, branching, merging</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Package Managers</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">npm, yarn, package.json</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Code Editors</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">VS Code extensions dan settings</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Browser DevTools</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Debugging dan performance tools</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Testing</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Jest, Cypress, unit testing</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Performance</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Optimization techniques</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Accessibility</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">WCAG guidelines, ARIA attributes</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-10" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('modal-10')">&times;</button>
+            <h3 class="text-2xl font-bold mb-4 text-primary">10. Project Building - Sub Materi</h3>
+            <div class="sub-material-grid">
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Responsive Websites</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Building mobile-friendly sites</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Interactive Apps</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">JavaScript-powered applications</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">API Integration</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Working with REST APIs</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Deployment</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Hosting dan domain setup</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+                <div class="sub-material-card">
+                    <h4 class="font-bold mb-2">Portfolio Development</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Creating personal portfolio</p>
+                    <a href="#" class="text-primary text-sm mt-2 inline-block">Lihat Materi →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        // Close modal when clicking outside
+        document.addEventListener('click', function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('active');
+            }
+        });
+
+        // Close modal with ESC key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                document.querySelectorAll('.modal.active').forEach(modal => {
+                    modal.classList.remove('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
