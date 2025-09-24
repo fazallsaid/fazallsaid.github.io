@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soal Pertemuan 1: Membuat Landing Page Portofolio | Fazal Said</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF6B6B',
+                        secondary: '#4ECDC4',
+                        accent: '#45B7D1',
+                        dark: '#2C3E50',
+                        light: '#F7F9FC'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-text {
+            background: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 50%, #45B7D1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% 200%;
+            animation: gradient 8s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .font-fira-code {
+            font-family: 'Fira Code';
+        }
+
+        /* Modal styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            max-width: 90%;
+            max-height: 90%;
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+
+        .dark .modal-content {
+            background: #2C3E50;
+            color: #F7F9FC;
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .dark .close-modal {
+            color: #ccc;
+        }
+
+        .sub-material-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .sub-material-card {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+        }
+
+        .dark .sub-material-card {
+            background: #34495e;
+            border-color: #2c3e50;
+        }
+
+        .sub-material-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .roadmap-section {
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .roadmap-section:hover {
+            background-color: rgba(255, 107, 107, 0.1);
+        }
+
+        .dark .roadmap-section:hover {
+            background-color: rgba(255, 107, 107, 0.2);
+        }
+    </style>
+</head>
+<body class="font-fira-code bg-light dark:bg-dark text-gray-900 dark:text-light transition-colors duration-300">
+    <div class="max-w-4xl mx-auto p-8">
+        <h1 class="gradient-text text-4xl font-bold text-center mb-8">Soal Pertemuan 1: Membuat Landing Page Portofolio</h1>
+        <p class="text-gray-600 dark:text-gray-400 text-center mb-12">
+            Buatlah landing page portofolio sederhana menggunakan HTML dan CSS untuk menampilkan profil dan karya Anda sebagai developer.
+        </p>
+
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-8 shadow-lg mb-8">
+            <h2 class="text-3xl font-bold text-primary mb-6">Deskripsi Tugas</h2>
+            <p class="text-gray-700 dark:text-gray-300 text-lg mb-6">
+                Buatlah sebuah landing page portofolio sederhana menggunakan HTML dan CSS. Landing page ini harus menampilkan informasi tentang diri Anda sebagai developer, dengan layout yang menarik dan responsif.
+            </p>
+
+            <h3 class="text-2xl font-bold text-secondary mb-4">Persyaratan Teknis</h3>
+            <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300 mb-6">
+                <li>Gunakan HTML5 semantic elements (header, nav, main, section, footer)</li>
+                <li>Implementasikan CSS untuk styling dan layout tanpa framework eksternal</li>
+                <li>Buat layout yang responsif untuk desktop dan mobile</li>
+                <li>Tidak menggunakan JavaScript</li>
+                <li>Gunakan minimal 3 warna yang harmonis</li>
+                <li>Sertakan gambar profil atau avatar</li>
+            </ul>
+
+            <h3 class="text-2xl font-bold text-secondary mb-4">Konten yang Harus Ada</h3>
+            <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300 mb-6">
+                <li>Header dengan navigasi sederhana</li>
+                <li>Hero section dengan nama dan tagline</li>
+                <li>Section tentang diri (about)</li>
+                <li>Section skills atau kemampuan</li>
+                <li>Section proyek (projects) dengan minimal 2 proyek</li>
+                <li>Footer dengan informasi kontak</li>
+            </ul>
+
+            <h3 class="text-2xl font-bold text-secondary mb-4">Styling Requirements</h3>
+            <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300 mb-6">
+                <li>Typography yang readable (gunakan font yang bagus)</li>
+                <li>Color scheme yang konsisten</li>
+                <li>Layout menggunakan Flexbox atau CSS Grid</li>
+                <li>Hover effects pada button dan link</li>
+                <li>Spacing dan padding yang proporsional</li>
+                <li>Box shadow untuk memberikan depth</li>
+            </ul>
+
+            <h3 class="text-2xl font-bold text-secondary mb-4">Tips untuk Pemula</h3>
+            <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300 mb-6">
+                <li>Mulai dengan struktur HTML terlebih dahulu</li>
+                <li>Gunakan CSS reset di awal file CSS</li>
+                <li>Buat layout mobile-first</li>
+                <li>Test di browser yang berbeda</li>
+                <li>Validasi kode HTML dan CSS Anda</li>
+                <li>Gunakan nama class yang deskriptif</li>
+            </ul>
+
+            <h3 class="text-2xl font-bold text-secondary mb-4">Contoh Struktur File</h3>
+            <pre class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg overflow-x-auto text-sm">
+<code>portfolio/
+├── index.html
+├── styles.css
+└── images/
+    ├── profile.jpg
+    ├── project1.jpg
+    └── project2.jpg</code>
+            </pre>
+        </div>
+
+        <div class="text-center mt-12">
+            <a href="../" class="inline-block px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors">
+                Kembali ke Daftar Soal
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // No modals needed for this page
+    </script>
+</body>
+</html>
