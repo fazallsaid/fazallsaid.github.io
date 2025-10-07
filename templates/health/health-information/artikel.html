@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artikel - SehatPedia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-white">
+
+    <!-- Header Section -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0">
+                    <a href="index.html" class="text-2xl font-bold text-green-700">
+                        <span class="inline-block align-middle">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.5C7.5 4.5 4.5 7.5 4.5 12s3 7.5 7.5 7.5S19.5 16.5 19.5 12 16.5 4.5 12 4.5zm0 0V2m0 20v-2.5" />
+                            </svg>
+                        </span>
+                        SehatPedia
+                    </a>
+                </div>
+                <nav class="hidden md:flex md:space-x-10">
+                    <a href="artikel.html" class="font-medium text-gray-600 hover:text-green-600">Artikel</a>
+                    <a href="direktori-penyakit.html" class="font-medium text-gray-600 hover:text-green-600">Direktori Penyakit</a>
+                    <a href="tanya-dokter.html" class="font-medium text-gray-600 hover:text-green-600">Tanya Dokter</a>
+                </nav>
+                <div class="flex items-center">
+                    <a href="#" class="bg-green-600 text-white px-5 py-2 rounded-lg font-semibold hover:bg-green-700 transition duration-300">Login</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative bg-cover bg-center h-[40vh] md:h-[50vh]" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1920&auto=format&fit=crop')">
+            <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+            <div class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center items-start text-white">
+                <div class="max-w-xl">
+                    <h1 class="text-4xl md:text-5xl font-extrabold !leading-tight">Artikel Kesehatan Terpercaya</h1>
+                    <p class="mt-4 text-lg">Baca artikel terbaru dari para ahli medis untuk menjaga kesehatan Anda</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Articles Section -->
+        <section class="py-20">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Artikel Terbaru</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <!-- Article Card 1 -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden group">
+                        <div class="relative">
+                            <img class="w-full h-56 object-cover" src="https://images.unsplash.com/photo-1488900128323-21503983a07e?q=80&w=600&auto=format&fit=crop" alt="Kesehatan Anak">
+                            <div class="absolute top-4 right-4 bg-cyan-200 text-cyan-800 text-xs font-bold px-3 py-1 rounded-full">Kesehatan Anak</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Kesehatan Anak</h3>
+                            <p class="text-gray-600 text-sm">Pelajari cara menjaga kesehatan anak dengan tips dari ahli pediatri.</p>
+                            <a href="#" class="text-green-600 font-semibold mt-4 inline-block">Baca Selengkapnya</a>
+                        </div>
+                    </div>
+                    <!-- Article Card 2 -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden group">
+                        <div class="relative">
+                             <img class="w-full h-56 object-cover" src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=600&auto=format&fit=crop" alt="Nutrisi & Diet">
+                             <div class="absolute top-4 right-4 bg-orange-200 text-orange-800 text-xs font-bold px-3 py-1 rounded-full">Nutrisi & Diet</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Nutrisi & Diet</h3>
+                            <p class="text-gray-600 text-sm">Panduan nutrisi seimbang untuk hidup sehat dan bugar.</p>
+                            <a href="#" class="text-green-600 font-semibold mt-4 inline-block">Baca Selengkapnya</a>
+                        </div>
+                    </div>
+                    <!-- Article Card 3 -->
+                     <div class="bg-white rounded-xl shadow-lg overflow-hidden group">
+                        <div class="relative">
+                             <img class="w-full h-56 object-cover" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=600&auto=format&fit=crop" alt="Kesehatan Mental">
+                             <div class="absolute top-4 right-4 bg-amber-200 text-amber-800 text-xs font-bold px-3 py-1 rounded-full">Kesehatan Mental</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Kesehatan Mental</h3>
+                            <p class="text-gray-600 text-sm">Tips menjaga kesehatan mental di era modern.</p>
+                            <a href="#" class="text-green-600 font-semibold mt-4 inline-block">Baca Selengkapnya</a>
+                        </div>
+                    </div>
+                    <!-- Article Card 4 -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden group">
+                        <div class="relative">
+                            <img class="w-full h-56 object-cover" src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?q=80&w=600&auto=format&fit=crop" alt="Jantung & Pembuluh Darah">
+                            <div class="absolute top-4 right-4 bg-red-200 text-red-800 text-xs font-bold px-3 py-1 rounded-full">Jantung</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Jantung & Pembuluh Darah</h3>
+                            <p class="text-gray-600 text-sm">Pencegahan penyakit jantung dengan gaya hidup sehat.</p>
+                            <a href="#" class="text-green-600 font-semibold mt-4 inline-block">Baca Selengkapnya</a>
+                        </div>
+                    </div>
+                    <!-- Article Card 5 -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden group">
+                        <div class="relative">
+                            <img class="w-full h-56 object-cover" src="https://images.unsplash.com/photo-1506629905607-0b5b8b5b2b5b?q=80&w=600&auto=format&fit=crop" alt="Olahraga">
+                            <div class="absolute top-4 right-4 bg-blue-200 text-blue-800 text-xs font-bold px-3 py-1 rounded-full">Olahraga</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Manfaat Olahraga Rutin</h3>
+                            <p class="text-gray-600 text-sm">Jenis olahraga terbaik untuk kesehatan tubuh dan pikiran.</p>
+                            <a href="#" class="text-green-600 font-semibold mt-4 inline-block">Baca Selengkapnya</a>
+                        </div>
+                    </div>
+                    <!-- Article Card 6 -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden group">
+                        <div class="relative">
+                            <img class="w-full h-56 object-cover" src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?q=80&w=600&auto=format&fit=crop" alt="Imunitas">
+                            <div class="absolute top-4 right-4 bg-green-200 text-green-800 text-xs font-bold px-3 py-1 rounded-full">Imunitas</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Meningkatkan Imunitas Tubuh</h3>
+                            <p class="text-gray-600 text-sm">Cara alami untuk boost sistem kekebalan tubuh.</p>
+                            <a href="#" class="text-green-600 font-semibold mt-4 inline-block">Baca Selengkapnya</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-green-800 text-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- About Us -->
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Tentang Kami</h3>
+                    <p class="text-green-200 text-sm">SehatPedia adalah sumber informasi kesehatan terpercaya untuk keluarga Anda.</p>
+                </div>
+                <!-- Contact -->
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Kontak</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="mailto:info@sehatpedia.com" class="text-green-200 hover:text-white">Email: info@sehatpedia.com</a></li>
+                        <li><a href="#" class="text-green-200 hover:text-white">Formulir Kontak</a></li>
+                    </ul>
+                </div>
+                <!-- Legal -->
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Legal</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="text-green-200 hover:text-white">Kebijakan Privasi</a></li>
+                        <li><a href="#" class="text-green-200 hover:text-white">Syarat Penggunaan</a></li>
+                    </ul>
+                </div>
+                <!-- Follow Us -->
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Ikuti Kami</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-green-200 hover:text-white">
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
+                        </a>
+                        <a href="#" class="text-green-200 hover:text-white">
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.06-1.004.048-1.625.211-2.126.41-1.024.412-1.71 1.1-2.123 2.124-.198.501-.362 1.122-.41 2.126-.048 1.023-.06 1.351-.06 3.807 0 2.456.011 2.784.06 3.807.048 1.004.212 1.625.41 2.126.413 1.024 1.1 1.71 2.123 2.123.502.199 1.122.363 2.126.41.975.048 1.351.06 3.728.06s2.753-.012 3.728-.06c1.004-.048 1.625-.212 2.126-.41 1.024-.413 1.71-1.1-2.123-2.123.199-.502.363-1.122.41-2.126.048-.975.06-1.351.06-3.728s-.012-2.753-.06-3.728c-.048-1.004-.212-1.625-.41-2.126-.413-1.024-1.1-1.71-2.123-2.123-.502-.198-1.122-.362-2.126-.41C15.228 3.813 14.899 3.802 12.234 3.802zM12 6.865a5.135 5.135 0 100 10.27 5.135 5.135 0 000-10.27zm0 1.802a3.333 3.333 0 110 6.666 3.333 3.333 0 010-6.666zm5.338-3.205a1.2 1.2 0 100 2.4 1.2 1.2 0 000-2.4z" clip-rule="evenodd" /></svg>
+                        </a>
+                        <a href="#" class="text-green-200 hover:text-white">
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" /></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
