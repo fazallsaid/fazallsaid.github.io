@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio John Doe - Branding Personal</title>
+    <!-- Script Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Font (Poppins & Vollkorn) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&family=Vollkorn:wght@400;700;800&display=swap" rel="stylesheet">
+    <!-- AOS (Animate On Scroll) CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Konfigurasi Tailwind -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class', // <-- Penting: Gunakan kelas 'dark' untuk tema gelap
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            400: '#34d399', // Emerald 400
+                            500: '#10b981', // Emerald 500
+                            600: '#059669', // Emerald 600
+                            700: '#047857', // Emerald 700
+                        },
+                        dark: {
+                            900: '#0B0F19',
+                            800: '#1A202C',
+                            700: '#2D3748',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Skrip untuk menerapkan tema dari localStorage SEBELUM halaman dimuat -->
+    <script>
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+    <!-- Kustom CSS -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+        .font-heading {
+            font-family: 'Vollkorn', serif;
+        }
+        .navbar-blur {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        /* ===== Kursor Kustom ===== */
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: white;
+            border-radius: 50%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s linear, width 0.3s ease-in-out, height 0.3s ease-in-out;
+        }
+        .cursor-follower {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #3b82f6;
+            opacity: 0.5;
+            border-radius: 50%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 9998;
+            transition: transform 0.3s ease-out,
+                        width 0.4s ease-in-out,
+                        height 0.4s ease-in-out,
+                        background-color 0.3s ease-in-out,
+                        opacity 0.3s ease-in-out;
+        }
+        .cursor-grow .cursor-follower {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+            border-width: 1px;
+        }
+        .cursor-grow .cursor-dot {
+             width: 10px;
+             height: 10px;
+        }
+        body, button, a {
+            cursor: none;
+        }
+        @media (max-width: 1023px) {
+            .cursor-dot, .cursor-follower {
+                display: none;
+            }
+            body, button, a {
+                cursor: default;
+            }
+        }
+        /* ===== Animasi Gradasi Teks ===== */
+        .animated-gradient {
+            background: linear-gradient(90deg,
+                #10b981, /* new primary-500 */
+                #06b6d4,
+                #8b5cf6,
+                #10b981 /* new primary-500 */
+            );
+            background-size: 300% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-flow 10s linear infinite;
+        }
+        @keyframes gradient-flow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 300% 50%; }
+        }
+        /* ===== CSS untuk Container 3D ===== */
+        #canvas-container {
+            width: 100%;
+            height: 400px;
+            max-width: 400px;
+            margin: auto;
+            position: relative;
+        }
+        @media (min-width: 768px) {
+            #canvas-container {
+                height: 500px;
+                max-width: 500px;
+            }
+        }
+        #canvas-container canvas {
+            width: 100% !important;
+            height: 100% !important;
+        }
+        /* ===== Gaya untuk Portofolio Interaktif ===== */
+        .portfolio-list-item {
+            border-bottom: 2px solid #2D3748; /* dark-700 */
+            transition: background-color 0.3s ease;
+        }
+        .portfolio-list-item:hover, .portfolio-list-item.active {
+            background-color: #1A202C; /* dark-800 */
+        }
+        .portfolio-list-item .arrow {
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .portfolio-list-item:hover .arrow, .portfolio-list-item.active .arrow {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        /* Perbaikan warna teks portofolio saat hover di mode terang */
+        .portfolio-list-item:hover .font-heading, .portfolio-list-item.active .font-heading {
+            color: white;
+        }
+        .portfolio-list-item:hover .text-primary-600,
+        .portfolio-list-item.active .text-primary-600,
+        .portfolio-list-item:hover .arrow,
+        .portfolio-list-item.active .arrow {
+            color: #60a5fa; /* primary-400 */
+        }
+        #portfolio-image-preview img {
+            transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+            opacity: 0;
+            transform: scale(0.95);
+        }
+        /* ===== Gaya untuk Dot Navigation Samping ===== */
+        #dot-nav {
+            position: fixed;
+            left: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 50;
+            display: none; /* Sembunyikan di mobile */
+        }
+        @media (min-width: 1024px) {
+            #dot-nav {
+                display: block;
+            }
+        }
+        .nav-dot-item {
+            position: relative;
+        }
+        .nav-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #d1d5db; /* gray-300 */
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        .nav-dot-item:hover .nav-dot, .nav-dot.active {
+            background-color: #10b981; /* new primary-500 */
+            transform: scale(1.5);
+        }
+        .nav-label {
+            position: absolute;
+            left: 25px;
+            top: 50%;
+            transform: translateY(-50%) translateX(-10px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            white-space: nowrap;
+            background-color: #f9fafb; /* gray-50 */
+            color: #1f2937; /* gray-800 */
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .nav-dot-item:hover .nav-label {
+            opacity: 1;
+            transform: translateY(-50%) translateX(0);
+        }
+        .dark .nav-label {
+            background-color: #1A202C;
+            color: white;
+        }
+        /* ===== Modal Gambar Portofolio untuk Mobile ===== */
+        #portfolio-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #portfolio-modal.active {
+            display: flex;
+        }
+        #portfolio-modal-image {
+            max-width: 90%;
+            max-height: 80%;
+            object-fit: contain;
+            margin-bottom: 1rem;
+        }
+        #portfolio-modal-close {
+            background-color: #10b981; /* new primary-500 */
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        #portfolio-modal-close:hover {
+            background-color: #2563eb;
+        }
+        /* ===== Gaya untuk Toggle Slider Tema ===== */
+        .theme-switch-wrapper {
+            display: flex;
+            align-items: center;
+        }
+        .theme-switch {
+            display: inline-block;
+            height: 34px;
+            position: relative;
+            width: 60px;
+        }
+        .theme-switch input {
+            display:none;
+        }
+        .slider {
+            background-color: #ccc;
+            bottom: 0;
+            cursor: pointer;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            transition: .4s;
+        }
+        .slider:before {
+            background-color: #fff;
+        }
+        /* ===== Gaya untuk Tombol Kembali ke Atas ===== */
+        #back-to-top-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+            transform: translateY(20px);
+        }
+        #back-to-top-btn.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-white dark:bg-dark-900 text-gray-800 dark:text-gray-200 selection:bg-primary-500 selection:text-white overflow-x-hidden">
+    <!-- ===== Kursor Kustom ===== -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- ===== Modal Gambar Portofolio untuk Mobile ===== -->
+    <div id="portfolio-modal">
+        <img id="portfolio-modal-image" src="" alt="Detail Proyek">
+        <button id="portfolio-modal-close" type="button">Tutup</button>
+    </div>
+
+    <!-- Tombol Kontrol (Dark Mode & Bahasa) -->
+    <div class="fixed top-6 right-6 z-50 flex items-center space-x-4">
+        <!-- Theme Toggle -->
+        <div class="flex items-center space-x-2">
+            <!-- Ikon Matahari -->
+            <svg class="w-6 h-6 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+            <!-- Toggle -->
+            <label for="theme-toggle" class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" value="" id="theme-toggle" class="sr-only peer">
+                <div class="w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-emerald-300 dark:peer-focus:ring-emerald-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-primary-600"></div>
+            </label>
+            <!-- Ikon Bulan -->
+            <svg class="w-6 h-6 text-gray-400 dark:text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+        </div>
+    </div>
+
+    <!-- ===== Dot Navigation Samping ===== -->
+    <nav id="dot-nav">
+        <ul class="space-y-6">
+            <li class="nav-dot-item">
+                <a href="#home" data-section="home" class="nav-dot-link block p-2"><div class="nav-dot"></div></a> 
+                <span class="nav-label">Home</span>
+            </li>
+            <li class="nav-dot-item">
+                <a href="#tentang" data-section="tentang" class="nav-dot-link block p-2"><div class="nav-dot"></div></a>
+                <span class="nav-label">About</span>
+            </li>
+            <li class="nav-dot-item">
+                <a href="#portofolio" data-section="portofolio" class="nav-dot-link block p-2"><div class="nav-dot"></div></a>
+                <span class="nav-label">Portfolio</span>
+            </li>
+            <li class="nav-dot-item">
+                <a href="#kontak" data-section="kontak" class="nav-dot-link block p-2"><div class="nav-dot"></div></a>
+                <span class="nav-label">Contact</span>
+            </li>
+        </ul>
+    </nav>
+    <!-- ===== Main Content ===== -->
+    <main>
+        <!-- ===== Hero Section ===== -->
+        <section id="home" class="min-h-screen flex items-center pt-20 pb-10" data-section-name="home">
+            <div class="container mx-auto max-w-7xl px-6 sm:px-8 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div class="text-center md:text-left">
+                        <span class="text-primary-600 dark:text-primary-400 font-semibold text-lg uppercase tracking-wider" data-aos="fade-right" data-aos-delay="100">Hello, I'm John Doe</span>
+                        <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-white mt-3 mb-6 leading-tight" data-aos="fade-right" data-aos-delay="200">
+                            <span class="animated-gradient">UI/UX Designer</span> & <br class="hidden md:block"> Web Developer 
+                        </h1>
+                        <p class="text-lg text-gray-600 dark:text-gray-400 max-w-lg mx-auto md:mx-0 mb-8" data-aos="fade-right" data-aos-delay="300">
+                            I help brands grow by creating user-centric, modern, and captivating digital experiences.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start" data-aos="fade-up" data-aos-delay="400">
+                            <a href="#portofolio" class="inline-block px-8 py-4 text-lg font-medium text-white bg-primary-600 hover:bg-primary-700 rounded-full transition-all duration-300 shadow-lg hover:shadow-primary-500/50 transform hover:-translate-y-1">
+                                View Portfolio
+                            </a>
+                            <a href="#kontak" class="inline-block px-8 py-4 text-lg font-medium text-gray-700 dark:text-gray-200 bg-gray-100 dark:bg-dark-800 hover:bg-gray-200 dark:hover:bg-dark-700 rounded-full transition-all duration-300 shadow-lg transform hover:-translate-y-1">
+                                Contact Me
+                            </a>
+                        </div>
+                    </div>
+                    <div id="canvas-container" data-aos="fade-left" data-aos-delay="500" class="hidden md:block">
+                        <!-- Objek 3D Three.js akan dirender di sini oleh JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ===== Tentang Saya Section ===== -->
+        <section id="tentang" class="py-24 bg-white dark:bg-dark-800 border-t border-gray-100 dark:border-transparent" data-section-name="tentang">
+            <div class="container mx-auto max-w-7xl px-6 sm:px-8 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
+                    <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white mb-4">
+                        Tentang Saya
+                    </h2>
+                    <div class="w-24 h-1.5 bg-primary-500 mx-auto rounded-full"></div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-12 items-center">
+                    <div class="md:col-span-2 flex justify-center" data-aos="fade-right" data-aos-delay="100">
+                        <img 
+                            id="about-image"
+                            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            alt="Tentang John Doe"
+                            class="rounded-2xl shadow-xl w-full max-w-sm"
+                            onerror="this.src='https://placehold.co/500x600/f3f4f6/4b5563?text=Gagal+Muat&font=inter'"
+                        >
+                    </div>
+                    <div class="md:col-span-3" data-aos="fade-left" data-aos-delay="200">
+                        <h3 class="font-heading text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                            Perjalanan Saya di Dunia Desain
+                        </h3>
+                        <p class="text-gray-700 dark:text-gray-400 text-lg mb-6 leading-relaxed">
+                            Awalnya saya memulai sebagai Desainer Grafis, namun saya menemukan hasrat sejati saya dalam memecahkan masalah kompleks melalui desain yang intuitif. Bagi saya, desain bukan hanya soal estetika, tapi soal bagaimana pengguna merasakan dan berinteraksi dengan produk.
+                        </p>
+                        <p class="text-gray-700 dark:text-gray-400 text-lg mb-8 leading-relaxed">
+                            Selama 5 tahun terakhir, saya telah bekerja dengan berbagai klien, mulai dari *startup* hingga perusahaan besar, untuk merancang aplikasi seluler, *website*, dan *dashboard* yang fungsional dan indah.
+                        </p>
+                        <h4 class="font-heading text-xl font-semibold text-gray-900 dark:text-white mb-4">Keahlian Utama:</h4>
+                        <div class="flex flex-wrap gap-3" data-aos="fade-up" data-aos-delay="300">
+                            <span class="bg-gray-100 dark:bg-dark-700 text-primary-700 dark:text-primary-300 text-sm font-medium px-4 py-2 rounded-full">UI Design</span>
+                            <span class="bg-gray-100 dark:bg-dark-700 text-primary-700 dark:text-primary-300 text-sm font-medium px-4 py-2 rounded-full">UX Research</span>
+                            <span class="bg-gray-100 dark:bg-dark-700 text-primary-700 dark:text-primary-300 text-sm font-medium px-4 py-2 rounded-full">Prototyping</span>
+                            <span class="bg-gray-100 dark:bg-dark-700 text-primary-700 dark:text-primary-300 text-sm font-medium px-4 py-2 rounded-full">Wireframing</span>
+                            <span class="bg-gray-100 dark:bg-dark-700 text-primary-700 dark:text-primary-300 text-sm font-medium px-4 py-2 rounded-full">Figma & Sketch</span>
+                            <span class="bg-gray-100 dark:bg-dark-700 text-primary-700 dark:text-primary-300 text-sm font-medium px-4 py-2 rounded-full">HTML & CSS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ===== Portofolio Section ===== -->
+        <section id="portofolio" class="py-24 bg-white dark:bg-dark-900 border-t border-gray-100 dark:border-dark-800" data-section-name="portofolio">
+            <div class="container mx-auto max-w-7xl px-6 sm:px-8 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
+                    <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white mb-4">
+                        Karya & Portofolio
+                    </h2>
+                    <p class="text-lg text-gray-600 dark:text-gray-400">
+                        Berikut adalah beberapa proyek pilihan yang pernah saya kerjakan.
+                    </p>
+                    <div class="w-24 h-1.5 bg-primary-500 mx-auto rounded-full mt-4"></div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start" data-aos="fade-up" data-aos-delay="100">
+                    <div id="portfolio-list">
+                        <a href="#" class="portfolio-list-item block p-8" data-image="https://placehold.co/600x450/2D3748/FFFFFF?text=Proyek+1&font=inter">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <span class="text-sm font-medium text-primary-600 dark:text-primary-400">Desain Aplikasi Seluler</span>
+                                    <h3 class="font-heading text-2xl font-bold text-gray-800 dark:text-white mt-1">Aplikasi Finansial "DanaKita"</h3>
+                                </div>
+                                <span class="arrow text-primary-400 text-2xl">→</span>
+                            </div>
+                        </a>
+                        <a href="#" class="portfolio-list-item block p-8" data-image="https://placehold.co/600x450/7c3aed/FFFFFF?text=Proyek+2&font=inter">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <span class="text-sm font-medium text-primary-600 dark:text-primary-400">Halaman Landing Website</span>
+                                    <h3 class="font-heading text-2xl font-bold text-gray-800 dark:text-white mt-1">Landing Page SaaS "Connect"</h3>
+                                </div>
+                                <span class="arrow text-primary-400 text-2xl">→</span>
+                            </div>
+                        </a>
+                        <a href="#" class="portfolio-list-item block p-8" data-image="https://placehold.co/600x450/5eead4/0B0F19?text=Proyek+3&font=inter">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <span class="text-sm font-medium text-primary-600 dark:text-primary-400">Dasbor Admin</span>
+                                    <h3 class="font-heading text-2xl font-bold text-gray-800 dark:text-white mt-1">Sistem Manajemen Inventaris</h3>
+                                </div>
+                                <span class="arrow text-primary-400 text-2xl">→</span>
+                            </div>
+                        </a>
+                        <a href="#" class="portfolio-list-item block p-8" data-image="https://placehold.co/600x450/f472b6/FFFFFF?text=Proyek+4&font=inter">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <span class="text-sm font-medium text-primary-600 dark:text-primary-400">Branding & Identitas</span>
+                                    <h3 class="font-heading text-2xl font-bold text-gray-800 dark:text-white mt-1">Panduan Merek "Kopi Pagi"</h3>
+                                </div>
+                                <span class="arrow text-primary-400 text-2xl">→</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="portfolio-image-preview" class="hidden lg:flex justify-center items-center h-[450px] bg-gray-50 dark:bg-dark-800 rounded-2xl shadow-xl overflow-hidden border border-gray-100 dark:border-dark-700">
+                        <img src="" alt="Pratinjau Proyek" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ===== Kontak Section ===== -->
+        <section id="kontak" class="py-24 bg-gray-50 dark:bg-dark-800 relative overflow-hidden" data-section-name="kontak">
+            <div class="absolute inset-0 opacity-5 dark:opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] z-0"></div>
+            <div class="container mx-auto max-w-7xl px-6 sm:px-8 lg:px-8 relative z-10">
+                <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
+                    <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white mb-4">
+                        Mari Terhubung
+                    </h2>
+                    <p class="text-lg text-gray-700 dark:text-gray-400">
+                        Saya selalu terbuka untuk diskusi proyek baru, kolaborasi, atau sekadar bertukar pikiran tentang desain. Jangan ragu untuk menghubungi saya!
+                    </p>
+                    <div class="w-24 h-1.5 bg-primary-500 mx-auto rounded-full mt-4"></div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-heading text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                                Punya Ide Menarik?
+                            </h3>
+                            <p class="text-gray-700 dark:text-gray-400 text-lg mb-6">
+                                Mari kita wujudkan bersama! Saya siap membantu Anda mengubah visi menjadi kenyataan digital yang luar biasa.
+                            </p>
+                            <div class="space-y-4 text-gray-700 dark:text-gray-300">
+                                <p class="flex items-center text-lg">
+                                    <svg class="w-6 h-6 text-primary-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                    john.doe@example.com
+                                </p>
+                                <p class="flex items-center text-lg">
+                                    <svg class="w-6 h-6 text-primary-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> 
+                                    Jakarta, Indonesia
+                                </p>
+                            </div>
+                        </div>
+                        <div class="mt-8 text-center lg:text-left hidden lg:block">
+                            <img src="https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/contact-us-2.png" alt="Ilustrasi Kontak" class="mx-auto lg:mx-0 w-full max-w-[300px] h-auto rounded-lg opacity-80 dark:opacity-60">
+                        </div>
+                    </div>
+                    <div>
+                        <form action="https://formspree.io/f/your_form_id" method="POST" class="space-y-6">
+                            <div> 
+                                <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Nama Lengkap</label>
+                                <input type="text" id="name" name="name" required
+                                       class="w-full px-4 py-3 bg-gray-50 dark:bg-dark-800 border border-gray-300 dark:border-dark-700 rounded-lg text-gray-900 dark:text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Alamat Email</label>
+                                <input type="email" id="email" name="_replyto" required
+                                       class="w-full px-4 py-3 bg-gray-50 dark:bg-dark-800 border border-gray-300 dark:border-dark-700 rounded-lg text-gray-900 dark:text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200">
+                            </div>
+                            <div>
+                                <label for="subject" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Subjek</label>
+                                <input type="text" id="subject" name="subject"
+                                       class="w-full px-4 py-3 bg-gray-50 dark:bg-dark-800 border border-gray-300 dark:border-dark-700 rounded-lg text-gray-900 dark:text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Pesan Anda</label>
+                                <textarea id="message" name="message" rows="5" required
+                                          class="w-full px-4 py-3 bg-gray-50 dark:bg-dark-800 border border-gray-300 dark:border-dark-700 rounded-lg text-gray-900 dark:text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200"></textarea>
+                            </div>
+                            <button type="submit"
+                                    class="w-full px-8 py-4 text-xl font-medium text-white bg-primary-600 hover:bg-primary-700 rounded-full transition-all duration-300 shadow-lg hover:shadow-primary-500/50 transform hover:-translate-y-1">
+                                Kirim Pesan
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="mt-16 text-center" data-aos="fade-up" data-aos-delay="200">
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">Temukan saya di:</p>
+                    <div class="flex justify-center space-x-6">
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="text-gray-400 dark:text-gray-500 hover:text-primary-500 dark:hover:text-primary-400 transition-colors duration-300">
+                            <span class="sr-only">LinkedIn</span>
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        </a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="text-gray-400 dark:text-gray-500 hover:text-primary-500 dark:hover:text-primary-400 transition-colors duration-300">
+                            <span class="sr-only">Dribbble</span>
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 24C5.373 24 0 18.627 0 12S5.373 0 12 0s12 5.373 12 12-5.373 12-12 12zM1.69 12.22c.11 5.92 4.67 10.7 10.38 11.08 6.42.42 11.53-4.63 11.1-11.03-.31-4.78-4.14-8.7-8.91-8.91-6.13-.27-11.3 4.28-11.53 10.36-.01.3-.04.6-.04.9zm17.65-3.08c-.14.01-.3.01-.46.01-4.22 0-7.79 2.55-9.3 6.16 1.7 2.45 4.34 4.02 7.28 4.02 1.34 0 2.6-.33 3.69-.9 1.48-2.6 1.73-5.63.79-8.29zm-9.35 8.16c-1.81 0-3.48-.7-4.78-1.85 1.25-3.52 4.41-6.11 8.19-6.11.23 0 .45.01.68.03-1.39 2.76-1.88 5.86-.96 8.78-1.04.09-2.09.15-3.13.15zm-3.4-6.42c-.22 0-.44-.01-.66-.02 3.16-5.18 8.87-7.66 14.05-4.5 1.37.84 2.45 2.04 3.13 3.48-2.22-.38-4.48.02-6.58 1.1-1.7 1.05-3.08 2.58-4.04 4.38-.68-1.29-1.57-2.4-2.61-3.29-.9-.76-1.95-1.32-3.09-1.66.24-.17.49-.33.75-.48 0 0 .01 0 0 0z"/></svg>
+                        </a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="text-gray-400 dark:text-gray-500 hover:text-primary-500 dark:hover:text-primary-400 transition-colors duration-300">
+                            <span class="sr-only">GitHub</span>
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.09.682-.218.682-.484 0-.238-.009-.868-.014-1.704-2.782.602-3.369-1.34-3.369-1.34-.455-1.158-1.11-1.465-1.11-1.465-.908-.62.069-.608.069-.608 1.004.07 1.532 1.03 1.532 1.03.89 1.524 2.336 1.084 2.902.829.092-.644.348-1.084.635-1.334-2.214-.25-4.543-1.107-4.543-4.93 0-1.089.388-1.98.1.02-2.121-.212.088-2.055.088-2.055.83-.264 2.72 1.023 2.72 1.023.788-.218 1.63-.327 2.465-.332.834.005 1.677.114 2.465.332 0 0 1.89-1.287 2.72-1.023.2.06.126 1.935.088 2.055.622.89.1.02 1.89.1.02 1.089 0 2.38-1.98.388 1.98 0 3.832-2.333 4.68-4.552 4.922.359.308.678.915.678 1.846 0 1.334-.012 2.41-.012 2.736 0 .268.18.578.688.48C19.138 20.162 22 16.417 22 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd" /></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- ===== Footer ===== -->
+    <footer class="border-t border-gray-100 dark:border-dark-800 py-8">
+        <div class="container mx-auto max-w-7xl px-6 sm:px-8 lg:px-8 text-center text-gray-500 dark:text-gray-500">
+            <p>&copy; 2025 John Doe. Dibuat dengan <span class="text-primary-500">❤️</span> dan Tailwind CSS.</p>
+        </div>
+    </footer>
+
+    <!-- Tombol Kembali ke Atas -->
+    <a href="#home" id="back-to-top-btn" class="z-50 p-3 bg-primary-600 hover:bg-primary-700 text-white rounded-full shadow-lg transition-all duration-300">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
+        </svg>
+    </a>
+    <!-- ===== AOS (Animate On Scroll) JS ===== -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- ===== JavaScript untuk Kursor Kustom ===== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const cursorDot = document.querySelector('.cursor-dot');
+            const cursorFollower = document.querySelector('.cursor-follower');
+            window.addEventListener('mousemove', e => {
+                const posX = e.clientX;
+                const posY = e.clientY;
+                cursorDot.style.transform = `translate(${posX}px, ${posY}px)`;
+                cursorFollower.style.transform = `translate(${posX}px, ${posY}px)`;
+            });
+            const interactiveElements = document.querySelectorAll('a, button, input, [data-aos], .group');
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    document.body.classList.add('cursor-grow');
+                });
+                el.addEventListener('mouseleave', () => {
+                    document.body.classList.remove('cursor-grow');
+                });
+            });
+        });
+    </script>
+    <!-- ===== JavaScript untuk Dark Mode Toggle ===== -->
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+
+        // Atur posisi awal toggle berdasarkan tema saat ini
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            themeToggle.checked = true;
+        } else {
+            themeToggle.checked = false;
+        }
+
+        if (themeToggle) {
+            themeToggle.addEventListener('change', function() {
+                const isChecked = this.checked;
+                const theme = isChecked ? 'dark' : 'light';
+
+                if (isChecked) {
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                }
+                localStorage.setItem('color-theme', theme);
+                window.dispatchEvent(new CustomEvent('themeChanged', { detail: { theme: theme } }));
+            });
+        }
+    </script>
+    <!-- ===== JavaScript untuk Dot Navigation Aktif ===== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const sections = document.querySelectorAll('section[data-section-name]');
+            const navLinks = document.querySelectorAll('.nav-dot-link');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.4
+            };
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const sectionName = entry.target.dataset.sectionName;
+                        navLinks.forEach(link => {
+                            const dot = link.querySelector('.nav-dot');
+                            if (dot) {
+                                dot.classList.toggle('active', link.dataset.section === sectionName);
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+            sections.forEach(section => observer.observe(section));
+        });
+    </script>
+    <!-- ===== Three.js CDN ===== -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+    <!-- ===== JavaScript untuk 3D Hero ===== -->
+    <script defer>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (typeof THREE === 'undefined') {
+                console.error('Three.js failed to load.');
+                return;
+            }
+            const container = document.getElementById('canvas-container');
+            if (!container) return;
+
+            let scene, camera, renderer, mesh;
+            let mouseX = 0, mouseY = 0;
+            let targetRotationX = 0, targetRotationY = 0;
+            // Ambil tema awal dari localStorage atau preferensi perangkat
+            let currentTheme = localStorage.getItem('color-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            const windowHalfX = window.innerWidth / 2;
+            const windowHalfY = window.innerHeight / 2;
+
+            function init() {
+                scene = new THREE.Scene();
+                camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+                camera.position.z = 3;
+                renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+                renderer.setSize(container.clientWidth, container.clientHeight);
+                renderer.setPixelRatio(window.devicePixelRatio);
+                container.appendChild(renderer.domElement);
+
+                const geometry = new THREE.IcosahedronGeometry(1.3, 0);
+                const material = new THREE.MeshPhongMaterial({
+                    color: currentTheme === 'dark' ? 0x10b981 : 0x047857, // new primary-500 and primary-700
+                    wireframe: true,
+                    shininess: 100
+                });
+                mesh = new THREE.Mesh(geometry, material);
+                scene.add(mesh);
+
+                const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+                scene.add(ambientLight);
+                const pointLight = new THREE.PointLight(0xffffff, 1);
+                pointLight.position.set(5, 5, 5);
+                scene.add(pointLight);
+
+                document.addEventListener('mousemove', onDocumentMouseMove);
+                window.addEventListener('resize', onWindowResize);
+                window.addEventListener('scroll', onWindowScroll);
+                // Listener untuk perubahan tema
+                window.addEventListener('themeChanged', (e) => {
+                    currentTheme = e.detail.theme; // Perbarui tema lokal
+                    updateMaterialColor(currentTheme);
+                });
+            }
+
+            function updateMaterialColor(theme) {
+                if (mesh) {
+                    const newColor = theme === 'dark' ? 0x10b981 : 0x047857; // new primary-500 and primary-700
+                    mesh.material.color.setHex(newColor);
+                }
+            }
+
+            function onWindowScroll() {
+                if (mesh && window.innerWidth >= 768) mesh.position.y = window.scrollY * 0.15;
+            }
+
+            function onDocumentMouseMove(event) {
+                mouseX = (event.clientX - windowHalfX) / windowHalfX;
+                mouseY = (event.clientY - windowHalfY) / windowHalfY;
+                targetRotationX = mouseY * 0.5;
+                targetRotationY = mouseX * 0.5;
+            }
+
+            function onWindowResize() {
+                if (!container) return;
+                const width = container.clientWidth;
+                const height = container.clientHeight;
+                camera.aspect = width / height;
+                camera.updateProjectionMatrix();
+                renderer.setSize(width, height);
+            }
+
+            function animate() {
+                requestAnimationFrame(animate);
+                if (mesh) {
+                     mesh.rotation.y += (targetRotationY - mesh.rotation.y) * 0.05;
+                     mesh.rotation.x += (targetRotationX - mesh.rotation.x) * 0.05;
+                     mesh.rotation.z += 0.002;
+                }
+                renderer.render(scene, camera);
+            }
+            if (window.innerWidth >= 768) { // Hanya inisialisasi di layar md ke atas
+                init();
+                animate();
+            }
+        });
+    </script>
+    <!-- ===== AOS Init ===== -->
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 50,
+        });
+    </script>
+    <!-- ===== JavaScript untuk Tombol Kembali ke Atas ===== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const backToTopButton = document.getElementById('back-to-top-btn');
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) { // Muncul setelah scroll 300px
+                    backToTopButton.classList.add('show');
+                } else {
+                    backToTopButton.classList.remove('show');
+                }
+            });
+
+            backToTopButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
