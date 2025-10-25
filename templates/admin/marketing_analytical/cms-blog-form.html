@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Tulis Artikel Baru</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Montserrat', sans-serif; background-color: #f1f5f9; color: #0f172a; }
+        .sidebar { background-color: #ffffff; border-right: 1px solid #e2e8f0; }
+        .main-content { background-color: #f1f5f9; }
+        .widget { background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05); }
+        .sidebar-link.active { background-color: #0d9488; color: white; box-shadow: 0 4px 14px 0 rgba(13, 148, 136, 0.3); position: relative; }
+        .sidebar-link.active::before { content: ''; position: absolute; left: 0; top: 0; height: 100%; width: 3px; background-color: #14b8a6; }
+        .sidebar-link:hover:not(.active) { background-color: #f1f5f9; }
+        .sidebar-heading { padding: 0.75rem 1.5rem; margin-top: 1rem; font-size: 0.75rem; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        
+        /* Style untuk Form */
+        .form-label { font-size: 0.875rem; font-weight: 600; color: #334155; margin-bottom: 0.5rem; display: block; }
+        .form-input { width: 100%; padding: 0.65rem 0.75rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; transition: all 0.2s ease; color: #334155; }
+        .form-input:focus { outline: none; border-color: #0d9488; box-shadow: 0 0 0 2px rgba(13, 148, 136, 0.2); }
+        .form-textarea { min-height: 300px; } /* Lebih tinggi untuk editor */
+        .form-group { margin-bottom: 1.25rem; }
+        .form-button { background-color: #0d9488; color: white; padding: 0.65rem 1.25rem; font-weight: 600; border-radius: 0.5rem; transition: background-color 0.2s ease; }
+        .form-button:hover { background-color: #0f766e; }
+        .form-button-secondary { background-color: #f1f5f9; color: #475569; padding: 0.65rem 1.25rem; font-weight: 600; border-radius: 0.5rem; transition: background-color 0.2s ease; }
+        .form-button-secondary:hover { background-color: #e2e8f0; }
+
+    </style>
+</head>
+<body class="text-slate-900">
+
+    <div class="flex h-screen bg-slate-50">
+        <aside class="w-64 sidebar flex-shrink-0 hidden md:block overflow-y-auto">
+            <div class="p-6 text-center border-b border-gray-200">
+                <a href="index.html" class="text-xl font-bold text-slate-900 flex items-center justify-center gap-2">
+                    <svg class="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                    <span>AnalyticsPro</span>
+                </a>
+            </div>
+            <nav class="mt-6">
+                <a href="index.html" class="sidebar-link flex items-center px-6 py-3 mx-4 rounded-lg text-slate-600 hover:text-slate-900 transition-colors duration-200">
+                    <span class="ml-3 font-medium">Overview</span>
+                </a>
+                <a href="performance.html" class="sidebar-link flex items-center px-6 py-3 mx-4 rounded-lg text-slate-600 hover:text-slate-900 transition-colors duration-200 mt-2">
+                    <span class="ml-3 font-medium">Performance</span>
+                </a>
+                <a href="campaigns.html" class="sidebar-link flex items-center px-6 py-3 mx-4 rounded-lg text-slate-600 hover:text-slate-900 transition-colors duration-200 mt-2">
+                    <span class="ml-3 font-medium">Campaigns</span>
+                </a>
+                
+                <h3 class="sidebar-heading">Konten</h3>
+                <a href="content-pages.html" class="sidebar-link flex items-center px-6 py-3 mx-4 rounded-lg text-slate-600 hover:text-slate-900 transition-colors duration-200 mt-2">
+                    <span class="ml-3 font-medium">Halaman</span>
+                </a>
+                <a href="cms-blog.html" class="sidebar-link active flex items-center px-6 py-3 mx-4 rounded-lg text-white relative mt-2"> <span class="ml-3 font-medium">Blog/Artikel</span>
+                </a>
+                <a href="content-portfolio.html" class="sidebar-link flex items-center px-6 py-3 mx-4 rounded-lg text-slate-600 hover:text-slate-900 transition-colors duration-200 mt-2">
+                    <span class="ml-3 font-medium">Portofolio</span>
+                </a>
+                <a href="login.html" class="sidebar-link flex items-center px-6 py-3 mx-4 rounded-lg text-slate-600 hover:text-slate-900 transition-colors duration-200 mt-2">
+                    <span class="ml-3 font-medium">Login Page</span>
+                </a>
+
+                <h3 class="sidebar-heading">Leads</h3>
+                <a href="leads-inbox.html" class="sidebar-link flex items-center px-6 py-3 mx-4 rounded-lg text-slate-600 hover:text-slate-900 transition-colors duration-200 mt-2">
+                    <span class="ml-3 font-medium">Pesan Masuk</span>
+                </a>
+                <a href="#" class="sidebar-link flex items-center px-6 py-3 mx-4 rounded-lg text-slate-600 hover:text-slate-900 transition-colors duration-200 mt-2">
+                    <span class="ml-3 font-medium">Subscribers</span>
+                </a>
+
+                <h3 class="sidebar-heading">Tampilan</h3>
+                <a href="appearance-banners.html" class="sidebar-link flex items-center px-6 py-3 mx-4 rounded-lg text-slate-600 hover:text-slate-900 transition-colors duration-200 mt-2">
+                    <span class="ml-3 font-medium">Banner/Slider</span>
+                </a>
+                <a href="appearance-testimonials.html" class="sidebar-link flex items-center px-6 py-3 mx-4 rounded-lg text-slate-600 hover:text-slate-900 transition-colors duration-200 mt-2">
+                    <span class="ml-3 font-medium">Testimoni</span>
+                </a>
+
+                <h3 class="sidebar-heading">Sistem</h3>
+                <a href="settings.html" class="sidebar-link flex items-center px-6 py-3 mx-4 rounded-lg text-slate-600 hover:text-slate-900 transition-colors duration-200 mt-2">
+                    <span class="ml-3 font-medium">Settings</span>
+                </a>
+                <a href="system-users.html" class="sidebar-link flex items-center px-6 py-3 mx-4 rounded-lg text-slate-600 hover:text-slate-900 transition-colors duration-200 mt-2">
+                    <span class="ml-3 font-medium">Manajemen User</span>
+                </a>
+            </nav>
+            <div class="p-6 mt-auto">
+                </div>
+        </aside>
+
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <header class="flex justify-between items-center p-6 border-b border-gray-200 bg-white">
+                <div class="flex items-center space-x-4">
+                    <div class="relative w-64">
+                        <input type="text" placeholder="Search anything here..." class="w-full pl-10 pr-4 py-2 bg-gray-100 border border-gray-300 rounded-lg text-slate-800 ...">
+                        <svg class="absolute left-3 top-2.5 w-5 h-5 text-slate-400" ...></svg>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="p-2 rounded-full hover:bg-gray-100 ..."></button>
+                    <button class="p-2 rounded-full hover:bg-gray-100 ..."></button>
+                    <div class="flex items-center space-x-3">
+                        <img class="h-8 w-8 rounded-full ..." src="..." alt="User avatar">
+                        <div>
+                            <p class="text-slate-900 font-semibold text-sm">John Doe</p>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="flex-1 overflow-x-hidden overflow-y-auto main-content p-6">
+                
+                <form action="#" method="POST">
+                    <div class="flex justify-between items-center mb-6">
+                        <div>
+                            <h1 class="text-2xl font-bold text-slate-900">Tulis Artikel Baru</h1>
+                            <p class="text-sm text-slate-600">Isi detail artikel di bawah ini.</p>
+                        </div>
+                        </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        
+                        <div class="lg:col-span-2 space-y-6">
+                            <div class="widget p-6">
+                                <div class="form-group">
+                                    <label for="judul" class="form-label">Judul Artikel</label>
+                                    <input type="text" id="judul" name="judul" class="form-input" placeholder="Masukkan judul di sini...">
+                                </div>
+                            </div>
+                            <div class="widget p-6">
+                                <div class="form-group">
+                                    <label for="konten" class="form-label">Konten</label>
+                                    <textarea id="konten" name="konten" class="form-input form-textarea" placeholder="Tulis konten Anda... (Nanti ganti ini pakai Rich Text Editor)"></textarea>
+                                </div>
+                            </div>
+                            <div class="widget p-6">
+                                <h3 class="text-lg font-semibold text-slate-800 mb-4">Pengaturan SEO</h3>
+                                <div class="form-group">
+                                    <label for="meta_title" class="form-label">Meta Title</label>
+                                    <input type="text" id="meta_title" name="meta_title" class="form-input" placeholder="Judul SEO (Otomatis ambil dari judul utama jika kosong)">
+                                </div>
+                                <div class="form-group">
+                                    <label for="meta_desc" class="form-label">Meta Description</label>
+                                    <textarea id="meta_desc" name="meta_desc" class="form-input" rows="3" placeholder="Deskripsi singkat untuk SEO (maks 160 karakter)"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-1 space-y-6">
+                            <div class="widget p-6">
+                                <h3 class="text-lg font-semibold text-slate-800 mb-4">Publikasi</h3>
+                                <div class="form-group">
+                                    <label for="status" class="form-label">Status</label>
+                                    <select id="status" name="status" class="form-input">
+                                        <option value="published">Published</option>
+                                        <option value="draft">Draft</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="tanggal" class="form-label">Tanggal Terbit</label>
+                                    <input type="date" id="tanggal" name="tanggal" class="form-input">
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <button type="button" class="form-button-secondary">Simpan Draft</button>
+                                    <button type="submit" class="form-button">Terbitkan</button>
+                                </div>
+                            </div>
+                            
+                            <div class="widget p-6">
+                                <h3 class="text-lg font-semibold text-slate-800 mb-4">Kategori</h3>
+                                <div class="space-y-2 max-h-40 overflow-y-auto">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="cat1" name="kategori[]" value="1" class="rounded ...">
+                                        <label for="cat1" class="ml-2 text-sm text-slate-700">Tips & Trik</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="cat2" name="kategori[]" value="2" class="rounded ...">
+                                        <label for="cat2" class="ml-2 text-sm text-slate-700">Studi Kasus</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="cat3" name="kategori[]" value="3" class="rounded ...">
+                                        <label for="cat3" class="ml-2 text-sm text-slate-700">SEO</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="cat4" name="kategori[]" value="4" class="rounded ...">
+                                        <label for="cat4" class="ml-2 text-sm text-slate-700">Teknis</label>
+                                    </div>
+                                </div>
+                                </div>
+                            
+                            <div class="widget p-6">
+                                <h3 class="text-lg font-semibold text-slate-800 mb-4">Gambar Unggulan</h3>
+                                <div class="form-group">
+                                    <input type="file" id="gambar" name="gambar" class="form-input">
+                                    </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+
+            </main>
+        </div>
+    </div>
+</body>
+</html>

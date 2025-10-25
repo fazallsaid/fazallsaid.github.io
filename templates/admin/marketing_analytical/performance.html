@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Performance</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Montserrat', sans-serif; background-color: #f1f5f9; color: #0f172a; }
+        .sidebar { background-color: #ffffff; border-right: 1px solid #e2e8f0; }
+        .main-content { background-color: #f1f5f9; }
+        .widget { background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05); transition: all 0.3s ease; }
+        .widget:hover { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05); }
+        .sidebar-link.active { background-color: #0d9488; color: white; box-shadow: 0 4px 14px 0 rgba(13, 148, 136, 0.3); position: relative; }
+        .sidebar-link.active::before { content: ''; position: absolute; left: 0; top: 0; height: 100%; width: 3px; background-color: #14b8a6; }
+        .sidebar-link:hover:not(.active) { background-color: #f1f5f9; }
+        .sidebar-heading { padding: 0.75rem 1.5rem; margin-top: 1rem; font-size: 0.75rem; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        /* Style untuk tabel */
+        .table-auto th { 
+            background-color: #f8fafc; 
+            padding: 0.75rem 1rem; 
+            text-align: left; 
+            font-weight: 600;
+            color: #475569; 
+            border-bottom: 2px solid #e2e8f0; 
+        }
+        .table-auto td { 
+            padding: 0.75rem 1rem; 
+            border-bottom: 1px solid #e2e8f0; 
+            color: #334155; 
+        }
+        .table-auto tbody tr:hover { background-color: #f1f5f9; }
+    </style>
+</head>
+<body class="text-slate-900">
+
+    <div class="flex h-screen bg-slate-50">
+        <aside class="w-64 sidebar flex-shrink-0 hidden md:block overflow-y-auto">
+            <div class="p-6 text-center border-b border-gray-200">
+                <a href="index.html" class="text-xl font-bold text-slate-900 flex items-center justify-center gap-2">
+                    <svg class="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                    <span>AnalyticsPro</span>
+                </a>
+            </div>
+            <nav class="mt-6">
+                <a href="index.html" class="sidebar-link flex items-center px-6 py-3 mx-4 rounded-lg text-slate-600 hover:text-slate-900 transition-colors duration-200">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                    <span class="ml-3 font-medium">Overview</span>
+                </a>
+                <a href="#" class="sidebar-link active flex items-center px-6 py-3 mx-4 rounded-lg text-white relative mt-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                    <span class="ml-3 font-medium">Performance</span>
+                </a>
+                <a href="campaigns.html" class="sidebar-link flex items-center px-6 py-3 mx-4 rounded-lg text-slate-600 hover:text-slate-900 transition-colors duration-200 mt-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    <span class="ml-3 font-medium">Campaigns</span>
+                </a>
+                
+                <h3 class="sidebar-heading">Konten</h3>
+                <a href="content-pages.html" class="sidebar-link flex items-center px-6 py-3 mx-4 rounded-lg text-slate-600 hover:text-slate-900 transition-colors duration-200 mt-2">
+                    <span class="ml-3 font-medium">Halaman</span>
+                </a>
+                <a href="cms-blog.html" class="sidebar-link flex items-center px-6 py-3 mx-4 rounded-lg text-slate-600 hover:text-slate-900 transition-colors duration-200 mt-2">
+                    <span class="ml-3 font-medium">Blog/Artikel</span>
+                </a>
+                <a href="content-portfolio.html" class="sidebar-link flex items-center px-6 py-3 mx-4 rounded-lg text-slate-600 hover:text-slate-900 transition-colors duration-200 mt-2">
+                    <span class="ml-3 font-medium">Portofolio</span>
+                </a>
+                <a href="login.html" class="sidebar-link flex items-center px-6 py-3 mx-4 rounded-lg text-slate-600 hover:text-slate-900 transition-colors duration-200 mt-2">
+                    <span class="ml-3 font-medium">Login Page</span>
+                </a>
+
+                <h3 class="sidebar-heading">Leads</h3>
+                <a href="leads-inbox.html" class="sidebar-link flex items-center px-6 py-3 mx-4 rounded-lg text-slate-600 hover:text-slate-900 transition-colors duration-200 mt-2">
+                    <span class="ml-3 font-medium">Pesan Masuk</span>
+                </a>
+                <a href="#" class="sidebar-link flex items-center px-6 py-3 mx-4 rounded-lg text-slate-600 hover:text-slate-900 transition-colors duration-200 mt-2">
+                    <span class="ml-3 font-medium">Subscribers</span>
+                </a>
+
+                <h3 class="sidebar-heading">Tampilan</h3>
+                <a href="appearance-banners.html" class="sidebar-link flex items-center px-6 py-3 mx-4 rounded-lg text-slate-600 hover:text-slate-900 transition-colors duration-200 mt-2">
+                    <span class="ml-3 font-medium">Banner/Slider</span>
+                </a>
+                <a href="appearance-testimonials.html" class="sidebar-link flex items-center px-6 py-3 mx-4 rounded-lg text-slate-600 hover:text-slate-900 transition-colors duration-200 mt-2">
+                    <span class="ml-3 font-medium">Testimoni</span>
+                </a>
+
+                <h3 class="sidebar-heading">Sistem</h3>
+                <a href="settings.html" class="sidebar-link flex items-center px-6 py-3 mx-4 rounded-lg text-slate-600 hover:text-slate-900 transition-colors duration-200 mt-2">
+                    <span class="ml-3 font-medium">Settings</span>
+                </a>
+                <a href="system-users.html" class="sidebar-link flex items-center px-6 py-3 mx-4 rounded-lg text-slate-600 hover:text-slate-900 transition-colors duration-200 mt-2">
+                    <span class="ml-3 font-medium">Manajemen User</span>
+                </a>
+            </nav>
+        </aside>
+
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <header class="flex justify-between items-center p-6 border-b border-gray-200 bg-white">
+                <div class="flex items-center space-x-4">
+                    <div class="relative w-64">
+                        <input type="text" placeholder="Search anything here..." class="w-full pl-10 pr-4 py-2 bg-gray-100 border border-gray-300 rounded-lg ...">
+                        <svg class="absolute left-3 top-2.5 w-5 h-5 text-slate-400" ...></svg>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="p-2 rounded-full hover:bg-gray-100 ..."></button>
+                    <button class="p-2 rounded-full hover:bg-gray-100 ..."></button>
+                    <div class="flex items-center space-x-3">
+                        <img class="h-8 w-8 rounded-full ..." src=".../1507003211169-0a1dd7228f2d?q=80&w=100&auto=format&fit=crop" alt="User avatar">
+                        <div>
+                            <p class="text-slate-900 font-semibold text-sm">John Doe</p>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="flex-1 overflow-x-hidden overflow-y-auto main-content p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <div>
+                        <h1 class="text-2xl font-bold text-slate-900">Performance</h1>
+                        <p class="text-sm text-slate-600">Analisis detail performa kampanye Anda.</p>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <input type="date" class="bg-white border border-gray-300 rounded-lg text-sm px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500">
+                        <span class="text-slate-500">to</span>
+                        <input type="date" class="bg-white border border-gray-300 rounded-lg text-sm px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500">
+                        <button class="px-4 py-2 bg-teal-600 text-white rounded-lg text-sm font-medium hover:bg-teal-700 transition">Filter</button>
+                    </div>
+                </div>
+
+                <div class="widget p-6 mb-6">
+                    <h3 class="text-lg font-semibold text-slate-900 mb-4">Performa per Channel</h3>
+                    <div class="relative h-[350px]">
+                        <canvas id="performanceChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="widget p-0 overflow-hidden">
+                         <div class="p-6 border-b border-gray-200">
+                            <h3 class="text-lg font-semibold text-slate-900">Sumber Trafik</h3>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full table-auto">
+                                <thead>
+                                    <tr>
+                                        <th>Sumber</th>
+                                        <th>Pengunjung</th>
+                                        <th>Konversi (Klik WA)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="font-medium">Google (Organik)</td>
+                                        <td>4,502</td>
+                                        <td>1,203</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-medium">Facebook/Instagram</td>
+                                        <td>3,105</td>
+                                        <td>980</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-medium">Langsung (Direct)</td>
+                                        <td>1,800</td>
+                                        <td>450</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-medium">Referensi (Referral)</td>
+                                        <td>975</td>
+                                        <td>214</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="widget p-0 overflow-hidden">
+                        <div class="p-6 border-b border-gray-200">
+                            <h3 class="text-lg font-semibold text-slate-900">Halaman Terpopuler</h3>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full table-auto">
+                                <thead>
+                                    <tr>
+                                        <th>Halaman</th>
+                                        <th>Pengunjung</th>
+                                        <th>Bounce Rate</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="font-medium text-sm">/blog/5-tips-marketing-2025</td>
+                                        <td>5,210</td>
+                                        <td class="text-red-600">30.5%</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-medium text-sm">/home</td>
+                                        <td>4,231</td>
+                                        <td class="text-red-600">45.1%</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-medium text-sm">/layanan/jasa-seo</td>
+                                        <td>2,847</td>
+                                        <td class="text-green-600">22.0%</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-medium text-sm">/kontak</td>
+                                        <td>1,209</td>
+                                        <td class="text-green-600">18.2%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            Chart.defaults.color = '#64748b';
+            Chart.defaults.borderColor = '#cbd5e1';
+
+            // Performance Chart (Bar Chart - Sama)
+            const performanceCtx = document.getElementById('performanceChart').getContext('2d');
+            const performanceChart = new Chart(performanceCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Google Ads', 'Facebook Ads', 'Email', 'Instagram', 'Organik'],
+                    datasets: [{
+                        label: 'Klik',
+                        data: [1200, 3400, 800, 5100, 2200],
+                        backgroundColor: 'rgba(13, 148, 136, 0.6)',
+                        borderColor: '#0d9488',
+                        borderWidth: 1
+                    }, {
+                        label: 'Konversi',
+                        data: [50, 120, 80, 150, 30],
+                        backgroundColor: 'rgba(59, 130, 246, 0.6)',
+                        borderColor: '#3b82f6',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'top', labels: { usePointStyle: true } } },
+                    scales: {
+                        y: { beginAtZero: true, grid: { color: '#e2e8f0' }, ticks: { color: '#64748b' } },
+                        x: { grid: { display: false }, ticks: { color: '#64748b' } }
+                    }
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
