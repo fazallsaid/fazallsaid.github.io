@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syarat & Ketentuan - CarRent</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+     <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc; /* Latar putih gading */
+        }
+        /* Header Baru */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            position: sticky; /* Tetap di atas saat scroll */
+            top: 0;
+            z-index: 50;
+        }
+        .header-nav-link {
+            transition: all 0.2s ease;
+            padding: 0.5rem 1rem; /* py-2 px-4 */
+            border-radius: 0.375rem; /* rounded-md */
+            color: rgba(255, 255, 255, 0.8);
+        }
+        .header-nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        .content-card {
+            background: #ffffff;
+            border-radius: 1rem; /* rounded-xl */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+         .content-card h2 {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem; /* text-2xl */
+            font-weight: 700; /* bold */
+            color: #1f2937; /* gray-800 */
+            margin-bottom: 1rem;
+        }
+        .content-card h2 span {
+            width: 2rem; /* w-8 */
+            height: 2rem; /* h-8 */
+            background-color: #667eea; /* bg-blue-600 */
+            color: white;
+            border-radius: 9999px; /* rounded-full */
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.875rem; /* text-sm */
+            font-weight: 700; /* bold */
+            margin-right: 0.75rem; /* mr-3 */
+            flex-shrink: 0;
+        }
+        .content-card .content-body {
+            margin-left: calc(2rem + 0.75rem); /* Align with text after number */
+            color: #4b5563; /* gray-600 */
+            line-height: 1.75; /* leading-relaxed */
+        }
+        .content-card ul {
+            list-style: disc;
+            margin-left: 1.5rem; /* ml-6 */
+            margin-top: 0.75rem; /* mt-3 */
+            margin-bottom: 0.75rem; /* mb-3 */
+        }
+         .content-card strong {
+             color: #1f2937; /* gray-800 */
+             font-weight: 600; /* semibold */
+         }
+
+        /* Animasi */
+        .animate-fade-in { animation: fadeIn 0.8s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <header class="header shadow-md">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                 <a href="index.html" class="flex items-center space-x-2">
+                    <i class="fas fa-car text-3xl text-white"></i>
+                    <span class="text-2xl font-bold text-white">CarRent</span>
+                </a>
+                 <nav class="hidden md:flex space-x-1">
+                    <a href="index.html" class="header-nav-link">Beranda</a>
+                    <a href="fleet.html" class="header-nav-link">Mobil</a>
+                    <a href="services.html" class="header-nav-link">Layanan</a>
+                    <a href="about.html" class="header-nav-link">Tentang</a>
+                    <a href="contact.html" class="header-nav-link">Kontak</a>
+                </nav>
+                 <div class="flex items-center space-x-4">
+                    <a href="login.html" class="text-white hover:text-blue-200 transition-colors" title="Login">
+                        <i class="fas fa-user text-xl"></i>
+                    </a>
+                    <button id="mobile-menu-open-btn" class="md:hidden text-white focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden bg-gray-700 bg-opacity-95 backdrop-blur-sm">
+             <nav class="px-4 pt-2 pb-4 space-y-1">
+                 <a href="index.html" class="header-nav-link block text-center">Beranda</a>
+                 <a href="fleet.html" class="header-nav-link block text-center">Mobil</a>
+                 <a href="services.html" class="header-nav-link block text-center">Layanan</a>
+                 <a href="about.html" class="header-nav-link block text-center">Tentang</a>
+                 <a href="contact.html" class="header-nav-link block text-center">Kontak</a>
+             </nav>
+        </div>
+    </header>
+
+     <main class="py-16 md:py-24">
+       <div class="container mx-auto px-6">
+           <div class="max-w-4xl mx-auto">
+
+               <!-- Breadcrumb Navigation -->
+               <nav class="mb-8" aria-label="Breadcrumb">
+                   <ol class="flex items-center space-x-2 text-sm text-gray-600">
+                       <li><a href="index.html" class="hover:text-blue-600">Beranda</a></li>
+                       <li class="flex items-center">
+                           <i class="fas fa-chevron-right mx-2 text-gray-400"></i>
+                           <span class="text-gray-800 font-medium">Syarat & Ketentuan</span>
+                       </li>
+                   </ol>
+               </nav>
+
+               <div class="text-center mb-12 animate-fade-in">
+                   <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Syarat & Ketentuan</h1>
+                   <p class="text-lg text-gray-600">Ketentuan penggunaan layanan CarRent yang perlu Anda pahami.</p>
+                     <p class="text-sm text-gray-500 mt-2">Terakhir diperbarui: 15 Desember 2024</p>
+               </div>
+
+                <div class="content-card p-8 md:p-12 space-y-8 animate-fade-in">
+
+                    <div>
+                        <h2><span>1</span>Definisi</h2>
+                        <div class="content-body space-y-3">
+                            <p><strong>"CarRent"</strong> adalah penyedia layanan rental mobil yang dioperasikan oleh PT. CarRent Indonesia.</p>
+                            <p><strong>"Pelanggan"</strong> adalah individu atau badan hukum yang menggunakan layanan CarRent.</p>
+                            <p><strong>"Kendaraan"</strong> adalah mobil yang disewakan oleh CarRent kepada Pelanggan.</p>
+                            <p><strong>"Perjanjian"</strong> adalah kesepakatan antara CarRent dan Pelanggan mengenai penyewaan Kendaraan.</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h2><span>2</span>Syarat Umum Penyewaan</h2>
+                        <div class="content-body space-y-3">
+                            <p>Untuk dapat menyewa Kendaraan, Pelanggan harus memenuhi syarat berikut:</p>
+                            <ul>
+                                <li>Berusia minimal 21 tahun.</li>
+                                <li>Memiliki Surat Izin Mengemudi (SIM A) yang masih berlaku (minimal 1 tahun).</li>
+                                <li>Menyediakan identitas diri yang valid (KTP/Paspor).</li>
+                                <li>Menyediakan dokumen pendukung lain jika diperlukan (misal: Kartu Kredit, ID Karyawan).</li>
+                                <li>Menyetujui dan menandatangani Perjanjian sewa.</li>
+                                <li>Membayar biaya sewa dan deposit sesuai ketentuan.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h2><span>3</span>Tarif dan Pembayaran</h2>
+                         <div class="content-body space-y-3">
+                            <p><strong>Tarif Sewa:</strong> Ditentukan berdasarkan jenis Kendaraan, durasi sewa, dan layanan tambahan yang dipilih. Tarif dapat berubah sewaktu-waktu.</p>
+                            <p><strong>Pembayaran:</strong> Harus dilakukan di muka sebelum pengambilan Kendaraan. Metode pembayaran yang diterima: Transfer Bank, Kartu Kredit/Debit, E-Wallet.</p>
+                            <p><strong>Deposit:</strong> Pelanggan wajib memberikan deposit sebagai jaminan. Jumlah deposit bervariasi tergantung jenis Kendaraan. Deposit akan dikembalikan setelah Kendaraan dikembalikan dalam kondisi baik dan sesuai Perjanjian.</p>
+                             <p><strong>Biaya Tambahan:</strong> Dapat dikenakan untuk kelebihan waktu sewa, kelebihan jarak tempuh (jika ada), bahan bakar, denda pelanggaran lalu lintas, biaya tol, kerusakan, atau kehilangan.</p>
+                        </div>
+                    </div>
+
+                     <div>
+                        <h2><span>4</span>Penggunaan Kendaraan</h2>
+                        <div class="content-body space-y-3">
+                             <p>Pelanggan bertanggung jawab penuh atas penggunaan Kendaraan selama masa sewa dan wajib:</p>
+                             <ul>
+                                <li>Menggunakan Kendaraan sesuai peruntukannya dan tidak melanggar hukum.</li>
+                                <li>Tidak menyewakan kembali Kendaraan kepada pihak lain.</li>
+                                <li>Tidak menggunakan Kendaraan untuk balapan, tindak kriminal, atau aktivitas ilegal lainnya.</li>
+                                <li>Tidak mengemudi di bawah pengaruh alkohol atau obat-obatan terlarang.</li>
+                                <li>Menjaga kebersihan dan kondisi Kendaraan.</li>
+                                <li>Tidak membawa penumpang atau barang melebihi kapasitas Kendaraan.</li>
+                                <li>Tidak merokok di dalam Kendaraan.</li>
+                                <li>Menggunakan Kendaraan hanya di wilayah Indonesia kecuali ada izin tertulis.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h2><span>5</span>Kerusakan dan Tanggung Jawab</h2>
+                        <div class="content-body space-y-3">
+                            <p>Pelanggan bertanggung jawab atas segala kerusakan, kehilangan, atau biaya yang timbul selama masa sewa akibat kelalaian atau pelanggaran Perjanjian, termasuk:</p>
+                            <ul>
+                                <li>Biaya perbaikan kerusakan pada Kendaraan (hingga batas klaim asuransi / biaya risiko sendiri).</li>
+                                <li>Biaya penggantian jika Kendaraan hilang atau rusak total.</li>
+                                <li>Denda pelanggaran lalu lintas, biaya parkir, dan tol.</li>
+                                <li>Biaya pembersihan khusus jika Kendaraan dikembalikan dalam kondisi sangat kotor.</li>
+                            </ul>
+                            <p>CarRent menyediakan asuransi dasar (All Risk). Pelanggan tetap bertanggung jawab atas Biaya Risiko Sendiri (Own Risk/Deductible) per kejadian.</p>
+                        </div>
+                    </div>
+
+                     <div>
+                         <h2><span>6</span>Pengembalian Kendaraan</h2>
+                        <div class="content-body space-y-3">
+                             <p>Kendaraan harus dikembalikan:</p>
+                             <ul>
+                                <li>Pada tanggal, waktu, dan lokasi yang telah disepakati dalam Perjanjian.</li>
+                                <li>Dalam kondisi baik, bersih, dan sama seperti saat diterima.</li>
+                                <li>Dengan level bahan bakar sesuai kondisi awal saat diterima.</li>
+                                <li>Beserta semua kelengkapan Kendaraan (kunci, STNK, ban serep, tools).</li>
+                            </ul>
+                             <p>Keterlambatan pengembalian tanpa konfirmasi akan dikenakan biaya tambahan sesuai tarif berlaku.</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h2><span>7</span>Pembatalan dan Perubahan Reservasi</h2>
+                        <div class="content-body space-y-3">
+                             <p><strong>Pembatalan:</strong></p>
+                            <ul>
+                                 <li>Lebih dari 48 jam sebelum waktu sewa: Pengembalian dana penuh.</li>
+                                 <li>24-48 jam sebelum waktu sewa: Dikenakan biaya pembatalan 25% dari total sewa.</li>
+                                 <li>Kurang dari 24 jam sebelum waktu sewa: Dikenakan biaya pembatalan 50% dari total sewa.</li>
+                                 <li>Tidak hadir (No Show): Tidak ada pengembalian dana.</li>
+                            </ul>
+                            <p><strong>Perubahan Reservasi:</strong> Dapat dilakukan maksimal 24 jam sebelum waktu sewa, tergantung ketersediaan Kendaraan dan dapat dikenakan biaya administrasi.</p>
+                        </div>
+                    </div>
+
+                    <div>
+                         <h2><span>8</span>Force Majeure</h2>
+                        <div class="content-body space-y-3">
+                             <p>CarRent tidak bertanggung jawab atas kegagalan atau keterlambatan pemenuhan kewajiban berdasarkan Perjanjian yang disebabkan oleh kejadian di luar kendali wajar kami (Force Majeure), seperti bencana alam, perang, huru-hara, kebijakan pemerintah, epidemi, atau gangguan transportasi massal.</p>
+                        </div>
+                    </div>
+
+                    <div>
+                         <h2><span>9</span>Hukum yang Berlaku dan Penyelesaian Sengketa</h2>
+                        <div class="content-body space-y-3">
+                             <p>Syarat dan Ketentuan ini diatur oleh dan ditafsirkan sesuai dengan hukum Republik Indonesia.</p>
+                             <p>Segala sengketa yang timbul akan diutamakan diselesaikan melalui musyawarah. Jika tidak tercapai, sengketa akan diselesaikan melalui Pengadilan Negeri yang berwenang.</p>
+                        </div>
+                    </div>
+
+                    <div>
+                         <h2><span>10</span>Lain-lain</h2>
+                        <div class="content-body space-y-3">
+                             <p>CarRent berhak mengubah Syarat dan Ketentuan ini sewaktu-waktu dengan pemberitahuan melalui website atau email.</p>
+                             <p>Dengan melakukan reservasi, Pelanggan dianggap telah membaca, memahami, dan menyetujui seluruh Syarat dan Ketentuan ini.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-16">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                 <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-car text-2xl text-blue-400"></i>
+                        <span class="text-2xl font-bold">CarRent</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        Sewa mobil terpercaya dengan layanan prima di seluruh Indonesia.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-facebook-f text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-twitter text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-instagram text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-whatsapp text-xl"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Layanan</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="services.html" class="hover:text-white transition-colors">Rental Harian</a></li>
+                        <li><a href="services.html" class="hover:text-white transition-colors">Rental Bulanan</a></li>
+                        <li><a href="services.html" class="hover:text-white transition-colors">Dengan Driver</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Perusahaan</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="about.html" class="hover:text-white transition-colors">Tentang Kami</a></li>
+                        <li><a href="contact.html" class="hover:text-white transition-colors">Kontak</a></li>
+                        <li><a href="terms.html" class="hover:text-white transition-colors">Syarat & Ketentuan</a></li>
+                         <li><a href="privacy.html" class="hover:text-white transition-colors">Kebijakan Privasi</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Kontak</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-start"><i class="fas fa-phone mr-3 mt-1 text-blue-400"></i>+62 812-3456-7890</li>
+                        <li class="flex items-start"><i class="fas fa-envelope mr-3 mt-1 text-blue-400"></i>info@carrent.com</li>
+                        <li class="flex items-start"><i class="fas fa-map-marker-alt mr-3 mt-1 text-blue-400"></i>Jl. Sudirman No. 123, Jakarta</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 CarRent. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle Menu Mobile
+        const mobileMenu = document.getElementById('mobile-menu');
+        const openMobileBtn = document.getElementById('mobile-menu-open-btn');
+        
+        openMobileBtn.addEventListener('click', () => {
+             mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+
+</body>
+</html>

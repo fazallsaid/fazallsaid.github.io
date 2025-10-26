@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking - CarRent</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc; /* Latar putih gading */
+        }
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+        .form-input {
+            transition: all 0.3s ease;
+            background-color: #ffffff;
+            border-color: #d1d5db;
+        }
+        .form-input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+        }
+        .summary-card {
+            background: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e5e7eb;
+        }
+        /* Progress Bar Modern */
+        .progress-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            flex: 1;
+        }
+        .progress-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 1.25rem; /* Setengah dari tinggi lingkaran */
+            left: 50%;
+            height: 2px;
+            width: 100%;
+            background-color: #e5e7eb; /* Garis abu-abu */
+            transform: translateX(50%);
+            z-index: 1;
+        }
+        .progress-step-icon {
+            width: 2.5rem; /* 40px */
+            height: 2.5rem; /* 40px */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+        .progress-step.active .progress-step-icon {
+            background-color: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        .progress-step.active .progress-step-label {
+            color: #667eea;
+            font-weight: 600;
+        }
+        .progress-step.completed .progress-step-icon {
+            background-color: #22c55e; /* Hijau */
+            color: white;
+            border-color: #22c55e;
+        }
+        .progress-step.completed:not(:last-child)::after {
+             background-color: #667eea; /* Garis ungu */
+        }
+        .progress-step.completed .progress-step-label {
+            color: #16a34a;
+        }
+        .progress-step-icon {
+            background-color: #f3f4f6;
+            color: #9ca3af;
+            border: 2px solid #e5e7eb;
+        }
+        .progress-step-label {
+            margin-top: 0.5rem;
+            font-size: 0.875rem; /* 14px */
+            color: #6b7280;
+        }
+        
+        /* Animasi */
+        .animate-fade-in { animation: fadeIn 0.8s ease-out forwards; }
+        .animate-slide-up { animation: slideUp 0.8s ease-out forwards; opacity: 0; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <nav class="fixed top-0 w-full z-50 glass-effect">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-car text-2xl text-white"></i>
+                    <span class="text-2xl font-bold text-white">CarRent</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-white hover:text-blue-200 transition-colors">Beranda</a>
+                    <a href="fleet.html" class="text-white hover:text-blue-200 transition-colors">Mobil</a>
+                    <a href="services.html" class="text-white hover:text-blue-200 transition-colors">Layanan</a>
+                    <a href="about.html" class="text-white hover:text-blue-200 transition-colors">Tentang</a>
+                    <a href="contact.html" class="text-white hover:text-blue-200 transition-colors">Kontak</a>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="login.html" class="text-white hover:text-blue-200 transition-colors" title="Login">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <button id="mobile-menu-btn" class="md:hidden text-white">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden bg-white/95 backdrop-blur-md">
+            <div class="px-6 py-4 space-y-4">
+                <a href="index.html" class="block text-gray-800 hover:text-blue-600 transition-colors">Beranda</a>
+                <a href="fleet.html" class="block text-gray-800 hover:text-blue-600 transition-colors">Mobil</a>
+                <a href="services.html" class="block text-gray-800 hover:text-blue-600 transition-colors">Layanan</a>
+                <a href="about.html" class="block text-gray-800 hover:text-blue-600 transition-colors">Tentang</a>
+                <a href="contact.html" class="block text-gray-800 hover:text-blue-600 transition-colors">Kontak</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative pt-32 pb-20 text-center text-white overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1511919884226-c37f6262d8b4?q=80&w=2070&auto=format&fit=crop"
+                 alt="Booking Mobil"
+                 class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-80"></div>
+        </div>
+        <div class="relative z-10 container mx-auto px-6 animate-fade-in">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">Reservasi Mobil</h1>
+            <p class="text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto opacity-90">
+                Lengkapi data diri Anda untuk menyelesaikan proses booking.
+            </p>
+        </div>
+    </section>
+    
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+
+            <!-- Breadcrumb Navigation -->
+            <nav class="mb-8" aria-label="Breadcrumb">
+                <ol class="flex items-center space-x-2 text-sm text-gray-600">
+                    <li><a href="index.html" class="hover:text-blue-600">Beranda</a></li>
+                    <li class="flex items-center">
+                        <i class="fas fa-chevron-right mx-2 text-gray-400"></i>
+                        <a href="fleet.html" class="hover:text-blue-600">Mobil</a>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-chevron-right mx-2 text-gray-400"></i>
+                        <span class="text-gray-800 font-medium">Booking</span>
+                    </li>
+                </ol>
+            </nav>
+
+            <div class="max-w-4xl mx-auto mb-16">
+                <div class="flex">
+                    <div class="progress-step completed">
+                        <div class="progress-step-icon"><i class="fas fa-check"></i></div>
+                        <span class="progress-step-label">Pilih Mobil</span>
+                    </div>
+                    <div class="progress-step active">
+                        <div class="progress-step-icon"><i class="fas fa-calendar-alt"></i></div>
+                        <span class="progress-step-label">Detail Booking</span>
+                    </div>
+                    <div class="progress-step">
+                        <div class="progress-step-icon"><i class="fas fa-credit-card"></i></div>
+                        <span class="progress-step-label">Pembayaran</span>
+                    </div>
+                </div>
+            </div>
+
+            <form id="booking-form">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    
+                    <div class="lg:col-span-2 space-y-8">
+                        
+                        <div class="bg-white p-8 rounded-2xl shadow-lg animate-slide-up delay-100">
+                            <h3 class="text-2xl font-semibold text-gray-800 mb-6">Detail Booking</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="car-type" class="block text-sm font-medium text-gray-700 mb-2">Tipe Mobil</label>
+                                    <select id="car-type" class="form-input w-full px-4 py-3 rounded-lg border focus:outline-none text-base">
+                                        <option value="">Pilih tipe mobil</option>
+                                        <option value="avanza" data-price="350000" data-deposit="500000">Toyota Avanza</option>
+                                        <option value="crv" data-price="500000" data-deposit="700000">Honda CR-V</option>
+                                        <option value="camry" data-price="450000" data-deposit="600000">Toyota Camry</option>
+                                        <option value="x5" data-price="1200000" data-deposit="2000000">BMW X5</option>
+                                        <option value="pajero" data-price="600000" data-deposit="800000">Mitsubishi Pajero</option>
+                                        <option value="jazz" data-price="300000" data-deposit="500000">Honda Jazz</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="pickup-location" class="block text-sm font-medium text-gray-700 mb-2">Lokasi Pickup</label>
+                                    <input type="text" id="pickup-location" placeholder="Jl. Sudirman No. 123, Jakarta" class="form-input w-full px-4 py-3 rounded-lg border focus:outline-none text-base">
+                                </div>
+                                <div>
+                                    <label for="start-date" class="block text-sm font-medium text-gray-700 mb-2">Tanggal Mulai</label>
+                                    <input type="date" id="start-date" class="form-input w-full px-4 py-3 rounded-lg border focus:outline-none text-base">
+                                </div>
+                                <div>
+                                    <label for="end-date" class="block text-sm font-medium text-gray-700 mb-2">Tanggal Selesai</label>
+                                    <input type="date" id="end-date" class="form-input w-full px-4 py-3 rounded-lg border focus:outline-none text-base">
+                                </div>
+                                <div>
+                                    <label for="pickup-time" class="block text-sm font-medium text-gray-700 mb-2">Waktu Pickup</label>
+                                    <input type="time" id="pickup-time" class="form-input w-full px-4 py-3 rounded-lg border focus:outline-none text-base">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-8 rounded-2xl shadow-lg animate-slide-up delay-200">
+                            <h3 class="text-2xl font-semibold text-gray-800 mb-6">Informasi Pribadi</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="full-name" class="block text-sm font-medium text-gray-700 mb-2">Nama Lengkap</label>
+                                    <input type="text" id="full-name" placeholder="Masukkan nama lengkap" class="form-input w-full px-4 py-3 rounded-lg border focus:outline-none text-base">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                                    <input type="email" id="email" placeholder="email@example.com" class="form-input w-full px-4 py-3 rounded-lg border focus:outline-none text-base">
+                                </div>
+                                <div>
+                                    <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Nomor Telepon</label>
+                                    <input type="tel" id="phone" placeholder="+62 812-3456-7890" class="form-input w-full px-4 py-3 rounded-lg border focus:outline-none text-base">
+                                </div>
+                                <div>
+                                    <label for="id-number" class="block text-sm font-medium text-gray-700 mb-2">Nomor KTP/SIM</label>
+                                    <input type="text" id="id-number" placeholder="Masukkan nomor identitas" class="form-input w-full px-4 py-3 rounded-lg border focus:outline-none text-base">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white p-8 rounded-2xl shadow-lg animate-slide-up delay-300">
+                            <h3 class="text-2xl font-semibold text-gray-800 mb-6">Layanan Tambahan</h3>
+                            <div class="space-y-4">
+                                <label for="driver" class="flex items-center p-4 border rounded-lg hover:bg-gray-50 transition-colors">
+                                    <input type="checkbox" id="driver" data-price="150000" class="w-5 h-5 text-blue-600 rounded focus:ring-blue-500">
+                                    <span class="ml-4 flex-1">
+                                        <span class="font-medium">Driver Profesional</span>
+                                        <span class="text-sm text-gray-500 block">+ Rp 150.000 / hari</span>
+                                    </span>
+                                </label>
+                                <label for="gps" class="flex items-center p-4 border rounded-lg hover:bg-gray-50 transition-colors">
+                                    <input type="checkbox" id="gps" data-price="25000" class="w-5 h-5 text-blue-600 rounded focus:ring-blue-500">
+                                    <span class="ml-4 flex-1">
+                                        <span class="font-medium">GPS Tracking</span>
+                                        <span class="text-sm text-gray-500 block">+ Rp 25.000 / hari</span>
+                                    </span>
+                                </label>
+                                <label for="insurance" class="flex items-center p-4 border rounded-lg bg-gray-50 opacity-70 cursor-not-allowed">
+                                    <input type="checkbox" id="insurance" class="w-5 h-5 text-blue-600 rounded" checked disabled>
+                                    <span class="ml-4 flex-1">
+                                        <span class="font-medium">Asuransi Lengkap</span>
+                                        <span class="text-sm text-gray-500 block">Sudah termasuk dalam paket</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <div class="lg:sticky lg:top-28 h-fit">
+                        <div class="summary-card p-8 animate-slide-up delay-200">
+                            <div class="mb-4">
+                                <a href="fleet.html" class="text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center">
+                                    <i class="fas fa-arrow-left mr-2"></i>Kembali ke Armada
+                                </a>
+                            </div>
+                            <h3 class="text-2xl font-semibold text-gray-800 mb-6">Ringkasan Pesanan</h3>
+                            <div class="space-y-4">
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Sewa Mobil (<span id="total-days">0</span> hari)</span>
+                                    <span id="car-price" class="font-medium">Rp 0</span>
+                                </div>
+                                <div id="driver-summary" class="flex justify-between hidden">
+                                    <span class="text-gray-600">Driver</span>
+                                    <span id="driver-price" class="font-medium">Rp 0</span>
+                                </div>
+                                <div id="gps-summary" class="flex justify-between hidden">
+                                    <span class="text-gray-600">GPS Tracking</span>
+                                    <span id="gps-price" class="font-medium">Rp 0</span>
+                                </div>
+                                
+                                <div class="border-t border-gray-200 pt-4 mt-4 space-y-4">
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Subtotal</span>
+                                        <span id="subtotal-price" class="font-medium">Rp 0</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Deposit (Jaminan)</span>
+                                        <span id="deposit-price" class="font-medium">Rp 0</span>
+                                    </div>
+                                    <div class="flex justify-between text-xl font-bold">
+                                        <span>Total Pembayaran</span>
+                                        <span id="total-price" class="text-blue-600">Rp 0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-8 space-y-4">
+                                <div class="flex items-start">
+                                    <input type="checkbox" id="terms" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500 mt-1 flex-shrink-0">
+                                    <label for="terms" class="ml-3 text-sm text-gray-700">
+                                        Saya telah membaca dan menyetujui
+                                        <a href="terms.html" target="_blank" class="text-blue-600 hover:underline">Syarat & Ketentuan</a> dan
+                                        <a href="privacy.html" target="_blank" class="text-blue-600 hover:underline">Kebijakan Privasi</a>.
+                                    </label>
+                                </div>
+                                <button type="submit" class="btn-primary text-white font-semibold py-4 px-6 rounded-full text-lg w-full">
+                                    <i class="fas fa-calendar-check mr-2"></i>Buat Reservasi
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+
+        </div>
+    </section>
+
+    <footer class="bg-gray-800 text-white py-16">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-car text-2xl text-blue-400"></i>
+                        <span class="text-2xl font-bold">CarRent</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        Sewa mobil terpercaya dengan layanan prima di seluruh Indonesia.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-facebook-f text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-twitter text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-instagram text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-whatsapp text-xl"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Layanan</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="services.html" class="hover:text-white transition-colors">Rental Harian</a></li>
+                        <li><a href="services.html" class="hover:text-white transition-colors">Rental Bulanan</a></li>
+                        <li><a href="services.html" class="hover:text-white transition-colors">Dengan Driver</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Perusahaan</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="about.html" class="hover:text-white transition-colors">Tentang Kami</a></li>
+                        <li><a href="contact.html" class="hover:text-white transition-colors">Kontak</a></li>
+                        <li><a href="terms.html" class="hover:text-white transition-colors">Syarat & Ketentuan</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Kontak</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-start"><i class="fas fa-phone mr-3 mt-1 text-blue-400"></i>+62 812-3456-7890</li>
+                        <li class="flex items-start"><i class="fas fa-envelope mr-3 mt-1 text-blue-400"></i>info@carrent.com</li>
+                        <li class="flex items-start"><i class="fas fa-map-marker-alt mr-3 mt-1 text-blue-400"></i>Jl. Sudirman No. 123, Jakarta</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 CarRent. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Pre-fill form from URL parameters
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            const results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        // Pre-fill form fields from URL parameters
+        const urlLokasi = getUrlParameter('lokasi');
+        const urlStart = getUrlParameter('start');
+        const urlEnd = getUrlParameter('end');
+
+        if (urlLokasi) document.getElementById('pickup-location').value = urlLokasi;
+        if (urlStart) document.getElementById('start-date').value = urlStart;
+        if (urlEnd) document.getElementById('end-date').value = urlEnd;
+
+        // Elements
+        const carTypeSelect = document.getElementById('car-type');
+        const startDateInput = document.getElementById('start-date');
+        const endDateInput = document.getElementById('end-date');
+        const driverCheckbox = document.getElementById('driver');
+        const gpsCheckbox = document.getElementById('gps');
+
+        // Summary Elements
+        const totalDaysElement = document.getElementById('total-days');
+        const carPriceElement = document.getElementById('car-price');
+        const driverSummary = document.getElementById('driver-summary');
+        const driverPriceElement = document.getElementById('driver-price');
+        const gpsSummary = document.getElementById('gps-summary');
+        const gpsPriceElement = document.getElementById('gps-price');
+        const subtotalPriceElement = document.getElementById('subtotal-price');
+        const depositPriceElement = document.getElementById('deposit-price');
+        const totalPriceElement = document.getElementById('total-price');
+
+        // Format to Rupiah
+        function formatRupiah(angka) {
+            return new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0
+            }).format(angka);
+        }
+
+        // Calculate price function
+        function calculatePrice() {
+            const selectedOption = carTypeSelect.options[carTypeSelect.selectedIndex];
+            const carPricePerDay = parseFloat(selectedOption.dataset.price) || 0;
+            const carDeposit = parseFloat(selectedOption.dataset.deposit) || 0;
+            
+            const startDate = new Date(startDateInput.value);
+            const endDate = new Date(endDateInput.value);
+
+            let daysDiff = 0;
+            if (startDateInput.value && endDateInput.value && endDate >= startDate) {
+                const timeDiff = endDate.getTime() - startDate.getTime();
+                daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24)) + 1; // Termasuk hari awal
+            }
+            
+            totalDaysElement.textContent = daysDiff;
+
+            const carSubtotal = carPricePerDay * daysDiff;
+            const driverSubtotal = driverCheckbox.checked ? (parseFloat(driverCheckbox.dataset.price) * daysDiff) : 0;
+            const gpsSubtotal = gpsCheckbox.checked ? (parseFloat(gpsCheckbox.dataset.price) * daysDiff) : 0;
+            
+            const subtotal = carSubtotal + driverSubtotal + gpsSubtotal;
+            const total = subtotal + carDeposit;
+
+            // Update Summary UI
+            carPriceElement.textContent = formatRupiah(carSubtotal);
+            depositPriceElement.textContent = formatRupiah(carDeposit);
+
+            // Tampilkan/sembunyikan layanan tambahan
+            driverSummary.classList.toggle('hidden', !driverCheckbox.checked);
+            driverPriceElement.textContent = formatRupiah(driverSubtotal);
+            
+            gpsSummary.classList.toggle('hidden', !gpsCheckbox.checked);
+            gpsPriceElement.textContent = formatRupiah(gpsSubtotal);
+
+            // Update Total
+            subtotalPriceElement.textContent = formatRupiah(subtotal);
+            totalPriceElement.textContent = formatRupiah(total);
+        }
+
+        // Event listeners
+        carTypeSelect.addEventListener('change', calculatePrice);
+        startDateInput.addEventListener('change', calculatePrice);
+        endDateInput.addEventListener('change', calculatePrice);
+        driverCheckbox.addEventListener('change', calculatePrice);
+        gpsCheckbox.addEventListener('change', calculatePrice);
+
+        // Set minimum date for date inputs
+        const today = new Date().toISOString().split('T')[0];
+        startDateInput.min = today;
+        endDateInput.min = today;
+
+        startDateInput.addEventListener('change', function() {
+            endDateInput.min = this.value;
+            calculatePrice(); // Hitung ulang jika tanggal berubah
+        });
+        
+        endDateInput.addEventListener('change', function() {
+            if (startDateInput.value && this.value < startDateInput.value) {
+                alert("Tanggal selesai tidak boleh sebelum tanggal mulai.");
+                this.value = startDateInput.value;
+            }
+            calculatePrice(); // Hitung ulang jika tanggal berubah
+        });
+
+
+        // Form submission
+        const bookingForm = document.getElementById('booking-form');
+        bookingForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Validasi
+            const requiredFields = ['car-type', 'start-date', 'end-date', 'full-name', 'email', 'phone', 'id-number'];
+            let isValid = true;
+
+            requiredFields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (!field.value.trim()) {
+                    field.classList.add('border-red-500');
+                    isValid = false;
+                } else {
+                    field.classList.remove('border-red-500');
+                }
+            });
+            
+            if (!document.getElementById('terms').checked) {
+                alert('Harap menyetujui Syarat & Ketentuan dan Kebijakan Privasi');
+                isValid = false;
+            }
+
+            if (isValid) {
+                alert('Reservasi berhasil! Tim kami akan segera menghubungi Anda untuk konfirmasi pembayaran.');
+                // Di aplikasi nyata, ini akan lanjut ke halaman pembayaran
+                // window.location.href = 'payment.html';
+                // Untuk demo, redirect ke dashboard
+                window.location.href = 'dashboard.html';
+            } else {
+                  alert('Harap lengkapi semua field yang ditandai merah.');
+            }
+        });
+
+        // Efek scroll Navigasi
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-lg');
+                nav.style.background = 'rgba(102, 126, 234, 0.8)';
+            } else {
+                nav.classList.remove('shadow-lg');
+                nav.style.background = 'rgba(255, 255, 255, 0.1)';
+            }
+        });
+    </script>
+
+</body>
+</html>

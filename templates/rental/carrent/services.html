@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layanan - CarRent</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc; /* Latar putih gading */
+        }
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+        .service-card {
+            background: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        .service-card-img {
+            height: 240px;
+            object-fit: cover;
+            width: 100%;
+        }
+        .pricing-card {
+            background: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+            display: flex;
+            flex-direction: column;
+        }
+        .pricing-card.popular {
+            border: 2px solid #667eea;
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+        }
+        .pricing-card ul li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+        .pricing-card ul li i {
+            color: #22c55e; /* Hijau */
+            margin-right: 0.75rem;
+        }
+        
+        /* Animasi */
+        .animate-fade-in { animation: fadeIn 0.8s ease-out forwards; }
+        .animate-slide-up { animation: slideUp 0.8s ease-out forwards; opacity: 0; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <nav class="fixed top-0 w-full z-50 glass-effect">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-car text-2xl text-white"></i>
+                    <span class="text-2xl font-bold text-white">CarRent</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-white hover:text-blue-200 transition-colors">Beranda</a>
+                    <a href="fleet.html" class="text-white hover:text-blue-200 transition-colors">Mobil</a>
+                    <a href="services.html" class="text-white hover:text-blue-200 transition-colors">Layanan</a>
+                    <a href="about.html" class="text-white hover:text-blue-200 transition-colors">Tentang</a>
+                    <a href="contact.html" class="text-white hover:text-blue-200 transition-colors">Kontak</a>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="login.html" class="text-white hover:text-blue-200 transition-colors" title="Login">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <button id="mobile-menu-btn" class="md:hidden text-white">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden bg-white/95 backdrop-blur-md">
+            <div class="px-6 py-4 space-y-4">
+                <a href="index.html" class="block text-gray-800 hover:text-blue-600 transition-colors">Beranda</a>
+                <a href="fleet.html" class="block text-gray-800 hover:text-blue-600 transition-colors">Mobil</a>
+                <a href="services.html" class="block text-gray-800 hover:text-blue-600 transition-colors">Layanan</a>
+                <a href="about.html" class="block text-gray-800 hover:text-blue-600 transition-colors">Tentang</a>
+                <a href="contact.html" class="block text-gray-800 hover:text-blue-600 transition-colors">Kontak</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative pt-32 pb-20 text-center text-white overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                 alt="Car service center"
+                 class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-80"></div>
+        </div>
+        <div class="relative z-10 container mx-auto px-6 animate-fade-in">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">Layanan Kami</h1>
+            <p class="text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto opacity-90">
+                Solusi lengkap untuk kebutuhan rental mobil Anda dengan pelayanan terbaik dan harga kompetitif.
+            </p>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+
+            <!-- Breadcrumb Navigation -->
+            <nav class="mb-8" aria-label="Breadcrumb">
+                <ol class="flex items-center space-x-2 text-sm text-gray-600">
+                    <li><a href="index.html" class="hover:text-blue-600">Beranda</a></li>
+                    <li class="flex items-center">
+                        <i class="fas fa-chevron-right mx-2 text-gray-400"></i>
+                        <span class="text-gray-800 font-medium">Layanan</span>
+                    </li>
+                </ol>
+            </nav>
+
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Pilihan Layanan Rental</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Temukan paket yang paling sesuai dengan kebutuhan perjalanan Anda.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <div class="service-card animate-slide-up delay-100">
+                    <img src="https://images.unsplash.com/photo-1549399735-cef2e2c3f638?q=80&w=2070&auto=format&fit=crop" alt="Rental Harian" class="service-card-img">
+                    <div class="p-8 flex-grow">
+                        <i class="fas fa-calendar-day text-4xl text-blue-600 mb-4"></i>
+                        <h3 class="text-3xl font-semibold text-gray-800 mb-4">Rental Harian</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            Sewa mobil per hari. Cocok untuk perjalanan singkat, meeting bisnis, atau keperluan mendadak dalam kota.
+                        </p>
+                    </div>
+                    <div class="p-6 bg-gray-50">
+                        <span class="text-2xl font-bold text-blue-600">Mulai Rp 250K<span class="text-sm text-gray-500">/hari</span></span>
+                    </div>
+                </div>
+
+                <div class="service-card animate-slide-up delay-200">
+                    <img src="https://images.unsplash.com/photo-1516534775-716210a40d41?q=80&w=2070&auto=format&fit=crop" alt="Rental Bulanan" class="service-card-img">
+                    <div class="p-8 flex-grow">
+                        <i class="fas fa-calendar-alt text-4xl text-purple-600 mb-4"></i>
+                        <h3 class="text-3xl font-semibold text-gray-800 mb-4">Rental Bulanan</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            Solusi jangka panjang untuk kebutuhan transportasi Anda dengan diskon spesial dan bebas biaya maintenance.
+                        </p>
+                    </div>
+                    <div class="p-6 bg-gray-50">
+                        <span class="text-2xl font-bold text-purple-600">Lebih Hemat 20%</span>
+                    </div>
+                </div>
+
+                <div class="service-card animate-slide-up delay-300">
+                    <img src="https://images.unsplash.com/photo-1605745199652-65207c42b66e?q=80&w=1974&auto=format&fit=crop" alt="Dengan Driver" class="service-card-img">
+                    <div class="p-8 flex-grow">
+                        <i class="fas fa-user-tie text-4xl text-green-600 mb-4"></i>
+                        <h3 class="text-3xl font-semibold text-gray-800 mb-4">Dengan Driver</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            Fokus pada tujuan Anda, biarkan driver profesional dan berpengalaman kami yang mengantar Anda dengan aman.
+                        </p>
+                    </div>
+                    <div class="p-6 bg-gray-50">
+                        <span class="text-2xl font-bold text-green-600">+ Rp 150K<span class="text-sm text-gray-500">/hari</span></span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold mb-4">Siap Memulai?</h2>
+            <p class="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+                Pilih mobil impian Anda dan mulai perjalanan yang tak terlupakan.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="fleet.html" class="btn-primary bg-white text-blue-600 font-semibold py-4 px-8 rounded-full text-lg">
+                    <i class="fas fa-car mr-2"></i>Lihat Armada Mobil
+                </a>
+                <a href="contact.html" class="glass-effect text-white font-semibold py-4 px-8 rounded-full text-lg hover:bg-white/20 transition-all border-2 border-white/30">
+                    <i class="fas fa-phone mr-2"></i>Hubungi Kami
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Paket Harga Spesial</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Promo menarik untuk berbagai kebutuhan rental Anda.</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+
+                <div class="pricing-card p-8 animate-slide-up delay-100">
+                    <div class="text-center mb-6">
+                        <i class="fas fa-car-side text-4xl text-gray-400 mb-4"></i>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-2">Paket Basic</h3>
+                        <p class="text-gray-600">Untuk perjalanan singkat & hemat</p>
+                    </div>
+                    <div class="text-center mb-6">
+                        <span class="text-5xl font-bold text-gray-800">Rp 250K</span>
+                        <span class="text-gray-500">/hari</span>
+                    </div>
+                    <ul class="text-gray-700 mb-8 flex-grow">
+                        <li><i class="fas fa-check-circle"></i>Mobil tipe Ekonomi (Avanza, Xenia)</li>
+                        <li><i class="fas fa-check-circle"></i>Asuransi Dasar (All Risk)</li>
+                        <li><i class="fas fa-check-circle"></i>Antar Jemput Gratis (Radius 10km)</li>
+                    </ul>
+                    <a href="booking.html" class="w-full text-center py-3 px-6 rounded-full font-semibold border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white transition-colors">
+                        Pilih Paket
+                    </a>
+                </div>
+
+                <div class="pricing-card popular p-8 animate-slide-up delay-200">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                        <span class="bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-semibold uppercase tracking-wider">Paling Populer</span>
+                    </div>
+                    <div class="text-center mb-6">
+                        <i class="fas fa-caravan text-4xl text-blue-600 mb-4"></i>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-2">Paket Premium</h3>
+                        <p class="text-gray-600">Kenyamanan ekstra & layanan penuh</p>
+                    </div>
+                    <div class="text-center mb-6">
+                        <span class="text-5xl font-bold text-blue-600">Rp 450K</span>
+                        <span class="text-gray-500">/hari</span>
+                    </div>
+                    <ul class="text-gray-700 mb-8 flex-grow">
+                        <li><i class="fas fa-check-circle"></i>Mobil tipe Menengah (CR-V, Camry)</li>
+                        <li><i class="fas fa-check-circle"></i>Asuransi Lengkap (Termasuk Pihak ke-3)</li>
+                        <li><i class="fas fa-check-circle"></i>Antar Jemput Gratis (Radius 25km)</li>
+                        <li><i class="fas fa-check-circle"></i>Gratis Layanan Driver (4 Jam)</li>
+                    </ul>
+                    <a href="booking.html" class="w-full text-center py-3 px-6 rounded-full font-semibold btn-primary text-white">
+                        Pilih Paket
+                    </a>
+                </div>
+
+                <div class="pricing-card p-8 animate-slide-up delay-300">
+                    <div class="text-center mb-6">
+                        <i class="fas fa-gem text-4xl text-gray-400 mb-4"></i>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-2">Paket Luxury</h3>
+                        <p class="text-gray-600">Untuk pengalaman VIP & berkelas</p>
+                    </div>
+                    <div class="text-center mb-6">
+                        <span class="text-5xl font-bold text-gray-800">Rp 1.2M</span>
+                        <span class="text-gray-500">/hari</span>
+                    </div>
+                    <ul class="text-gray-700 mb-8 flex-grow">
+                        <li><i class="fas fa-check-circle"></i>Mobil tipe Mewah (BMW, Mercy)</li>
+                        <li><i class="fas fa-check-circle"></i>Asuransi Premium (Zero Risk)</li>
+                        <li><i class="fas fa-check-circle"></i>Antar Jemput Tanpa Batas</li>
+                        <li><i class="fas fa-check-circle"></i>Termasuk Private Driver & Butler</li>
+                    </ul>
+                    <a href="booking.html" class="w-full text-center py-3 px-6 rounded-full font-semibold border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white transition-colors">
+                        Pilih Paket
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Pertanyaan Umum</h2>
+                <p class="text-xl text-gray-600">Jawaban untuk pertanyaan yang sering ditanyakan</p>
+            </div>
+            <div class="max-w-4xl mx-auto space-y-6">
+                <div class="bg-gray-50 rounded-2xl p-6 animate-slide-up delay-100">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Apakah saya perlu membayar deposit?</h3>
+                    <p class="text-gray-600">Ya, deposit diperlukan sebagai jaminan. Besaran deposit tergantung jenis mobil yang disewa, mulai dari Rp 500.000 hingga Rp 5.000.000. Deposit akan dikembalikan penuh setelah sewa selesai. Lihat detail di <a href="terms.html" class="text-blue-600 hover:underline">Syarat & Ketentuan</a>.</p>
+                </div>
+                <div class="bg-gray-50 rounded-2xl p-6 animate-slide-up delay-200">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Berapa lama proses booking?</h3>
+                    <p class="text-gray-600">Proses booking dapat dilakukan secara online melalui <a href="booking.html" class="text-blue-600 hover:underline">form booking</a> kami dan memakan waktu kurang dari 15 menit. Setelah pembayaran dikonfirmasi, mobil akan siap diantar ke lokasi Anda dalam 1-2 jam (tergantung lokasi).</p>
+                </div>
+                <div class="bg-gray-50 rounded-2xl p-6 animate-slide-up delay-300">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Bagaimana jika terjadi kecelakaan?</h3>
+                    <p class="text-gray-600">Semua mobil kami dilengkapi asuransi komprehensif. Segera hubungi layanan 24/7 kami di halaman <a href="contact.html" class="text-blue-600 hover:underline">kontak</a>. Tim kami akan segera membantu proses klaim dan menyediakan mobil pengganti jika diperlukan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800 text-white py-16">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-car text-2xl text-blue-400"></i>
+                        <span class="text-2xl font-bold">CarRent</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        Sewa mobil terpercaya dengan layanan prima di seluruh Indonesia.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-facebook-f text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-twitter text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-instagram text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-whatsapp text-xl"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Layanan</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="services.html" class="hover:text-white transition-colors">Rental Harian</a></li>
+                        <li><a href="services.html" class="hover:text-white transition-colors">Rental Bulanan</a></li>
+                        <li><a href="services.html" class="hover:text-white transition-colors">Dengan Driver</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Perusahaan</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="about.html" class="hover:text-white transition-colors">Tentang Kami</a></li>
+                        <li><a href="contact.html" class="hover:text-white transition-colors">Kontak</a></li>
+                        <li><a href="terms.html" class="hover:text-white transition-colors">Syarat & Ketentuan</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Kontak</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-start"><i class="fas fa-phone mr-3 mt-1 text-blue-400"></i>+62 812-3456-7890</li>
+                        <li class="flex items-start"><i class="fas fa-envelope mr-3 mt-1 text-blue-400"></i>info@carrent.com</li>
+                        <li class="flex items-start"><i class="fas fa-map-marker-alt mr-3 mt-1 text-blue-400"></i>Jl. Sudirman No. 123, Jakarta</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 CarRent. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-slide-up');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-slide-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Efek scroll Navigasi
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-lg');
+                nav.style.background = 'rgba(102, 126, 234, 0.8)';
+            } else {
+                nav.classList.remove('shadow-lg');
+                nav.style.background = 'rgba(255, 255, 255, 0.1)';
+            }
+        });
+    </script>
+
+</body>
+</html>
