@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karir - Paket! Ekspedisi Estetik</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        slate: { 50: '#f8fafc', 100: '#f1f5f9', 200: '#e2e8f0', 300: '#cbd5e1', 400: '#94a3b8', 500: '#64748b', 600: '#475569', 700: '#334155', 800: '#1e293b', 900: '#0f172a' },
+                        cyan: { 400: '#22d3ee', 500: '#06b6d4', 600: '#0891b2' }
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="font-sans antialiased text-slate-700 bg-white">
+
+    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-slate-900">Paket!</a>
+            
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html" class="text-slate-600 hover:text-slate-900">Beranda</a>
+                <a href="about.html" class="text-slate-600 hover:text-slate-900">Tentang Kami</a>
+                <a href="career.html" class="text-slate-600 hover:text-slate-900">Karir</a>
+                <a href="partner.html" class="text-slate-600 hover:text-slate-900">Partner</a>
+                <a href="contact.html" class="text-cyan-500 font-semibold">Kontak</a>
+                <a href="#" class="text-slate-600 hover:text-slate-900">Bantuan</a>
+            </div>
+            
+            <a 
+                href="https://wa.me/6281234567890?text=Halo%20Paket!%2C%20saya%20mau%20kirim%20barang." 
+                target="_blank"
+                class="hidden md:block bg-cyan-500 text-white font-semibold px-5 py-2 rounded-lg hover:bg-cyan-600 transition-colors">
+                Kirim Sekarang
+            </a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="container mx-auto px-6 py-20 md:py-24">
+            <div class="max-w-3xl mx-auto text-center">
+                <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-8">
+                    Bergabunglah dengan Kami
+                </h1>
+                <p class="text-lg text-slate-600 mb-10 leading-relaxed">
+                    Jadilah bagian dari tim dinamis kami yang bersemangat dalam menyediakan layanan ekspedisi terbaik. Kami mencari individu berbakat yang siap berkembang bersama Paket!.
+                </p>
+                <a 
+                    href="https://wa.me/6281234567890?text=Halo%20Paket!%2C%20saya%20tertarik%20dengan%20kesempatan%20karir%20di%20sini." 
+                    target="_blank"
+                    class="inline-block bg-slate-800 text-white font-bold px-10 py-4 rounded-lg 
+                           hover:bg-slate-900 transition-colors transform hover:scale-105">
+                    Kirim Lamaran (WhatsApp)
+                </a>
+            </div>
+        </section>
+
+        <section class="py-16 bg-slate-50">
+            <div class="container mx-auto px-6">
+                <div class="max-w-4xl mx-auto">
+                    <h2 class="text-3xl font-bold text-slate-800 mb-12 text-center">Kenapa Bergabung dengan Paket!?</h2>
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="text-center">
+                            <div class="flex items-center justify-center h-12 w-12 bg-cyan-100 text-cyan-600 rounded-full mx-auto mb-4">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-800 mb-2">Kompensasi Kompetitif</h3>
+                            <p class="text-slate-600">Gaji dan tunjangan yang sesuai dengan kinerja dan kontribusi Anda.</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="flex items-center justify-center h-12 w-12 bg-cyan-100 text-cyan-600 rounded-full mx-auto mb-4">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-800 mb-2">Pengembangan Karir</h3>
+                            <p class="text-slate-600">Program pelatihan dan jalur karir yang jelas untuk pertumbuhan profesional.</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="flex items-center justify-center h-12 w-12 bg-cyan-100 text-cyan-600 rounded-full mx-auto mb-4">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-800 mb-2">Lingkungan Kerja Kolaboratif</h3>
+                            <p class="text-slate-600">Tim yang suportif dan budaya kerja yang mendorong inovasi.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="max-w-4xl mx-auto">
+                    <h2 class="text-3xl font-bold text-slate-800 mb-12 text-center">Posisi yang Tersedia</h2>
+                    <div class="space-y-6">
+                        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                            <h3 class="text-xl font-bold text-slate-800">Supervisor Operasional</h3>
+                            <p class="text-slate-600 mb-2">Jakarta, Indonesia</p>
+                            <p class="text-slate-600 mb-4">Bertanggung jawab atas koordinasi dan efisiensi operasional lapangan.</p>
+                            <a href="#" class="text-cyan-500 hover:text-cyan-600 font-semibold">Lihat Detail ></a>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                            <h3 class="text-xl font-bold text-slate-800">Analis Data Logistik</h3>
+                            <p class="text-slate-600 mb-2">Surabaya, Indonesia</p>
+                            <p class="text-slate-600 mb-4">Menganalisis data untuk meningkatkan efisiensi rute dan biaya.</p>
+                            <a href="#" class="text-cyan-500 hover:text-cyan-600 font-semibold">Lihat Detail ></a>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                            <h3 class="text-xl font-bold text-slate-800">Spesialis Pengalaman Pelanggan</h3>
+                            <p class="text-slate-600 mb-2">Remote</p>
+                            <p class="text-slate-600 mb-4">Menjaga dan meningkatkan kepuasan pelanggan melalui layanan yang unggul.</p>
+                            <a href="#" class="text-cyan-500 hover:text-cyan-600 font-semibold">Lihat Detail ></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="py-16 bg-slate-900 text-slate-400">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="text-white text-lg font-bold mb-4">Paket!</h4>
+                    <p class="text-sm">Jalan Kantor Pusat No. 123, Jakarta, Indonesia.</p>
+                </div>
+                <div>
+                    <h4 class="text-white text-sm font-semibold mb-4 uppercase">Perusahaan</h4>
+                    <ul>
+                        <li class="mb-2"><a href="about.html" class="hover:text-white">Tentang Kami</a></li>
+                        <li class="mb-2"><a href="career.html" class="hover:text-white">Karir</a></li>
+                        <li class="mb-2"><a href="partner.html" class="text-cyan-400 hover:text-white">Partner</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white text-sm font-semibold mb-4 uppercase">Bantuan</h4>
+                    <ul>
+                        <li class="mb-2"><a href="#" class="hover:text-white">FAQ</a></li>
+                        <li class="mb-2"><a href="#" class="hover:text-white">Pusat Bantuan</a></li>
+                        <li class="mb-2"><a href="contact.html" class="hover:text-white">Hubungi Kami</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white text-sm font-semibold mb-4 uppercase">Legal</h4>
+                    <ul>
+                        <li class="mb-2"><a href="#" class="hover:text-white">Syarat & Ketentuan</a></li>
+                        <li class="mb-2"><a href="#" class="hover:text-white">Kebijakan Privasi</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-700 mt-10 pt-6 text-center text-sm">
+                &copy; 2025 Paket!. Dibuat oleh seorang ahli.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

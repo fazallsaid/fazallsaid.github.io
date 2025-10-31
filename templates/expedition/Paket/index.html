@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paket! - Ekspedisi Estetik</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        slate: { 50: '#f8fafc', 100: '#f1f5f9', 200: '#e2e8f0', 300: '#cbd5e1', 400: '#94a3b8', 500: '#64748b', 600: '#475569', 700: '#334155', 800: '#1e293b', 900: '#0f172a' },
+                        cyan: { 400: '#22d3ee', 500: '#06b6d4', 600: '#0891b2' }
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="font-sans antialiased text-slate-700 bg-white">
+
+    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-slate-900">Paket!</div>
+            
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html" class="text-slate-600 hover:text-slate-900">Beranda</a>
+                <a href="about.html" class="text-slate-600 hover:text-slate-900">Tentang Kami</a>
+                <a href="career.html" class="text-slate-600 hover:text-slate-900">Karir</a>
+                <a href="partner.html" class="text-slate-600 hover:text-slate-900">Partner</a>
+                <a href="contact.html" class="text-cyan-500 font-semibold">Kontak</a>
+                <a href="#" class="text-slate-600 hover:text-slate-900">Bantuan</a>
+            </div>
+            
+            <a 
+                href="https://wa.me/6281234567890?text=Halo%20Paket!%2C%20saya%20mau%20kirim%20barang." 
+                target="_blank"
+                class="hidden md:block bg-cyan-500 text-white font-semibold px-5 py-2 rounded-lg hover:bg-cyan-600 transition-colors">
+                Kirim Sekarang
+            </a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="container mx-auto px-6 py-20 md:py-24">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                
+                <div class="md:pr-8">
+                    <h1 class="text-5xl md:text-6xl font-extrabold text-slate-900 mb-6 leading-tight">
+                        Lacak, Kirim, <span class="text-cyan-500">Tanpa Ribet.</span>
+                    </h1>
+                    <p class="text-lg text-slate-600 mb-10">
+                        Masukan nomor resi untuk melacak status paket Anda secara real-time. Cepat, akurat, dan transparan.
+                    </p>
+                    
+                    <form class="space-y-4">
+                        <div>
+                            <label for="resi" class="text-sm font-semibold text-slate-800">Lacak Kiriman Kamu</label>
+                            <div class="flex gap-2 mt-2">
+                                <input 
+                                    type="text" 
+                                    id="resi"
+                                    placeholder="Contoh: JKT8800123" 
+                                    class="flex-grow w-full px-5 py-3 border border-slate-300 rounded-lg 
+                                           focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400"
+                                >
+                                <button 
+                                    class="bg-cyan-500 text-white font-bold px-6 py-3 rounded-lg 
+                                           hover:bg-cyan-600 transition-colors transform hover:scale-105">
+                                    Lacak
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="hidden md:block">
+                    <!-- Ganti URL gambar di sini dengan URL gambar Anda sendiri -->
+                    <div 
+                        class="w-full h-full rounded-2xl min-h-[450px] bg-cover bg-center relative overflow-hidden" 
+                        style="background-image: url('https://images.unsplash.com/photo-1576224329828-55332a4e2bfe?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3');">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/10 to-transparent"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 bg-slate-50">
+            <div class="container mx-auto px-6">
+                <div class="grid md:grid-cols-3 gap-12 text-center">
+                    <div class="flex flex-col items-center">
+                        <div class="flex items-center justify-center h-12 w-12 bg-cyan-100 text-cyan-600 rounded-full mx-auto mb-4">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-1">Super Cepat</h3>
+                        <p class="text-slate-600">Layanan *same-day* dan *next-day* yang dijamin tiba tepat waktu.</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="flex items-center justify-center h-12 w-12 bg-cyan-100 text-cyan-600 rounded-full mx-auto mb-4">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L20 12l-5.447 2.724A1 1 0 0114 13.618V7.5"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-1">Jangkauan Luas</h3>
+                        <p class="text-slate-600">Menjangkau 99% kota dan kabupaten di seluruh pelosok Indonesia.</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="flex items-center justify-center h-12 w-12 bg-cyan-100 text-cyan-600 rounded-full mx-auto mb-4">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.015a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 13.217l8.618 5.745a12.02 12.02 0 003.04-8.618z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-1">Aman & Terlindungi</h3>
+                        <p class="text-slate-600">Setiap paket dilindungi asuransi dan ditangani oleh tim profesional.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-extrabold text-slate-900 text-center mb-16">Pilihan Layanan Sesuai Kebutuhan</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    
+                    <div class="bg-white p-8 rounded-xl border border-slate-200 shadow-sm hover:shadow-lg hover:border-cyan-400 transition-all">
+                        <h3 class="text-2xl font-bold text-slate-800 mb-3">Reguler</h3>
+                        <p class="text-slate-600 mb-5">Pengiriman standar 2-3 hari kerja dengan harga paling hemat.</p>
+                        <a href="#" class="font-semibold text-cyan-500 hover:text-cyan-600">Pelajari ></a>
+                    </div>
+                    
+                    <div class="bg-white p-8 rounded-xl border border-slate-200 shadow-sm hover:shadow-lg hover:border-cyan-400 transition-all">
+                        <h3 class="text-2xl font-bold text-slate-800 mb-3">Kargo</h3>
+                        <p class="text-slate-600 mb-5">Solusi pengiriman barang berat dan besar dengan aman.</p>
+                        <a href="#" class="font-semibold text-cyan-500 hover:text-cyan-600">Pelajari ></a>
+                    </div>
+
+                    <div class="bg-slate-800 text-white p-8 rounded-xl shadow-lg ring-4 ring-cyan-400">
+                        <h3 class="text-2xl font-bold text-white mb-3">Same Day</h3>
+                        <p class="text-slate-300 mb-5">Kirim dan terima paket di hari yang sama. Cepat dan pasti.</p>
+                        <a href="#" class="font-semibold text-cyan-400 hover:text-cyan-300">Pelajari ></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 bg-slate-100">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-extrabold text-slate-900 mb-5">Siap Mulai Kirim Paket?</h2>
+                <p class="text-lg text-slate-600 mb-10">Langsung hubungi admin kami. Cepat, gampang, dan tanpa perlu daftar.</p>
+                
+                <a 
+                    href="https://wa.me/6281234567890?text=Halo%20Paket!%2C%20saya%20mau%20kirim%20barang." 
+                    target="_blank"
+                    class="inline-block bg-slate-800 text-white font-bold px-10 py-4 rounded-lg 
+                           hover:bg-slate-900 transition-colors transform hover:scale-105">
+                    Chat Admin (WhatsApp)
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-16 bg-slate-900 text-slate-400">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="text-white text-lg font-bold mb-4">Paket!</h4>
+                    <p class="text-sm">Jalan Kantor Pusat No. 123, Jakarta, Indonesia.</p>
+                </div>
+                <div>
+                    <h4 class="text-white text-sm font-semibold mb-4 uppercase">Perusahaan</h4>
+                    <ul>
+                        <li class="mb-2"><a href="about.html" class="hover:text-white">Tentang Kami</a></li>
+                        <li class="mb-2"><a href="career.html" class="hover:text-white">Karir</a></li>
+                        <li class="mb-2"><a href="partner.html" class="text-cyan-400 hover:text-white">Partner</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white text-sm font-semibold mb-4 uppercase">Bantuan</h4>
+                    <ul>
+                        <li class="mb-2"><a href="#" class="hover:text-white">FAQ</a></li>
+                        <li class="mb-2"><a href="#" class="hover:text-white">Pusat Bantuan</a></li>
+                        <li class="mb-2"><a href="contact.html" class="hover:text-white">Hubungi Kami</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white text-sm font-semibold mb-4 uppercase">Legal</h4>
+                    <ul>
+                        <li class="mb-2"><a href="#" class="hover:text-white">Syarat & Ketentuan</a></li>
+                        <li class="mb-2"><a href="#" class="hover:text-white">Kebijakan Privasi</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-700 mt-10 pt-6 text-center text-sm">
+                &copy; 2025 Paket!. Dibuat oleh seorang ahli.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

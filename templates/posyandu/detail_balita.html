@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Balita & Grafik KMS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        body { font-family: 'Poppins', sans-serif; background-color: #f8fafc; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': { '600': '#0284c7', '700': '#0369a1', '100': '#bae6fd', '50': '#f0f9ff' },
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="flex h-screen">
+        
+        <div class="w-64 bg-white shadow-lg hidden md:block">
+            <div class="p-6 bg-primary-600 text-white text-xl font-bold">E-Posyandu</div>
+            <nav class="mt-6">
+                <a href="#" class="flex items-center px-6 py-3 text-gray-600 hover:bg-gray-100">
+                    Dashboard
+                </a>
+                <a href="#" class="flex items-center px-6 py-3 bg-primary-50 text-primary-700 font-semibold">
+                    Data Balita
+                </a>
+                <a href="#" class="flex items-center px-6 py-3 text-gray-600 hover:bg-gray-100">
+                    Laporan
+                </a>
+            </nav>
+        </div>
+
+        <div class="flex-1 flex flex-col overflow-y-auto">
+            
+            <header class="bg-white shadow-sm p-4 flex justify-between items-center">
+                <div>
+                    <a href="#" class="flex items-center text-sm text-gray-600 hover:text-primary-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                        </svg>
+                        Kembali ke Dashboard
+                    </a>
+                </div>
+                <div x-data="{ open: false }" class="relative">
+                    <button @click="open = !open" class="flex items-center space-x-3 focus:outline-none">
+                        <div class="font-medium text-right hidden md:block">
+                            <div>Bidan Susi</div>
+                            <div class="text-xs text-gray-500">Kader</div>
+                        </div>
+                        <img class="h-10 w-10 rounded-full object-cover" src="https://via.placeholder.com/150/0284c7/FFFFFF?text=BS" alt="Foto Profil">
+                    </button>
+                    </div>
+            </header>
+
+            <main class="p-6 md:p-8">
+                
+                <div class="md:flex justify-between items-center mb-6">
+                    <div>
+                        <h1 class="text-3xl font-bold text-gray-900">Budi Setiawan</h1>
+                        <p class="text-lg text-gray-500">NIK: 330101XXXXX0001</p>
+                    </div>
+                    <div class="flex space-x-4 mt-4 md:mt-0">
+                        <div class="bg-white p-4 rounded-xl shadow-lg text-center">
+                            <p class="text-sm text-gray-500">Usia Saat Ini</p>
+                            <p class="text-xl font-bold text-primary-600">9 Bulan</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl shadow-lg text-center">
+                            <p class="text-sm text-gray-500">Status Gizi (BB/U)</p>
+                            <p class="text-xl font-bold text-green-600">Gizi Baik</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl shadow-lg text-center">
+                            <p class="text-sm text-gray-500">Status Tinggi (TB/U)</p>
+                            <p class="text-xl font-bold text-yellow-600">Risiko Stunting</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h2 class="text-lg font-semibold text-gray-800 mb-4">Grafik Pertumbuhan (KMS)</h2>
+                    <div class="h-80">
+                        <canvas id="kmsChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
+                    
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                        <div class="p-5 border-b border-gray-200">
+                            <h2 class="text-lg font-semibold text-gray-800">Riwayat Penimbangan</h2>
+                        </div>
+                        <div class="overflow-y-auto max-h-96">
+                            <table class="w-full">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Tanggal</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Usia</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">BB / TB</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status Gizi</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="px-6 py-4">30 Okt 2025</td>
+                                        <td class="px-6 py-4">9 Bln</td>
+                                        <td class="px-6 py-4">8.5kg / 70.2cm</td>
+                                        <td class="px-6 py-4"><span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">Baik</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4">28 Sep 2025</td>
+                                        <td class="px-6 py-4">8 Bln</td>
+                                        <td class="px-6 py-4">8.1kg / 68.9cm</td>
+                                        <td class="px-6 py-4"><span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">Baik</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4">30 Agu 2025</td>
+                                        <td class="px-6 py-4">7 Bln</td>
+                                        <td class="px-6 py-4">7.9kg / 67.5cm</td>
+                                        <td class="px-6 py-4"><span class="px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">Risiko</span></td>
+                                    </tr>
+                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                        <div class="p-5 border-b border-gray-200">
+                            <h2 class="text-lg font-semibold text-gray-800">Riwayat Imunisasi</h2>
+                        </div>
+                        <div class="overflow-y-auto max-h-96">
+                            <table class="w-full">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nama Imunisasi</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Tanggal Diberikan</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Dicatat Oleh</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="px-6 py-4">Campak Rubella (MR)</td>
+                                        <td class="px-6 py-4">30 Agu 2025</td>
+                                        <td class="px-6 py-4">Bidan Susi</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4">DPT-HB-Hib 3</td>
+                                        <td class="px-6 py-4">25 Mei 2025</td>
+                                        <td class="px-6 py-4">Bidan Susi</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4">Polio 4</td>
+                                        <td class="px-6 py-4">25 Mei 2025</td>
+                                        <td class="px-6 py-4">Bidan Susi</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4">BCG</td>
+                                        <td class="px-6 py-4">10 Feb 2025</td>
+                                        <td class="px-6 py-4">Bidan Susi</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const ctx = document.getElementById('kmsChart').getContext('2d');
+            
+            // Data dummy untuk riwayat berat badan
+            const labels = ['Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt'];
+            const dataBeratBadan = [4.5, 5.8, 6.7, 7.2, 7.5, 7.7, 7.9, 8.1, 8.5]; // Data BB (kg)
+            const dataTinggiBadan = [55.1, 59.8, 63.2, 65.0, 66.1, 67.0, 67.5, 68.9, 70.2]; // Data TB (cm)
+
+            new Chart(ctx, {
+                type: 'line', // Jenis grafik
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Berat Badan (kg)',
+                            data: dataBeratBadan,
+                            borderColor: '#0284c7', // Warna 'primary-600'
+                            backgroundColor: '#0284c7',
+                            fill: false,
+                            tension: 0.1,
+                            yAxisID: 'y_kg' // Link ke sumbu Y kiri
+                        },
+                        {
+                            label: 'Tinggi Badan (cm)',
+                            data: dataTinggiBadan,
+                            borderColor: '#10b981', // Warna 'emerald-500'
+                            backgroundColor: '#10b981',
+                            fill: false,
+                            tension: 0.1,
+                            yAxisID: 'y_cm' // Link ke sumbu Y kanan
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            title: { display: true, text: 'Bulan' }
+                        },
+                        // Sumbu Y Kiri untuk Berat Badan (kg)
+                        y_kg: { 
+                            type: 'linear',
+                            position: 'left',
+                            title: { display: true, text: 'Berat Badan (kg)' },
+                            min: 0
+                        },
+                        // Sumbu Y Kanan untuk Tinggi Badan (cm)
+                        y_cm: { 
+                            type: 'linear',
+                            position: 'right',
+                            title: { display: true, text: 'Tinggi Badan (cm)' },
+                            min: 40, // Mulai dari 40cm
+                            grid: {
+                                drawOnChartArea: false, // Sembunyikan grid sumbu Y kanan
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
