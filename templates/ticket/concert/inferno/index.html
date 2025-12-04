@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INFERNO FEST 2026 - Indonesia's Biggest Metal Festival</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Metal+Mania&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'hammer-black': '#0a0a0a',
+                        'hammer-dark': '#111111',
+                        'hammer-orange': '#ff6b00',
+                        'hammer-red': '#cc0000',
+                        'hammer-yellow': '#ffcc00',
+                    },
+                    fontFamily: {
+                        'bebas': ['"Bebas Neue"', 'cursive'],
+                        'oswald': ['"Oswald"', 'sans-serif'],
+                        'metal': ['"Metal Mania"', 'cursive'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0a;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #ff6b00;
+            border-radius: 0;
+        }
+
+        /* Fire/Glow Effect for Logo */
+        .fire-text {
+            text-shadow:
+                0 0 10px #ff6b00,
+                0 0 20px #ff6b00,
+                0 0 40px #ff6b00,
+                0 0 80px #cc0000;
+            animation: fireGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes fireGlow {
+            from {
+                text-shadow: 0 0 10px #ff6b00, 0 0 20px #ff6b00, 0 0 40px #ff6b00, 0 0 80px #cc0000;
+            }
+
+            to {
+                text-shadow: 0 0 20px #ffcc00, 0 0 40px #ff6b00, 0 0 60px #ff6b00, 0 0 100px #cc0000;
+            }
+        }
+
+        /* Navigation Styles */
+        .nav-link {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: #fff;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #ff6b00, #ffcc00);
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link:hover {
+            color: #ff6b00;
+        }
+
+        /* Hero Video Overlay */
+        .hero-overlay {
+            background: linear-gradient(to bottom,
+                    rgba(10, 10, 10, 0.7) 0%,
+                    rgba(10, 10, 10, 0.4) 50%,
+                    rgba(10, 10, 10, 0.95) 100%);
+        }
+
+        /* Fire Border Effect */
+        .fire-border {
+            border: 2px solid transparent;
+            background: linear-gradient(#0a0a0a, #0a0a0a) padding-box,
+                linear-gradient(135deg, #ff6b00, #cc0000, #ffcc00) border-box;
+        }
+
+        /* Glowing Button */
+        .btn-fire {
+            background: linear-gradient(135deg, #ff6b00, #cc0000);
+            box-shadow: 0 0 20px rgba(255, 107, 0, 0.5);
+            transition: all 0.3s;
+        }
+
+        .btn-fire:hover {
+            box-shadow: 0 0 40px rgba(255, 107, 0, 0.8);
+            transform: scale(1.05);
+        }
+
+        /* Section Title Style */
+        .section-title {
+            font-family: 'Metal Mania', cursive;
+            background: linear-gradient(180deg, #fff 0%, #888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-title-fire {
+            font-family: 'Bebas Neue', cursive;
+            background: linear-gradient(180deg, #ffcc00 0%, #ff6b00 50%, #cc0000 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Lineup Card Hover Effect */
+        .lineup-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .lineup-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 107, 0, 0.3);
+        }
+
+        .lineup-card:hover .lineup-img {
+            filter: grayscale(0%);
+        }
+
+        .lineup-img {
+            filter: grayscale(100%);
+            transition: filter 0.4s;
+        }
+
+        /* News Card Style */
+        .news-card {
+            background: linear-gradient(145deg, #151515 0%, #0a0a0a 100%);
+            border: 1px solid #222;
+            transition: all 0.3s;
+        }
+
+        .news-card:hover {
+            border-color: #ff6b00;
+            transform: translateY(-5px);
+        }
+
+        /* Social Icon Hover */
+        .social-icon {
+            color: #fff;
+            transition: all 0.3s;
+        }
+
+        .social-icon:hover {
+            color: #ff6b00;
+            transform: scale(1.2);
+        }
+
+        /* Ticket Button Pulse */
+        @keyframes pulse-fire {
+
+            0%,
+            100% {
+                box-shadow: 0 0 20px rgba(255, 107, 0, 0.5);
+            }
+
+            50% {
+                box-shadow: 0 0 40px rgba(255, 107, 0, 0.8), 0 0 60px rgba(204, 0, 0, 0.4);
+            }
+        }
+
+        .pulse-fire {
+            animation: pulse-fire 2s ease-in-out infinite;
+        }
+
+        /* Header Scroll Effect */
+        .header-scrolled {
+            background: rgba(10, 10, 10, 0.98) !important;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Hamburger Menu */
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            margin: 5px 0;
+            background: #fff;
+            transition: all 0.3s;
+        }
+
+        /* Texture Overlay */
+        .texture-overlay {
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+
+<body class="text-white font-oswald antialiased">
+
+    <!-- Texture Overlay -->
+    <div class="fixed inset-0 texture-overlay opacity-[0.03] z-50 pointer-events-none"></div>
+
+    <!-- Header / Navigation -->
+    <header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="flex items-center justify-between py-4">
+
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3">
+                    <span class="font-metal text-2xl md:text-3xl fire-text">INFERNO FEST</span>
+                </a>
+
+                <!-- Navigation - Desktop -->
+                <nav class="hidden lg:flex items-center gap-8">
+                    <a href="#home" class="nav-link text-sm">Home</a>
+                    <a href="#tickets" class="nav-link text-sm">Tickets</a>
+                    <a href="#merch" class="nav-link text-sm">Merch</a>
+                    <a href="#lineup" class="nav-link text-sm">Lineup</a>
+                    <a href="#info" class="nav-link text-sm">Info</a>
+                    <a href="#history" class="nav-link text-sm">History</a>
+                </nav>
+
+                <!-- Social Icons - Desktop -->
+                <div class="hidden lg:flex items-center gap-4">
+                    <a href="#" class="social-icon text-lg"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon text-lg"><i class="fab fa-x-twitter"></i></a>
+                    <a href="#" class="social-icon text-lg"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-icon text-lg"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon text-lg"><i class="fab fa-spotify"></i></a>
+                    <a href="#" class="nav-link text-sm ml-2">Contact</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="lg:hidden hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div id="mobile-menu" class="lg:hidden hidden bg-hammer-black/98 backdrop-blur-md border-t border-white/10">
+            <nav class="flex flex-col items-center py-6 gap-4">
+                <a href="#home" class="nav-link py-2">Home</a>
+                <a href="#tickets" class="nav-link py-2">Tickets</a>
+                <a href="#merch" class="nav-link py-2">Merch</a>
+                <a href="#lineup" class="nav-link py-2">Lineup</a>
+                <a href="#info" class="nav-link py-2">Info</a>
+                <a href="#history" class="nav-link py-2">History</a>
+                <div class="flex gap-6 mt-4">
+                    <a href="#" class="social-icon text-xl"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon text-xl"><i class="fab fa-x-twitter"></i></a>
+                    <a href="#" class="social-icon text-xl"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-icon text-xl"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon text-xl"><i class="fab fa-spotify"></i></a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <!-- Image Background - Grayscale & Dim -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?q=80&w=2000" alt="Concert"
+                class="w-full h-full object-cover grayscale opacity-30">
+            <div class="hero-overlay absolute inset-0"></div>
+        </div>
+
+        <!-- Fire Effect Borders -->
+        <div
+            class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-hammer-orange to-transparent opacity-50">
+        </div>
+        <div
+            class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-hammer-red to-transparent opacity-50">
+        </div>
+
+        <!-- Hero Content -->
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto flex flex-col items-center">
+            <!-- Logo / Event Title -->
+            <div class="mb-6">
+                <h1 class="font-metal text-6xl md:text-8xl lg:text-[10rem] leading-none fire-text tracking-wider">
+                    INFERNO FEST
+                </h1>
+                <p class="text-hammer-orange font-bebas text-2xl md:text-3xl tracking-[0.3em] mt-2">
+                    FESTIVAL 2026
+                </p>
+            </div>
+
+            <!-- Date & Location -->
+            <div class="mb-8">
+                <p class="text-white/80 font-oswald text-lg md:text-xl tracking-widest uppercase">
+                    <span class="text-hammer-yellow">March 21-22, 2026</span> • Jakarta, Indonesia
+                </p>
+            </div>
+
+            <!-- CTA Button -->
+            <a href="#tickets"
+                class="inline-block btn-fire text-white font-bebas text-xl md:text-2xl px-10 md:px-16 py-4 md:py-5 uppercase tracking-widest pulse-fire">
+                Buy Tickets
+            </a>
+
+            <!-- Scroll Indicator - Below Button with More Space -->
+            <div class="mt-24 animate-bounce">
+                <i class="fas fa-chevron-down text-hammer-orange text-2xl"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lineup Section -->
+    <section id="lineup" class="py-20 bg-hammer-black relative">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="section-title text-5xl md:text-7xl tracking-wider mb-2">LINEUP 2026</h2>
+                <div class="w-32 h-1 bg-gradient-to-r from-hammer-orange to-hammer-red mx-auto"></div>
+            </div>
+
+            <!-- Headliners -->
+            <div class="mb-16">
+                <h3 class="text-center font-bebas text-2xl text-hammer-orange tracking-widest mb-8">HEADLINERS</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+                    <!-- Headliner 1 -->
+                    <div class="lineup-card relative overflow-hidden group cursor-pointer">
+                        <div class="aspect-[16/10] overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=2000"
+                                alt="Band 1"
+                                class="lineup-img w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6">
+                            <h4
+                                class="font-metal text-4xl md:text-5xl text-white group-hover:text-hammer-orange transition-colors">
+                                SLIPKNOT</h4>
+                            <p class="text-gray-400 uppercase text-sm tracking-widest">Nu Metal • USA</p>
+                        </div>
+                        <div class="absolute top-4 right-4 bg-hammer-orange text-black font-bebas px-3 py-1 text-sm">
+                            DAY 1
+                        </div>
+                    </div>
+
+                    <!-- Headliner 2 -->
+                    <div class="lineup-card relative overflow-hidden group cursor-pointer">
+                        <div class="aspect-[16/10] overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1598387993441-a364f854c3e1?q=80&w=2000"
+                                alt="Band 2"
+                                class="lineup-img w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6">
+                            <h4
+                                class="font-metal text-4xl md:text-5xl text-white group-hover:text-hammer-orange transition-colors">
+                                PANTERA</h4>
+                            <p class="text-gray-400 uppercase text-sm tracking-widest">Groove Metal • USA</p>
+                        </div>
+                        <div class="absolute top-4 right-4 bg-hammer-red text-white font-bebas px-3 py-1 text-sm">
+                            DAY 2
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Supporting Acts -->
+            <div class="mb-12">
+                <h3 class="text-center font-bebas text-2xl text-gray-400 tracking-widest mb-8">SUPPORTING ACTS</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 max-w-6xl mx-auto">
+                    <!-- Band Cards -->
+                    <div
+                        class="lineup-card relative overflow-hidden group cursor-pointer bg-hammer-dark border border-white/10">
+                        <div class="aspect-square overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=500"
+                                alt="Band"
+                                class="lineup-img w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-3 w-full">
+                            <h4
+                                class="font-bebas text-lg text-white group-hover:text-hammer-orange transition-colors truncate">
+                                LAMB OF GOD</h4>
+                        </div>
+                    </div>
+
+                    <div
+                        class="lineup-card relative overflow-hidden group cursor-pointer bg-hammer-dark border border-white/10">
+                        <div class="aspect-square overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?q=80&w=500"
+                                alt="Band"
+                                class="lineup-img w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-3 w-full">
+                            <h4
+                                class="font-bebas text-lg text-white group-hover:text-hammer-orange transition-colors truncate">
+                                TRIVIUM</h4>
+                        </div>
+                    </div>
+
+                    <div
+                        class="lineup-card relative overflow-hidden group cursor-pointer bg-hammer-dark border border-white/10">
+                        <div class="aspect-square overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?q=80&w=500"
+                                alt="Band"
+                                class="lineup-img w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-3 w-full">
+                            <h4
+                                class="font-bebas text-lg text-white group-hover:text-hammer-orange transition-colors truncate">
+                                SEPULTURA</h4>
+                        </div>
+                    </div>
+
+                    <div
+                        class="lineup-card relative overflow-hidden group cursor-pointer bg-hammer-dark border border-white/10">
+                        <div class="aspect-square overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?q=80&w=500"
+                                alt="Band"
+                                class="lineup-img w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-3 w-full">
+                            <h4
+                                class="font-bebas text-lg text-white group-hover:text-hammer-orange transition-colors truncate">
+                                BURGERKILL</h4>
+                        </div>
+                    </div>
+
+                    <div
+                        class="lineup-card relative overflow-hidden group cursor-pointer bg-hammer-dark border border-white/10">
+                        <div class="aspect-square overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?q=80&w=500"
+                                alt="Band"
+                                class="lineup-img w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-3 w-full">
+                            <h4
+                                class="font-bebas text-lg text-white group-hover:text-hammer-orange transition-colors truncate">
+                                REVENGE THE FATE</h4>
+                        </div>
+                    </div>
+
+                    <div
+                        class="lineup-card relative overflow-hidden group cursor-pointer bg-hammer-dark border border-white/10">
+                        <div class="aspect-square overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1506157786151-b8491531f063?q=80&w=500"
+                                alt="Band"
+                                class="lineup-img w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-3 w-full">
+                            <h4
+                                class="font-bebas text-lg text-white group-hover:text-hammer-orange transition-colors truncate">
+                                DEADSQUAD</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- View Full Lineup Button -->
+            <div class="text-center">
+                <a href="#"
+                    class="inline-block border-2 border-white text-white font-bebas text-lg px-10 py-3 uppercase tracking-wider hover:bg-white hover:text-black transition-all">
+                    View Full Lineup <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tickets Section -->
+    <section id="tickets" class="py-20 bg-hammer-dark relative">
+        <div class="absolute inset-0 bg-gradient-to-r from-hammer-orange/5 via-transparent to-hammer-red/5"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="section-title text-5xl md:text-7xl tracking-wider mb-2">TICKETS</h2>
+                <div class="w-32 h-1 bg-gradient-to-r from-hammer-orange to-hammer-red mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                <!-- Early Bird - Sold Out -->
+                <div
+                    class="bg-hammer-black/50 border border-gray-800 p-8 text-center opacity-60 relative overflow-hidden">
+                    <div class="absolute top-4 right-4 rotate-12">
+                        <span class="bg-red-600 text-white font-bebas px-4 py-1 text-sm">SOLD OUT</span>
+                    </div>
+                    <h3 class="font-bebas text-2xl text-gray-500 mb-2">Early Bird</h3>
+                    <div class="text-4xl font-bebas text-gray-600 mb-4 line-through">IDR 2.000K</div>
+                    <p class="text-gray-600 text-sm mb-6">2-Day Festival Pass</p>
+                    <button disabled
+                        class="w-full bg-gray-800 text-gray-600 font-bebas text-lg py-3 cursor-not-allowed">
+                        Sold Out
+                    </button>
+                </div>
+
+                <!-- Presale - Best Seller -->
+                <div
+                    class="fire-border bg-hammer-black p-8 text-center relative transform md:-translate-y-4 shadow-2xl">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2">
+                        <span class="bg-hammer-orange text-black font-bebas px-4 py-1 text-sm">BEST SELLER</span>
+                    </div>
+                    <h3 class="font-bebas text-2xl text-hammer-orange mb-2 mt-4">Presale</h3>
+                    <div class="text-5xl font-bebas text-white mb-4">IDR 2.650K</div>
+                    <p class="text-gray-400 text-sm mb-6">2-Day Festival Pass</p>
+                    <ul class="text-left text-gray-400 text-sm mb-6 space-y-2">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-hammer-orange"></i> Access to
+                            all stages</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-hammer-orange"></i> Free
+                            festival poster</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-hammer-orange"></i> Limited
+                            merch discount</li>
+                    </ul>
+                    <a href="#"
+                        class="block w-full btn-fire text-white font-bebas text-lg py-3 uppercase tracking-wider pulse-fire">
+                        Buy Now
+                    </a>
+                </div>
+
+                <!-- Normal - Coming Soon -->
+                <div class="bg-hammer-black/50 border border-gray-800 p-8 text-center">
+                    <h3 class="font-bebas text-2xl text-white mb-2">Normal</h3>
+                    <div class="text-4xl font-bebas text-gray-400 mb-4">IDR 3.200K</div>
+                    <p class="text-gray-500 text-sm mb-6">2-Day Festival Pass</p>
+                    <button
+                        class="w-full border border-gray-600 text-gray-500 font-bebas text-lg py-3 cursor-not-allowed">
+                        Coming Soon
+                    </button>
+                </div>
+            </div>
+
+            <!-- VIP Section -->
+            <div class="mt-12 max-w-3xl mx-auto text-center">
+                <div class="fire-border p-8">
+                    <h3 class="font-bebas text-3xl text-hammer-yellow mb-4">VIP EXPERIENCE</h3>
+                    <p class="text-gray-400 mb-6">Premium viewing area, backstage access, meet & greet opportunities,
+                        exclusive merchandise.</p>
+                    <a href="#"
+                        class="inline-block bg-gradient-to-r from-hammer-yellow to-hammer-orange text-black font-bebas text-lg px-8 py-3 uppercase tracking-wider hover:opacity-90 transition-opacity">
+                        Inquire VIP Package
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section id="news" class="py-20 bg-hammer-black">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between mb-12">
+                <div>
+                    <h2 class="section-title-fire text-4xl md:text-5xl tracking-wider">:: NEWS ::</h2>
+                </div>
+                <a href="#"
+                    class="hidden md:flex items-center gap-2 text-hammer-orange hover:text-white transition-colors font-bebas text-lg tracking-wider">
+                    VIEW ALL NEWS <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- News Card 1 -->
+                <article class="news-card overflow-hidden group cursor-pointer">
+                    <div class="aspect-video overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?q=80&w=800" alt="News"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-hammer-orange text-xs uppercase tracking-widest">Announcement</span>
+                        <h3 class="font-bebas text-2xl mt-2 mb-3 group-hover:text-hammer-orange transition-colors">
+                            METALSTORM 2026 DATES ANNOUNCED
+                        </h3>
+                        <p class="text-gray-500 text-sm line-clamp-2">
+                            Mark your calendars! Indonesia's biggest metal festival returns with an even bigger lineup.
+                        </p>
+                        <div class="mt-4 text-gray-600 text-xs uppercase tracking-wider">
+                            Dec 1, 2025
+                        </div>
+                    </div>
+                </article>
+
+                <!-- News Card 2 -->
+                <article class="news-card overflow-hidden group cursor-pointer">
+                    <div class="aspect-video overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=800" alt="News"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-hammer-orange text-xs uppercase tracking-widest">Lineup</span>
+                        <h3 class="font-bebas text-2xl mt-2 mb-3 group-hover:text-hammer-orange transition-colors">
+                            FIRST WAVE OF BANDS REVEALED
+                        </h3>
+                        <p class="text-gray-500 text-sm line-clamp-2">
+                            Slipknot, Pantera, and more confirmed for the 2026 edition of Metalstorm Festival.
+                        </p>
+                        <div class="mt-4 text-gray-600 text-xs uppercase tracking-wider">
+                            Nov 28, 2025
+                        </div>
+                    </div>
+                </article>
+
+                <!-- News Card 3 -->
+                <article class="news-card overflow-hidden group cursor-pointer">
+                    <div class="aspect-video overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?q=80&w=800" alt="News"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-hammer-orange text-xs uppercase tracking-widest">Tickets</span>
+                        <h3 class="font-bebas text-2xl mt-2 mb-3 group-hover:text-hammer-orange transition-colors">
+                            EARLY BIRD TICKETS SOLD OUT IN 24 HOURS
+                        </h3>
+                        <p class="text-gray-500 text-sm line-clamp-2">
+                            Overwhelming response from metalheads! Presale phase now open with limited availability.
+                        </p>
+                        <div class="mt-4 text-gray-600 text-xs uppercase tracking-wider">
+                            Nov 25, 2025
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Mobile View All -->
+            <div class="text-center mt-8 md:hidden">
+                <a href="#" class="inline-flex items-center gap-2 text-hammer-orange font-bebas text-lg tracking-wider">
+                    VIEW ALL NEWS <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Section -->
+    <section id="info" class="py-20 bg-hammer-dark">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="section-title text-5xl md:text-7xl tracking-wider mb-2">INFO</h2>
+                <div class="w-32 h-1 bg-gradient-to-r from-hammer-orange to-hammer-red mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- Date & Time -->
+                <div class="text-center p-8 border border-white/10 hover:border-hammer-orange transition-colors">
+                    <i class="fas fa-calendar-alt text-hammer-orange text-4xl mb-4"></i>
+                    <h3 class="font-bebas text-2xl mb-2">DATE & TIME</h3>
+                    <p class="text-gray-400">March 21-22, 2026</p>
+                    <p class="text-gray-500 text-sm">Gates open at 12:00 PM</p>
+                </div>
+
+                <!-- Venue -->
+                <div class="text-center p-8 border border-white/10 hover:border-hammer-orange transition-colors">
+                    <i class="fas fa-map-marker-alt text-hammer-orange text-4xl mb-4"></i>
+                    <h3 class="font-bebas text-2xl mb-2">VENUE</h3>
+                    <p class="text-gray-400">Carnaval Beach, Ancol</p>
+                    <p class="text-gray-500 text-sm">Jakarta, Indonesia</p>
+                </div>
+
+                <!-- Contact -->
+                <div class="text-center p-8 border border-white/10 hover:border-hammer-orange transition-colors">
+                    <i class="fab fa-whatsapp text-hammer-orange text-4xl mb-4"></i>
+                    <h3 class="font-bebas text-2xl mb-2">CONTACT</h3>
+                    <p class="text-gray-400">+62 859-7513-1414</p>
+                    <p class="text-gray-500 text-sm">WhatsApp available</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pre-Footer CTA Section -->
+    <section class="relative h-[60vh] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?q=80&w=2000" alt="Festival Crowd"
+                class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-hammer-black via-hammer-black/70 to-hammer-black/50">
+            </div>
+        </div>
+        <div class="relative z-10 text-center px-4">
+            <h2 class="font-metal text-4xl md:text-6xl lg:text-7xl fire-text mb-6">ARE YOU READY?</h2>
+            <p class="text-gray-300 text-lg md:text-xl mb-8 max-w-2xl mx-auto">
+                Join thousands of metalheads for the biggest metal festival in Southeast Asia
+            </p>
+            <a href="#tickets"
+                class="inline-block btn-fire text-white font-bebas text-xl md:text-2xl px-12 py-4 uppercase tracking-widest pulse-fire">
+                Get Your Tickets Now
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-hammer-black border-t border-white/10 py-16">
+        <div class="container mx-auto px-4">
+            <!-- Footer Top -->
+            <div class="flex flex-col md:flex-row items-center justify-between gap-8 mb-12">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <span class="font-metal text-3xl fire-text">INFERNO FEST</span>
+                </div>
+
+                <!-- Social Icons -->
+                <div class="flex items-center gap-6">
+                    <a href="#" class="social-icon text-2xl"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon text-2xl"><i class="fab fa-x-twitter"></i></a>
+                    <a href="#" class="social-icon text-2xl"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-icon text-2xl"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon text-2xl"><i class="fab fa-spotify"></i></a>
+                </div>
+            </div>
+
+            <!-- Footer Nav -->
+            <div class="flex flex-wrap justify-center gap-6 md:gap-12 mb-12">
+                <a href="#home"
+                    class="text-gray-400 hover:text-hammer-orange transition-colors uppercase tracking-wider text-sm">Home</a>
+                <a href="#tickets"
+                    class="text-gray-400 hover:text-hammer-orange transition-colors uppercase tracking-wider text-sm">Tickets</a>
+                <a href="#merch"
+                    class="text-gray-400 hover:text-hammer-orange transition-colors uppercase tracking-wider text-sm">Merch</a>
+                <a href="#lineup"
+                    class="text-gray-400 hover:text-hammer-orange transition-colors uppercase tracking-wider text-sm">Lineup</a>
+                <a href="#info"
+                    class="text-gray-400 hover:text-hammer-orange transition-colors uppercase tracking-wider text-sm">Info</a>
+                <a href="#history"
+                    class="text-gray-400 hover:text-hammer-orange transition-colors uppercase tracking-wider text-sm">History</a>
+                <a href="#"
+                    class="text-gray-400 hover:text-hammer-orange transition-colors uppercase tracking-wider text-sm">Contact</a>
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-center border-t border-white/10 pt-8">
+                <p class="text-gray-600 text-sm uppercase tracking-widest">
+                    &copy; 2026 INFERNO FEST. All Rights Reserved.
+                </p>
+                <p class="text-gray-700 text-xs mt-2">
+                    Indonesia's Biggest Metal Festival
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Header Scroll Effect
+        const header = document.getElementById('main-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        const mobileNavLinks = mobileMenu.querySelectorAll('a');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
