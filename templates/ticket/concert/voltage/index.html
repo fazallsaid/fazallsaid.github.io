@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VOLTAGE FESTIVAL 2026</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'volt-black': '#111111',
+                        'volt-lime': '#CCFF00', /* Warna Acid Green/Yellow khas Hypebeast */
+                        'volt-white': '#F0F0F0',
+                    },
+                    fontFamily: {
+                        'sans': ['"Inter"', 'sans-serif'],
+                        'display': ['"Anton"', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* CORE */
+        body { 
+            background-color: #111111; 
+            color: #F0F0F0;
+            overflow-x: hidden;
+        }
+
+        /* CUSTOM SCROLLBAR (BRUTALIST) */
+        ::-webkit-scrollbar { width: 12px; }
+        ::-webkit-scrollbar-track { background: #111; border-left: 1px solid #333; }
+        ::-webkit-scrollbar-thumb { background: #CCFF00; border: 2px solid #111; }
+
+        /* BRUTALIST GRID UTILITIES */
+        .brutal-border {
+            border: 1px solid #333;
+        }
+        .brutal-border-b { border-bottom: 1px solid #333; }
+        .brutal-border-r { border-right: 1px solid #333; }
+        .brutal-border-t { border-top: 1px solid #333; }
+
+        /* MARQUEE ANIMATION */
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee { animation: marquee 10s linear infinite; }
+        .animate-marquee-reverse { animation: marquee 10s linear infinite reverse; }
+
+        /* HOVER EFFECTS */
+        .hover-invert { transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        .hover-invert:hover {
+            background-color: #CCFF00;
+            color: #111;
+        }
+        
+        /* IMAGE REVEAL ON HOVER */
+        .artist-item:hover .artist-img {
+            opacity: 1;
+            transform: scale(1) rotate(2deg);
+        }
+        .artist-img {
+            opacity: 0;
+            transform: scale(0.8) rotate(-5deg);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="selection:bg-volt-lime selection:text-black" oncontextmenu="return false">
+
+    <nav class="fixed w-full z-50 top-0 bg-volt-black border-b border-[#333] flex justify-between items-stretch h-16">
+        <div class="flex items-center px-6 border-r border-[#333] bg-volt-lime text-black">
+            <span class="font-display text-2xl tracking-wide">VOLTAGE<span class="text-xs align-top">©</span></span>
+        </div>
+        
+        <div class="hidden md:flex flex-1 items-center overflow-hidden">
+            <div class="whitespace-nowrap flex gap-8 animate-marquee text-xs font-bold uppercase tracking-widest text-[#555]">
+                <span>Jakarta International Expo</span> • 
+                <span>Aug 25-27 2026</span> • 
+                <span>3 Days of Madness</span> • 
+                <span>Jakarta International Expo</span> • 
+                <span>Aug 25-27 2026</span> • 
+                <span>3 Days of Madness</span> • 
+            </div>
+        </div>
+
+        <div class="flex">
+            <a href="#" class="flex items-center px-8 border-l border-[#333] hover:bg-white hover:text-black transition-colors font-bold uppercase text-xs tracking-widest">
+                Tickets
+            </a>
+            <a href="#" class="flex items-center px-6 border-l border-[#333] hover:bg-volt-lime hover:text-black transition-colors">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </a>
+        </div>
+    </nav>
+
+    <header class="pt-16 min-h-screen flex flex-col relative">
+        <div class="absolute inset-0 z-0 pt-16 opacity-40 mix-blend-luminosity">
+            <video autoplay muted loop playsinline class="w-full h-full object-cover">
+                <source src="https://cdn.coverr.co/videos/coverr-people-dancing-at-a-concert-4435/1080p.mp4" type="video/mp4">
+            </video>
+        </div>
+        
+        <div class="absolute inset-0 z-10 grid grid-cols-4 pointer-events-none border-l border-[#333] mx-auto max-w-[90%]">
+            <div class="border-r border-[#333] h-full"></div>
+            <div class="border-r border-[#333] h-full"></div>
+            <div class="border-r border-[#333] h-full"></div>
+            <div class="border-r border-[#333] h-full"></div>
+        </div>
+
+        <div class="relative z-20 flex-1 flex flex-col justify-center items-center text-center px-4">
+            <div class="bg-volt-lime text-black px-4 py-1 font-bold uppercase tracking-widest text-sm mb-6 rotate-2 transform border-2 border-black">
+                Official Lineup Announce
+            </div>
+            
+            <h1 class="font-display text-[15vw] leading-[0.85] uppercase mix-blend-exclusion">
+                AMPLIFY<br>
+                <span class="text-transparent stroke-white" style="-webkit-text-stroke: 2px white;">YOUR</span><br>
+                SENSES
+            </h1>
+        </div>
+
+        <div class="bg-volt-lime text-black py-4 border-y border-black overflow-hidden relative z-30">
+            <div class="flex gap-12 animate-marquee-reverse font-display text-4xl uppercase items-center">
+                <span>Foo Fighters</span> <i class="fa-solid fa-bolt"></i>
+                <span>Arctic Monkeys</span> <i class="fa-solid fa-bolt"></i>
+                <span>The Strokes</span> <i class="fa-solid fa-bolt"></i>
+                <span>Paramore</span> <i class="fa-solid fa-bolt"></i>
+                <span>Foo Fighters</span> <i class="fa-solid fa-bolt"></i>
+                <span>Arctic Monkeys</span> <i class="fa-solid fa-bolt"></i>
+                <span>The Strokes</span> <i class="fa-solid fa-bolt"></i>
+                <span>Paramore</span> <i class="fa-solid fa-bolt"></i>
+            </div>
+        </div>
+    </header>
+
+    <section class="border-b border-[#333] bg-volt-black relative z-10">
+        <div class="grid grid-cols-1 md:grid-cols-12">
+            
+            <div class="col-span-12 md:col-span-4 p-8 md:p-12 border-b md:border-b-0 md:border-r border-[#333] flex flex-col justify-between sticky top-16 h-auto md:h-screen">
+                <div>
+                    <h2 class="font-display text-6xl md:text-8xl mb-6 uppercase leading-none">The<br>Line<br>Up</h2>
+                    <p class="text-gray-400 text-sm leading-relaxed max-w-xs">
+                        Prepare for the highest voltage festival in Southeast Asia. We bring the noise, you bring the energy.
+                    </p>
+                </div>
+                <div class="mt-12">
+                    <button class="w-full bg-white text-black py-4 font-bold uppercase tracking-widest hover:bg-volt-lime hover:translate-x-2 hover:-translate-y-2 transition-all border border-black shadow-[4px_4px_0px_0px_#333]">
+                        Download Schedule
+                    </button>
+                </div>
+            </div>
+
+            <div class="col-span-12 md:col-span-8">
+                <div class="artist-item group relative border-b border-[#333] hover:bg-[#1a1a1a] transition-colors cursor-pointer">
+                    <div class="p-8 md:p-12 flex justify-between items-center relative z-10">
+                        <span class="font-display text-5xl md:text-7xl uppercase group-hover:text-volt-lime transition-colors group-hover:translate-x-4 duration-300">Arctic Monkeys</span>
+                        <i class="fa-solid fa-arrow-right -rotate-45 text-2xl text-[#333] group-hover:text-volt-lime group-hover:rotate-0 transition-transform duration-300"></i>
+                    </div>
+                    <img src="am.jpg" 
+                         class="artist-img absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 object-cover border-4 border-volt-lime z-20 grayscale" alt="Artist">
+                </div>
+
+                <div class="artist-item group relative border-b border-[#333] hover:bg-[#1a1a1a] transition-colors cursor-pointer">
+                    <div class="p-8 md:p-12 flex justify-between items-center relative z-10">
+                        <span class="font-display text-5xl md:text-7xl uppercase group-hover:text-volt-lime transition-colors group-hover:translate-x-4 duration-300">The Strokes</span>
+                        <i class="fa-solid fa-arrow-right -rotate-45 text-2xl text-[#333] group-hover:text-volt-lime group-hover:rotate-0 transition-transform duration-300"></i>
+                    </div>
+                     <img src="ts.jpg" 
+                         class="artist-img absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 object-cover border-4 border-volt-lime z-20 grayscale" alt="Artist">
+                </div>
+
+                <div class="artist-item group relative border-b border-[#333] hover:bg-[#1a1a1a] transition-colors cursor-pointer">
+                    <div class="p-8 md:p-12 flex justify-between items-center relative z-10">
+                        <span class="font-display text-5xl md:text-7xl uppercase group-hover:text-volt-lime transition-colors group-hover:translate-x-4 duration-300">Paramore</span>
+                        <i class="fa-solid fa-arrow-right -rotate-45 text-2xl text-[#333] group-hover:text-volt-lime group-hover:rotate-0 transition-transform duration-300"></i>
+                    </div>
+                     <img src="paramore.png" 
+                         class="artist-img absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 object-cover border-4 border-volt-lime z-20 grayscale" alt="Artist">
+                </div>
+
+                <div class="artist-item group relative border-b border-[#333] hover:bg-[#1a1a1a] transition-colors cursor-pointer">
+                    <div class="p-8 md:p-12 flex justify-between items-center relative z-10">
+                        <span class="font-display text-5xl md:text-7xl uppercase group-hover:text-volt-lime transition-colors group-hover:translate-x-4 duration-300">Tame Impala</span>
+                        <i class="fa-solid fa-arrow-right -rotate-45 text-2xl text-[#333] group-hover:text-volt-lime group-hover:rotate-0 transition-transform duration-300"></i>
+                    </div>
+                     <img src="timpala.jpg" 
+                         class="artist-img absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 object-cover border-4 border-volt-lime z-20 grayscale" alt="Artist">
+                </div>
+
+                <div class="p-12 text-center hover:bg-volt-lime hover:text-black transition-colors cursor-pointer">
+                    <span class="font-bold uppercase tracking-widest text-sm">+ 40 More Artists Announced Soon</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 bg-white text-black">
+        <div class="max-w-[1400px] mx-auto">
+            <h2 class="font-display text-[10vw] leading-none mb-12 uppercase border-b-4 border-black pb-4">Get Passes</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="border-4 border-black p-8 flex flex-col justify-between hover:bg-black hover:text-white transition-colors group h-[500px]">
+                    <div>
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="font-bold text-xl uppercase">GA • 3 Days</span>
+                            <span class="bg-black text-white px-3 py-1 text-xs font-bold uppercase group-hover:bg-volt-lime group-hover:text-black">Tier 2</span>
+                        </div>
+                        <h3 class="font-display text-6xl mb-4">IDR 2.5jt</h3>
+                        <p class="text-sm font-bold opacity-60 uppercase">Full festival access for 3 days.</p>
+                    </div>
+                    <button class="w-full py-4 border-2 border-black font-black uppercase text-lg hover:bg-volt-lime hover:border-volt-lime hover:text-black transition-all">
+                        Buy Now
+                    </button>
+                </div>
+
+                <div class="border-4 border-black bg-volt-lime p-8 flex flex-col justify-between relative transform md:-translate-y-12 h-[500px] shadow-[10px_10px_0px_0px_rgba(0,0,0,1)]">
+                    <div class="absolute top-0 right-0 bg-black text-white px-4 py-2 font-bold uppercase text-xs">Best Seller</div>
+                    <div>
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="font-bold text-xl uppercase">VIP • 3 Days</span>
+                            <span class="bg-black text-white px-3 py-1 text-xs font-bold uppercase">Limited</span>
+                        </div>
+                        <h3 class="font-display text-6xl mb-4">IDR 4.8jt</h3>
+                        <p class="text-sm font-bold opacity-60 uppercase">VIP Entrance, AC Toilet, Free Flow.</p>
+                        <ul class="mt-6 space-y-2 text-sm font-bold">
+                            <li>✓ Fast Lane</li>
+                            <li>✓ VIP Viewing Deck</li>
+                            <li>✓ Exclusive Merch</li>
+                        </ul>
+                    </div>
+                    <button class="w-full py-4 bg-black text-white font-black uppercase text-lg hover:bg-white hover:text-black transition-all">
+                        Secure Spot
+                    </button>
+                </div>
+
+                <div class="border-4 border-black p-8 flex flex-col justify-between hover:bg-black hover:text-white transition-colors group h-[500px]">
+                    <div>
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="font-bold text-xl uppercase">Daily Pass</span>
+                            <span class="bg-black text-white px-3 py-1 text-xs font-bold uppercase group-hover:bg-volt-lime group-hover:text-black">Sat/Sun</span>
+                        </div>
+                        <h3 class="font-display text-6xl mb-4">IDR 1.2jt</h3>
+                        <p class="text-sm font-bold opacity-60 uppercase">Access for one specific day.</p>
+                    </div>
+                    <button class="w-full py-4 border-2 border-black font-black uppercase text-lg hover:bg-volt-lime hover:border-volt-lime hover:text-black transition-all">
+                        Buy Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-volt-black text-volt-white border-t border-[#333] pt-20 pb-10 px-6">
+        <div class="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
+            <div>
+                <span class="font-display text-3xl">VOLTAGE</span>
+                <p class="mt-4 text-gray-500 text-sm">The ultimate celebration of music, art, and culture in the heart of Jakarta.</p>
+            </div>
+            <div>
+                <h4 class="font-bold uppercase mb-6 text-volt-lime">Explore</h4>
+                <ul class="space-y-2 text-sm text-gray-400">
+                    <li><a href="#" class="hover:text-white">Lineup</a></li>
+                    <li><a href="#" class="hover:text-white">Experience</a></li>
+                    <li><a href="#" class="hover:text-white">Food & Drink</a></li>
+                    <li><a href="#" class="hover:text-white">Sponsors</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold uppercase mb-6 text-volt-lime">Legal</h4>
+                <ul class="space-y-2 text-sm text-gray-400">
+                    <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+                    <li><a href="#" class="hover:text-white">Terms of Service</a></li>
+                    <li><a href="#" class="hover:text-white">Ticket Policy</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold uppercase mb-6 text-volt-lime">Connect</h4>
+                <div class="flex gap-4">
+                    <a href="#" class="w-10 h-10 border border-[#333] flex items-center justify-center hover:bg-volt-lime hover:text-black transition-colors rounded-full"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="w-10 h-10 border border-[#333] flex items-center justify-center hover:bg-volt-lime hover:text-black transition-colors rounded-full"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="#" class="w-10 h-10 border border-[#333] flex items-center justify-center hover:bg-volt-lime hover:text-black transition-colors rounded-full"><i class="fa-brands fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="text-center border-t border-[#333] pt-10">
+            <p class="font-display text-[15vw] leading-none opacity-10 select-none">VOLTAGE</p>
+        </div>
+    </footer>
+
+</body>
+</html>
