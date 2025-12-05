@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmacare+ - Dashboard Owner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { 50: '#f0fdfa', 100: '#ccfbf1', 400: '#2dd4bf', 500: '#14b8a6', 600: '#0d9488', 700: '#0f766e' },
+                        slate: { 850: '#1e293b', 900: '#0f172a' }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-slide-in {
+            animation: slideIn 0.4s ease-out;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 font-sans text-gray-800 h-screen flex overflow-hidden">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-slate-850 text-white flex flex-col shadow-xl z-20 shrink-0 hidden md:flex">
+        <div class="h-16 flex items-center px-6 border-b border-gray-700 bg-slate-900 shadow-md">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-heart-pulse text-primary-500 text-xl"></i>
+                <span class="text-xl font-bold tracking-wide">Apo<span class="text-primary-400">Plus</span>+</span>
+            </div>
+        </div>
+
+        <nav class="flex-1 overflow-y-auto py-6 px-3 space-y-1">
+            <a href="index.html"
+                class="flex items-center px-4 py-3 bg-primary-600 text-white rounded-xl shadow-lg shadow-primary-900/20 relative overflow-hidden group">
+                <div
+                    class="absolute inset-0 bg-white/10 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300">
+                </div>
+                <i class="fa-solid fa-chart-pie w-6 text-center"></i>
+                <span class="ml-3 font-semibold tracking-wide">Dashboard</span>
+            </a>
+
+            <a href="kasir.html"
+                class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group mt-2">
+                <i class="fa-solid fa-cash-register w-6 text-center group-hover:text-primary-400 transition-colors"></i>
+                <span class="ml-3 font-medium">Kasir / POS</span>
+            </a>
+
+            <div class="mt-4 pt-4 border-t border-slate-700/50">
+                <p class="px-4 text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Inventori</p>
+                <a href="master-barang.html"
+                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <i
+                        class="fa-solid fa-boxes-stacked w-6 text-center group-hover:text-primary-400 transition-colors"></i>
+                    <span class="ml-3 font-medium">Master Barang</span>
+                </a>
+                <a href="stock-opname.html"
+                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <i
+                        class="fa-solid fa-clipboard-check w-6 text-center group-hover:text-primary-400 transition-colors"></i>
+                    <span class="ml-3 font-medium">Stock Opname</span>
+                </a>
+                <a href="barang-expired.html"
+                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <i
+                        class="fa-solid fa-calendar-xmark w-6 text-center group-hover:text-primary-400 transition-colors"></i>
+                    <span class="ml-3 font-medium">Barang Expired</span>
+                </a>
+            </div>
+
+            <div class="mt-4 pt-4 border-t border-slate-700/50">
+                <p class="px-4 text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Transaksi</p>
+                <a href="pembelian.html"
+                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <i
+                        class="fa-solid fa-truck-medical w-6 text-center group-hover:text-primary-400 transition-colors"></i>
+                    <span class="ml-3 font-medium">Pembelian (PBF)</span>
+                </a>
+                <a href="penjualan.html"
+                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <i class="fa-solid fa-receipt w-6 text-center group-hover:text-primary-400 transition-colors"></i>
+                    <span class="ml-3 font-medium">Data Penjualan</span>
+                </a>
+            </div>
+
+            <div class="mt-4 pt-4 border-t border-slate-700/50">
+                <p class="px-4 text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Laporan</p>
+                <a href="laporan-keuangan.html"
+                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <i
+                        class="fa-solid fa-file-invoice-dollar w-6 text-center group-hover:text-primary-400 transition-colors"></i>
+                    <span class="ml-3 font-medium">Laporan Keuangan</span>
+                </a>
+            </div>
+
+            <div class="mt-4 pt-4 border-t border-slate-700/50">
+                <p class="px-4 text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Sistem</p>
+                <a href="manajemen-user.html"
+                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <i
+                        class="fa-solid fa-users-gear w-6 text-center group-hover:text-primary-400 transition-colors"></i>
+                    <span class="ml-3 font-medium">Manajemen User</span>
+                </a>
+                <a href="pengaturan.html"
+                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <i class="fa-solid fa-gear w-6 text-center group-hover:text-primary-400 transition-colors"></i>
+                    <span class="ml-3 font-medium">Pengaturan</span>
+                </a>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto bg-gray-100">
+        <!-- Header -->
+        <header class="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-10">
+            <div class="h-16 flex items-center justify-between px-8">
+                <div>
+                    <h1 class="text-2xl font-bold text-slate-800">Dashboard Owner</h1>
+                    <p class="text-sm text-slate-500">Halo, Apoteker Fazal! 👋</p>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button
+                        class="w-10 h-10 rounded-xl bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-slate-600 transition">
+                        <i class="fa-solid fa-bell"></i>
+                    </button>
+                    <div class="flex items-center gap-3">
+                        <div class="text-right">
+                            <p class="text-sm font-bold text-slate-800">Fazal</p>
+                            <p class="text-xs text-slate-500">Owner</p>
+                        </div>
+                        <div
+                            class="w-10 h-10 rounded-xl bg-primary-100 text-primary-600 flex items-center justify-center font-bold">
+                            F
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="p-8">
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <!-- Revenue Card -->
+                <div
+                    class="bg-gradient-to-br from-green-500 to-green-600 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all text-white transform hover:scale-105">
+                    <div class="flex justify-between items-start mb-4">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-sack-dollar"></i>
+                        </div>
+                        <span class="text-xs font-bold bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">+12%
+                            📈</span>
+                    </div>
+                    <p class="text-green-50 text-sm font-medium mb-1">Total Omzet Hari Ini</p>
+                    <h3 class="text-3xl font-bold mb-2">Rp 4.250.000</h3>
+                    <p class="text-xs text-green-100">Target: Rp 5.000.000 (85%)</p>
+                </div>
+
+                <!-- Transaction Card -->
+                <div
+                    class="bg-gradient-to-br from-blue-500 to-blue-600 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all text-white transform hover:scale-105">
+                    <div class="flex justify-between items-start mb-4">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-receipt"></i>
+                        </div>
+                        <span class="text-xs font-bold bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">↑ 8
+                            Trx</span>
+                    </div>
+                    <p class="text-blue-50 text-sm font-medium mb-1">Jumlah Transaksi</p>
+                    <h3 class="text-3xl font-bold mb-2">85 Pasien</h3>
+                    <p class="text-xs text-blue-100">Rata-rata: Rp 50.000/trx</p>
+                </div>
+
+                <!-- Profit Margin Card -->
+                <div
+                    class="bg-gradient-to-br from-purple-500 to-purple-600 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all text-white transform hover:scale-105">
+                    <div class="flex justify-between items-start mb-4">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <span class="text-xs font-bold bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">+15%</span>
+                    </div>
+                    <p class="text-purple-50 text-sm font-medium mb-1">Profit Margin</p>
+                    <h3 class="text-3xl font-bold mb-2">28.5%</h3>
+                    <p class="text-xs text-purple-100">Laba Kotor: Rp 1.212.000</p>
+                </div>
+
+                <!-- Inventory Card -->
+                <div
+                    class="bg-gradient-to-br from-teal-500 to-primary-600 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all text-white transform hover:scale-105">
+                    <div class="flex justify-between items-start mb-4">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-boxes-stacked"></i>
+                        </div>
+                        <span class="text-xs font-bold bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">1,234</span>
+                    </div>
+                    <p class="text-teal-50 text-sm font-medium mb-1">Total Stok Barang</p>
+                    <h3 class="text-3xl font-bold mb-2">387 Item</h3>
+                    <p class="text-xs text-teal-100">Nilai: Rp 125.500.000</p>
+                </div>
+            </div>
+
+            <!-- Alert Cards Row -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <!-- Low Stock Alert -->
+                <div
+                    class="bg-white p-6 rounded-2xl shadow-sm border-2 border-amber-200 hover:shadow-md transition-all">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+                            <div>
+                                <p class="text-slate-700 text-sm font-bold">Stok Menipis (Defekta)</p>
+                                <p class="text-xs text-slate-500">Segera lakukan pemesanan ulang</p>
+                            </div>
+                        </div>
+                        <a href="master-barang.html"
+                            class="text-xs font-bold text-amber-600 hover:underline flex items-center gap-1">
+                            Lihat <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <h3 class="text-3xl font-bold text-amber-600 mb-3">12 Item</h3>
+                    <div class="flex gap-2 text-xs flex-wrap">
+                        <span class="bg-amber-50 text-amber-700 px-3 py-1 rounded-full">Paracetamol (5 strip)</span>
+                        <span class="bg-amber-50 text-amber-700 px-3 py-1 rounded-full">Ambroxol (8 btl)</span>
+                        <span class="bg-amber-50 text-amber-700 px-3 py-1 rounded-full">+10 lainnya</span>
+                    </div>
+                </div>
+
+                <!-- Expired Soon Alert -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border-2 border-red-200 hover:shadow-md transition-all">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-red-100 text-red-600 flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-calendar-xmark"></i>
+                            </div>
+                            <div>
+                                <p class="text-slate-700 text-sm font-bold">Barang Expired Soon</p>
+                                <p class="text-xs text-slate-500">Kadaluarsa dalam 30 hari</p>
+                            </div>
+                        </div>
+                        <a href="barang-expired.html"
+                            class="text-xs font-bold text-red-600 hover:underline flex items-center gap-1">
+                            Lihat <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <h3 class="text-3xl font-bold text-red-600 mb-3">3 Batch</h3>
+                    <div class="flex gap-2 text-xs flex-wrap">
+                        <span class="bg-red-50 text-red-700 px-3 py-1 rounded-full">Vitamin C (20 btl)</span>
+                        <span class="bg-red-50 text-red-700 px-3 py-1 rounded-full">Antasida (12 strip)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions Panel -->
+            <div class="bg-gradient-to-r from-slate-800 to-slate-900 p-6 rounded-2xl shadow-xl mb-8">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h3 class="font-bold text-xl text-white mb-1 flex items-center gap-2">
+                            <i class="fa-solid fa-bolt text-yellow-400"></i>
+                            Quick Actions
+                        </h3>
+                        <p class="text-slate-300 text-sm">Akses cepat ke fitur utama sistem</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <a href="kasir.html"
+                        class="bg-white/10 hover:bg-white/20 backdrop-blur-sm p-5 rounded-xl transition-all group text-center border border-white/10">
+                        <div
+                            class="w-14 h-14 rounded-xl bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center text-2xl text-white mx-auto mb-3 group-hover:scale-110 transition shadow-lg">
+                            <i class="fa-solid fa-cash-register"></i>
+                        </div>
+                        <p class="text-white font-semibold text-sm">Buka Kasir</p>
+                        <p class="text-slate-400 text-xs mt-1">Transaksi Penjualan</p>
+                    </a>
+                    <a href="master-barang.html"
+                        class="bg-white/10 hover:bg-white/20 backdrop-blur-sm p-5 rounded-xl transition-all group text-center border border-white/10">
+                        <div
+                            class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-2xl text-white mx-auto mb-3 group-hover:scale-110 transition shadow-lg">
+                            <i class="fa-solid fa-plus-circle"></i>
+                        </div>
+                        <p class="text-white font-semibold text-sm">Tambah Barang</p>
+                        <p class="text-slate-400 text-xs mt-1">Kelola Inventori</p>
+                    </a>
+                    <a href="pembelian.html"
+                        class="bg-white/10 hover:bg-white/20 backdrop-blur-sm p-5 rounded-xl transition-all group text-center border border-white/10">
+                        <div
+                            class="w-14 h-14 rounded-xl bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center text-2xl text-white mx-auto mb-3 group-hover:scale-110 transition shadow-lg">
+                            <i class="fa-solid fa-truck-medical"></i>
+                        </div>
+                        <p class="text-white font-semibold text-sm">Order PBF</p>
+                        <p class="text-slate-400 text-xs mt-1">Pembelian Barang</p>
+                    </a>
+                    <a href="laporan-keuangan.html"
+                        class="bg-white/10 hover:bg-white/20 backdrop-blur-sm p-5 rounded-xl transition-all group text-center border border-white/10">
+                        <div
+                            class="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center text-2xl text-white mx-auto mb-3 group-hover:scale-110 transition shadow-lg">
+                            <i class="fa-solid fa-file-invoice-dollar"></i>
+                        </div>
+                        <p class="text-white font-semibold text-sm">Lihat Laporan</p>
+                        <p class="text-slate-400 text-xs mt-1">Rekap Keuangan</p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Charts + Top Products -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+
+                <!-- Sales Chart -->
+                <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="font-bold text-lg text-slate-800">Tren Penjualan Minggu Ini</h3>
+                        <select
+                            class="text-sm border-gray-200 border rounded-lg px-3 py-2 text-slate-500 focus:ring-2 focus:ring-primary-500 outline-none">
+                            <option>7 Hari Terakhir</option>
+                            <option>Bulan Ini</option>
+                            <option>3 Bulan Terakhir</option>
+                        </select>
+                    </div>
+                    <div
+                        class="h-72 bg-gradient-to-b from-primary-50 to-white rounded-xl border border-primary-100 relative overflow-hidden flex items-end justify-between px-6 pb-0 group">
+                        <div
+                            class="w-1/12 bg-primary-200 h-[40%] rounded-t-lg mx-1 group-hover:bg-primary-300 transition-all">
+                        </div>
+                        <div
+                            class="w-1/12 bg-primary-300 h-[60%] rounded-t-lg mx-1 group-hover:bg-primary-400 transition-all relative group/bar">
+                            <div
+                                class="absolute -top-10 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-xs py-1 px-2 rounded opacity-0 group-hover/bar:opacity-100 transition whitespace-nowrap">
+                                <div class="font-bold">Rp 2.1Jt</div>
+                                <div class="text-[10px] text-slate-300">Selasa</div>
+                            </div>
+                        </div>
+                        <div
+                            class="w-1/12 bg-primary-200 h-[30%] rounded-t-lg mx-1 group-hover:bg-primary-300 transition-all">
+                        </div>
+                        <div
+                            class="w-1/12 bg-primary-500 h-[80%] rounded-t-lg mx-1 group-hover:bg-primary-600 transition-all relative group/bar shadow-lg shadow-primary-500/30">
+                            <div
+                                class="absolute -top-10 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-xs py-1 px-2 rounded opacity-0 group-hover/bar:opacity-100 transition whitespace-nowrap">
+                                <div class="font-bold">Rp 4.8Jt</div>
+                                <div class="text-[10px] text-slate-300">Kamis</div>
+                            </div>
+                        </div>
+                        <div
+                            class="w-1/12 bg-primary-300 h-[55%] rounded-t-lg mx-1 group-hover:bg-primary-400 transition-all">
+                        </div>
+                        <div
+                            class="w-1/12 bg-primary-600 h-[90%] rounded-t-lg mx-1 group-hover:bg-primary-700 transition-all shadow-lg shadow-primary-600/30">
+                        </div>
+                        <div
+                            class="w-1/12 bg-primary-400 h-[70%] rounded-t-lg mx-1 group-hover:bg-primary-500 transition-all">
+                        </div>
+                    </div>
+                    <div class="flex justify-between text-xs text-gray-400 mt-3 px-6 font-medium">
+                        <span>Sen</span><span>Sel</span><span>Rab</span><span>Kam</span><span>Jum</span><span>Sab</span><span>Min</span>
+                    </div>
+                </div>
+
+                <!-- Top Products -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <h3 class="font-bold text-lg text-slate-800 mb-4 flex items-center gap-2">
+                        Obat Paling Laku
+                        <span class="text-xl">🏆</span>
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-50 transition">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-gradient-to-br from-yellow-100 to-yellow-200 flex items-center justify-center text-2xl">
+                                💊
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="text-sm font-bold text-slate-700">Paracetamol 500mg</h4>
+                                <p class="text-xs text-slate-500">120 Strip terjual</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-lg font-bold text-yellow-600">#1</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-50 transition">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center text-2xl">
+                                💊
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="text-sm font-bold text-slate-700">Amoxicillin</h4>
+                                <p class="text-xs text-slate-500">85 Strip terjual</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-lg font-bold text-gray-600">#2</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-50 transition">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-100 to-orange-200 flex items-center justify-center text-2xl">
+                                🧴
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="text-sm font-bold text-slate-700">Minyak Kayu Putih</h4>
+                                <p class="text-xs text-slate-500">50 Botol terjual</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-lg font-bold text-orange-600">#3</span>
+                            </div>
+                        </div>
+
+                        <button
+                            class="w-full mt-4 py-3 text-sm text-primary-600 font-semibold border-2 border-primary-200 rounded-xl hover:bg-primary-50 transition">
+                            Lihat Semua Laporan <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Transactions Table -->
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                <div class="p-6 border-b border-gray-100 flex justify-between items-center">
+                    <div>
+                        <h3 class="font-bold text-lg text-slate-800">Transaksi Terakhir</h3>
+                        <p class="text-xs text-slate-500 mt-1">Daftar 10 transaksi terbaru hari ini</p>
+                    </div>
+                    <a href="kasir.html"
+                        class="text-sm text-primary-600 font-semibold hover:underline flex items-center gap-1">
+                        Lihat Semua <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead class="bg-gray-50 text-xs uppercase text-gray-500 border-b border-gray-200">
+                            <tr>
+                                <th class="px-6 py-4 font-bold">No. Resi</th>
+                                <th class="px-6 py-4 font-bold">Waktu</th>
+                                <th class="px-6 py-4 font-bold">Total</th>
+                                <th class="px-6 py-4 font-bold">Pembayaran</th>
+                                <th class="px-6 py-4 text-center font-bold">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100 text-sm">
+                            <tr class="hover:bg-gray-50 transition">
+                                <td class="px-6 py-4 font-bold text-slate-700">TRX-00192</td>
+                                <td class="px-6 py-4 text-gray-500">14:30 WIB</td>
+                                <td class="px-6 py-4 font-bold text-green-600">Rp 150.000</td>
+                                <td class="px-6 py-4">
+                                    <span class="flex items-center gap-2 text-blue-600">
+                                        <i class="fa-solid fa-qrcode"></i> QRIS
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 text-center">
+                                    <span
+                                        class="bg-green-100 text-green-700 py-1.5 px-4 rounded-full text-xs font-bold">
+                                        <i class="fa-solid fa-check"></i> Lunas
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 transition">
+                                <td class="px-6 py-4 font-bold text-slate-700">TRX-00191</td>
+                                <td class="px-6 py-4 text-gray-500">14:15 WIB</td>
+                                <td class="px-6 py-4 font-bold text-green-600">Rp 45.000</td>
+                                <td class="px-6 py-4">
+                                    <span class="flex items-center gap-2 text-green-600">
+                                        <i class="fa-solid fa-money-bill"></i> Tunai
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 text-center">
+                                    <span
+                                        class="bg-green-100 text-green-700 py-1.5 px-4 rounded-full text-xs font-bold">
+                                        <i class="fa-solid fa-check"></i> Lunas
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 transition">
+                                <td class="px-6 py-4 font-bold text-slate-700">TRX-00190</td>
+                                <td class="px-6 py-4 text-gray-500">13:55 WIB</td>
+                                <td class="px-6 py-4 font-bold text-green-600">Rp 28.500</td>
+                                <td class="px-6 py-4">
+                                    <span class="flex items-center gap-2 text-purple-600">
+                                        <i class="fa-solid fa-credit-card"></i> Debit
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 text-center">
+                                    <span
+                                        class="bg-green-100 text-green-700 py-1.5 px-4 rounded-full text-xs font-bold">
+                                        <i class="fa-solid fa-check"></i> Lunas
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+
+</html>

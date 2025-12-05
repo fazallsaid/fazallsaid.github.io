@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kasir / POS - ApoPlus+</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { 50: '#f0fdfa', 100: '#ccfbf1', 400: '#2dd4bf', 500: '#14b8a6', 600: '#0d9488', 700: '#0f766e' },
+                        slate: { 850: '#1e293b', 900: '#0f172a' }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 font-sans text-gray-800 h-screen flex overflow-hidden">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-slate-850 text-white flex flex-col shadow-xl z-20 shrink-0 hidden md:flex">
+        <div class="h-16 flex items-center px-6 border-b border-gray-700 bg-slate-900 shadow-md">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-heart-pulse text-primary-500 text-xl"></i>
+                <span class="text-xl font-bold tracking-wide">Apo<span class="text-primary-400">Plus</span>+</span>
+            </div>
+        </div>
+
+        <nav class="flex-1 overflow-y-auto py-6 px-3 space-y-1">
+            <a href="index.html"
+                class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                <i class="fa-solid fa-chart-pie w-6 text-center group-hover:text-primary-400 transition-colors"></i>
+                <span class="ml-3 font-medium">Dashboard</span>
+            </a>
+
+            <a href="kasir.html"
+                class="flex items-center px-4 py-3 bg-primary-600 text-white rounded-xl shadow-lg shadow-primary-900/20 relative overflow-hidden group mt-2">
+                <div
+                    class="absolute inset-0 bg-white/10 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300">
+                </div>
+                <i class="fa-solid fa-cash-register w-6 text-center"></i>
+                <span class="ml-3 font-semibold tracking-wide">Kasir / POS</span>
+            </a>
+
+            <div class="mt-4 pt-4 border-t border-slate-700/50">
+                <p class="px-4 text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Inventori</p>
+                <a href="master-barang.html"
+                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <i
+                        class="fa-solid fa-boxes-stacked w-6 text-center group-hover:text-primary-400 transition-colors"></i>
+                    <span class="ml-3 font-medium">Master Barang</span>
+                </a>
+                <a href="stock-opname.html"
+                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <i
+                        class="fa-solid fa-clipboard-check w-6 text-center group-hover:text-primary-400 transition-colors"></i>
+                    <span class="ml-3 font-medium">Stock Opname</span>
+                </a>
+                <a href="barang-expired.html"
+                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <i
+                        class="fa-solid fa-calendar-xmark w-6 text-center group-hover:text-primary-400 transition-colors"></i>
+                    <span class="ml-3 font-medium">Barang Expired</span>
+                </a>
+            </div>
+
+            <div class="mt-4 pt-4 border-t border-slate-700/50">
+                <p class="px-4 text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Transaksi</p>
+                <a href="pembelian.html"
+                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <i
+                        class="fa-solid fa-truck-medical w-6 text-center group-hover:text-primary-400 transition-colors"></i>
+                    <span class="ml-3 font-medium">Pembelian (PBF)</span>
+                </a>
+                <a href="penjualan.html"
+                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <i class="fa-solid fa-receipt w-6 text-center group-hover:text-primary-400 transition-colors"></i>
+                    <span class="ml-3 font-medium">Data Penjualan</span>
+                </a>
+            </div>
+
+            <div class="mt-4 pt-4 border-t border-slate-700/50">
+                <p class="px-4 text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Laporan</p>
+                <a href="laporan-keuangan.html"
+                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <i
+                        class="fa-solid fa-file-invoice-dollar w-6 text-center group-hover:text-primary-400 transition-colors"></i>
+                    <span class="ml-3 font-medium">Laporan Keuangan</span>
+                </a>
+            </div>
+
+            <div class="mt-4 pt-4 border-t border-slate-700/50">
+                <p class="px-4 text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Sistem</p>
+                <a href="manajemen-user.html"
+                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <i
+                        class="fa-solid fa-users-gear w-6 text-center group-hover:text-primary-400 transition-colors"></i>
+                    <span class="ml-3 font-medium">Manajemen User</span>
+                </a>
+                <a href="pengaturan.html"
+                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <i class="fa-solid fa-gear w-6 text-center group-hover:text-primary-400 transition-colors"></i>
+                    <span class="ml-3 font-medium">Pengaturan</span>
+                </a>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col h-screen overflow-hidden bg-[#f3f4f6]">
+
+        <!-- Header (Neutral) -->
+        <header class="h-16 bg-white flex items-center justify-end px-8 shadow-sm z-10 shrink-0">
+            <div class="flex items-center gap-4">
+                <button
+                    class="w-10 h-10 rounded-full bg-gray-50 border border-gray-200 text-gray-500 hover:text-primary-600 hover:bg-primary-50 transition flex items-center justify-center relative">
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="absolute top-2 right-2.5 w-2 h-2 bg-red-500 rounded-full border border-white"></span>
+                </button>
+                <div class="flex items-center gap-3 pl-4 border-l border-gray-200">
+                    <div class="text-right">
+                        <p class="text-sm font-bold text-slate-700">Fazal Owner</p>
+                        <p class="text-xs text-slate-500">Super Admin</p>
+                    </div>
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="User"
+                        class="w-10 h-10 rounded-full bg-primary-100 border-2 border-primary-200">
+                </div>
+            </div>
+        </header>
+
+        <!-- POS Content -->
+        <div class="flex-1 overflow-hidden p-6 flex gap-6">
+
+            <!-- Left Section: Product Search & Cart -->
+            <div class="flex-1 flex flex-col gap-4 overflow-hidden">
+
+                <!-- Page Title -->
+                <div class="flex items-center gap-3 mb-2">
+                    <span
+                        class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center text-white text-xl shadow-lg">
+                        <i class="fa-solid fa-cash-register"></i>
+                    </span>
+                    <div>
+                        <h1 class="text-2xl font-bold text-slate-800">Kasir / Point of Sale</h1>
+                        <p class="text-xs text-gray-500">Transaksi penjualan obat dan produk farmasi</p>
+                    </div>
+                </div>
+
+                <!-- Search Bar -->
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="relative">
+                        <i class="fa-solid fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                        <input type="text" placeholder="Cari obat/produk (nama, kode, atau scan barcode)..."
+                            class="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none text-sm">
+                    </div>
+                </div>
+
+                <!-- Items Table/Cart -->
+                <div class="flex-1 bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col">
+                    <div class="p-5 border-b border-gray-100">
+                        <h3 class="font-bold text-lg text-slate-800">Daftar Item Belanjaan</h3>
+                        <p class="text-xs text-slate-500 mt-1">Item yang ditambahkan ke transaksi</p>
+                    </div>
+                    <div class="flex-1 overflow-y-auto">
+                        <table class="w-full">
+                            <thead class="bg-gray-50 text-xs uppercase text-gray-500 sticky top-0">
+                                <tr>
+                                    <th class="px-4 py-3 text-left">Nama Produk</th>
+                                    <th class="px-4 py-3 text-center">Qty</th>
+                                    <th class="px-4 py-3 text-right">Harga</th>
+                                    <th class="px-4 py-3 text-right">Subtotal</th>
+                                    <th class="px-4 py-3 text-center">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-100 text-sm">
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3">
+                                        <div class="font-semibold text-slate-700">Paracetamol 500mg</div>
+                                        <div class="text-xs text-slate-500">Strip (10 tablet)</div>
+                                    </td>
+                                    <td class="px-4 py-3 text-center">
+                                        <div class="flex items-center justify-center gap-2">
+                                            <button
+                                                class="w-7 h-7 rounded-lg bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-600">-</button>
+                                            <input type="number" value="2"
+                                                class="w-12 text-center border border-gray-200 rounded-lg py-1 text-sm font-semibold">
+                                            <button
+                                                class="w-7 h-7 rounded-lg bg-primary-100 hover:bg-primary-200 flex items-center justify-center text-primary-600">+</button>
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-3 text-right font-semibold">Rp 8.500</td>
+                                    <td class="px-4 py-3 text-right font-bold text-green-600">Rp 17.000</td>
+                                    <td class="px-4 py-3 text-center">
+                                        <button
+                                            class="w-8 h-8 rounded-lg bg-red-50 hover:bg-red-100 text-red-600 flex items-center justify-center mx-auto">
+                                            <i class="fa-solid fa-trash text-sm"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3">
+                                        <div class="font-semibold text-slate-700">Amoxicillin 500mg</div>
+                                        <div class="text-xs text-slate-500">Kapsul (10 kapsul)</div>
+                                    </td>
+                                    <td class="px-4 py-3 text-center">
+                                        <div class="flex items-center justify-center gap-2">
+                                            <button
+                                                class="w-7 h-7 rounded-lg bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-600">-</button>
+                                            <input type="number" value="1"
+                                                class="w-12 text-center border border-gray-200 rounded-lg py-1 text-sm font-semibold">
+                                            <button
+                                                class="w-7 h-7 rounded-lg bg-primary-100 hover:bg-primary-200 flex items-center justify-center text-primary-600">+</button>
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-3 text-right font-semibold">Rp 12.000</td>
+                                    <td class="px-4 py-3 text-right font-bold text-green-600">Rp 12.000</td>
+                                    <td class="px-4 py-3 text-center">
+                                        <button
+                                            class="w-8 h-8 rounded-lg bg-red-50 hover:bg-red-100 text-red-600 flex items-center justify-center mx-auto">
+                                            <i class="fa-solid fa-trash text-sm"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Right Section: Payment Summary -->
+            <div class="w-96 overflow-y-auto flex flex-col gap-4 pb-4">
+
+                <!-- Customer Info -->
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 shrink-0">
+                    <h3 class="font-bold text-sm text-slate-800 mb-3">Informasi Pembeli (Opsional)</h3>
+                    <input type="text" placeholder="Nama…"
+                        class="w-full px-3 py-2 border border-gray-200 rounded-lg mb-2 text-sm focus:border-primary-500 outline-none">
+                    <input type="text" placeholder="No. Telepon…"
+                        class="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:border-primary-500 outline-none">
+                </div>
+
+                <!-- Payment Summary -->
+                <div
+                    class="bg-gradient-to-br from-slate-800 to-slate-900 p-6 rounded-2xl shadow-xl text-white shrink-0">
+                    <h3 class="font-bold text-lg mb-1">Ringkasan Pembayaran</h3>
+                    <p class="text-slate-300 text-xs mb-4">Detail total tagihan</p>
+
+                    <div class="space-y-3 mb-6">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-slate-300">Subtotal (3 item)</span>
+                            <span class="font-semibold">Rp 29.000</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-slate-300">Diskon</span>
+                            <span class="font-semibold text-yellow-400">- Rp 0</span>
+                        </div>
+                        <div class="border-t border-slate-700 pt-3">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-slate-300">Total Bayar</span>
+                                <div class="text-right">
+                                    <div class="text-3xl font-bold text-primary-400">Rp 29.000</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="text-xs text-slate-300 mb-2 block">Metode Pembayaran</label>
+                        <div class="grid grid-cols-2 gap-2 mb-4">
+                            <button
+                                class="bg-white/10 hover:bg-white/20 border-2 border-white/20 rounded-xl p-3 transition text-center">
+                                <i class="fa-solid fa-money-bill text-green-400 text-xl mb-1"></i>
+                                <div class="text-xs font-semibold">Tunai</div>
+                            </button>
+                            <button
+                                class="bg-white/10 hover:bg-white/20 border-2 border-white/20 rounded-xl p-3 transition text-center">
+                                <i class="fa-solid fa-qrcode text-blue-400 text-xl mb-1"></i>
+                                <div class="text-xs font-semibold">QRIS</div>
+                            </button>
+                            <button
+                                class="bg-white/10 hover:bg-white/20 border-2 border-white/20 rounded-xl p-3 transition text-center">
+                                <i class="fa-solid fa-credit-card text-purple-400 text-xl mb-1"></i>
+                                <div class="text-xs font-semibold">Debit</div>
+                            </button>
+                            <button
+                                class="bg-white/10 hover:bg-white/20 border-2 border-white/20 rounded-xl p-3 transition text-center">
+                                <i class="fa-solid fa-wallet text-orange-400 text-xl mb-1"></i>
+                                <div class="text-xs font-semibold">E-Wallet</div>
+                            </button>
+                        </div>
+
+                        <button
+                            class="w-full bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-xl transition transform hover:scale-105 flex items-center justify-center gap-2 text-lg">
+                            <i class="fa-solid fa-check-circle"></i>
+                            Proses Pembayaran
+                        </button>
+
+                        <div class="grid grid-cols-2 gap-2 mt-3">
+                            <button
+                                class="bg-white/5 hover:bg-white/10 border border-white/20 text-white text-sm py-2 rounded-lg transition">
+                                <i class="fa-solid fa-save mr-1"></i> Hold
+                            </button>
+                            <button
+                                class="bg-red-500/20 hover:bg-red-500/30 border border-red-500/50 text-red-300 text-sm py-2 rounded-lg transition">
+                                <i class="fa-solid fa-trash mr-1"></i> Batal
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+</body>
+
+</html>

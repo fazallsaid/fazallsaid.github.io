@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DREAMSCAPE 2025 - Indonesia's Biggest Music Festival</title>
+    <meta name="description" content="Dreamscape 2025 - Experience the ultimate music festival with world-class artists, stunning production, and unforgettable moments.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #ff0077;
+            --primary-glow: #ff0077;
+            --secondary: #6600ff;
+            --accent: #00d9ff;
+            --dark: #000000;
+            --dark-card: #0a0a0a;
+            --text: #ffffff;
+            --text-muted: #888888;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--dark);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse 50% 40% at 50% 20%, rgba(255, 0, 119, 0.2) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 30% at 20% 80%, rgba(102, 0, 255, 0.15) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 30% at 80% 80%, rgba(0, 217, 255, 0.15) 0%, transparent 70%);
+            z-index: 0;
+        }
+
+        .hero-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(4rem, 12vw, 10rem);
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            background: linear-gradient(135deg, #ff0077 0%, #6600ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 80px rgba(255, 0, 119, 0.5);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-subtitle {
+            font-size: 1rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-location {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 1rem 3rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text);
+            background: linear-gradient(135deg, #ff0077 0%, #6600ff 100%);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(255, 0, 119, 0.4);
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(255, 0, 119, 0.6);
+        }
+
+        /* Event Info */
+        .event-info {
+            padding: 5rem 2rem;
+            background: var(--dark);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .event-details {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .event-detail-item {
+            text-align: center;
+        }
+
+        .event-detail-item h3 {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-detail-item p {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        /* Section Header */
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            font-size: 0.875rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            padding: 0.5rem 1.5rem;
+            border: 1px solid var(--primary);
+            border-radius: 50px;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            background: linear-gradient(135deg, #ff0077 0%, #6600ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Lineup Section */
+        .lineup {
+            padding: 5rem 2rem;
+            background: var(--dark);
+        }
+
+        .lineup-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .artist-card {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            background: var(--dark-card);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .artist-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(255, 0, 119, 0.3);
+        }
+
+        .artist-image {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .artist-card:hover .artist-image {
+            transform: scale(1.05);
+        }
+
+        .artist-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
+        }
+
+        .artist-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .artist-genre {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .artist-day {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.5rem 1rem;
+            background: var(--primary);
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        /* Experience Section */
+        .experience {
+            padding: 5rem 2rem;
+            background: var(--dark);
+        }
+
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .experience-card {
+            padding: 2.5rem;
+            background: var(--dark-card);
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid #1a1a1a;
+            transition: all 0.3s ease;
+        }
+
+        .experience-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .experience-icon {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #ff0077 0%, #6600ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+        }
+
+        .experience-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .experience-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Tickets Section */
+        .tickets {
+            padding: 5rem 2rem;
+            background: var(--dark);
+        }
+
+        .tickets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .ticket-card {
+            padding: 2.5rem;
+            background: var(--dark-card);
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid #1a1a1a;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .ticket-card.featured {
+            border-color: var(--primary);
+        }
+
+        .ticket-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(255, 0, 119, 0.2);
+        }
+
+        .ticket-type {
+            font-size: 0.875rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .ticket-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .ticket-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ff0077 0%, #6600ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+        }
+
+        .ticket-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .ticket-features li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #1a1a1a;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .ticket-features li:last-child {
+            border-bottom: none;
+        }
+
+        .btn-ticket {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text);
+            background: transparent;
+            border: 2px solid var(--primary);
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-ticket:hover, .ticket-card.featured .btn-ticket {
+            background: linear-gradient(135deg, #ff0077 0%, #6600ff 100%);
+            border-color: transparent;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 4rem 2rem;
+            text-align: center;
+            border-top: 1px solid #1a1a1a;
+        }
+
+        .footer-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ff0077 0%, #6600ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--dark-card);
+            border-radius: 50%;
+            color: var(--text);
+            transition: all 0.3s ease;
+            border: 1px solid #1a1a1a;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-subtitle {
+                letter-spacing: 0.2em;
+                font-size: 0.875rem;
+            }
+
+            .event-details {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <p class="hero-subtitle">Welcome to the</p>
+        <h1 class="hero-title">DREAMSCAPE</h1>
+        <p class="hero-location">JAKARTA</p>
+        <a href="#tickets" class="btn-primary">Beli Tiket</a>
+    </section>
+
+    <!-- Event Info Section -->
+    <section class="event-info">
+        <div class="container">
+            <div class="event-details">
+                <div class="event-detail-item">
+                    <h3>Tanggal</h3>
+                    <p>15 - 16 Februari 2025</p>
+                </div>
+                <div class="event-detail-item">
+                    <h3>Lokasi</h3>
+                    <p>Gelora Bung Karno, Jakarta</p>
+                </div>
+                <div class="event-detail-item">
+                    <h3>Waktu</h3>
+                    <p>16:00 - 23:00 WIB</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Line Up Section -->
+    <section class="lineup">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Artists</span>
+                <h2 class="section-title">LINE UP</h2>
+            </div>
+            
+            <div class="lineup-grid">
+                <div class="artist-card">
+                    <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&h=600&fit=crop" alt="Hindia" class="artist-image">
+                    <span class="artist-day">Day 1</span>
+                    <div class="artist-overlay">
+                        <h3 class="artist-name">Hindia</h3>
+                        <p class="artist-genre">Indie Pop</p>
+                    </div>
+                </div>
+                
+                <div class="artist-card">
+                    <img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=600&h=600&fit=crop" alt=".Feast" class="artist-image">
+                    <span class="artist-day">Day 1</span>
+                    <div class="artist-overlay">
+                        <h3 class="artist-name">.Feast</h3>
+                        <p class="artist-genre">Indie Rock</p>
+                    </div>
+                </div>
+                
+                <div class="artist-card">
+                    <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600&h=600&fit=crop" alt="The Adams" class="artist-image">
+                    <span class="artist-day">Day 1</span>
+                    <div class="artist-overlay">
+                        <h3 class="artist-name">The Adams</h3>
+                        <p class="artist-genre">Indie</p>
+                    </div>
+                </div>
+                
+                <div class="artist-card">
+                    <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&h=600&fit=crop" alt="Pamungkas" class="artist-image">
+                    <span class="artist-day">Day 2</span>
+                    <div class="artist-overlay">
+                        <h3 class="artist-name">Pamungkas</h3>
+                        <p class="artist-genre">Pop Soul</p>
+                    </div>
+                </div>
+                
+                <div class="artist-card">
+                    <img src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=600&h=600&fit=crop" alt="Sheila on 7" class="artist-image">
+                    <span class="artist-day">Day 2</span>
+                    <div class="artist-overlay">
+                        <h3 class="artist-name">Sheila on 7</h3>
+                        <p class="artist-genre">Pop Rock</p>
+                    </div>
+                </div>
+                
+                <div class="artist-card">
+                    <img src="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=600&h=600&fit=crop" alt="Tulus" class="artist-image">
+                    <span class="artist-day">Day 2</span>
+                    <div class="artist-overlay">
+                        <h3 class="artist-name">Tulus</h3>
+                        <p class="artist-genre">Pop</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">More Than Music</span>
+                <h2 class="section-title">EXPERIENCE</h2>
+            </div>
+            
+            <div class="experience-grid">
+                <div class="experience-card">
+                    <div class="experience-icon">🎨</div>
+                    <h3>Art Installation</h3>
+                    <p>Jelajahi instalasi seni yang memukau dari seniman lokal dan internasional yang akan memanjakan matamu.</p>
+                </div>
+                
+                <div class="experience-card">
+                    <div class="experience-icon">👕</div>
+                    <h3>Fashion Market</h3>
+                    <p>Temukan koleksi terbaru dari brand fashion lokal terbaik di fashion market eksklusif kami.</p>
+                </div>
+                
+                <div class="experience-card">
+                    <div class="experience-icon">🍔</div>
+                    <h3>Food & Beverages</h3>
+                    <p>Nikmati berbagai pilihan kuliner lezat dari food truck dan vendor makanan pilihan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tickets Section -->
+    <section class="tickets" id="tickets">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Get Your Pass</span>
+                <h2 class="section-title">TIKET</h2>
+            </div>
+            
+            <div class="tickets-grid">
+                <div class="ticket-card">
+                    <p class="ticket-type">Early Bird</p>
+                    <h3 class="ticket-name">Presale 1</h3>
+                    <p class="ticket-price">Rp 350K</p>
+                    
+                    <ul class="ticket-features">
+                        <li>✓ Akses 2 Hari Festival</li>
+                        <li>✓ Wristband Eksklusif</li>
+                        <li>✓ Akses ke Semua Stage</li>
+                    </ul>
+                    
+                    <a href="#" class="btn-ticket">Beli Sekarang</a>
+                </div>
+                
+                <div class="ticket-card featured">
+                    <p class="ticket-type">Limited</p>
+                    <h3 class="ticket-name">Presale 2</h3>
+                    <p class="ticket-price">Rp 450K</p>
+                    
+                    <ul class="ticket-features">
+                        <li>✓ Akses 2 Hari Festival</li>
+                        <li>✓ Wristband Eksklusif</li>
+                        <li>✓ Akses ke Semua Stage</li>
+                        <li>✓ Merchandise Eksklusif</li>
+                    </ul>
+                    
+                    <a href="#" class="btn-ticket">Beli Sekarang</a>
+                </div>
+                
+                <div class="ticket-card">
+                    <p class="ticket-type">Regular</p>
+                    <h3 class="ticket-name">Normal</h3>
+                    <p class="ticket-price">Rp 550K</p>
+                    
+                    <ul class="ticket-features">
+                        <li>✓ Akses 2 Hari Festival</li>
+                        <li>✓ Wristband Eksklusif</li>
+                        <li>✓ Akses ke Semua Stage</li>
+                    </ul>
+                    
+                    <a href="#" class="btn-ticket">Beli Sekarang</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <h2 class="footer-logo">DREAMSCAPE</h2>
+            
+            <div class="social-links">
+                <a href="#" class="social-link">📷</a>
+                <a href="#" class="social-link">🎵</a>
+                <a href="#" class="social-link">🐦</a>
+                <a href="#" class="social-link">📺</a>
+            </div>
+            
+            <p class="footer-text">© 2025 Dreamscape. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

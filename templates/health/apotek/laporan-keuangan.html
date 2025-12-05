@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laporan Keuangan - ApoPlus+</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { 50: '#f0fdfa', 100: '#ccfbf1', 400: '#2dd4bf', 500: '#14b8a6', 600: '#0d9488', 700: '#0f766e' },
+                        slate: { 850: '#1e293b', 900: '#0f172a' }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body class="bg-gray-100 font-sans text-gray-800 h-screen flex overflow-hidden">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-slate-850 text-white flex flex-col shadow-xl z-20 shrink-0 hidden md:flex">
+        <div class="h-16 flex items-center px-6 border-b border-gray-700 bg-slate-900 shadow-md">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-heart-pulse text-primary-500 text-xl"></i>
+                <span class="text-xl font-bold tracking-wide">Apo<span class="text-primary-400">Plus</span>+</span>
+            </div>
+        </div>
+
+        <nav class="flex-1 overflow-y-auto py-6 px-3 space-y-1">
+            <a href="index.html"
+                class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                <i class="fa-solid fa-chart-pie w-6 text-center group-hover:text-primary-400 transition-colors"></i>
+                <span class="ml-3 font-medium">Dashboard</span>
+            </a>
+
+            <a href="kasir.html"
+                class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group mt-2">
+                <i class="fa-solid fa-cash-register w-6 text-center group-hover:text-primary-400 transition-colors"></i>
+                <span class="ml-3 font-medium">Kasir / POS</span>
+            </a>
+
+            <div class="mt-4 pt-4 border-t border-slate-700/50">
+                <p class="px-4 text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Inventori</p>
+                <a href="master-barang.html"
+                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <i
+                        class="fa-solid fa-boxes-stacked w-6 text-center group-hover:text-primary-400 transition-colors"></i>
+                    <span class="ml-3 font-medium">Master Barang</span>
+                </a>
+                <a href="stock-opname.html"
+                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <i
+                        class="fa-solid fa-clipboard-check w-6 text-center group-hover:text-primary-400 transition-colors"></i>
+                    <span class="ml-3 font-medium">Stock Opname</span>
+                </a>
+                <a href="barang-expired.html"
+                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <i
+                        class="fa-solid fa-calendar-xmark w-6 text-center group-hover:text-primary-400 transition-colors"></i>
+                    <span class="ml-3 font-medium">Barang Expired</span>
+                </a>
+            </div>
+
+            <div class="mt-4 pt-4 border-t border-slate-700/50">
+                <p class="px-4 text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Transaksi</p>
+                <a href="pembelian.html"
+                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <i
+                        class="fa-solid fa-truck-medical w-6 text-center group-hover:text-primary-400 transition-colors"></i>
+                    <span class="ml-3 font-medium">Pembelian (PBF)</span>
+                </a>
+                <a href="penjualan.html"
+                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <i class="fa-solid fa-receipt w-6 text-center group-hover:text-primary-400 transition-colors"></i>
+                    <span class="ml-3 font-medium">Data Penjualan</span>
+                </a>
+            </div>
+
+            <div class="mt-4 pt-4 border-t border-slate-700/50">
+                <p class="px-4 text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Laporan</p>
+                <a href="laporan-keuangan.html"
+                    class="flex items-center px-4 py-3 bg-primary-600 text-white rounded-xl shadow-lg shadow-primary-900/20 relative overflow-hidden group">
+                    <div
+                        class="absolute inset-0 bg-white/10 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300">
+                    </div>
+                    <i class="fa-solid fa-file-invoice-dollar w-6 text-center"></i>
+                    <span class="ml-3 font-semibold tracking-wide">Laporan Keuangan</span>
+                </a>
+            </div>
+
+            <div class="mt-4 pt-4 border-t border-slate-700/50">
+                <p class="px-4 text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Sistem</p>
+                <a href="manajemen-user.html"
+                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <i
+                        class="fa-solid fa-users-gear w-6 text-center group-hover:text-primary-400 transition-colors"></i>
+                    <span class="ml-3 font-medium">Manajemen User</span>
+                </a>
+                <a href="pengaturan.html"
+                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <i class="fa-solid fa-gear w-6 text-center group-hover:text-primary-400 transition-colors"></i>
+                    <span class="ml-3 font-medium">Pengaturan</span>
+                </a>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col h-screen overflow-hidden bg-[#f3f4f6]">
+
+        <!-- Header -->
+        <header class="h-16 bg-white flex items-center justify-end px-8 shadow-sm z-10 shrink-0">
+            <div class="flex items-center gap-4">
+                <button
+                    class="w-10 h-10 rounded-full bg-gray-50 border border-gray-200 text-gray-500 hover:text-primary-600 hover:bg-primary-50 transition flex items-center justify-center relative">
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="absolute top-2 right-2.5 w-2 h-2 bg-red-500 rounded-full border border-white"></span>
+                </button>
+                <div class="flex items-center gap-3 pl-4 border-l border-gray-200">
+                    <div class="text-right">
+                        <p class="text-sm font-bold text-slate-700">Fazal Owner</p>
+                        <p class="text-xs text-slate-500">Super Admin</p>
+                    </div>
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="User"
+                        class="w-10 h-10 rounded-full bg-primary-100 border-2 border-primary-200">
+                </div>
+            </div>
+        </header>
+
+        <!-- Content -->
+        <div class="flex-1 overflow-x-hidden overflow-y-auto p-8">
+
+            <!-- Page Header -->
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h1 class="text-3xl font-bold text-slate-800 flex items-center gap-3">
+                        <span
+                            class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center text-white text-2xl shadow-lg">
+                            <i class="fa-solid fa-file-invoice-dollar"></i>
+                        </span>
+                        Laporan Keuangan
+                    </h1>
+                    <p class="text-sm text-gray-500 mt-2 ml-15">Analisis keuangan dan laporan bulanan</p>
+                </div>
+                <button
+                    class="px-5 py-3 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-xl font-semibold hover:shadow-xl transition-all transform hover:scale-105 flex items-center gap-2 text-sm">
+                    <i class="fa-solid fa-file-pdf"></i>
+                    Export PDF
+                </button>
+            </div>
+
+            <!-- Period Selector -->
+            <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 mb-8">
+                <div class="flex items-center gap-4">
+                    <div class="flex-1">
+                        <label class="text-xs font-semibold text-slate-600 mb-2 block">Periode Laporan</label>
+                        <select
+                            class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:border-primary-500 outline-none text-sm">
+                            <option>Bulan Ini (Desember 2024)</option>
+                            <option>November 2024</option>
+                            <option>Oktober 2024</option>
+                            <option>Q4 2024</option>
+                            <option>Tahun 2024</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Financial Overview -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-gradient-to-br from-green-500 to-green-600 p-6 rounded-2xl shadow-lg text-white">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center text-2xl">
+                            <i class="fa-solid fa-arrow-up"></i>
+                        </div>
+                        <span class="text-xs font-bold bg-white/20 px-3 py-1 rounded-full">+12%</span>
+                    </div>
+                    <p class="text-green-100 text-sm mb-1">Total Pendapatan</p>
+                    <h3 class="text-3xl font-bold mb-2">Rp 125.5Jt</h3>
+                    <p class="text-xs text-green-100">Dari penjualan obat & alkes</p>
+                </div>
+
+                <div class="bg-gradient-to-br from-red-500 to-red-600 p-6 rounded-2xl shadow-lg text-white">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center text-2xl">
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </div>
+                        <span class="text-xs font-bold bg-white/20 px-3 py-1 rounded-full">+8%</span>
+                    </div>
+                    <p class="text-red-100 text-sm mb-1">Total Pengeluaran</p>
+                    <h3 class="text-3xl font-bold mb-2">Rp 89.2Jt</h3>
+                    <p class="text-xs text-red-100">Pembelian & operasional</p>
+                </div>
+
+                <div class="bg-gradient-to-br from-blue-500 to-blue-600 p-6 rounded-2xl shadow-lg text-white">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center text-2xl">
+                            <i class="fa-solid fa-sack-dollar"></i>
+                        </div>
+                        <span class="text-xs font-bold bg-white/20 px-3 py-1 rounded-full">28.9%</span>
+                    </div>
+                    <p class="text-blue-100 text-sm mb-1">Laba Bersih</p>
+                    <h3 class="text-3xl font-bold mb-2">Rp 36.3Jt</h3>
+                    <p class="text-xs text-blue-100">Margin profit 28.9%</p>
+                </div>
+            </div>
+
+            <!-- Charts Row -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                <!-- Revenue Chart -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <h3 class="font-bold text-lg text-slate-800 mb-4">Grafik Pendapatan vs Pengeluaran</h3>
+                    <div class="h-64 flex items-end justify-between gap-2 p-4">
+                        <div class="flex flex-col items-center gap-2 flex-1">
+                            <div class="w-full bg-green-500 rounded-t-lg" style="height: 75%"></div>
+                            <span class="text-xs text-gray-500">Jan</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-2 flex-1">
+                            <div class="w-full bg-green-500 rounded-t-lg" style="height: 85%"></div>
+                            <span class="text-xs text-gray-500">Feb</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-2 flex-1">
+                            <div class="w-full bg-green-500 rounded-t-lg" style="height: 90%"></div>
+                            <span class="text-xs text-gray-500">Mar</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-2 flex-1">
+                            <div class="w-full bg-green-500 rounded-t-lg" style="height: 95%"></div>
+                            <span class="text-xs text-gray-500">Apr</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-2 flex-1">
+                            <div class="w-full bg-green-600 rounded-t-lg shadow-lg" style="height: 100%"></div>
+                            <span class="text-xs text-gray-500 font-bold">Mei</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Top Products -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <h3 class="font-bold text-lg text-slate-800 mb-4 flex items-center gap-2">
+                        Top 5 Produk Terlaris
+                        <span class="text-xl">🏆</span>
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-8 h-8 rounded-lg bg-yellow-100 flex items-center justify-center text-yellow-600 font-bold text-sm">
+                                1
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-sm font-semibold text-slate-700">Paracetamol 500mg</p>
+                                <p class="text-xs text-slate-500">1,245 terjual</p>
+                            </div>
+                            <p class="font-bold text-green-600">Rp 10.5Jt</p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center text-gray-600 font-bold text-sm">
+                                2
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-sm font-semibold text-slate-700">Amoxicillin 500mg</p>
+                                <p class="text-xs text-slate-500">890 terjual</p>
+                            </div>
+                            <p class="font-bold text-green-600">Rp 8.9Jt</p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-8 h-8 rounded-lg bg-orange-100 flex items-center justify-center text-orange-600 font-bold text-sm">
+                                3
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-sm font-semibold text-slate-700">Vitamin C 1000mg</p>
+                                <p class="text-xs text-slate-500">654 terjual</p>
+                            </div>
+                            <p class="font-bold text-green-600">Rp 7.2Jt</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Summary Table -->
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                <div class="p-5 border-b border-gray-100">
+                    <h3 class="font-bold text-lg text-slate-800">Ringkasan Bulanan</h3>
+                    <p class="text-xs text-slate-500 mt-1">Detail pendapatan dan pengeluaran per kategori</p>
+                </div>
+                <div class="p-6">
+                    <div class="grid grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="font-bold text-green-600 mb-4 flex items-center gap-2">
+                                <i class="fa-solid fa-arrow-up"></i>
+                                Pendapatan
+                            </h4>
+                            <div class="space-y-3">
+                                <div class="flex justify-between text-sm">
+                                    <span class="text-slate-600">Penjualan Obat</span>
+                                    <span class="font-bold text-slate-800">Rp 98.5Jt</span>
+                                </div>
+                                <div class="flex justify-between text-sm">
+                                    <span class="text-slate-600">Alat Kesehatan</span>
+                                    <span class="font-bold text-slate-800">Rp 18.2Jt</span>
+                                </div>
+                                <div class="flex justify-between text-sm">
+                                    <span class="text-slate-600">Suplemen</span>
+                                    <span class="font-bold text-slate-800">Rp 8.8Jt</span>
+                                </div>
+                                <div class="flex justify-between text-sm pt-3 border-t border-gray-200">
+                                    <span class="text-green-600 font-bold">Total Pendapatan</span>
+                                    <span class="font-bold text-green-600 text-lg">Rp 125.5Jt</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="font-bold text-red-600 mb-4 flex items-center gap-2">
+                                <i class="fa-solid fa-arrow-down"></i>
+                                Pengeluaran
+                            </h4>
+                            <div class="space-y-3">
+                                <div class="flex justify-between text-sm">
+                                    <span class="text-slate-600">Pembelian Stok</span>
+                                    <span class="font-bold text-slate-800">Rp 72.5Jt</span>
+                                </div>
+                                <div class="flex justify-between text-sm">
+                                    <span class="text-slate-600">Gaji Karyawan</span>
+                                    <span class="font-bold text-slate-800">Rp 12.0Jt</span>
+                                </div>
+                                <div class="flex justify-between text-sm">
+                                    <span class="text-slate-600">Operasional</span>
+                                    <span class="font-bold text-slate-800">Rp 4.7Jt</span>
+                                </div>
+                                <div class="flex justify-between text-sm pt-3 border-t border-gray-200">
+                                    <span class="text-red-600 font-bold">Total Pengeluaran</span>
+                                    <span class="font-bold text-red-600 text-lg">Rp 89.2Jt</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ETHERIA PROJECT 2026</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'eth-blue': '#A0E7E5',
+                        'eth-purple': '#B4F8C8',
+                        'eth-pink': '#FFAEBC',
+                        'eth-yellow': '#FBE7C6',
+                        'eth-dark': '#2B2B2B',
+                    },
+                    fontFamily: {
+                        'sans': ['"Nunito"', 'sans-serif'],
+                        'display': ['"Baloo 2"', 'cursive'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #A0E7E5; /* Start Color */
+            overflow-x: hidden;
+        }
+
+        /* SVG DIVIDER UTILS (Biar gak kotak) */
+        .wave-divider {
+            position: absolute;
+            top: -100px; /* Tarik ke atas biar numpuk */
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            z-index: 1;
+        }
+        .wave-divider svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 150px;
+        }
+
+        /* ANIMATIONS */
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        .animate-float { animation: float 5s ease-in-out infinite; }
+        .animate-float-delay { animation: float 6s ease-in-out infinite 1s; }
+
+        /* PAPER TEXTURE OVERLAY (Biar kayak buku gambar) */
+        .paper-texture {
+            position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.4;
+            background-image: url("https://www.transparenttextures.com/patterns/cream-paper.png");
+        }
+
+        /* STICKY TICKET BADGE */
+        .sticky-badge {
+            position: fixed; bottom: 30px; right: 30px; z-index: 100;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .sticky-badge:hover { transform: scale(1.1) rotate(-5deg); }
+    </style>
+</head>
+<body class="text-eth-dark selection:bg-eth-pink selection:text-white">
+
+    <div class="paper-texture"></div>
+
+    <a href="#tickets" class="sticky-badge bg-eth-dark text-white rounded-full p-1 shadow-2xl border-4 border-white cursor-pointer group">
+        <div class="bg-eth-pink w-20 h-20 rounded-full flex items-center justify-center border-2 border-dashed border-white group-hover:bg-eth-yellow group-hover:text-eth-dark transition-colors">
+            <div class="text-center leading-none">
+                <span class="block font-bold text-xs uppercase">Buy</span>
+                <span class="block font-display text-xl">TIX</span>
+            </div>
+        </div>
+    </a>
+
+    <section class="relative min-h-screen pt-10 pb-32 flex flex-col items-center justify-center z-10">
+        <i class="fa-solid fa-cloud text-white/60 text-[10rem] absolute top-10 left-[-50px] animate-float"></i>
+        <i class="fa-solid fa-cloud text-white/40 text-[8rem] absolute bottom-40 right-10 animate-float-delay"></i>
+        
+        <div class="w-40 h-40 bg-eth-yellow rounded-full absolute top-20 right-20 blur-xl opacity-80"></div>
+
+        <div class="text-center relative z-20">
+            <div class="inline-block bg-white px-6 py-2 rounded-full font-bold text-eth-dark shadow-sm mb-6 transform -rotate-3 border-2 border-eth-dark">
+                ☁️ Welcome to the Sky ☁️
+            </div>
+            <h1 class="font-display text-[6rem] md:text-[10rem] leading-[0.8] text-white drop-shadow-[4px_4px_0px_rgba(43,43,43,0.2)]">
+                ETHERIA<br><span class="text-eth-dark">PROJECT</span>
+            </h1>
+            <p class="mt-8 text-xl font-bold text-white bg-eth-dark/10 inline-block px-4 py-1 rounded-lg backdrop-blur-sm">
+                Jakarta • 12-14 September 2026
+            </p>
+        </div>
+
+        <div class="mt-10 relative z-20 animate-float">
+            <div class="w-64 h-64 bg-white rounded-full border-4 border-eth-dark overflow-hidden flex items-center justify-center relative shadow-2xl">
+                <img src="https://images.unsplash.com/photo-1535581652167-3d6b98c99146?q=80&w=1956" class="absolute inset-0 w-full h-full object-cover opacity-80" alt="Vibe">
+                <span class="font-display text-4xl rotate-12 bg-eth-yellow px-2 border-2 border-eth-dark relative z-10">PLAY!</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="relative bg-eth-pink pt-40 pb-32 z-20 -mt-20">
+        
+        <div class="wave-divider">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#A0E7E5"></path>
+            </svg>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-6xl text-white drop-shadow-md rotate-2">The Dreamers</h2>
+                <p class="text-white font-bold text-xl opacity-90">Music that heals the soul</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                
+                <div class="bg-white p-4 pb-8 rounded-[2rem] shadow-[8px_8px_0px_0px_rgba(43,43,43,1)] border-2 border-eth-dark transform rotate-[-2deg] hover:rotate-0 transition-transform cursor-pointer">
+                    <div class="h-64 rounded-[1.5rem] bg-eth-blue overflow-hidden border-2 border-eth-dark relative group">
+                        <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=1920" class="object-cover w-full h-full grayscale group-hover:grayscale-0 transition-all">
+                    </div>
+                    <div class="text-center mt-6">
+                        <h3 class="font-display text-3xl">Tulus</h3>
+                        <span class="bg-eth-yellow px-3 py-1 rounded-full text-xs font-bold border border-eth-dark">Pop Jazz</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-4 pb-8 rounded-[2rem] shadow-[8px_8px_0px_0px_rgba(43,43,43,1)] border-2 border-eth-dark transform md:-translate-y-12 rotate-[2deg] hover:rotate-0 transition-transform cursor-pointer">
+                    <div class="h-64 rounded-[1.5rem] bg-eth-yellow overflow-hidden border-2 border-eth-dark relative group">
+                        <img src="https://images.unsplash.com/photo-1529359744092-8034ba4d4fc4?q=80&w=2072" class="object-cover w-full h-full grayscale group-hover:grayscale-0 transition-all">
+                    </div>
+                    <div class="text-center mt-6">
+                        <h3 class="font-display text-3xl">Sheila on 7</h3>
+                        <span class="bg-eth-blue px-3 py-1 rounded-full text-xs font-bold border border-eth-dark">Legend</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-4 pb-8 rounded-[2rem] shadow-[8px_8px_0px_0px_rgba(43,43,43,1)] border-2 border-eth-dark transform rotate-[-1deg] hover:rotate-0 transition-transform cursor-pointer">
+                    <div class="h-64 rounded-[1.5rem] bg-eth-purple overflow-hidden border-2 border-eth-dark relative group">
+                        <img src="https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=2070" class="object-cover w-full h-full grayscale group-hover:grayscale-0 transition-all">
+                    </div>
+                    <div class="text-center mt-6">
+                        <h3 class="font-display text-3xl">Yura Yunita</h3>
+                        <span class="bg-eth-pink px-3 py-1 rounded-full text-xs font-bold border border-eth-dark">Soul Pop</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="relative bg-[#6c5ce7] pt-40 pb-20 z-30 -mt-20">
+        
+        <div class="wave-divider">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M985.66,92.83C906.67,72,823.78,31,738.64,14.75c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" fill="#FFAEBC"></path>
+            </svg>
+        </div>
+
+        <div class="container mx-auto px-6 text-center text-white">
+            
+            <div class="max-w-4xl mx-auto bg-white/10 backdrop-blur-md rounded-[3rem] p-10 border-4 border-white/20 relative overflow-hidden group">
+                <h2 class="font-display text-4xl mb-6">Explore The World</h2>
+                
+                <div class="relative w-full h-64 bg-[#a29bfe] rounded-3xl border-2 border-white/30 overflow-hidden flex items-center justify-center">
+                    <div class="absolute w-[120%] h-8 bg-[#fdcb6e] rotate-12 border-y-2 border-dashed border-white/50"></div>
+                    
+                    <div class="absolute top-10 left-20 flex flex-col items-center animate-bounce cursor-pointer hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-music text-3xl text-[#ffeaa7]"></i>
+                        <span class="text-xs font-bold">Stage</span>
+                    </div>
+                    
+                    <div class="absolute bottom-10 right-20 flex flex-col items-center animate-bounce cursor-pointer hover:scale-110 transition-transform" style="animation-delay: 0.5s">
+                        <i class="fa-solid fa-utensils text-3xl text-[#ff7675]"></i>
+                        <span class="text-xs font-bold">Food</span>
+                    </div>
+
+                    <i class="fa-solid fa-ghost text-4xl absolute inset-0 m-auto animate-float"></i>
+                </div>
+            </div>
+
+            <div class="mt-20 flex flex-col items-center">
+                <div class="font-display text-5xl mb-6 text-[#a29bfe]">ETHERIA</div>
+                <div class="flex gap-6 text-2xl mb-8">
+                    <a href="#" class="bg-white text-[#6c5ce7] w-12 h-12 rounded-full flex items-center justify-center hover:rotate-12 transition-transform"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="bg-white text-[#6c5ce7] w-12 h-12 rounded-full flex items-center justify-center hover:-rotate-12 transition-transform"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="#" class="bg-white text-[#6c5ce7] w-12 h-12 rounded-full flex items-center justify-center hover:rotate-12 transition-transform"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+                <p class="font-bold text-sm opacity-50 tracking-widest uppercase">© 2026 Etheria Project by Ventyra Labs</p>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

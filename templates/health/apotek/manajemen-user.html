@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manajemen User - ApoPlus+</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { 50: '#f0fdfa', 100: '#ccfbf1', 400: '#2dd4bf', 500: '#14b8a6', 600: '#0d9488', 700: '#0f766e' },
+                        slate: { 850: '#1e293b', 900: '#0f172a' }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body class="bg-gray-100 font-sans text-gray-800 h-screen flex overflow-hidden">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-slate-850 text-white flex flex-col shadow-xl z-20 shrink-0 hidden md:flex">
+        <div class="h-16 flex items-center px-6 border-b border-gray-700 bg-slate-900 shadow-md">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-heart-pulse text-primary-500 text-xl"></i>
+                <span class="text-xl font-bold tracking-wide">Apo<span class="text-primary-400">Plus</span>+</span>
+            </div>
+        </div>
+
+        <nav class="flex-1 overflow-y-auto py-6 px-3 space-y-1">
+            <a href="index.html"
+                class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                <i class="fa-solid fa-chart-pie w-6 text-center group-hover:text-primary-400 transition-colors"></i>
+                <span class="ml-3 font-medium">Dashboard</span>
+            </a>
+
+            <a href="kasir.html"
+                class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group mt-2">
+                <i class="fa-solid fa-cash-register w-6 text-center group-hover:text-primary-400 transition-colors"></i>
+                <span class="ml-3 font-medium">Kasir / POS</span>
+            </a>
+
+            <div class="mt-4 pt-4 border-t border-slate-700/50">
+                <p class="px-4 text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Inventori</p>
+                <a href="master-barang.html"
+                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <i
+                        class="fa-solid fa-boxes-stacked w-6 text-center group-hover:text-primary-400 transition-colors"></i>
+                    <span class="ml-3 font-medium">Master Barang</span>
+                </a>
+                <a href="stock-opname.html"
+                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <i
+                        class="fa-solid fa-clipboard-check w-6 text-center group-hover:text-primary-400 transition-colors"></i>
+                    <span class="ml-3 font-medium">Stock Opname</span>
+                </a>
+                <a href="barang-expired.html"
+                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <i
+                        class="fa-solid fa-calendar-xmark w-6 text-center group-hover:text-primary-400 transition-colors"></i>
+                    <span class="ml-3 font-medium">Barang Expired</span>
+                </a>
+            </div>
+
+            <div class="mt-4 pt-4 border-t border-slate-700/50">
+                <p class="px-4 text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Transaksi</p>
+                <a href="pembelian.html"
+                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <i
+                        class="fa-solid fa-truck-medical w-6 text-center group-hover:text-primary-400 transition-colors"></i>
+                    <span class="ml-3 font-medium">Pembelian (PBF)</span>
+                </a>
+                <a href="penjualan.html"
+                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <i class="fa-solid fa-receipt w-6 text-center group-hover:text-primary-400 transition-colors"></i>
+                    <span class="ml-3 font-medium">Data Penjualan</span>
+                </a>
+            </div>
+
+            <div class="mt-4 pt-4 border-t border-slate-700/50">
+                <p class="px-4 text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Laporan</p>
+                <a href="laporan-keuangan.html"
+                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <i
+                        class="fa-solid fa-file-invoice-dollar w-6 text-center group-hover:text-primary-400 transition-colors"></i>
+                    <span class="ml-3 font-medium">Laporan Keuangan</span>
+                </a>
+            </div>
+
+            <div class="mt-4 pt-4 border-t border-slate-700/50">
+                <p class="px-4 text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Sistem</p>
+                <a href="manajemen-user.html"
+                    class="flex items-center px-4 py-3 bg-primary-600 text-white rounded-xl shadow-lg shadow-primary-900/20 relative overflow-hidden group">
+                    <div
+                        class="absolute inset-0 bg-white/10 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300">
+                    </div>
+                    <i class="fa-solid fa-users-gear w-6 text-center"></i>
+                    <span class="ml-3 font-semibold tracking-wide">Manajemen User</span>
+                </a>
+                <a href="pengaturan.html"
+                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <i class="fa-solid fa-gear w-6 text-center group-hover:text-primary-400 transition-colors"></i>
+                    <span class="ml-3 font-medium">Pengaturan</span>
+                </a>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col h-screen overflow-hidden bg-[#f3f4f6]">
+
+        <!-- Header -->
+        <header class="h-16 bg-white flex items-center justify-end px-8 shadow-sm z-10 shrink-0">
+            <div class="flex items-center gap-4">
+                <button
+                    class="w-10 h-10 rounded-full bg-gray-50 border border-gray-200 text-gray-500 hover:text-primary-600 hover:bg-primary-50 transition flex items-center justify-center relative">
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="absolute top-2 right-2.5 w-2 h-2 bg-red-500 rounded-full border border-white"></span>
+                </button>
+                <div class="flex items-center gap-3 pl-4 border-l border-gray-200">
+                    <div class="text-right">
+                        <p class="text-sm font-bold text-slate-700">Fazal Owner</p>
+                        <p class="text-xs text-slate-500">Super Admin</p>
+                    </div>
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="User"
+                        class="w-10 h-10 rounded-full bg-primary-100 border-2 border-primary-200">
+                </div>
+            </div>
+        </header>
+
+        <!-- Content -->
+        <div class="flex-1 overflow-x-hidden overflow-y-auto p-8">
+
+            <!-- Page Header -->
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h1 class="text-3xl font-bold text-slate-800 flex items-center gap-3">
+                        <span
+                            class="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-indigo-600 flex items-center justify-center text-white text-2xl shadow-lg">
+                            <i class="fa-solid fa-users-gear"></i>
+                        </span>
+                        Manajemen User
+                    </h1>
+                    <p class="text-sm text-gray-500 mt-2 ml-15">Kelola pengguna dan hak akses sistem</p>
+                </div>
+                <button
+                    class="px-5 py-3 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-xl font-semibold hover:shadow-xl transition-all transform hover:scale-105 flex items-center gap-2 text-sm">
+                    <i class="fa-solid fa-user-plus"></i>
+                    Tambah User Baru
+                </button>
+            </div>
+
+            <!-- Stats -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="w-10 h-10 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-500 text-xs mb-1">Total User</p>
+                    <h3 class="text-2xl font-bold text-slate-800">8</h3>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="w-10 h-10 rounded-lg bg-green-100 text-green-600 flex items-center justify-center">
+                            <i class="fa-solid fa-user-check"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-500 text-xs mb-1">Aktif</p>
+                    <h3 class="text-2xl font-bold text-green-600">7</h3>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="w-10 h-10 rounded-lg bg-red-100 text-red-600 flex items-center justify-center">
+                            <i class="fa-solid fa-user-xmark"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-500 text-xs mb-1">Non-Aktif</p>
+                    <h3 class="text-2xl font-bold text-red-600">1</h3>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="flex items-center justify-between mb-2">
+                        <div
+                            class="w-10 h-10 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center">
+                            <i class="fa-solid fa-crown"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-500 text-xs mb-1">Admin</p>
+                    <h3 class="text-2xl font-bold text-purple-600">2</h3>
+                </div>
+            </div>
+
+            <!-- Users Table -->
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                <div class="p-5 border-b border-gray-100">
+                    <h3 class="font-bold text-lg text-slate-800">Daftar Pengguna</h3>
+                    <p class="text-xs text-slate-500 mt-1">Manajemen akun dan hak akses</p>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead
+                            class="bg-gradient-to-r from-slate-50 to-gray-50 text-xs uppercase text-gray-600 border-b-2 border-gray-200">
+                            <tr>
+                                <th class="px-6 py-4 font-bold">User</th>
+                                <th class="px-6 py-4 font-bold">Email</th>
+                                <th class="px-6 py-4 font-bold">Role</th>
+                                <th class="px-6 py-4 font-bold">Terakhir Login</th>
+                                <th class="px-6 py-4 text-center font-bold">Status</th>
+                                <th class="px-6 py-4 text-center font-bold">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100 text-sm">
+                            <tr class="hover:bg-gray-50 transition">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix"
+                                            class="w-10 h-10 rounded-full border-2 border-primary-200">
+                                        <div>
+                                            <div class="font-semibold text-slate-700">Fazal</div>
+                                            <div class="text-xs text-slate-500">Owner/Apoteker</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4">fazal@apoplus.com</td>
+                                <td class="px-6 py-4">
+                                    <span
+                                        class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs font-bold">Super
+                                        Admin</span>
+                                </td>
+                                <td class="px-6 py-4">5 Des 2024, 14:30</td>
+                                <td class="px-6 py-4 text-center">
+                                    <span
+                                        class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">Aktif</span>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center justify-center gap-2">
+                                        <button
+                                            class="w-8 h-8 rounded-lg bg-primary-50 hover:bg-primary-100 text-primary-600 flex items-center justify-center">
+                                            <i class="fa-solid fa-edit text-sm"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 transition">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Siti"
+                                            class="w-10 h-10 rounded-full border-2 border-gray-200">
+                                        <div>
+                                            <div class="font-semibold text-slate-700">Siti Nurhaliza</div>
+                                            <div class="text-xs text-slate-500">Kasir</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4">siti@apoplus.com</td>
+                                <td class="px-6 py-4">
+                                    <span
+                                        class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-bold">Kasir</span>
+                                </td>
+                                <td class="px-6 py-4">5 Des 2024, 13:15</td>
+                                <td class="px-6 py-4 text-center">
+                                    <span
+                                        class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">Aktif</span>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center justify-center gap-2">
+                                        <button
+                                            class="w-8 h-8 rounded-lg bg-primary-50 hover:bg-primary-100 text-primary-600 flex items-center justify-center">
+                                            <i class="fa-solid fa-edit text-sm"></i>
+                                        </button>
+                                        <button
+                                            class="w-8 h-8 rounded-lg bg-red-50 hover:bg-red-100 text-red-600 flex items-center justify-center">
+                                            <i class="fa-solid fa-ban text-sm"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 transition">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Budi"
+                                            class="w-10 h-10 rounded-full border-2 border-gray-200">
+                                        <div>
+                                            <div class="font-semibold text-slate-700">Budi Santoso</div>
+                                            <div class="text-xs text-slate-500">Admin Gudang</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4">budi@apoplus.com</td>
+                                <td class="px-6 py-4">
+                                    <span
+                                        class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">Admin</span>
+                                </td>
+                                <td class="px-6 py-4">4 Des 2024, 18:00</td>
+                                <td class="px-6 py-4 text-center">
+                                    <span
+                                        class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">Aktif</span>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center justify-center gap-2">
+                                        <button
+                                            class="w-8 h-8 rounded-lg bg-primary-50 hover:bg-primary-100 text-primary-600 flex items-center justify-center">
+                                            <i class="fa-solid fa-edit text-sm"></i>
+                                        </button>
+                                        <button
+                                            class="w-8 h-8 rounded-lg bg-red-50 hover:bg-red-100 text-red-600 flex items-center justify-center">
+                                            <i class="fa-solid fa-ban text-sm"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+
+</html>
