@@ -1,10 +1,12 @@
 <!DOCTYPE html>
+<!-- Updated: Sidebar text colors lightened for better readability -->
 <html lang="id">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Farmacare+ - Dashboard Owner</title>
+    <title>Apotek Arrazi - Dashboard Owner</title>
+    <link rel="icon" type="image/png" href="img/arrazi_logo_single.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
@@ -12,8 +14,8 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: { 50: '#f0fdfa', 100: '#ccfbf1', 400: '#2dd4bf', 500: '#14b8a6', 600: '#0d9488', 700: '#0f766e' },
-                        slate: { 850: '#1e293b', 900: '#0f172a' }
+                        primary: { 50: '#e6f7fa', 100: '#cceef5', 400: '#17a2b8', 500: '#17a2b8', 600: '#138a9e', 700: '#0f6b7a' },
+                        slate: { 850: '#666666', 900: '#5a5a5a' }
                     }
                 }
             }
@@ -52,7 +54,8 @@
                 <i class="fa-solid fa-mobile-screen text-red-600 text-4xl"></i>
             </div>
             <h1 class="text-2xl font-bold text-slate-800 mb-3">Perangkat Tidak Didukung</h1>
-            <p class="text-slate-600 mb-4">Sistem ApoPlus+ tidak mendukung tampilan portrait di perangkat mobile.</p>
+            <p class="text-slate-600 mb-4">Sistem Apotek Arrazi tidak mendukung tampilan portrait di perangkat mobile.
+            </p>
             <p class="text-sm text-slate-500">Silakan buka menggunakan:</p>
             <div class="mt-4 space-y-2 text-sm text-slate-600">
                 <div class="flex items-center justify-center gap-2">
@@ -69,11 +72,10 @@
 
 
     <!-- Sidebar -->
-    <aside class="w-64 bg-slate-850 text-white flex flex-col shadow-xl z-20 shrink-0 hidden md:flex">
-        <div class="h-16 flex items-center px-6 border-b border-gray-700 bg-slate-900 shadow-md">
+    <aside class="w-64 bg-white text-black flex flex-col shadow-xl z-20 shrink-0 hidden md:flex">
+        <div class="h-16 flex items-center px-6 border-b border-gray-200 bg-white shadow-sm">
             <div class="flex items-center gap-2">
-                <i class="fa-solid fa-heart-pulse text-primary-500 text-xl"></i>
-                <span class="text-xl font-bold tracking-wide">Apo<span class="text-primary-400">Plus</span>+</span>
+                <img src="img/arrazi_logo_horizontal.png" alt="Apotek Arrazi" class="h-8">
             </div>
         </div>
 
@@ -88,68 +90,68 @@
             </a>
 
             <a href="kasir.html"
-                class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group mt-2">
+                class="flex items-center px-4 py-3 text-slate-700 hover:bg-gray-100 hover:text-slate-900 rounded-xl transition-all group mt-2">
                 <i class="fa-solid fa-cash-register w-6 text-center group-hover:text-primary-400 transition-colors"></i>
                 <span class="ml-3 font-medium">Kasir / POS</span>
             </a>
 
-            <div class="mt-4 pt-4 border-t border-slate-700/50">
-                <p class="px-4 text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Inventori</p>
+            <div class="mt-4 pt-4 border-t border-gray-200">
+                <p class="px-4 text-xs font-bold text-slate-600 uppercase tracking-wider mb-2">Inventori</p>
                 <a href="master-barang.html"
-                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    class="flex items-center px-4 py-3 text-slate-700 hover:bg-gray-100 hover:text-slate-900 rounded-xl transition-all group">
                     <i
                         class="fa-solid fa-boxes-stacked w-6 text-center group-hover:text-primary-400 transition-colors"></i>
                     <span class="ml-3 font-medium">Master Barang</span>
                 </a>
                 <a href="stock-opname.html"
-                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    class="flex items-center px-4 py-3 text-slate-700 hover:bg-gray-100 hover:text-slate-900 rounded-xl transition-all group">
                     <i
                         class="fa-solid fa-clipboard-check w-6 text-center group-hover:text-primary-400 transition-colors"></i>
                     <span class="ml-3 font-medium">Stock Opname</span>
                 </a>
                 <a href="barang-expired.html"
-                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    class="flex items-center px-4 py-3 text-slate-700 hover:bg-gray-100 hover:text-slate-900 rounded-xl transition-all group">
                     <i
                         class="fa-solid fa-calendar-xmark w-6 text-center group-hover:text-primary-400 transition-colors"></i>
                     <span class="ml-3 font-medium">Barang Expired</span>
                 </a>
             </div>
 
-            <div class="mt-4 pt-4 border-t border-slate-700/50">
-                <p class="px-4 text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Transaksi</p>
+            <div class="mt-4 pt-4 border-t border-gray-200">
+                <p class="px-4 text-xs font-bold text-slate-600 uppercase tracking-wider mb-2">Transaksi</p>
                 <a href="pembelian.html"
-                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    class="flex items-center px-4 py-3 text-slate-700 hover:bg-gray-100 hover:text-slate-900 rounded-xl transition-all group">
                     <i
                         class="fa-solid fa-truck-medical w-6 text-center group-hover:text-primary-400 transition-colors"></i>
                     <span class="ml-3 font-medium">Pembelian (PBF)</span>
                 </a>
                 <a href="penjualan.html"
-                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    class="flex items-center px-4 py-3 text-slate-700 hover:bg-gray-100 hover:text-slate-900 rounded-xl transition-all group">
                     <i class="fa-solid fa-receipt w-6 text-center group-hover:text-primary-400 transition-colors"></i>
                     <span class="ml-3 font-medium">Data Penjualan</span>
                 </a>
             </div>
 
-            <div class="mt-4 pt-4 border-t border-slate-700/50">
-                <p class="px-4 text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Laporan</p>
+            <div class="mt-4 pt-4 border-t border-gray-200">
+                <p class="px-4 text-xs font-bold text-slate-600 uppercase tracking-wider mb-2">Laporan</p>
                 <a href="laporan-keuangan.html"
-                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    class="flex items-center px-4 py-3 text-slate-700 hover:bg-gray-100 hover:text-slate-900 rounded-xl transition-all group">
                     <i
                         class="fa-solid fa-file-invoice-dollar w-6 text-center group-hover:text-primary-400 transition-colors"></i>
                     <span class="ml-3 font-medium">Laporan Keuangan</span>
                 </a>
             </div>
 
-            <div class="mt-4 pt-4 border-t border-slate-700/50">
-                <p class="px-4 text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Sistem</p>
+            <div class="mt-4 pt-4 border-t border-gray-200">
+                <p class="px-4 text-xs font-bold text-slate-600 uppercase tracking-wider mb-2">Sistem</p>
                 <a href="manajemen-user.html"
-                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    class="flex items-center px-4 py-3 text-slate-700 hover:bg-gray-100 hover:text-slate-900 rounded-xl transition-all group">
                     <i
                         class="fa-solid fa-users-gear w-6 text-center group-hover:text-primary-400 transition-colors"></i>
                     <span class="ml-3 font-medium">Manajemen User</span>
                 </a>
                 <a href="pengaturan.html"
-                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    class="flex items-center px-4 py-3 text-slate-700 hover:bg-gray-100 hover:text-slate-900 rounded-xl transition-all group">
                     <i class="fa-solid fa-gear w-6 text-center group-hover:text-primary-400 transition-colors"></i>
                     <span class="ml-3 font-medium">Pengaturan</span>
                 </a>
@@ -163,8 +165,7 @@
         <header class="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-10">
             <div class="h-16 flex items-center justify-between px-8">
                 <div>
-                    <h1 class="text-2xl font-bold text-slate-800">Dashboard Owner</h1>
-                    <p class="text-sm text-slate-500">Halo, Apoteker Fazal! 👋</p>
+
                 </div>
                 <div class="flex items-center gap-4">
                     <button
@@ -187,11 +188,15 @@
 
         <!-- Dashboard Content -->
         <div class="p-8">
+            <div class="grid grid-cols-1 mb-8">
+                <h1 class="text-2xl font-bold text-slate-800">Dashboard Owner</h1>
+                <p class="text-sm text-slate-500">Halo, Apoteker Fazal! 👋</p>
+            </div>
             <!-- Stats Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                 <!-- Revenue Card -->
                 <div
-                    class="bg-gradient-to-br from-green-500 to-green-600 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all text-white transform hover:scale-105">
+                    class="bg-green-600 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all text-white transform hover:scale-105">
                     <div class="flex justify-between items-start mb-4">
                         <div
                             class="w-12 h-12 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center text-xl">
@@ -207,7 +212,7 @@
 
                 <!-- Transaction Card -->
                 <div
-                    class="bg-gradient-to-br from-blue-500 to-blue-600 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all text-white transform hover:scale-105">
+                    class="bg-blue-600 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all text-white transform hover:scale-105">
                     <div class="flex justify-between items-start mb-4">
                         <div
                             class="w-12 h-12 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center text-xl">
@@ -223,7 +228,7 @@
 
                 <!-- Profit Margin Card -->
                 <div
-                    class="bg-gradient-to-br from-purple-500 to-purple-600 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all text-white transform hover:scale-105">
+                    class="bg-purple-600 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all text-white transform hover:scale-105">
                     <div class="flex justify-between items-start mb-4">
                         <div
                             class="w-12 h-12 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center text-xl">
@@ -238,7 +243,7 @@
 
                 <!-- Inventory Card -->
                 <div
-                    class="bg-gradient-to-br from-teal-500 to-primary-600 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all text-white transform hover:scale-105">
+                    class="bg-primary-500 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all text-white transform hover:scale-105">
                     <div class="flex justify-between items-start mb-4">
                         <div
                             class="w-12 h-12 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center text-xl">
@@ -308,7 +313,7 @@
             </div>
 
             <!-- Quick Actions Panel -->
-            <div class="bg-gradient-to-r from-slate-800 to-slate-900 p-6 rounded-2xl shadow-xl mb-8">
+            <div class="bg-slate-900 p-6 rounded-2xl shadow-xl mb-8">
                 <div class="flex items-center justify-between mb-6">
                     <div>
                         <h3 class="font-bold text-xl text-white mb-1 flex items-center gap-2">
@@ -322,7 +327,7 @@
                     <a href="kasir.html"
                         class="bg-white/10 hover:bg-white/20 backdrop-blur-sm p-5 rounded-xl transition-all group text-center border border-white/10">
                         <div
-                            class="w-14 h-14 rounded-xl bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center text-2xl text-white mx-auto mb-3 group-hover:scale-110 transition shadow-lg">
+                            class="w-14 h-14 rounded-xl bg-primary-500 flex items-center justify-center text-2xl text-white mx-auto mb-3 group-hover:scale-110 transition shadow-lg">
                             <i class="fa-solid fa-cash-register"></i>
                         </div>
                         <p class="text-white font-semibold text-sm">Buka Kasir</p>
@@ -331,7 +336,7 @@
                     <a href="master-barang.html"
                         class="bg-white/10 hover:bg-white/20 backdrop-blur-sm p-5 rounded-xl transition-all group text-center border border-white/10">
                         <div
-                            class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-2xl text-white mx-auto mb-3 group-hover:scale-110 transition shadow-lg">
+                            class="w-14 h-14 rounded-xl bg-blue-600 flex items-center justify-center text-2xl text-white mx-auto mb-3 group-hover:scale-110 transition shadow-lg">
                             <i class="fa-solid fa-plus-circle"></i>
                         </div>
                         <p class="text-white font-semibold text-sm">Tambah Barang</p>
@@ -340,7 +345,7 @@
                     <a href="pembelian.html"
                         class="bg-white/10 hover:bg-white/20 backdrop-blur-sm p-5 rounded-xl transition-all group text-center border border-white/10">
                         <div
-                            class="w-14 h-14 rounded-xl bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center text-2xl text-white mx-auto mb-3 group-hover:scale-110 transition shadow-lg">
+                            class="w-14 h-14 rounded-xl bg-green-600 flex items-center justify-center text-2xl text-white mx-auto mb-3 group-hover:scale-110 transition shadow-lg">
                             <i class="fa-solid fa-truck-medical"></i>
                         </div>
                         <p class="text-white font-semibold text-sm">Order PBF</p>
@@ -349,7 +354,7 @@
                     <a href="laporan-keuangan.html"
                         class="bg-white/10 hover:bg-white/20 backdrop-blur-sm p-5 rounded-xl transition-all group text-center border border-white/10">
                         <div
-                            class="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center text-2xl text-white mx-auto mb-3 group-hover:scale-110 transition shadow-lg">
+                            class="w-14 h-14 rounded-xl bg-purple-600 flex items-center justify-center text-2xl text-white mx-auto mb-3 group-hover:scale-110 transition shadow-lg">
                             <i class="fa-solid fa-file-invoice-dollar"></i>
                         </div>
                         <p class="text-white font-semibold text-sm">Lihat Laporan</p>
@@ -373,7 +378,7 @@
                         </select>
                     </div>
                     <div
-                        class="h-72 bg-gradient-to-b from-primary-50 to-white rounded-xl border border-primary-100 relative overflow-hidden flex items-end justify-between px-6 pb-0 group">
+                        class="h-72 bg-primary-50 rounded-xl border border-primary-100 relative overflow-hidden flex items-end justify-between px-6 pb-0 group">
                         <div
                             class="w-1/12 bg-primary-200 h-[40%] rounded-t-lg mx-1 group-hover:bg-primary-300 transition-all">
                         </div>
@@ -419,8 +424,7 @@
                     </h3>
                     <div class="space-y-4">
                         <div class="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-50 transition">
-                            <div
-                                class="w-12 h-12 rounded-xl bg-gradient-to-br from-yellow-100 to-yellow-200 flex items-center justify-center text-2xl">
+                            <div class="w-12 h-12 rounded-xl bg-yellow-100 flex items-center justify-center text-2xl">
                                 💊
                             </div>
                             <div class="flex-1">
@@ -432,8 +436,7 @@
                             </div>
                         </div>
                         <div class="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-50 transition">
-                            <div
-                                class="w-12 h-12 rounded-xl bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center text-2xl">
+                            <div class="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center text-2xl">
                                 💊
                             </div>
                             <div class="flex-1">
@@ -445,8 +448,7 @@
                             </div>
                         </div>
                         <div class="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-50 transition">
-                            <div
-                                class="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-100 to-orange-200 flex items-center justify-center text-2xl">
+                            <div class="w-12 h-12 rounded-xl bg-orange-100 flex items-center justify-center text-2xl">
                                 🧴
                             </div>
                             <div class="flex-1">

@@ -4,15 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kasir / POS - ApoPlus+</title>
+    <title>Kasir / POS - Apotek Arrazi</title>
+    <link rel="icon" type="image/png" href="img/arrazi_logo_single.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        primary: { 50: '#f0fdfa', 100: '#ccfbf1', 400: '#2dd4bf', 500: '#14b8a6', 600: '#0d9488', 700: '#0f766e' },
-                        slate: { 850: '#1e293b', 900: '#0f172a' }
+                        primary: { 50: '#e6f7fa', 100: '#cceef5', 400: '#17a2b8', 500: '#17a2b8', 600: '#138a9e', 700: '#0f6b7a' },
+                        slate: { 850: '#666666', 900: '#5a5a5a' }
                     }
                 }
             }
@@ -35,7 +36,7 @@
                 <i class="fa-solid fa-mobile-screen text-red-600 text-4xl"></i>
             </div>
             <h1 class="text-2xl font-bold text-slate-800 mb-3">Perangkat Tidak Didukung</h1>
-            <p class="text-slate-600 mb-4">Sistem ApoPlus+ tidak mendukung tampilan portrait di perangkat mobile.</p>
+            <p class="text-slate-600 mb-4">Sistem Apotek Arrazi tidak mendukung tampilan portrait di perangkat mobile.</p>
             <p class="text-sm text-slate-500">Silakan buka menggunakan:</p>
             <div class="mt-4 space-y-2 text-sm text-slate-600">
                 <div class="flex items-center justify-center gap-2">
@@ -52,17 +53,16 @@
 
 
     <!-- Sidebar -->
-    <aside class="w-64 bg-slate-850 text-white flex flex-col shadow-xl z-20 shrink-0 hidden md:flex">
-        <div class="h-16 flex items-center px-6 border-b border-gray-700 bg-slate-900 shadow-md">
+    <aside class="w-64 bg-white text-black flex flex-col shadow-xl z-20 shrink-0 hidden md:flex">
+        <div class="h-16 flex items-center px-6 border-b border-gray-200 bg-white shadow-sm">
             <div class="flex items-center gap-2">
-                <i class="fa-solid fa-heart-pulse text-primary-500 text-xl"></i>
-                <span class="text-xl font-bold tracking-wide">Apo<span class="text-primary-400">Plus</span>+</span>
+                <img src="img/arrazi_logo_horizontal.png" alt="Apotek Arrazi" class="h-8">
             </div>
         </div>
 
         <nav class="flex-1 overflow-y-auto py-6 px-3 space-y-1">
             <a href="index.html"
-                class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                class="flex items-center px-4 py-3 text-slate-700 hover:bg-gray-100 hover:text-slate-900 rounded-xl transition-all group">
                 <i class="fa-solid fa-chart-pie w-6 text-center group-hover:text-primary-400 transition-colors"></i>
                 <span class="ml-3 font-medium">Dashboard</span>
             </a>
@@ -76,63 +76,63 @@
                 <span class="ml-3 font-semibold tracking-wide">Kasir / POS</span>
             </a>
 
-            <div class="mt-4 pt-4 border-t border-slate-700/50">
-                <p class="px-4 text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Inventori</p>
+            <div class="mt-4 pt-4 border-t border-gray-200">
+                <p class="px-4 text-xs font-bold text-slate-600 uppercase tracking-wider mb-2">Inventori</p>
                 <a href="master-barang.html"
-                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    class="flex items-center px-4 py-3 text-slate-700 hover:bg-gray-100 hover:text-slate-900 rounded-xl transition-all group">
                     <i
                         class="fa-solid fa-boxes-stacked w-6 text-center group-hover:text-primary-400 transition-colors"></i>
                     <span class="ml-3 font-medium">Master Barang</span>
                 </a>
                 <a href="stock-opname.html"
-                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    class="flex items-center px-4 py-3 text-slate-700 hover:bg-gray-100 hover:text-slate-900 rounded-xl transition-all group">
                     <i
                         class="fa-solid fa-clipboard-check w-6 text-center group-hover:text-primary-400 transition-colors"></i>
                     <span class="ml-3 font-medium">Stock Opname</span>
                 </a>
                 <a href="barang-expired.html"
-                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    class="flex items-center px-4 py-3 text-slate-700 hover:bg-gray-100 hover:text-slate-900 rounded-xl transition-all group">
                     <i
                         class="fa-solid fa-calendar-xmark w-6 text-center group-hover:text-primary-400 transition-colors"></i>
                     <span class="ml-3 font-medium">Barang Expired</span>
                 </a>
             </div>
 
-            <div class="mt-4 pt-4 border-t border-slate-700/50">
-                <p class="px-4 text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Transaksi</p>
+            <div class="mt-4 pt-4 border-t border-gray-200">
+                <p class="px-4 text-xs font-bold text-slate-600 uppercase tracking-wider mb-2">Transaksi</p>
                 <a href="pembelian.html"
-                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    class="flex items-center px-4 py-3 text-slate-700 hover:bg-gray-100 hover:text-slate-900 rounded-xl transition-all group">
                     <i
                         class="fa-solid fa-truck-medical w-6 text-center group-hover:text-primary-400 transition-colors"></i>
                     <span class="ml-3 font-medium">Pembelian (PBF)</span>
                 </a>
                 <a href="penjualan.html"
-                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    class="flex items-center px-4 py-3 text-slate-700 hover:bg-gray-100 hover:text-slate-900 rounded-xl transition-all group">
                     <i class="fa-solid fa-receipt w-6 text-center group-hover:text-primary-400 transition-colors"></i>
                     <span class="ml-3 font-medium">Data Penjualan</span>
                 </a>
             </div>
 
-            <div class="mt-4 pt-4 border-t border-slate-700/50">
-                <p class="px-4 text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Laporan</p>
+            <div class="mt-4 pt-4 border-t border-gray-200">
+                <p class="px-4 text-xs font-bold text-slate-600 uppercase tracking-wider mb-2">Laporan</p>
                 <a href="laporan-keuangan.html"
-                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    class="flex items-center px-4 py-3 text-slate-700 hover:bg-gray-100 hover:text-slate-900 rounded-xl transition-all group">
                     <i
                         class="fa-solid fa-file-invoice-dollar w-6 text-center group-hover:text-primary-400 transition-colors"></i>
                     <span class="ml-3 font-medium">Laporan Keuangan</span>
                 </a>
             </div>
 
-            <div class="mt-4 pt-4 border-t border-slate-700/50">
-                <p class="px-4 text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Sistem</p>
+            <div class="mt-4 pt-4 border-t border-gray-200">
+                <p class="px-4 text-xs font-bold text-slate-600 uppercase tracking-wider mb-2">Sistem</p>
                 <a href="manajemen-user.html"
-                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    class="flex items-center px-4 py-3 text-slate-700 hover:bg-gray-100 hover:text-slate-900 rounded-xl transition-all group">
                     <i
                         class="fa-solid fa-users-gear w-6 text-center group-hover:text-primary-400 transition-colors"></i>
                     <span class="ml-3 font-medium">Manajemen User</span>
                 </a>
                 <a href="pengaturan.html"
-                    class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    class="flex items-center px-4 py-3 text-slate-700 hover:bg-gray-100 hover:text-slate-900 rounded-xl transition-all group">
                     <i class="fa-solid fa-gear w-6 text-center group-hover:text-primary-400 transition-colors"></i>
                     <span class="ml-3 font-medium">Pengaturan</span>
                 </a>
@@ -171,7 +171,7 @@
                 <!-- Page Title -->
                 <div class="flex items-center gap-3 mb-2">
                     <span
-                        class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center text-white text-xl shadow-lg">
+                        class="w-10 h-10 rounded-xl bg-primary-500 flex items-center justify-center text-white text-xl shadow-lg">
                         <i class="fa-solid fa-cash-register"></i>
                     </span>
                     <div>
@@ -275,8 +275,7 @@
                 </div>
 
                 <!-- Payment Summary -->
-                <div
-                    class="bg-gradient-to-br from-slate-800 to-slate-900 p-6 rounded-2xl shadow-xl text-white shrink-0">
+                <div class="bg-slate-900 p-6 rounded-2xl shadow-xl text-white shrink-0">
                     <h3 class="font-bold text-lg mb-1">Ringkasan Pembayaran</h3>
                     <p class="text-slate-300 text-xs mb-4">Detail total tagihan</p>
 
@@ -325,7 +324,7 @@
                         </div>
 
                         <button
-                            class="w-full bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-xl transition transform hover:scale-105 flex items-center justify-center gap-2 text-lg">
+                            class="w-full bg-primary-500 hover:bg-primary-600 text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-xl transition transform hover:scale-105 flex items-center justify-center gap-2 text-lg">
                             <i class="fa-solid fa-check-circle"></i>
                             Proses Pembayaran
                         </button>
