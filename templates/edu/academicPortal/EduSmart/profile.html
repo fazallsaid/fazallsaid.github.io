@@ -20,7 +20,7 @@
 
     <!-- Mobile Header (Simplified) -->
     <div
-        class="md:hidden flex items-center justify-between p-4 bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100">
+        class="lg:hidden flex items-center justify-between p-4 bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100">
         <div class="font-bold text-indigo-600 text-lg flex items-center gap-2">
             <i class="fas fa-graduation-cap"></i> EduSmart
         </div>
@@ -36,7 +36,7 @@
 
     <div class="flex min-h-screen">
 
-        <aside class="hidden md:flex flex-col w-64 bg-white border-r border-slate-200 fixed h-full z-10 transition-all">
+        <aside class="hidden lg:flex flex-col w-64 bg-white border-r border-slate-200 fixed h-full z-10 transition-all">
             <div class="p-6 flex items-center">
                 <i class="fas fa-graduation-cap text-3xl text-indigo-600 mr-3"></i>
                 <span class="font-bold text-xl tracking-tight text-slate-800">EduSmart</span>
@@ -74,9 +74,9 @@
             </div>
         </aside>
 
-        <main class="flex-1 md:ml-64 p-4 md:p-8 pb-24 md:pb-8">
+        <main class="flex-1 lg:ml-64 p-4 md:p-8 pb-24 lg:pb-8">
 
-            <header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+            <header class="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8 gap-4">
                 <div>
                     <h1 class="text-2xl font-bold text-slate-800">Profil Siswa 👤</h1>
                     <p class="text-slate-500 text-sm mt-1">Kelola informasi pribadi anda</p>
@@ -231,7 +231,7 @@
     </div>
     <!-- Mobile Bottom Navigation -->
     <div
-        class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 z-50 px-6 py-3 flex justify-between items-center shadow-[0_-5px_15px_rgba(0,0,0,0.05)]">
+        class="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 z-50 px-6 py-3 flex justify-between items-center shadow-[0_-5px_15px_rgba(0,0,0,0.05)]">
         <a href="index.html" class="flex flex-col items-center gap-1 text-slate-400 hover:text-indigo-600 transition">
             <i class="fas fa-th-large text-xl"></i>
             <span class="text-[10px] font-medium">Home</span>
@@ -257,6 +257,99 @@
         </a>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // Logout Logic
+        function handleLogout() {
+            Swal.fire({
+                title: 'Apakah anda yakin?',
+                text: "Anda akan keluar dari sesi ini.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#4f46e5',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Keluar!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: 'Logging out...',
+                        timer: 1000,
+                        didOpen: () => {
+                            Swal.showLoading();
+                        }
+                    }).then(() => {
+                        window.location.href = 'login.html';
+                    });
+                }
+            });
+        }
+
+        document.querySelectorAll('a, button').forEach(el => {
+            if (el.textContent.includes('Keluar') || el.textContent.includes('Logout')) {
+                el.onclick = (e) => {
+                    e.preventDefault();
+                    handleLogout();
+                };
+            }
+        });
+
+        // Save Profile Logic
+        const forms = document.querySelectorAll('form'); // Assuming profile edits are in forms, or we target buttons
+        // If there are no forms, target buttons explicitly.
+
+        const saveButtons = Array.from(document.querySelectorAll('button')).filter(b => b.textContent.includes('Simpan') || b.textContent.includes('Update'));
+
+        saveButtons.forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                Swal.fire({
+                    title: 'Menyimpan Perubahan...',
+                    timer: 1500,
+                    didOpen: () => Swal.showLoading()
+                }).then(() => {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil!',
+                        text: 'Profil anda telah diperbarui.',
+                        confirmButtonColor: '#4f46e5'
+                    });
+                });
+            });
+        });
+
+        // Avatar Upload Logic
+        const avatarContainer = document.querySelector('.group.cursor-pointer');
+        if (avatarContainer) {
+            avatarContainer.addEventListener('click', function () {
+                Swal.fire({
+                    title: 'Ubah Foto Profil',
+                    text: 'Pilih foto dari galeri anda',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'Pilih Foto',
+                    confirmButtonColor: '#4f46e5'
+                }).then((res) => {
+                    if (res.isConfirmed) {
+                        Swal.fire({
+                            title: 'Mengunggah...',
+                            timer: 2000,
+                            didOpen: () => Swal.showLoading()
+                        }).then(() => {
+                            Swal.fire('Sukses', 'Foto profil berhasil diganti', 'success');
+                        });
+                    }
+                });
+            });
+        }
+
+        // Bell
+        document.querySelectorAll('button i.fa-bell').forEach(icon => {
+            icon.parentElement.addEventListener('click', () => {
+                Swal.fire('Notifikasi', 'Tidak ada notifikasi baru.', 'info');
+            });
+        });
+    </script>
 </body>
 
 </html>

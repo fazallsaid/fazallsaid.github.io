@@ -20,7 +20,7 @@
 
     <!-- Mobile Header (Simplified) -->
     <div
-        class="md:hidden flex items-center justify-between p-4 bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100">
+        class="lg:hidden flex items-center justify-between p-4 bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100">
         <div class="font-bold text-indigo-600 text-lg flex items-center gap-2">
             <i class="fas fa-graduation-cap"></i> EduSmart
         </div>
@@ -36,7 +36,7 @@
 
     <div class="flex min-h-screen">
 
-        <aside class="hidden md:flex flex-col w-64 bg-white border-r border-slate-200 fixed h-full z-10">
+        <aside class="hidden lg:flex flex-col w-64 bg-white border-r border-slate-200 fixed h-full z-10">
             <div class="p-6 flex items-center">
                 <i class="fas fa-graduation-cap text-3xl text-indigo-600 mr-3"></i>
                 <span class="font-bold text-xl tracking-tight text-slate-800">EduSmart</span>
@@ -74,9 +74,9 @@
             </div>
         </aside>
 
-        <main class="flex-1 md:ml-64 p-4 md:p-8 pb-24 md:pb-8">
+        <main class="flex-1 lg:ml-64 p-4 md:p-8 pb-24 lg:pb-8">
 
-            <header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+            <header class="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8 gap-4">
                 <div>
                     <h1 class="text-2xl font-bold text-slate-800">Tagihan & Pembayaran 💸</h1>
                     <p class="text-slate-500 text-sm mt-1">Status Keuangan Anda Aman</p>
@@ -256,7 +256,7 @@
     </div>
     <!-- Mobile Bottom Navigation -->
     <div
-        class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 z-50 px-6 py-3 flex justify-between items-center shadow-[0_-5px_15px_rgba(0,0,0,0.05)]">
+        class="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 z-50 px-6 py-3 flex justify-between items-center shadow-[0_-5px_15px_rgba(0,0,0,0.05)]">
         <a href="index.html" class="flex flex-col items-center gap-1 text-slate-400 hover:text-indigo-600 transition">
             <i class="fas fa-th-large text-xl"></i>
             <span class="text-[10px] font-medium">Home</span>
@@ -282,6 +282,97 @@
         </a>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // Logout Logic
+        function handleLogout() {
+            Swal.fire({
+                title: 'Apakah anda yakin?',
+                text: "Anda akan keluar dari sesi ini.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#4f46e5',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Keluar!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: 'Logging out...',
+                        timer: 1000,
+                        didOpen: () => {
+                            Swal.showLoading();
+                        }
+                    }).then(() => {
+                        window.location.href = 'login.html';
+                    });
+                }
+            });
+        }
+
+        document.querySelectorAll('a, button').forEach(el => {
+            if (el.textContent.includes('Keluar') || el.textContent.includes('Logout')) {
+                el.onclick = (e) => {
+                    e.preventDefault();
+                    handleLogout();
+                };
+            }
+        });
+
+        // Pay Button Logic
+        document.querySelectorAll('button').forEach(btn => {
+            if (btn.textContent.includes('Bayar') || btn.querySelector('.fa-credit-card')) {
+                btn.addEventListener('click', function (e) {
+                    e.stopPropagation(); // prevent bubbling if needed
+                    Swal.fire({
+                        title: 'Inisialisasi Pembayaran',
+                        text: 'Dialihkan ke Payment Gateway...',
+                        icon: 'info',
+                        timer: 2000,
+                        timerProgressBar: true,
+                        didOpen: () => Swal.showLoading()
+                    }).then(() => {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Pembayaran Berhasil!',
+                            text: 'Terima kasih telah melakukan pembayaran.',
+                            confirmButtonColor: '#4f46e5'
+                        });
+                    });
+                });
+            }
+        });
+
+        // Download Invoice Logic
+        document.querySelectorAll('button i.fa-download').forEach(icon => {
+            icon.parentElement.addEventListener('click', function () {
+                Swal.fire({
+                    title: 'Mengunduh Invoice...',
+                    timer: 1500,
+                    didOpen: () => Swal.showLoading()
+                }).then(() => {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true
+                    })
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'Invoice berhasil diunduh'
+                    })
+                });
+            });
+        });
+
+        // Bell
+        document.querySelectorAll('button i.fa-bell').forEach(icon => {
+            icon.parentElement.addEventListener('click', () => {
+                Swal.fire('Notifikasi', 'Tidak ada notifikasi baru.', 'info');
+            });
+        });
+    </script>
 </body>
 
 </html>
