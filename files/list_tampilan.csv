@@ -1,0 +1,109 @@
+Kategori Web,Sub Kategori Web,Nama Web
+Corporate & Professional,Construction / Kontraktor,BangunMegah
+Corporate & Professional,Creative Agency / Digital Marketing,IdeLiar
+Corporate & Professional,Law Firm / Konsultan Hukum,HukumTegak
+Corporate & Professional,Business Consultant,SolusiBisnis
+Corporate & Professional,Arsitek / Desain Bangunan,ArsiVisi
+Corporate & Professional,Accounting / Keuangan,HitungPasti
+Retail & E-Commerce,Fashion Brand,OOTDStyle
+Retail & E-Commerce,Gadget / Elektronik,TechnoGadget
+Retail & E-Commerce,Furniture / Interior,EstetikaRuang
+Retail & E-Commerce,Toko Mainan,DuniaMainan
+Retail & E-Commerce,Toko Sembako Online,BelanjaHarian
+Retail & E-Commerce,Toko Perhiasan,KilauPermata
+Health & Beauty,Klinik Kecantikan / Skincare,GlowUpClinic
+Health & Beauty,Gym / Fitness Center,IronBodyGym
+Health & Beauty,Apotek Online,SehatCepat
+Health & Beauty,Klinik Gigi,GigiPutih
+Health & Beauty,Studio Yoga / Pilates,JiwaTenang
+Health & Beauty,Rumah Sakit / Klinik 24 Jam,RumahSehat
+Education & Organization,Sistem Informasi Sekolah,SekolahPintar
+Education & Organization,Course Online / LMS,AkademiDigital
+Education & Organization,Situs Donasi / Yayasan,BerbagiKasih
+Education & Organization,Perpustakaan Digital,PustakaMaya
+Education & Organization,Coding Bootcamp,KodeMaster
+Education & Organization,TK / PAUD,TamanCeria
+Hospitality & Travel,Hotel / Villa Booking,StayEase
+Hospitality & Travel,Paket Wisata / Tour Agent,JelajahDunia
+Hospitality & Travel,Tiket Pesawat / Kereta,TiketLibur
+Hospitality & Travel,Resort & Spa,SurgaTropis
+Hospitality & Travel,Sewa Mobil Travel,JalanSantai
+Hospitality & Travel,Jasa Visa / Paspor,PasporKilat
+Layanan (Services),Jasa Rental Mobil,OtoSewa
+Layanan (Services),Sewa Buku / Komik,BukuKita
+Layanan (Services),Laundry Kiloan/Sepatu,CuciKilat
+Layanan (Services),Jasa Tukang/Reparasi AC,TukangAhli
+Layanan (Services),Jasa Kebersihan Rumah,RumahResik
+Layanan (Services),Jasa Pindahan,PindahLancar
+F&B,Website UMKM Angkringan,AngkringanGaul
+F&B,Web Kasir Kafe (POS),PosKafe
+F&B,Catering Harian,DapurBunda
+F&B,Frozen Food Store,BekuMart
+F&B,Toko Roti / Kue,RotikuEnak
+F&B,Coffee Shop,KopiSenja
+Event & Entertainment,Website Konser / Event,TiketSultan
+Event & Entertainment,Fotografer / Videografer,LensaAjaib
+Event & Entertainment,Event Organizer,MeriahAcara
+Event & Entertainment,Jadwal Bioskop / Review Film,LayarKaca
+Event & Entertainment,Music Streaming Platform,NadaKita
+Event & Entertainment,Portal Berita Game,ZonaGamer
+Technology,Software as a Service,RocketLaunch
+Technology,Web Hosting Provider,AwanCepat
+Technology,Jasa Pembuatan Aplikasi,KodeKreatif
+Technology,Portal Berita Teknologi,BeritaTekno
+Technology,Aplikasi Mobile Showcase,AplikasiJuara
+Technology,Cyber Security Services,PerisaiDigital
+Automotive,Showroom Mobil / Motor,MobilImpian
+Automotive,Bengkel Mobil / Motor,BengkelPrima
+Automotive,Jasa Cuci Kendaraan,CuciKilap
+Automotive,Toko Sparepart,SukuCadangAsli
+Automotive,Sewa Motor,MotorJalan
+Automotive,Klub Modifikasi,ModifKeren
+Real Estate,Property Agent / Jual Rumah,RumahIdaman
+Real Estate,Sewa Ruang Kerja,RuangKerja
+Real Estate,Sewa / Jual Apartemen,ApartemenMewah
+Real Estate,Info Kost,InfoKost
+Real Estate,Jual Beli Tanah,TanahEmas
+Real Estate,Jasa Desain Interior,DesainInterior
+Wedding,Undangan Pernikahan Digital,JanjiSuci
+Wedding,Jasa WO,PelaminanIndah
+Wedding,Foto Prewedding / Wedding,MomenBahagia
+Wedding,Toko Souvenir,KenanganManis
+Wedding,Catering Pernikahan,RasaPesta
+Wedding,Sewa Gaun Pengantin,GaunImpian
+Religion,Website Masjid / Islam,InfoUmat
+Religion,Website Gereja / Kristen,CahayaKasih
+Religion,Lembaga Zakat / Sedekah,SedekahBerkah
+Religion,Komunitas Keagamaan,KomunitasIman
+Religion,Belajar Quran Online,QuranDigital
+Religion,Kalender Kegiatan Agama,AgendaUmat
+Fashion & Lifestyle,Toko Sneakers,SepatuKeren
+Fashion & Lifestyle,Thrift Shop,BajuBekasMewah
+Fashion & Lifestyle,Batik & Kain Nusantara,WarisanBatik
+Fashion & Lifestyle,Toko Kacamata,KacamataGaya
+Fashion & Lifestyle,Jam Tangan Mewah,WaktuMewah
+Fashion & Lifestyle,Brand Streetwear Lokal,GayaJalanan
+Hobbies & Interest,Toko Tanaman Hias,KebunHijau
+Hobbies & Interest,Perlengkapan Memancing,PancingMania
+Hobbies & Interest,Perlengkapan Hiking / Camping,JejakPetualang
+Hobbies & Interest,Toko Sepeda & Aksesoris,GowesSehat
+Hobbies & Interest,Blog Resep Masakan,ResepLezat
+Hobbies & Interest,Galeri Lukisan / Seni,KanvasWarna
+Pet & Animals,Toko Makanan Hewan,DuniaHewan
+Pet & Animals,Dokter Hewan / Klinik,DokterHewanKu
+Pet & Animals,Pusat Adopsi Hewan,AdopsiTeman
+Pet & Animals,Salon Hewan (Grooming),SalonHewan
+Pet & Animals,Penitipan Hewan,HotelKucing
+Pet & Animals,Ikan Hias / Aquascape,DuniaAir
+News & Magazine,Portal Berita Nasional,BeritaTerkini
+News & Magazine,Berita Olahraga,KabarOlahraga
+News & Magazine,Berita Politik & Hukum,SuaraRakyat
+News & Magazine,Majalah Gaya Hidup,GayaHidup
+News & Magazine,Berita Ekonomi & Bisnis,WartaBisnis
+News & Magazine,Info Viral & Trending,GosipViral
+Community & Social,Forum Diskusi Online,RuangBicara
+Community & Social,Ikatan Alumni Sekolah/Kampus,JejakAlumni
+Community & Social,Komunitas Relawan,AksiNyata
+Community & Social,Aplikasi Kencan Online,JodohPasti
+Community & Social,Komunitas Orang Tua,DuniaParenting
+Community & Social,Komunitas Lingkungan,BumiHijau

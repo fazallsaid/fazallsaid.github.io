@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IdeLiar - Creative Agency & Digital Marketing</title>
+    <meta name="description"
+        content="IdeLiar - Agensi kreatif paling liar dan berani. Neo-Brutalism design for bold brands.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Archivo+Black&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'neo-black': '#000000',
+                        'neo-white': '#fffff0',
+                        'neo-pink': '#FF00FF',
+                        'neo-green': '#CCFF00',
+                        'neo-cyan': '#00FFFF',
+                    },
+                    fontFamily: {
+                        'mono': ['"Space Mono"', 'monospace'],
+                        'display': ['"Archivo Black"', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'hard': '8px 8px 0px 0px #000000',
+                        'hard-hover': '4px 4px 0px 0px #000000',
+                        'hard-reverse': '-8px 8px 0px 0px #000000',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 15s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        @keyframes glitch {
+            0% {
+                transform: translate(0)
+            }
+
+            20% {
+                transform: translate(-2px, 2px)
+            }
+
+            40% {
+                transform: translate(-2px, -2px)
+            }
+
+            60% {
+                transform: translate(2px, 2px)
+            }
+
+            80% {
+                transform: translate(2px, -2px)
+            }
+
+            100% {
+                transform: translate(0)
+            }
+        }
+
+        .glitch-hover:hover {
+            animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+            color: #FF00FF;
+        }
+
+        .text-outline {
+            -webkit-text-stroke: 2px black;
+            color: transparent;
+        }
+
+        .text-outline:hover {
+            color: #CCFF00;
+        }
+
+        /* Grid background pattern */
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image:
+                linear-gradient(to right, rgba(0, 0, 0, 0.1) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+        }
+    </style>
+</head>
+
+<body class="bg-neo-white text-neo-black font-mono selection:bg-neo-pink selection:text-white">
+
+    <!-- Marquee Top -->
+    <div class="bg-neo-black text-neo-green py-2 border-b-4 border-black overflow-hidden relative">
+        <div class="marquee-container flex">
+            <div class="marquee-content font-bold text-lg uppercase tracking-widest px-4">
+                ⚠️ PERINGATAN: KAMI MENCIPTAKAN KEKACAUAN KREATIF • WE BREAK THE RULES • IDE LIAR AGENCY • JANGAN NORMAL
+                • BE BOLD OR BE GONE • ⚠️ PERINGATAN: KAMI MENCIPTAKAN KEKACAUAN KREATIF • WE BREAK THE RULES • IDE LIAR
+                AGENCY • JANGAN NORMAL • BE BOLD OR BE GONE •
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="border-b-4 border-black bg-white sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#" class="text-3xl font-display uppercase tracking-tighter hover:text-neo-pink transition-colors">
+                IDE<span class="text-stroke text-neo-green text-outline">LIAR</span>
+            </a>
+            <div class="hidden md:flex gap-8 font-bold text-lg">
+                <a href="#about" class="hover:underline decoration-4 decoration-neo-pink underline-offset-4">SIAPA
+                    KAMI?</a>
+                <a href="#services"
+                    class="hover:underline decoration-4 decoration-neo-green underline-offset-4">LAYANAN</a>
+                <a href="#portfolio" class="hover:underline decoration-4 decoration-neo-cyan underline-offset-4">KARYA
+                    LIAR</a>
+                <a href="#contact"
+                    class="bg-neo-black text-neo-white px-6 py-2 shadow-hard hover:shadow-hard-hover hover:translate-x-[4px] hover:translate-y-[4px] transition-all border-2 border-transparent hover:border-black hover:bg-neo-green hover:text-black">
+                    BIKIN PROYEK
+                </a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden p-2 border-2 border-black shadow-hard hover:shadow-none transition-all"
+                onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="3"
+                        d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="hidden border-t-4 border-black bg-neo-green p-4 md:hidden absolute w-full left-0 z-40">
+            <div class="flex flex-col gap-4 font-bold text-xl text-center">
+                <a href="#about" class="hover:bg-black hover:text-white py-2 border-2 border-black shadow-hard">SIAPA
+                    KAMI?</a>
+                <a href="#services"
+                    class="hover:bg-black hover:text-white py-2 border-2 border-black shadow-hard">LAYANAN</a>
+                <a href="#portfolio"
+                    class="hover:bg-black hover:text-white py-2 border-2 border-black shadow-hard">KARYA LIAR</a>
+                <a href="#contact"
+                    class="bg-black text-white hover:bg-white hover:text-black py-2 border-2 border-black shadow-hard">BIKIN
+                    PROYEK</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+        class="relative min-h-screen flex items-center justify-center border-b-4 border-black bg-grid overflow-hidden">
+        <!-- Floating Elements -->
+        <div class="absolute top-20 left-10 w-32 h-32 bg-neo-pink border-4 border-black shadow-hard rotate-12 z-0 hidden lg:block animate-bounce"
+            style="animation-duration: 3s;"></div>
+        <div
+            class="absolute bottom-20 right-10 w-48 h-48 bg-neo-cyan rounded-full border-4 border-black shadow-hard-reverse -rotate-6 z-0 hidden lg:block animate-pulse">
+        </div>
+
+        <div class="container mx-auto px-4 relative z-10 grid md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-8">
+                <div
+                    class="inline-block bg-neo-green border-4 border-black px-4 py-1 font-bold transform -rotate-2 shadow-hard">
+                    AGENCY KREATIF NO. 1 DI GALAXY LAIN
+                </div>
+                <h1 class="text-6xl md:text-8xl font-display leading-[0.9] uppercase">
+                    KAMI <br>
+                    <span class="text-neo-pink glitch-hover">TIDAK</span> <br>
+                    NORMAL.
+                </h1>
+                <p
+                    class="text-xl md:text-2xl font-bold border-l-8 border-neo-cyan pl-6 bg-white/50 backdrop-blur-sm p-4 max-w-lg">
+                    IdeLiar menolak desain membosankan. Kami membuat brand Anda berteriak, menendang, dan menjadi pusat
+                    perhatian.
+                </p>
+                <div class="flex flex-wrap gap-6 pt-4">
+                    <a href="#portfolio"
+                        class="bg-neo-black text-neo-white text-xl font-bold px-8 py-4 border-4 border-black shadow-hard hover:shadow-hard-hover hover:translate-x-[4px] hover:translate-y-[4px] hover:bg-neo-pink hover:text-black transition-all">
+                        LIHAT KEKACAUAN
+                    </a>
+                    <a href="#contact"
+                        class="bg-white text-black text-xl font-bold px-8 py-4 border-4 border-black shadow-hard hover:shadow-hard-hover hover:translate-x-[4px] hover:translate-y-[4px] hover:bg-neo-green transition-all">
+                        KONSULTASI GRATIS
+                    </a>
+                </div>
+            </div>
+            <div class="relative group">
+                <div class="absolute inset-0 bg-neo-black translate-x-4 translate-y-4 border-4 border-black"></div>
+                <img src="hero-bg.png" alt="Creative Chaos"
+                    class="relative z-10 border-4 border-black w-full h-[500px] object-cover grayscale group-hover:grayscale-0 transition-all duration-300">
+                <!-- Sticker -->
+                <div
+                    class="absolute -bottom-10 -left-10 bg-neo-pink text-white font-display text-4xl p-6 border-4 border-black rounded-full shadow-hard rotate-12 z-20">
+                    WOW!
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 border-b-4 border-black bg-neo-pink">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+                <h2
+                    class="text-5xl md:text-7xl font-display uppercase bg-white border-4 border-black p-4 shadow-hard inline-block transform -rotate-1">
+                    LAYANAN<br>KAMI
+                </h2>
+                <p class="text-xl font-bold bg-neo-black text-white p-4 border-4 border-white shadow-hard max-w-md">
+                    Apa yang bisa kami hancurkan (re: kembangkan) untuk bisnis Anda?
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div
+                    class="bg-white border-4 border-black p-8 shadow-hard hover:shadow-hard-hover hover:translate-x-[4px] hover:translate-y-[4px] transition-all group">
+                    <div class="text-6xl mb-6 group-hover:animate-bounce">🧠</div>
+                    <h3 class="text-3xl font-display mb-4 uppercase group-hover:text-neo-pink transition-colors">
+                        Branding Liar</h3>
+                    <p class="mb-6 font-bold">Logo, identitas visual, dan strategi brand yang bikin kompetitor nangis
+                        dipojokan.</p>
+                    <ul class="list-disc list-inside space-y-2 font-bold text-sm text-gray-600">
+                        <li>Logo Design</li>
+                        <li>Brand Guidelines</li>
+                        <li>Naming Strategy</li>
+                    </ul>
+                </div>
+
+                <!-- Service 2 -->
+                <div
+                    class="bg-neo-cyan border-4 border-black p-8 shadow-hard hover:shadow-hard-hover hover:translate-x-[4px] hover:translate-y-[4px] transition-all group">
+                    <div class="text-6xl mb-6 group-hover:animate-spin">💻</div>
+                    <h3 class="text-3xl font-display mb-4 uppercase group-hover:text-white transition-colors">Web Brutal
+                    </h3>
+                    <p class="mb-6 font-bold">Website developer dengan desain out of the box. UI/UX yang tidak
+                        membosankan.</p>
+                    <ul class="list-disc list-inside space-y-2 font-bold text-sm text-gray-800">
+                        <li>Custom Website</li>
+                        <li>Landing Pages</li>
+                        <li>E-Commerce</li>
+                    </ul>
+                </div>
+
+                <!-- Service 3 -->
+                <div
+                    class="bg-neo-green border-4 border-black p-8 shadow-hard hover:shadow-hard-hover hover:translate-x-[4px] hover:translate-y-[4px] transition-all group">
+                    <div class="text-6xl mb-6 group-hover:animate-pulse">📣</div>
+                    <h3 class="text-3xl font-display mb-4 uppercase group-hover:text-neo-pink transition-colors">Sosmed
+                        Gila</h3>
+                    <p class="mb-6 font-bold">Pemasaran digital dan konten sosial media yang viral dan engaging.</p>
+                    <ul class="list-disc list-inside space-y-2 font-bold text-sm text-gray-800">
+                        <li>Content Creation</li>
+                        <li>Ads Management</li>
+                        <li>Copywriting</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 border-b-4 border-black bg-grid">
+        <div class="container mx-auto px-4">
+            <h2 class="text-6xl md:text-8xl font-display text-center mb-16 uppercase text-outline drop-shadow-[5px_5px_0px_rgba(0,0,0,1)] text-white"
+                style="-webkit-text-stroke: 3px black;">
+                KARYA TERBARU
+            </h2>
+
+            <!-- Masonry Gridish Layout -->
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Project 1 -->
+                <div class="group relative">
+                    <a href="#"
+                        class="block border-4 border-black bg-white shadow-hard hover:shadow-hard-hover hover:translate-x-[4px] hover:translate-y-[4px] transition-all overflow-hidden">
+                        <div class="aspect-video bg-gray-300 relative overflow-hidden">
+                            <img src="https://source.unsplash.com/random/800x600?neon" alt="Project 1"
+                                class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 transform group-hover:scale-110">
+                            <div
+                                class="absolute inset-0 bg-neo-pink mix-blend-multiply opacity-0 group-hover:opacity-20 transition-opacity">
+                            </div>
+                        </div>
+                        <div class="p-6 border-t-4 border-black bg-white relative">
+                            <h3 class="text-3xl font-display uppercase">Revolusi Kopi</h3>
+                            <p class="font-bold text-neo-pink">BRANDING & PACKAGING</p>
+                            <div
+                                class="absolute -top-6 right-6 bg-neo-green border-4 border-black px-4 py-2 font-bold transform rotate-3 shadow-hard">
+                                2024
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="group relative md:mt-20">
+                    <a href="#"
+                        class="block border-4 border-black bg-neo-black text-white shadow-hard hover:shadow-hard-hover hover:translate-x-[4px] hover:translate-y-[4px] transition-all overflow-hidden">
+                        <div class="aspect-video bg-gray-800 relative overflow-hidden">
+                            <img src="https://source.unsplash.com/random/800x600?streetwear" alt="Project 2"
+                                class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 transform group-hover:scale-110">
+                        </div>
+                        <div class="p-6 border-t-4 border-white bg-neo-black relative">
+                            <h3 class="text-3xl font-display uppercase">Urban Hype</h3>
+                            <p class="font-bold text-neo-cyan">WEB DESIGN</p>
+                            <div
+                                class="absolute -top-6 right-6 bg-neo-pink text-black border-4 border-black px-4 py-2 font-bold transform -rotate-2 shadow-hard">
+                                BEST SELLER
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="group relative">
+                    <a href="#"
+                        class="block border-4 border-black bg-neo-green shadow-hard hover:shadow-hard-hover hover:translate-x-[4px] hover:translate-y-[4px] transition-all overflow-hidden">
+                        <div class="aspect-video bg-gray-300 relative overflow-hidden">
+                            <img src="https://source.unsplash.com/random/800x600?festival" alt="Project 3"
+                                class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 transform group-hover:scale-110">
+                        </div>
+                        <div class="p-6 border-t-4 border-black bg-neo-green relative">
+                            <h3 class="text-3xl font-display uppercase">Music Fest '24</h3>
+                            <p class="font-bold text-black">EVENT IDENTITY</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Project 4 (Text only) -->
+                <div
+                    class="flex items-center justify-center p-12 border-4 border-black bg-neo-cyan shadow-hard hover:shadow-hard-hover hover:translate-x-[4px] hover:translate-y-[4px] transition-all cursor-pointer group">
+                    <div class="text-center group-hover:scale-110 transition-transform">
+                        <h3 class="text-5xl font-display uppercase mb-4">LIHAT SEMUA<br>PORTFOLIO</h3>
+                        <span class="text-6xl">👉</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials / Quote -->
+    <section class="py-20 border-b-4 border-black bg-white">
+        <div class="container mx-auto px-4 text-center">
+            <div class="text-6xl text-neo-pink mb-4">❝</div>
+            <h2 class="text-3xl md:text-5xl font-display leading-tight max-w-4xl mx-auto uppercase">
+                "Kerja sama IdeLiar itu kayak naik roller coaster tanpa sabuk pengaman. Menegangkan, tapi hasilnya <span
+                    class="bg-neo-green px-2 text-black">LUAR BIASA GILA.</span>"
+            </h2>
+            <div class="mt-8 flex items-center justify-center gap-4">
+                <div class="w-16 h-16 bg-gray-300 rounded-full border-4 border-black overflow-hidden">
+                    <img src="https://source.unsplash.com/random/100x100?person" class="w-full h-full object-cover">
+                </div>
+                <div class="text-left">
+                    <div class="font-bold text-xl">CEO Startup Unicorn</div>
+                    <div class="text-neo-pink font-bold">@TechGiant_CEO</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA / Footer -->
+    <section id="contact" class="bg-neo-black text-neo-white border-b-4 border-black py-20 relative overflow-hidden">
+        <!-- Abstract shapes -->
+        <div class="absolute top-0 right-0 w-64 h-64 bg-neo-pink rounded-full blur-[100px] opacity-20"></div>
+        <div class="absolute bottom-0 left-0 w-64 h-64 bg-neo-green rounded-full blur-[100px] opacity-20"></div>
+
+        <div class="container mx-auto px-4 text-center relative z-10">
+            <h2 class="text-6xl md:text-9xl font-display mb-8 uppercase hover:text-outline transition-all duration-300">
+                KENA MENTAL?
+            </h2>
+            <p class="text-2xl font-mono mb-12 max-w-2xl mx-auto">
+                Jangan takut. Kami siap diskusi santai sambil ngopi (atau energy drink). Yuk mulai proyek gila kamu
+                sekarang.
+            </p>
+            <a href="mailto:halo@ideliar.com"
+                class="inline-block bg-neo-green text-black text-2xl md:text-4xl font-display px-12 py-6 border-4 border-white hover:bg-white hover:border-neo-green hover:text-neo-green shadow-[10px_10px_0px_0px_#ffffff] hover:shadow-none hover:translate-x-[10px] hover:translate-y-[10px] transition-all uppercase mb-16">
+                MULAI SEKARANG ->
+            </a>
+
+            <div class="grid md:grid-cols-4 gap-8 text-left border-t-2 border-white/20 pt-12">
+                <div>
+                    <h4 class="font-bold text-neo-pink mb-4 text-xl">MARKAS BESAR</h4>
+                    <p class="font-mono text-sm leading-relaxed">
+                        Jl. Kreativitas Tanpa Batas No. 99<br>
+                        Jakarta Selatan, 12345<br>
+                        DKI Jakarta - Indonesia
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-neo-cyan mb-4 text-xl">HUBUNGI KAMI</h4>
+                    <p class="font-mono text-sm leading-relaxed">
+                        halo@ideliar.com<br>
+                        +62 812 3456 7890<br>
+                        @ideliar.agency
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-neo-green mb-4 text-xl">LEGAL STUFF</h4>
+                    <ul class="font-mono text-sm space-y-2">
+                        <li><a href="#" class="hover:underline decoration-neo-green">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:underline decoration-neo-green">Terms of Chaos</a></li>
+                        <li><a href="#" class="hover:underline decoration-neo-green">Disclaimer</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-xl">FOLLOW US</h4>
+                    <div class="flex gap-4">
+                        <a href="#"
+                            class="w-12 h-12 border-2 border-white flex items-center justify-center hover:bg-white hover:text-black transition-colors font-bold text-xl">IG</a>
+                        <a href="#"
+                            class="w-12 h-12 border-2 border-white flex items-center justify-center hover:bg-neo-cyan hover:text-black hover:border-neo-cyan transition-colors font-bold text-xl">TW</a>
+                        <a href="#"
+                            class="w-12 h-12 border-2 border-white flex items-center justify-center hover:bg-neo-pink hover:text-black hover:border-neo-pink transition-colors font-bold text-xl">LI</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center font-mono text-sm text-gray-500">
+                &copy; 2024 IdeLiar Creative Agency. Made with 💥 by Fazal.
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Simple cursor follower or glitch effect can be added here
+        document.addEventListener('mousemove', (e) => {
+            // Optional: Custom cursor implementation if desired
+        });
+    </script>
+</body>
+
+</html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="light">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,9 +25,17 @@
     </script>
     <style>
         @keyframes float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-            100% { transform: translateY(0); }
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
         }
 
         .gradient-text {
@@ -38,9 +47,17 @@
         }
 
         @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         .gradient-border {
@@ -73,7 +90,7 @@
             width: 300px;
             height: 100vh;
             background: white;
-            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
             transition: right 0.3s ease;
             z-index: 1000;
         }
@@ -92,7 +109,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0, 0, 0, 0.5);
             z-index: 999;
             display: none;
         }
@@ -120,39 +137,55 @@
         }
     </style>
 </head>
-<body class="font-fira-code bg-white dark:bg-dark text-gray-900 dark:text-light transition-colors duration-300" oncontextmenu="return false;">
+
+<body class="font-fira-code bg-white dark:bg-dark text-gray-900 dark:text-light transition-colors duration-300"
+    oncontextmenu="return false;">
     <!-- Navbar -->
     <nav class="fixed top-0 left-0 w-full p-6 bg-white dark:bg-dark shadow-md z-50 transition-colors duration-300">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
             <!-- Brand -->
             <div class="gradient-text text-2xl font-bold">
                 <a href="../">
-                    <img src="../logo/fazal-dark.png" class="block dark:hidden" style="width: 10%;" alt="Fazal Said Logo Light" />
-                    <img src="../logo/fazal-white.png" class="hidden dark:block" style="width: 10%;" alt="Fazal Said Logo Dark" />
+                    <img src="../logo/fazal-dark.png" class="block dark:hidden" style="width: 10%;"
+                        alt="Fazal Said Logo Light" />
+                    <img src="../logo/fazal-white.png" class="hidden dark:block" style="width: 10%;"
+                        alt="Fazal Said Logo Dark" />
                 </a>
             </div>
 
             <!-- Center Menu -->
             <div class="hidden md:flex space-x-8">
-                <a href="../index.html/#home" class="hover:text-primary dark:hover:text-primary transition-colors">Home</a>
-                <a href="../index.html/#about" class="hover:text-primary dark:hover:text-primary transition-colors">About</a>
+                <a href="../index.html/#home"
+                    class="hover:text-primary dark:hover:text-primary transition-colors">Home</a>
+                <a href="../index.html/#about"
+                    class="hover:text-primary dark:hover:text-primary transition-colors">About</a>
                 <a href="../freebies/" class="hover:text-primary dark:hover:text-primary transition-colors">Freebies</a>
                 <a href="../class/" class="hover:text-primary dark:hover:text-primary transition-colors">Class</a>
-                <a href="../index.html/#projects" class="hover:text-primary dark:hover:text-primary transition-colors">Projects</a>
-                <a href="../index.html/#contact" class="hover:text-primary dark:hover:text-primary transition-colors">Contact</a>
+                <a href="../index.html/#projects"
+                    class="hover:text-primary dark:hover:text-primary transition-colors">Projects</a>
+                <a href="../index.html/#contact"
+                    class="hover:text-primary dark:hover:text-primary transition-colors">Contact</a>
             </div>
 
             <!-- Theme Toggle & Mobile Menu -->
             <div class="flex gap-4">
-                <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
+                <button id="theme-toggle"
+                    class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
                     <svg id="theme-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path id="sun-icon" class="hidden dark:block" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
-                        <path id="moon-icon" class="block dark:hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                        <path id="sun-icon" class="hidden dark:block" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+                        </path>
+                        <path id="moon-icon" class="block dark:hidden" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
+                        </path>
                     </svg>
                 </button>
                 <button class="md:hidden p-2" id="mobile-menu-btn">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
             </div>
@@ -163,15 +196,20 @@
             <div class="flex flex-col gap-4 p-6">
                 <button id="close-menu" class="self-end p-2">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
                     </svg>
                 </button>
-                <a href="../index.html/#home" class="hover:text-primary dark:hover:text-primary transition-colors">Home</a>
-                <a href="../index.html/#about" class="hover:text-primary dark:hover:text-primary transition-colors">About</a>
+                <a href="../index.html/#home"
+                    class="hover:text-primary dark:hover:text-primary transition-colors">Home</a>
+                <a href="../index.html/#about"
+                    class="hover:text-primary dark:hover:text-primary transition-colors">About</a>
                 <a href="../freebies" class="hover:text-primary dark:hover:text-primary transition-colors">Freebies</a>
                 <a href="../class" class="hover:text-primary dark:hover:text-primary transition-colors">Class</a>
-                <a href="../index.html/#projects" class="hover:text-primary dark:hover:text-primary transition-colors">Projects</a>
-                <a href="../index.html/#contact" class="hover:text-primary dark:hover:text-primary transition-colors">Contact</a>
+                <a href="../index.html/#projects"
+                    class="hover:text-primary dark:hover:text-primary transition-colors">Projects</a>
+                <a href="../index.html/#contact"
+                    class="hover:text-primary dark:hover:text-primary transition-colors">Contact</a>
             </div>
         </div>
         <div class="overlay"></div>
@@ -182,7 +220,8 @@
         <div class="max-w-6xl mx-auto">
             <h1 class="gradient-text text-4xl md:text-5xl font-bold text-center mb-4">Templates</h1>
             <p class="text-gray-600 dark:text-gray-400 text-center mb-12 text-lg">
-                Professional website templates for various business needs. Choose from our collection of modern, responsive designs.
+                Professional website templates for various business needs. Choose from our collection of modern,
+                responsive designs.
             </p>
 
             <!-- Templates Grid -->
@@ -193,14 +232,16 @@
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-gray-100">Admin Dashboard</h3>
                         <p class="text-gray-600 dark:text-gray-400 mb-4">
-                            Complete admin panel template with analytics, user management, and content management features.
+                            Complete admin panel template with analytics, user management, and content management
+                            features.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Admin</span>
                             <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Dashboard</span>
                             <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Analytics</span>
                         </div>
-                        <a href="admin/marketing_analytical/" class="view-btn gradient-border block text-center py-2 px-4 font-bold text-gray-900 dark:text-gray-100">
+                        <a href="admin/marketing_analytical/"
+                            class="view-btn gradient-border block text-center py-2 px-4 font-bold text-gray-900 dark:text-gray-100">
                             View Template
                         </a>
                     </div>
@@ -219,7 +260,8 @@
                             <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Courier</span>
                             <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Tracking</span>
                         </div>
-                        <a href="expedition/Paket/" class="view-btn gradient-border block text-center py-2 px-4 font-bold text-gray-900 dark:text-gray-100">
+                        <a href="expedition/Paket/"
+                            class="view-btn gradient-border block text-center py-2 px-4 font-bold text-gray-900 dark:text-gray-100">
                             View Template
                         </a>
                     </div>
@@ -238,7 +280,8 @@
                             <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Restaurant</span>
                             <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Menu</span>
                         </div>
-                        <a href="food/ayamgeprekjuara/" class="view-btn gradient-border block text-center py-2 px-4 font-bold text-gray-900 dark:text-gray-100">
+                        <a href="food/ayamgeprekjuara/"
+                            class="view-btn gradient-border block text-center py-2 px-4 font-bold text-gray-900 dark:text-gray-100">
                             View Template
                         </a>
                     </div>
@@ -250,14 +293,16 @@
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-gray-100">Health Information</h3>
                         <p class="text-gray-600 dark:text-gray-400 mb-4">
-                            Medical and health information website template with articles, directories, and consultation features.
+                            Medical and health information website template with articles, directories, and consultation
+                            features.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Health</span>
                             <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Medical</span>
                             <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Information</span>
                         </div>
-                        <a href="health/health-information/" class="view-btn gradient-border block text-center py-2 px-4 font-bold text-gray-900 dark:text-gray-100">
+                        <a href="health/health-information/"
+                            class="view-btn gradient-border block text-center py-2 px-4 font-bold text-gray-900 dark:text-gray-100">
                             View Template
                         </a>
                     </div>
@@ -276,7 +321,126 @@
                             <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Designer</span>
                             <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Creative</span>
                         </div>
-                        <a href="personal/designer/" class="view-btn gradient-border block text-center py-2 px-4 font-bold text-gray-900 dark:text-gray-100">
+                        <a href="personal/designer/"
+                            class="view-btn gradient-border block text-center py-2 px-4 font-bold text-gray-900 dark:text-gray-100">
+                            View Template
+                        </a>
+                    </div>
+                </div>
+
+                <!-- BangunMegah Template -->
+                <div class="template-card bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg">
+                    <img src="img/bangunmegah_thumb.png" alt="BangunMegah Template" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-gray-100">BangunMegah</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">
+                            Premium construction and contractor website template with industrial design.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span
+                                class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Construction</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Corporate</span>
+                        </div>
+                        <a href="corporate/construction-kontraktor/bangunmegah/"
+                            class="view-btn gradient-border block text-center py-2 px-4 font-bold text-gray-900">
+                            View Template
+                        </a>
+                    </div>
+                </div>
+
+                <!-- HukumTegak Template -->
+                <div class="template-card bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg">
+                    <img src="img/hukumtegak_thumb.png" alt="HukumTegak Template" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-gray-100">HukumTegak</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">
+                            Authoritative law firm template with a classic, trustworthy aesthetic.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Law Firm</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Legal</span>
+                        </div>
+                        <a href="corporate/law-firm-konsultan-hukum/hukumtegak/"
+                            class="view-btn gradient-border block text-center py-2 px-4 font-bold text-gray-900">
+                            View Template
+                        </a>
+                    </div>
+                </div>
+
+                <!-- SolusiBisnis Template -->
+                <div class="template-card bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg">
+                    <img src="img/solusibisnis_thumb.png" alt="SolusiBisnis Template" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-gray-100">SolusiBisnis</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">
+                            Modern business consultant template focusing on growth and strategy.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Consultant</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Business</span>
+                        </div>
+                        <a href="corporate/business-consultant/solusibisnis/"
+                            class="view-btn gradient-border block text-center py-2 px-4 font-bold text-gray-900">
+                            View Template
+                        </a>
+                    </div>
+                </div>
+
+                <!-- ArsiVisi Template -->
+                <div class="template-card bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg">
+                    <img src="img/arsivisi_thumb.png" alt="ArsiVisi Template" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-gray-100">ArsiVisi</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">
+                            Minimalist architecture portfolio with a focus on visual storytelling.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span
+                                class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Architecture</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Portfolio</span>
+                        </div>
+                        <a href="corporate/arsitek-desain-bangunan/arsivisi/"
+                            class="view-btn gradient-border block text-center py-2 px-4 font-bold text-gray-900">
+                            View Template
+                        </a>
+                    </div>
+                </div>
+
+                <!-- HitungPasti Template -->
+                <div class="template-card bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg">
+                    <img src="img/hitungpasti_thumb.png" alt="HitungPasti Template" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-gray-100">HitungPasti</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">
+                            Professional accounting and finance consultant website with trustworthy design.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Accounting</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Finance</span>
+                        </div>
+                        <a href="corporate/accounting-keuangan/hitungpasti/"
+                            class="view-btn gradient-border block text-center py-2 px-4 font-bold text-gray-900">
+                            View Template
+                        </a>
+                    </div>
+                </div>
+
+                <!-- IdeLiar Template -->
+                <div class="template-card bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg">
+                    <img src="img/ideliar_thumb.png" alt="IdeLiar Template" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-gray-100">IdeLiar</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">
+                            Creative Agency / Digital Marketing with Neo-Brutalism style. Bold, chaotic, and energetic.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Creative
+                                Agency</span>
+                            <span
+                                class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Neo-Brutalism</span>
+                        </div>
+                        <a href="corporate/creative-agency-digital-marketing/ideliar/"
+                            class="view-btn gradient-border block text-center py-2 px-4 font-bold text-gray-900">
                             View Template
                         </a>
                     </div>
@@ -288,14 +452,16 @@
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-gray-100">Car Rental</h3>
                         <p class="text-gray-600 dark:text-gray-400 mb-4">
-                            Vehicle rental website template with booking system, fleet management, and customer dashboard.
+                            Vehicle rental website template with booking system, fleet management, and customer
+                            dashboard.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Rental</span>
                             <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Booking</span>
                             <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Vehicles</span>
                         </div>
-                        <a href="rental/carrent/" class="view-btn gradient-border block text-center py-2 px-4 font-bold text-gray-900 dark:text-gray-100">
+                        <a href="rental/carrent/"
+                            class="view-btn gradient-border block text-center py-2 px-4 font-bold text-gray-900 dark:text-gray-100">
                             View Template
                         </a>
                     </div>
@@ -351,4 +517,5 @@
         });
     </script>
 </body>
+
 </html>

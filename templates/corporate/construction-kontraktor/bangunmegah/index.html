@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BangunMegah - Master Contractor & Engineering</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;700;800&family=Oswald:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FFC107',
+                        'primary-dark': '#FFB300',
+                        secondary: '#0A192F',
+                        'secondary-light': '#172A46',
+                    },
+                    fontFamily: {
+                        heading: ['Oswald', 'sans-serif'],
+                        body: ['Manrope', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-bg-image {
+            background-image: linear-gradient(rgba(10, 25, 47, 0.85), rgba(10, 25, 47, 0.7)), url('images/hero-bg.png');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+
+<body class="font-body text-slate-800 bg-white overflow-x-hidden antialiased">
+
+    <!-- Topbar -->
+    <div class="bg-secondary text-white/70 py-2.5 text-sm border-b border-white/10 hidden lg:block">
+        <div class="max-w-7xl mx-auto px-5 flex justify-between items-center">
+            <div class="flex space-x-6">
+                <span><i class="fas fa-phone-alt text-primary mr-2"></i> +62 812 3456 7890</span>
+                <span><i class="fas fa-envelope text-primary mr-2"></i> info@bangunmegah.id</span>
+                <span><i class="fas fa-clock text-primary mr-2"></i> Mon - Sat: 08.00 - 17.00</span>
+            </div>
+            <div class="flex space-x-4">
+                <a href="#" class="hover:text-primary transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="hover:text-primary transition-colors"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="hover:text-primary transition-colors"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header id="header" class="bg-white py-5 sticky top-0 z-50 shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-5 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-3 group">
+                <i class="fas fa-city text-4xl text-primary transform group-hover:scale-110 transition-transform"></i>
+                <div class="leading-none">
+                    <h2 class="font-heading font-bold text-2xl text-secondary">BANGUN<span
+                            class="text-primary">MEGAH</span></h2>
+                    <p class="text-[0.65rem] font-bold text-slate-500 tracking-[0.2em]">ENGINEERING THE FUTURE</p>
+                </div>
+            </a>
+
+            <nav class="hidden lg:flex gap-8">
+                <a href="#home"
+                    class="font-heading font-semibold text-secondary hover:text-primary relative after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-primary after:transition-all hover:after:w-full">Home</a>
+                <a href="#about"
+                    class="font-heading font-semibold text-secondary hover:text-primary relative after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-primary after:transition-all hover:after:w-full">About
+                    Us</a>
+                <a href="#services"
+                    class="font-heading font-semibold text-secondary hover:text-primary relative after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-primary after:transition-all hover:after:w-full">Services</a>
+                <a href="#projects"
+                    class="font-heading font-semibold text-secondary hover:text-primary relative after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-primary after:transition-all hover:after:w-full">Projects</a>
+                <a href="#contact"
+                    class="font-heading font-semibold text-secondary hover:text-primary relative after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-primary after:transition-all hover:after:w-full">Contact</a>
+            </nav>
+
+            <a href="#contact"
+                class="hidden lg:inline-block px-7 py-3.5 bg-primary text-secondary font-heading font-bold uppercase tracking-wide rounded hover:bg-transparent hover:text-primary border-2 border-primary transition-all">
+                Get A Quote <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+
+            <button id="menuToggle" class="lg:hidden text-2xl text-secondary">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu"
+            class="fixed top-[80px] left-[-100%] w-full h-[calc(100vh-80px)] bg-white border-t border-gray-100 flex flex-col items-center pt-12 gap-8 transition-all duration-300 lg:hidden">
+            <a href="#home" class="mobile-link text-xl font-heading font-bold text-secondary">Home</a>
+            <a href="#about" class="mobile-link text-xl font-heading font-bold text-secondary">About Us</a>
+            <a href="#services" class="mobile-link text-xl font-heading font-bold text-secondary">Services</a>
+            <a href="#projects" class="mobile-link text-xl font-heading font-bold text-secondary">Projects</a>
+            <a href="#contact" class="mobile-link text-xl font-heading font-bold text-secondary">Contact</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-[85vh] min-h-[600px] flex items-center text-white hero-bg-image">
+        <div class="max-w-7xl mx-auto px-5 w-full relative z-10">
+            <div class="max-w-2xl">
+                <span
+                    class="inline-block bg-primary/20 text-primary px-4 py-2 font-bold text-sm mb-5 border-l-4 border-primary">EST.
+                    1998 — PROFESSIONAL CONTRACTOR</span>
+                <h1 class="font-heading font-bold text-5xl md:text-7xl leading-tight mb-5">
+                    BUILDING DREAMS <br> WITH <span
+                        class="text-primary text-transparent bg-clip-text bg-gradient-to-r from-primary to-yellow-200">PRECISION</span>.
+                </h1>
+                <p class="text-lg text-gray-300 mb-10 max-w-xl">We deliver high-quality construction solutions for
+                    residential, commercial, and industrial projects with a focus on safety and innovation.</p>
+                <div class="flex gap-4">
+                    <a href="#services"
+                        class="px-8 py-4 bg-primary text-secondary font-heading font-bold uppercase tracking-wide rounded hover:bg-yellow-400 transition-all shadow-lg hover:shadow-primary/50">Our
+                        Services</a>
+                    <a href="#projects"
+                        class="px-8 py-4 bg-transparent text-white border-2 border-white font-heading font-bold uppercase tracking-wide rounded hover:bg-white hover:text-secondary transition-all">View
+                        Portfolio</a>
+                </div>
+            </div>
+
+            <div class="hidden lg:flex absolute bottom-0 right-0 bg-primary p-8 z-10 shadow-xl">
+                <div class="px-10 border-r border-black/10 text-center text-secondary">
+                    <h3 class="font-heading font-bold text-4xl mb-1">25+</h3>
+                    <p class="font-semibold uppercase text-sm">Years Experience</p>
+                </div>
+                <div class="px-10 border-r border-black/10 text-center text-secondary">
+                    <h3 class="font-heading font-bold text-4xl mb-1">500+</h3>
+                    <p class="font-semibold uppercase text-sm">Projects Completed</p>
+                </div>
+                <div class="px-10 text-center text-secondary">
+                    <h3 class="font-heading font-bold text-4xl mb-1">100%</h3>
+                    <p class="font-semibold uppercase text-sm">Client Satisfaction</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24">
+        <div class="max-w-7xl mx-auto px-5 grid lg:grid-cols-2 gap-16 items-center">
+            <div class="relative pl-0 lg:pr-5 pb-5">
+                <div class="h-[500px] w-full bg-gray-200 relative z-10 overflow-hidden group">
+                    <!-- Placeholder until we have a real standard image, or reuse hero -->
+                    <div
+                        class="w-full h-full bg-slate-300 flex items-center justify-center text-slate-500 font-bold text-xl">
+                        [About Image Placeholder]</div>
+                </div>
+                <div class="absolute top-10 right-0 w-[80%] h-full border-[5px] border-primary z-0 hidden lg:block">
+                </div>
+
+                <div class="absolute bottom-12 -left-5 bg-secondary text-white p-8 shadow-2xl z-20 hidden lg:block">
+                    <span class="block font-heading font-bold text-6xl text-primary leading-none">25</span>
+                    <span class="text-sm font-bold uppercase tracking-widest">Years of<br>Excellence</span>
+                </div>
+            </div>
+
+            <div>
+                <span class="inline-block text-primary font-bold tracking-[2px] text-sm uppercase mb-2 font-heading">WHO
+                    WE ARE</span>
+                <h2 class="font-heading font-bold text-4xl text-secondary mb-8">We Build Structures That Last a Lifetime
+                </h2>
+                <p class="text-gray-600 mb-8 leading-relaxed">BangunMegah is a leading construction company in
+                    Indonesia. Since 1998, we have been committed to delivering excellence in every project we
+                    undertake. From skyscrapers to dream homes, we bring your vision to life with precision engineering
+                    and superior craftsmanship.</p>
+
+                <ul class="space-y-4 mb-10">
+                    <li class="flex items-center font-medium text-slate-700">
+                        <i class="fas fa-check-circle text-primary mr-4 text-lg"></i> Certified Professional Engineers
+                    </li>
+                    <li class="flex items-center font-medium text-slate-700">
+                        <i class="fas fa-check-circle text-primary mr-4 text-lg"></i> High Quality Material Guarantee
+                    </li>
+                    <li class="flex items-center font-medium text-slate-700">
+                        <i class="fas fa-check-circle text-primary mr-4 text-lg"></i> On-Time Project Delivery
+                    </li>
+                    <li class="flex items-center font-medium text-slate-700">
+                        <i class="fas fa-check-circle text-primary mr-4 text-lg"></i> 24/7 Consultation Support
+                    </li>
+                </ul>
+
+                <a href="#"
+                    class="px-8 py-4 bg-secondary text-white font-heading font-bold uppercase tracking-wide rounded hover:bg-transparent hover:text-secondary border-2 border-secondary transition-all">More
+                    About Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-5">
+            <div class="text-center mb-16">
+                <span class="inline-block text-primary font-bold tracking-[2px] text-sm uppercase mb-2 font-heading">OUR
+                    EXPERTISE</span>
+                <h2 class="font-heading font-bold text-4xl text-secondary">Comprehensive Services</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Service 1 -->
+                <div
+                    class="bg-white p-8 shadow-lg hover:-translate-y-2 transition-transform duration-300 border-b-4 border-transparent hover:border-primary group">
+                    <div
+                        class="w-16 h-16 bg-yellow-100 text-primary flex justify-center items-center text-3xl rounded-full mb-6 group-hover:bg-primary group-hover:text-secondary transition-colors">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl text-secondary mb-4">General Construction</h3>
+                    <p class="text-gray-500 mb-6 text-sm">Full-scale construction for commercial and residential
+                        buildings with rigorous quality determination.</p>
+                    <a href="#"
+                        class="font-bold text-secondary text-sm uppercase flex items-center gap-2 hover:text-primary hover:gap-3 transition-all">Learn
+                        More <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <!-- Service 2 -->
+                <div
+                    class="bg-white p-8 shadow-lg hover:-translate-y-2 transition-transform duration-300 border-b-4 border-transparent hover:border-primary group">
+                    <div
+                        class="w-16 h-16 bg-yellow-100 text-primary flex justify-center items-center text-3xl rounded-full mb-6 group-hover:bg-primary group-hover:text-secondary transition-colors">
+                        <i class="fas fa-drafting-compass"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl text-secondary mb-4">Architecture Design</h3>
+                    <p class="text-gray-500 mb-6 text-sm">Innovative architectural planning and 3D modeling to visualize
+                        your project before we build.</p>
+                    <a href="#"
+                        class="font-bold text-secondary text-sm uppercase flex items-center gap-2 hover:text-primary hover:gap-3 transition-all">Learn
+                        More <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <!-- Service 3 -->
+                <div
+                    class="bg-white p-8 shadow-lg hover:-translate-y-2 transition-transform duration-300 border-b-4 border-transparent hover:border-primary group">
+                    <div
+                        class="w-16 h-16 bg-yellow-100 text-primary flex justify-center items-center text-3xl rounded-full mb-6 group-hover:bg-primary group-hover:text-secondary transition-colors">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl text-secondary mb-4">Renovation & Remodel</h3>
+                    <p class="text-gray-500 mb-6 text-sm">Modernize your existing space with our specialized renovation
+                        services for homes and offices.</p>
+                    <a href="#"
+                        class="font-bold text-secondary text-sm uppercase flex items-center gap-2 hover:text-primary hover:gap-3 transition-all">Learn
+                        More <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <!-- Service 4 -->
+                <div
+                    class="bg-white p-8 shadow-lg hover:-translate-y-2 transition-transform duration-300 border-b-4 border-transparent hover:border-primary group">
+                    <div
+                        class="w-16 h-16 bg-yellow-100 text-primary flex justify-center items-center text-3xl rounded-full mb-6 group-hover:bg-primary group-hover:text-secondary transition-colors">
+                        <i class="fas fa-hard-hat"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl text-secondary mb-4">Project Consulting</h3>
+                    <p class="text-gray-500 mb-6 text-sm">Expert advice on feasibility, budgeting, and timeline
+                        management for your construction needs.</p>
+                    <a href="#"
+                        class="font-bold text-secondary text-sm uppercase flex items-center gap-2 hover:text-primary hover:gap-3 transition-all">Learn
+                        More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-secondary text-white">
+        <div
+            class="max-w-7xl mx-auto px-5 flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
+            <div>
+                <h2 class="font-heading font-bold text-4xl mb-4">Ready to Start Your Dream Project?</h2>
+                <p class="text-white/70 text-lg max-w-2xl">Contact us today for a free consultation and quote. Let's
+                    build something great together.</p>
+            </div>
+            <a href="#contact"
+                class="px-8 py-4 bg-primary text-secondary font-heading font-bold uppercase tracking-wide rounded hover:bg-white hover:text-secondary transition-all shrink-0">Get
+                A Free Quote</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#050d18] text-white/70 pt-20">
+        <div class="max-w-7xl mx-auto px-5">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 pb-16 border-b border-white/5">
+                <div class="lg:col-span-2">
+                    <a href="#" class="flex items-center gap-2 mb-6 text-white group">
+                        <h2 class="font-heading font-bold text-3xl">BANGUN<span class="text-primary">MEGAH</span></h2>
+                    </a>
+                    <p class="mb-8 max-w-sm">Your trusted partner in construction and engineering. Building the future
+                        with quality and integrity.</p>
+                    <div class="flex gap-3">
+                        <a href="#"
+                            class="w-10 h-10 flex justify-center items-center bg-white/5 hover:bg-primary hover:text-secondary transition-all rounded-sm"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a href="#"
+                            class="w-10 h-10 flex justify-center items-center bg-white/5 hover:bg-primary hover:text-secondary transition-all rounded-sm"><i
+                                class="fab fa-twitter"></i></a>
+                        <a href="#"
+                            class="w-10 h-10 flex justify-center items-center bg-white/5 hover:bg-primary hover:text-secondary transition-all rounded-sm"><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="#"
+                            class="w-10 h-10 flex justify-center items-center bg-white/5 hover:bg-primary hover:text-secondary transition-all rounded-sm"><i
+                                class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h3
+                        class="text-white text-xl font-heading font-bold mb-6 relative pb-3 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-10 after:h-0.5 after:bg-primary">
+                        Quick Links</h3>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="hover:text-primary hover:pl-2 transition-all block">Home</a></li>
+                        <li><a href="#" class="hover:text-primary hover:pl-2 transition-all block">About Company</a>
+                        </li>
+                        <li><a href="#" class="hover:text-primary hover:pl-2 transition-all block">Our Services</a></li>
+                        <li><a href="#" class="hover:text-primary hover:pl-2 transition-all block">Latest Projects</a>
+                        </li>
+                        <li><a href="#" class="hover:text-primary hover:pl-2 transition-all block">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3
+                        class="text-white text-xl font-heading font-bold mb-6 relative pb-3 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-10 after:h-0.5 after:bg-primary">
+                        Contact Info</h3>
+                    <ul class="space-y-4">
+                        <li class="flex gap-4"><i class="fas fa-map-marker-alt text-primary mt-1"></i> Jl. Konstruksi
+                            No. 123, Jakarta</li>
+                        <li class="flex gap-4"><i class="fas fa-phone text-primary mt-1"></i> +62 812 3456 7890</li>
+                        <li class="flex gap-4"><i class="fas fa-envelope text-primary mt-1"></i> admin@bangunmegah.id
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="py-8 text-center text-sm flex flex-col md:flex-row justify-between items-center gap-4">
+                <p>&copy; 2025 BangunMegah Construction. All Rights Reserved.</p>
+                <p>Template by <a href="#" class="text-primary hover:underline">Apoteker Fazal</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sticky Header & Mobile Menu Logic
+        const header = document.getElementById('header');
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const icon = menuToggle.querySelector('i');
+        const links = document.querySelectorAll('.mobile-link');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('py-3', 'shadow-md');
+                header.classList.remove('py-5');
+            } else {
+                header.classList.add('py-5');
+                header.classList.remove('py-3', 'shadow-md');
+            }
+        });
+
+        menuToggle.addEventListener('click', () => {
+            const isOpen = mobileMenu.style.left === '0px';
+            if (isOpen) {
+                mobileMenu.style.left = '-100%';
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            } else {
+                mobileMenu.style.left = '0px';
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            }
+        });
+
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.style.left = '-100%';
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+    </script>
+</body>
+
+</html>

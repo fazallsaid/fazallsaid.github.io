@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HitungPasti - Solusi Finansial Terpercaya</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        },
+                        emerald: {
+                            500: '#10b981',
+                            600: '#059669',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="font-sans text-gray-700 antialiased bg-gray-50">
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <div
+                        class="w-8 h-8 bg-emerald-500 rounded flex items-center justify-center text-white font-bold text-xl">
+                        H</div>
+                    <span class="font-bold text-xl text-navy-900 tracking-tight">HitungPasti</span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#layanan"
+                        class="text-gray-600 hover:text-emerald-600 font-medium transition-colors">Layanan</a>
+                    <a href="#tentang"
+                        class="text-gray-600 hover:text-emerald-600 font-medium transition-colors">Tentang Kami</a>
+                    <a href="#testimoni"
+                        class="text-gray-600 hover:text-emerald-600 font-medium transition-colors">Klien</a>
+                </div>
+                <div class="hidden md:flex">
+                    <a href="#kontak"
+                        class="bg-navy-900 text-white px-6 py-2.5 rounded-full font-medium hover:bg-navy-800 transition-colors shadow-lg shadow-navy-900/20">
+                        Konsultasi Gratis
+                    </a>
+                </div>
+                <!-- Mobile menu button placeholder -->
+                <button class="md:hidden text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="order-2 md:order-1">
+                    <span
+                        class="inline-block py-1 px-3 rounded-full bg-emerald-100 text-emerald-700 text-sm font-semibold mb-6">
+                        #1 Konsultan Keuangan Terpercaya
+                    </span>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-navy-900 leading-tight mb-6">
+                        Fokus Bisnis Anda, <br>
+                        <span class="text-emerald-600">Biar Kami Hitung Angkanya.</span>
+                    </h1>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed max-w-lg">
+                        Jasa pembukuan, perpajakan, dan audit yang presisi untuk memastikan kesehatan finansial
+                        perusahaan Anda. Tanpa pusing, tanpa selisih.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#kontak"
+                            class="text-center bg-emerald-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-emerald-700 transition-all shadow-lg shadow-emerald-500/30">
+                            Mulai Sekarang
+                        </a>
+                        <a href="#layanan"
+                            class="text-center px-8 py-3 rounded-lg font-semibold text-navy-900 border border-gray-300 hover:bg-white transition-all hover:shadow-md">
+                            Pelajari Layanan
+                        </a>
+                    </div>
+                </div>
+                <div class="order-1 md:order-2 relative">
+                    <div
+                        class="absolute -top-10 -right-10 w-64 h-64 bg-emerald-100 rounded-full blur-3xl opacity-50 z-0">
+                    </div>
+                    <div
+                        class="relative z-10 rounded-2xl overflow-hidden shadow-2xl transform rotate-2 hover:rotate-0 transition-transform duration-500">
+                        <img src="images/hero-finance.png" alt="Financial Analysis" class="w-full h-auto object-cover">
+                    </div>
+                    <!-- Floating Card -->
+                    <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-xl z-20 flex items-center gap-4 animate-bounce"
+                        style="animation-duration: 3s;">
+                        <div class="bg-blue-100 p-2 rounded-full text-blue-600">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 font-semibold uppercase">Laporan Pajak</p>
+                            <p class="text-sm font-bold text-navy-900">100% Compliant</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="bg-navy-900 py-16 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-navy-800">
+                <div>
+                    <p class="text-4xl font-bold text-emerald-400 mb-2">12+</p>
+                    <p class="text-gray-400 text-sm">Tahun Pengalaman</p>
+                </div>
+                <div>
+                    <p class="text-4xl font-bold text-emerald-400 mb-2">500+</p>
+                    <p class="text-gray-400 text-sm">Klien Puas</p>
+                </div>
+                <div>
+                    <p class="text-4xl font-bold text-emerald-400 mb-2">100%</p>
+                    <p class="text-gray-400 text-sm">Akurasi Data</p>
+                </div>
+                <div>
+                    <p class="text-4xl font-bold text-emerald-400 mb-2">24/7</p>
+                    <p class="text-gray-400 text-sm">Support Prioritas</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="layanan" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-sm font-bold text-emerald-600 tracking-widest uppercase mb-2">Layanan Kami</h2>
+                <h3 class="text-3xl font-bold text-navy-900">Solusi Lengkap Keuangan Anda</h3>
+                <div class="w-16 h-1 bg-emerald-500 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div
+                    class="group p-8 rounded-2xl bg-gray-50 hover:bg-white hover:shadow-xl transition-all border border-gray-100 duration-300">
+                    <div
+                        class="w-14 h-14 bg-navy-900 rounded-xl flex items-center justify-center text-white mb-6 group-hover:bg-emerald-500 transition-colors">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 7h6m0 36v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-bold text-navy-900 mb-3">Pembukuan & Akuntansi</h4>
+                    <p class="text-gray-600 mb-4 leading-relaxed">Pencatatan transaksi harian yang rapi dan laporan
+                        keuangan bulanan yang standar PSAK.</p>
+                    <a href="#"
+                        class="text-emerald-600 font-semibold group-hover:tracking-wide transition-all">Selengkapnya
+                        &rarr;</a>
+                </div>
+
+                <!-- Service 2 -->
+                <div
+                    class="group p-8 rounded-2xl bg-gray-50 hover:bg-white hover:shadow-xl transition-all border border-gray-100 duration-300">
+                    <div
+                        class="w-14 h-14 bg-navy-900 rounded-xl flex items-center justify-center text-white mb-6 group-hover:bg-emerald-500 transition-colors">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-bold text-navy-900 mb-3">Konsultasi Pajak</h4>
+                    <p class="text-gray-600 mb-4 leading-relaxed">Perencanaan pajak yang efisien, pelaporan SPT
+                        Tahunan/Masa, dan kepatuhan regulasi.</p>
+                    <a href="#"
+                        class="text-emerald-600 font-semibold group-hover:tracking-wide transition-all">Selengkapnya
+                        &rarr;</a>
+                </div>
+
+                <!-- Service 3 -->
+                <div
+                    class="group p-8 rounded-2xl bg-gray-50 hover:bg-white hover:shadow-xl transition-all border border-gray-100 duration-300">
+                    <div
+                        class="w-14 h-14 bg-navy-900 rounded-xl flex items-center justify-center text-white mb-6 group-hover:bg-emerald-500 transition-colors">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-bold text-navy-900 mb-3">Audit & Assurance</h4>
+                    <p class="text-gray-600 mb-4 leading-relaxed">Audit independen untuk memberikan keyakinan memadai
+                        atas kewajaran laporan keuangan.</p>
+                    <a href="#"
+                        class="text-emerald-600 font-semibold group-hover:tracking-wide transition-all">Selengkapnya
+                        &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-emerald-600">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Siap Merapikan Pembukuan Bisnis Anda?</h2>
+            <p class="text-emerald-100 text-lg mb-10">Jangan biarkan masalah keuangan menghambat pertumbuhan. Diskusikan
+                kebutuhan Anda dengan tim ahli kami hari ini.</p>
+            <a href="#kontak"
+                class="bg-white text-emerald-700 px-8 py-4 rounded-full font-bold text-lg hover:bg-navy-900 hover:text-white transition-all shadow-xl">
+                Hubungi Kami via WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-navy-900 text-gray-400 py-12 border-t border-navy-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div
+                            class="w-6 h-6 bg-emerald-500 rounded flex items-center justify-center text-white font-bold text-sm">
+                            H</div>
+                        <span class="font-bold text-xl text-white tracking-tight">HitungPasti</span>
+                    </div>
+                    <p class="max-w-xs text-sm">Mitra strategis akuntansi dan perpajakan untuk UMKM hingga korporasi.
+                        Presisi adalah prioritas kami.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Layanan</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-emerald-400 transition-colors">Pembukuan</a></li>
+                        <li><a href="#" class="hover:text-emerald-400 transition-colors">Pajak</a></li>
+                        <li><a href="#" class="hover:text-emerald-400 transition-colors">Audit</a></li>
+                        <li><a href="#" class="hover:text-emerald-400 transition-colors">Payroll</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Kontak</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li>Jakarta Selatan, ID</li>
+                        <li>hello@hitungpasti.id</li>
+                        <li>+62 812 3456 7890</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-navy-800 text-center text-xs">
+                &copy; 2025 HitungPasti. Template by Fazal Said. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
