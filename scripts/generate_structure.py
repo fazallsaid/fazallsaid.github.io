@@ -7,8 +7,21 @@ BASE_TEMPLATE_DIR = 'd:/FSW/PROJECT COBA/fazallsaid.github.io/templates'
 
 def normalize(name):
     """Normalize string for use in file paths."""
+    
+    # Custom mappings
+    custom_map = {
+        'f&b': 'food',
+        'education & organization': 'edu',
+        'corporate & professional': 'corporate',
+        'health & beauty': 'health'
+    }
+    
+    if name.lower() in custom_map:
+        return custom_map[name.lower()]
+
     name = name.lower()
-    name = name.replace('&', 'and')
+    name = name.replace('&', ' ')
+    name = name.replace(' and ', ' ')
     name = name.replace('/', ' ') # Replace slash with space first for subcategories like "Construction / Kontraktor"
     name = re.sub(r'[^a-z0-9\s-]', '', name) # Remove special chars except spaces and hyphens
     name = re.sub(r'\s+', '-', name.strip()) # Replace spaces with hyphens
