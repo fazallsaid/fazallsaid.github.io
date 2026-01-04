@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Apotek Arrazi</title>
+    <link rel="icon" type="image/png" href="img/arrazi_logo_single.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { 50: '#e6f7fa', 100: '#cceef5', 400: '#17a2b8', 500: '#17a2b8', 600: '#138a9e', 700: '#0f6b7a' },
+                        slate: { 850: '#666666', 900: '#5a5a5a' }
+                    },
+                    backgroundImage: {
+                        'login-pattern': "url('https://images.unsplash.com/photo-1631549916768-4119b2e5f926?q=80&w=2079&auto=format&fit=crop')"
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .glass-input {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .glass-input:focus {
+            background: rgba(255, 255, 255, 0.8);
+            border-color: #17a2b8;
+            box-shadow: 0 0 0 3px rgba(23, 162, 184, 0.2);
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 font-sans text-gray-800 h-screen flex overflow-hidden">
+
+    <!-- Background Image with Overlay -->
+    <div class="fixed inset-0 bg-login-pattern bg-cover bg-center z-0">
+        <div class="absolute inset-0 bg-gradient-to-tr from-primary-700/90 to-blue-900/80"></div>
+        <!-- Decorative Circles -->
+        <div class="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
+        <div class="absolute bottom-10 right-10 w-64 h-64 bg-primary-400/20 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="w-full h-full z-10 flex items-center justify-center p-4">
+
+        <div
+            class="flex w-full max-w-5xl h-full max-h-[600px] bg-white rounded-3xl shadow-2xl overflow-hidden relative animate-fade-in-up">
+
+            <!-- Left Side: Branding & Info (Hidden on Mobile) -->
+            <div class="hidden md:flex flex-col justify-between w-1/2 p-12 bg-cover bg-center "
+                style="background-image: url('https://images.unsplash.com/photo-1587854692152-cbe660dbde88?q=80&w=2069&auto=format&fit=crop')">
+                <div class="absolute inset-0 bg-primary-600/90 mix-blend-multiply w-1/2"></div>
+                <div class="relative z-10 text-white">
+                    <img src="img/arrazi_logo_horizontal.png" alt="Apotek Arrazi"
+                        class="h-10 mb-8 brightness-0 invert opacity-90">
+                    <h1 class="text-4xl font-bold mb-4 leading-tight">Solusi Cerdas Manajemen Apotek Modern</h1>
+                    <p class="text-blue-50 text-lg opacity-90">Kelola stok, pantau expire date, dan rekap keuangan dalam
+                        satu dashboard terintegrasi.</p>
+                </div>
+
+                <div class="relative z-10 text-white/80 text-sm">
+                    <p>&copy; 2025 Apotek Arrazi System.</p>
+                </div>
+            </div>
+
+            <!-- Right Side: Login Form -->
+            <div class="w-full md:w-1/2 p-8 md:p-12 bg-white flex flex-col justify-center relative">
+                <!-- Mobile Logo -->
+                <div class="md:hidden mb-6 text-center">
+                    <img src="img/arrazi_logo_horizontal.png" alt="Apotek Arrazi" class="h-8 mx-auto">
+                </div>
+
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-slate-800">Selamat Datang Kembali! 👋</h2>
+                    <p class="text-slate-500 mt-2">Silakan masuk ke akun Anda untuk melanjutkan.</p>
+                </div>
+
+                <form action="index.html" method="GET" class="space-y-5">
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-slate-700 mb-1">Email Address</label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
+                                <i class="fa-solid fa-envelope"></i>
+                            </span>
+                            <input type="email" id="email" name="email"
+                                class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                                placeholder="nama@apotekarrazi.com" value="owner@apotekarrazi.com">
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex items-center justify-between mb-1">
+                            <label for="password" class="block text-sm font-medium text-slate-700">Password</label>
+                            <a href="#"
+                                class="text-xs font-bold text-primary-600 hover:text-primary-700 hover:underline">Lupa
+                                Password?</a>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
+                                <i class="fa-solid fa-lock"></i>
+                            </span>
+                            <input type="password" id="password" name="password"
+                                class="w-full pl-10 pr-10 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                                placeholder="••••••••" value="password123">
+                            <button type="button"
+                                class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600 transition"
+                                onclick="togglePassword()">
+                                <i class="fa-regular fa-eye" id="eye-icon"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center">
+                        <input id="remember-me" name="remember-me" type="checkbox"
+                            class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded cursor-pointer">
+                        <label for="remember-me" class="ml-2 block text-sm text-slate-600 cursor-pointer">
+                            Ingat saya di perangkat ini
+                        </label>
+                    </div>
+
+                    <button type="submit"
+                        class="w-full bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-primary-500/30 transform hover:scale-[1.01] transition-all duration-200 flex items-center justify-center gap-2">
+                        <span>Masuk Dashboard</span>
+                        <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                    </button>
+                </form>
+
+                <div class="mt-8 text-center">
+                    <p class="text-sm text-slate-500">
+                        Belum punya akun?
+                        <a href="#" class="font-bold text-primary-600 hover:text-primary-700 hover:underline">Hubungi
+                            Admin</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const eyeIcon = document.getElementById('eye-icon');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
+            }
+        }
+    </script>
+</body>
+
+</html>

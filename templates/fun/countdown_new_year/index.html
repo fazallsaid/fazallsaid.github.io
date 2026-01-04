@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menuju Tahun Baru 2026 - Fazal & Yuuka</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            margin: 0;
+            overflow: hidden;
+            background-color: #050505;
+            color: white;
+        }
+
+        /* Dynamic Background */
+        .bg-gradient-dynamic {
+            background: radial-gradient(circle at 50% 50%, #1a1a2e 0%, #000000 100%);
+            transition: background 1s ease;
+        }
+
+        /* Glassmorphism Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        /* Neon Glow Text */
+        .text-glow {
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3), 0 0 30px rgba(139, 92, 246, 0.5);
+        }
+
+        .text-glow-gold {
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5), 0 0 20px rgba(255, 215, 0, 0.3), 0 0 30px rgba(255, 223, 0, 0.5);
+        }
+
+        /* Year Transition Animation */
+        .digit-track {
+            display: inline-flex;
+            flex-direction: column;
+            transition: transform 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            height: 1em;
+        }
+
+        .year-digit-wrapper {
+            display: inline-block;
+            overflow: hidden;
+            height: 1em;
+            vertical-align: bottom;
+            line-height: 1;
+        }
+
+        /* Countdown Number Animation */
+        .count-enter {
+            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes popIn {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Transition Flash */
+        .flash-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .flash-active {
+            animation: flashAnim 1.5s ease-out forwards;
+        }
+
+        @keyframes flashAnim {
+            0% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        #fireworks-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            /* Behind text initially, can change */
+            pointer-events: none;
+        }
+
+        #content-wrapper {
+            position: relative;
+            z-index: 10;
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-dynamic h-screen flex items-center justify-center relative script-check-ok">
+
+    <!-- Canvas for Fireworks -->
+    <canvas id="fireworks-canvas"></canvas>
+
+    <!-- Content -->
+    <div id="content-wrapper" class="text-center w-full max-w-5xl px-4">
+
+        <!-- Pre-New Year Content -->
+        <div id="countdown-container" class="transition-opacity duration-1000 ease-out">
+            <h1 class="text-3xl md:text-5xl font-light mb-8 tracking-widest text-gray-300 uppercase">Menuju <span
+                    class="text-purple-400 font-bold">2026</span></h1>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+                <!-- Days -->
+                <div
+                    class="glass-card rounded-2xl p-6 md:p-8 flex flex-col items-center justify-center transform hover:scale-105 transition duration-300">
+                    <span id="days"
+                        class="text-5xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-400 count-enter">00</span>
+                    <span class="text-sm md:text-lg text-gray-400 mt-2 uppercase tracking-wide">Hari</span>
+                </div>
+                <!-- Hours -->
+                <div
+                    class="glass-card rounded-2xl p-6 md:p-8 flex flex-col items-center justify-center transform hover:scale-105 transition duration-300">
+                    <span id="hours"
+                        class="text-5xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-400 count-enter">00</span>
+                    <span class="text-sm md:text-lg text-gray-400 mt-2 uppercase tracking-wide">Jam</span>
+                </div>
+                <!-- Minutes -->
+                <div
+                    class="glass-card rounded-2xl p-6 md:p-8 flex flex-col items-center justify-center transform hover:scale-105 transition duration-300">
+                    <span id="minutes"
+                        class="text-5xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-400 count-enter">00</span>
+                    <span class="text-sm md:text-lg text-gray-400 mt-2 uppercase tracking-wide">Menit</span>
+                </div>
+                <!-- Seconds -->
+                <div
+                    class="glass-card rounded-2xl p-6 md:p-8 flex flex-col items-center justify-center transform hover:scale-105 transition duration-300 border-purple-500/30">
+                    <span id="seconds"
+                        class="text-5xl md:text-7xl font-bold text-purple-400 text-glow count-enter">00</span>
+                    <span class="text-sm md:text-lg text-purple-300 mt-2 uppercase tracking-wide">Detik</span>
+                </div>
+            </div>
+
+            <p class="mt-12 text-gray-500 italic text-sm md:text-base animate-pulse">
+                "Waktu terus berjalan, bersiaplah untuk lembaran baru..."
+            </p>
+        </div>
+
+        <!-- Year Transition (Hidden initially) -->
+        <div id="year-transition"
+            class="hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full transition-opacity duration-500">
+            <h1 class="text-8xl md:text-[12rem] font-black text-white leading-none">
+                202<span class="year-digit-wrapper ml-1">
+                    <span id="digit-track" class="digit-track text-purple-400 text-glow">
+                        <span>5</span>
+                        <span>6</span>
+                    </span>
+                </span>
+            </h1>
+        </div>
+
+        <!-- New Year Message (Hidden initially) -->
+        <div id="new-year-message" class="hidden opacity-0 scale-50 transition-all duration-1000 ease-out transform">
+            <h1
+                class="text-6xl md:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-glow mb-4 animate-bounce">
+                2026
+            </h1>
+            <p class="text-2xl md:text-5xl font-light tracking-[0.2em] text-white uppercase mb-8">
+                Happy New Year
+            </p>
+            <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed glass-card p-6 rounded-xl">
+                2026 Akemashite Omedetou Gozaimasu! 🎉<br>
+                Semoga di tahun ini, kita bisa terus berusaha lebih keras lagi, bisa lebih cepat mendapatkan apa yang kita inginkan.<br>
+            </p>
+
+            <!-- <button onclick="restartDemo()"
+                class="mt-8 px-6 py-2 rounded-full border border-white/20 hover:bg-white/10 text-xs text-gray-500 transition">
+                Replay Animation (Demo)
+            </button> -->
+        </div>
+
+    </div>
+
+    <!-- Flash Overlay -->
+    <div id="flash" class="flash-overlay"></div>
+
+    <script>
+        // --- CONFIGURATION ---
+        const TARGET_YEAR = 2026;
+        const TARGET_DATE = new Date(`January 1, ${TARGET_YEAR} 00:00:00`).getTime();
+
+        // Demo Mode: Jika true, countdown akan diset ke 10 detik dari sekarang untuk testing
+        // Set FALSE untuk production
+        const DEMO_MODE = false;
+        let targetTime = DEMO_MODE ? new Date().getTime() + 10000 : TARGET_DATE;
+
+        // Elements
+        const daysEl = document.getElementById('days');
+        const hoursEl = document.getElementById('hours');
+        const minutesEl = document.getElementById('minutes');
+        const secondsEl = document.getElementById('seconds');
+        const countdownContainer = document.getElementById('countdown-container');
+        const yearTransitionEl = document.getElementById('year-transition');
+        const digitTrackEl = document.getElementById('digit-track');
+        const newYearMessage = document.getElementById('new-year-message');
+        const flashEl = document.getElementById('flash');
+
+        let countdownInterval;
+        let isNewYear = false;
+
+        // --- COUNTDOWN LOGIC ---
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetTime - now;
+
+            if (distance <= 0) {
+                clearInterval(countdownInterval);
+                triggerYearTransition();
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            updateElement(daysEl, days);
+            updateElement(hoursEl, hours);
+            updateElement(minutesEl, minutes);
+            updateElement(secondsEl, seconds);
+        }
+
+        function updateElement(el, value) {
+            // Add leading zero
+            const formattedValue = value < 10 ? '0' + value : value;
+            if (el.innerText !== formattedValue.toString()) {
+                el.innerText = formattedValue;
+                // Re-trigger animation
+                el.classList.remove('count-enter');
+                void el.offsetWidth; // Trigger reflow
+                el.classList.add('count-enter');
+            }
+        }
+
+        function triggerYearTransition() {
+            if (isNewYear) return;
+            isNewYear = true;
+
+            // 1. Hide Countdown immediately
+            countdownContainer.style.opacity = '0';
+            setTimeout(() => {
+                countdownContainer.style.display = 'none';
+
+                // 2. Show 2025 (Transition Container)
+                yearTransitionEl.classList.remove('hidden');
+
+                // 3. Wait a beat, then animate to 2026
+                setTimeout(() => {
+                    digitTrackEl.style.transform = 'translateY(-50%)';
+
+                    // 4. After animation finishes, BOOM
+                    setTimeout(() => {
+                        triggerNewYear();
+                    }, 1800);
+                }, 500);
+
+            }, 800);
+        }
+
+        function triggerNewYear() {
+            // 1. Flash Effect
+            flashEl.classList.add('flash-active');
+
+            // 2. Hide Transition Container
+            setTimeout(() => {
+                yearTransitionEl.style.opacity = '0'; // Fade out
+            }, 200);
+
+            // 3. Show Message & Fireworks
+            setTimeout(() => {
+                yearTransitionEl.classList.add('hidden');
+
+                newYearMessage.classList.remove('hidden');
+                // Trigger reflow for transition
+                void newYearMessage.offsetWidth;
+                newYearMessage.classList.remove('opacity-0', 'scale-50');
+                newYearMessage.classList.add('opacity-100', 'scale-100');
+
+                // Start intense fireworks
+                startFireworks(true);
+            }, 500); // Wait for flash to peak
+        }
+
+        function restartDemo() {
+            // Reset for demo purposes
+            isNewYear = false;
+            targetTime = new Date().getTime() + 5000; // 5 seconds
+
+            // Hide Celebration
+            newYearMessage.classList.add('hidden', 'opacity-0', 'scale-50');
+            newYearMessage.classList.remove('opacity-100', 'scale-100');
+
+            // Show Countdown
+            countdownContainer.style.display = 'block';
+            setTimeout(() => {
+                countdownContainer.style.opacity = '1';
+            }, 50);
+
+            // Reset Transition Element
+            yearTransitionEl.classList.add('hidden');
+            yearTransitionEl.style.opacity = '1';
+            digitTrackEl.style.transform = 'translateY(0%)';
+
+            flashEl.classList.remove('flash-active');
+
+            startFireworks(false); // Back to calm/off
+            countdownInterval = setInterval(updateCountdown, 1000);
+            updateCountdown();
+        }
+
+        countdownInterval = setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // --- FIREWORKS SYSTEM (Canvas) ---
+        const canvas = document.getElementById('fireworks-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let fireworks = [];
+
+        // Resize canvas
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Firework {
+            constructor(targetX, targetY) {
+                this.x = canvas.width / 2;
+                this.y = canvas.height;
+                this.targetX = targetX;
+                this.targetY = targetY;
+                this.speed = 2; // Initial speed depends on distance
+                this.angle = Math.atan2(targetY - this.y, targetX - this.x);
+                this.velocity = {
+                    x: Math.cos(this.angle) * 15, // Fast launch
+                    y: Math.sin(this.angle) * 15
+                };
+                this.friction = 0.95;
+                this.gravity = 0.5;
+                this.hue = Math.random() * 360;
+                this.brightness = Math.random() * 50 + 50;
+                this.alpha = 1;
+                this.history = [];
+            }
+
+            update() {
+                this.history.push({ x: this.x, y: this.y });
+                if (this.history.length > 3) this.history.shift();
+
+                this.x += this.velocity.x;
+                this.y += this.velocity.y;
+
+                // Slow down as it reaches top
+                this.velocity.x *= 0.98;
+                this.velocity.y *= 0.98;
+                this.velocity.y += 0.1; // Slight gravity
+
+                // Check distance to target (simplified)
+                const dist = Math.hypot(this.x - this.targetX, this.y - this.targetY);
+                if (dist < 30 || this.velocity.y > 0) {
+                    createParticles(this.x, this.y, this.hue);
+                    return true; // Explode
+                }
+                return false;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.moveTo(this.history[0]?.x || this.x, this.history[0]?.y || this.y);
+                ctx.lineTo(this.x, this.y);
+                ctx.strokeStyle = `hsl(${this.hue}, 100%, 50%)`;
+                ctx.lineWidth = 3;
+                ctx.stroke();
+            }
+        }
+
+        class Particle {
+            constructor(x, y, hue) {
+                this.x = x;
+                this.y = y;
+                this.hue = hue;
+                // Random spread effect
+                const angle = Math.random() * Math.PI * 2;
+                const speed = Math.random() * 8 + 2;
+                this.velocity = {
+                    x: Math.cos(angle) * speed,
+                    y: Math.sin(angle) * speed
+                };
+                this.friction = 0.95; // Air resistance
+                this.gravity = 0.1;   // Gravity
+                this.alpha = 1;
+                this.decay = Math.random() * 0.015 + 0.005;
+                this.history = [];
+            }
+
+            update() {
+                this.history.push({ x: this.x, y: this.y });
+                if (this.history.length > 5) this.history.shift();
+
+                this.velocity.x *= this.friction;
+                this.velocity.y *= this.friction;
+                this.velocity.y += this.gravity;
+
+                this.x += this.velocity.x;
+                this.y += this.velocity.y;
+
+                this.alpha -= this.decay;
+                return this.alpha <= 0;
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.alpha;
+                ctx.beginPath();
+                // Draw trail
+                if (this.history.length > 0) {
+                    ctx.moveTo(this.history[0].x, this.history[0].y);
+                    for (let i = 1; i < this.history.length; i++) {
+                        ctx.lineTo(this.history[i].x, this.history[i].y);
+                    }
+                    ctx.lineTo(this.x, this.y);
+                }
+                ctx.strokeStyle = `hsl(${this.hue}, 100%, 60%)`;
+                ctx.lineWidth = 2;
+                ctx.stroke();
+
+                // Draw head
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
+                ctx.fillStyle = `hsl(${this.hue}, 100%, 80%)`;
+                ctx.fill();
+
+                ctx.restore();
+            }
+        }
+
+        function createParticles(x, y, hue) {
+            const particleCount = 100; // More particles for bigger boom
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle(x, y, hue + (Math.random() * 60 - 30)));
+            }
+        }
+
+        let isIntenseMode = false;
+
+        function startFireworks(intense) {
+            isIntenseMode = intense;
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            // Clear canvas with trail effect
+            ctx.fillStyle = 'rgba(5, 5, 5, 0.2)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Spawn fireworks
+            // In normal mode (pre-2026), maybe rare fireworks? Let's keep it clean before.
+            // In intense mode (post-2026), spam fireworks.
+
+            if (isIntenseMode) {
+                if (Math.random() < 0.1) { // 10% chance per frame
+                    fireworks.push(new Firework(
+                        Math.random() * canvas.width,
+                        Math.random() * canvas.height * 0.6 // Explode in upper 60%
+                    ));
+                }
+                // Random colored ambient flashes
+                if (Math.random() < 0.05) {
+                    document.body.style.boxShadow = `inset 0 0 100px hsla(${Math.random() * 360}, 50%, 50%, 0.2)`;
+                }
+            } else {
+                document.body.style.boxShadow = 'none';
+            }
+
+            // Update Fireworks
+            for (let i = fireworks.length - 1; i >= 0; i--) {
+                fireworks[i].draw();
+                if (fireworks[i].update()) {
+                    fireworks.splice(i, 1);
+                }
+            }
+
+            // Update Particles
+            for (let i = particles.length - 1; i >= 0; i--) {
+                particles[i].draw();
+                if (particles[i].update()) {
+                    particles.splice(i, 1);
+                }
+            }
+        }
+
+        animate();
+
+    </script>
+</body>
+
+</html>

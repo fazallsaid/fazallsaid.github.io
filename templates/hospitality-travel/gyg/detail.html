@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Aktivitas - FazalTravel</title>
+
+    <!-- Fonts -->
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF5533',
+                        secondary: '#1A2B49',
+                        surface: '#F5F7FA',
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        display: ['Clash Display', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'card': '0 4px 12px rgba(0,0,0,0.05)',
+                        'floating': '0 12px 32px rgba(0,0,0,0.1)',
+                    },
+                    borderRadius: {
+                        'xl': '1rem',
+                        '2xl': '1.5rem',
+                        '3xl': '2rem',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+
+<body class="font-sans text-secondary bg-surface">
+
+    <!-- Navbar (Simplified) -->
+    <nav class="bg-white z-40 shadow-sm sticky top-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2 group">
+                <div
+                    class="bg-primary text-white p-2.5 rounded-xl group-hover:rotate-6 transition-transform duration-300">
+                    <i class="ph-bold ph-paper-plane-tilt text-xl"></i>
+                </div>
+                <span class="font-display font-semibold text-2xl tracking-tight text-secondary">FazalTravel</span>
+            </a>
+            <div class="flex items-center gap-6">
+                <!-- Currency/Lang -->
+                <div class="hidden lg:flex items-center gap-4 text-sm font-semibold text-gray-600">
+                    <button class="hover:text-primary transition-colors flex items-center gap-1">
+                        IDR <i class="ph-bold ph-caret-down text-xs"></i>
+                    </button>
+                    <span class="text-gray-300 h-4 border-r"></span>
+                    <button class="hover:text-primary transition-colors flex items-center gap-1">
+                        Indonesia <i class="ph-bold ph-caret-down text-xs"></i>
+                    </button>
+                </div>
+                <div class="flex items-center gap-3">
+                    <a href="cart.html"
+                        class="p-2.5 hover:bg-gray-100 rounded-full text-secondary transition-colors relative group">
+                        <i class="ph-bold ph-shopping-cart text-xl"></i>
+                        <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-primary rounded-full hidden"></span>
+                    </a>
+                    <button
+                        class="hidden sm:block text-sm font-bold hover:text-primary transition-colors">Masuk</button>
+                    <button
+                        class="bg-primary hover:bg-orange-600 text-white text-sm font-bold py-3 px-6 rounded-full shadow-lg shadow-orange-200/50 transition-all hover:-translate-y-1">
+                        Daftar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 py-8">
+
+        <!-- Breadcrumbs -->
+        <div class="text-sm text-gray-500 mb-6 flex items-center gap-2">
+            <a href="index.html" class="hover:text-primary">Beranda</a> <i class="ph-bold ph-caret-right text-xs"></i>
+            <a href="#" class="hover:text-primary">Indonesia</a> <i class="ph-bold ph-caret-right text-xs"></i>
+            <span class="text-secondary font-semibold">Aktivitas di Bali</span>
+        </div>
+
+        <!-- Header Info -->
+        <h1 class="font-display font-bold text-3xl md:text-5xl text-secondary mb-4 leading-tight">Bali: Tur Privat
+            Tegalalang & Jungle Swing dengan Fotografer</h1>
+
+        <div class="flex flex-wrap items-center gap-6 text-sm text-gray-600 mb-8">
+            <div class="flex items-center gap-1 text-yellow-500">
+                <div class="flex text-lg">
+                    <i class="ph-fill ph-star"></i>
+                    <i class="ph-fill ph-star"></i>
+                    <i class="ph-fill ph-star"></i>
+                    <i class="ph-fill ph-star"></i>
+                    <i class="ph-fill ph-star"></i>
+                </div>
+                <span class="font-bold text-secondary ml-1">4.8</span>
+                <span class="text-gray-400 font-medium">(1,245 ulasan)</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <i class="ph-duotone ph-buildings text-xl text-primary"></i>
+                <span>Penyedia Aktivitas: <strong class="text-secondary">Bali Sun Tours</strong></span>
+            </div>
+        </div>
+
+        <!-- Gallery Grid -->
+        <div
+            class="grid grid-cols-1 md:grid-cols-4 gap-4 h-[400px] md:h-[500px] mb-12 rounded-3xl overflow-hidden shadow-card">
+            <!-- Main Image -->
+            <div class="md:col-span-2 md:row-span-2 relative group cursor-pointer">
+                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070&auto=format&fit=crop"
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    alt="Main">
+                <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
+            </div>
+            <!-- Side Images -->
+            <div class="hidden md:block relative group cursor-pointer">
+                <img src="https://images.unsplash.com/photo-1533929736472-114d939dc726?q=80&w=2070&auto=format&fit=crop"
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    alt="Side 1">
+            </div>
+            <div class="hidden md:block relative group cursor-pointer rounded-tr-3xl">
+                <img src="https://images.unsplash.com/photo-1512100356356-de1b84283e18?q=80&w=1975&auto=format&fit=crop"
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    alt="Side 2">
+            </div>
+            <div class="hidden md:block relative group cursor-pointer">
+                <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=2038&auto=format&fit=crop"
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    alt="Side 3">
+            </div>
+            <div class="hidden md:block relative group cursor-pointer rounded-br-3xl">
+                <img src="https://images.unsplash.com/photo-1577717903315-1691ae25ab3f?q=80&w=2070&auto=format&fit=crop"
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    alt="Side 4">
+                <button
+                    class="absolute bottom-4 right-4 bg-white/90 backdrop-blur text-secondary font-bold px-4 py-2 rounded-lg text-sm shadow-lg hover:bg-white transition-colors">
+                    Lihat semua foto
+                </button>
+            </div>
+        </div>
+
+        <div class="flex flex-col lg:flex-row gap-12 relative">
+
+            <!-- Main Content -->
+            <div class="flex-1 w-full lg:w-2/3 space-y-12">
+
+                <!-- Highlights -->
+                <section>
+                    <h2 class="font-display font-bold text-2xl mb-6">Pengalaman</h2>
+                    <div class="bg-gray-50 rounded-2xl p-8 mb-8">
+                        <h3 class="font-bold mb-4">Yang akan kamu dapatkan</h3>
+                        <ul class="grid md:grid-cols-2 gap-4">
+                            <li class="flex items-start gap-3">
+                                <i class="ph-fill ph-check-circle text-primary text-xl mt-0.5"></i>
+                                <span class="text-sm text-gray-600 font-medium">Main ayunan di atas hutan Ubud yang
+                                    asri</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="ph-fill ph-check-circle text-primary text-xl mt-0.5"></i>
+                                <span class="text-sm text-gray-600 font-medium">Kunjungin Monkey Forest yang
+                                    sakral</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="ph-fill ph-check-circle text-primary text-xl mt-0.5"></i>
+                                <span class="text-sm text-gray-600 font-medium">Jalan-jalan di sawah terasering
+                                    Tegalalang</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="ph-fill ph-check-circle text-primary text-xl mt-0.5"></i>
+                                <span class="text-sm text-gray-600 font-medium">Transportasi privat ber-AC yang
+                                    nyaman</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <h3 class="font-bold mb-4">Deskripsi Lengkap</h3>
+                    <div class="text-gray-600 leading-relaxed space-y-4 text-justify">
+                        <p>Rasakan Bali yang sesungguhnya lewat tur privat di Ubud ini. Kamu bakal diajak ke Sacred
+                            Monkey Forest, ngeliat indahnya sawah terasering di Tegalalang, dan nyobain serunya naik
+                            ayunan raksasa di atas hutan.</p>
+                        <p>Kita mulai dengan jemputan di hotel, terus langsung cus ke Monkey Forest. Di sana kamu bisa
+                            jalan-jalan santai sambil liat monyet ekor panjang yang lucu-lucu. Lanjut ke Tegalalang Rice
+                            Terrace, tempat yang wajib banget dikunjungi kalo ke Bali, terkenal dengan sistem irigasi
+                            subak-nya.</p>
+                        <p>Abis itu, kita mampir ke kebun kopi buat nyicipin kopi luwak yang legendaris. Terakhir, pacu
+                            adrenalinmu di Jungle Swing! Pilih ketinggian sesuai nyalimu, ada yang 10m, 15m, 20m, sampe
+                            78m di atas tanah.</p>
+                    </div>
+                </section>
+
+                <hr class="border-gray-100">
+
+                <!-- Important Info -->
+                <section>
+                    <h2 class="font-display font-bold text-2xl mb-6">Informasi Penting</h2>
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="font-bold text-sm mb-2">Yang perlu dibawa</h4>
+                            <ul class="list-disc list-inside text-sm text-gray-600 marker:text-gray-300">
+                                <li>Sunscreen</li>
+                                <li>Kamera</li>
+                                <li>Sepatu yang nyaman</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm mb-2">Sebelum kamu pergi</h4>
+                            <ul class="list-disc list-inside text-sm text-gray-600 marker:text-gray-300">
+                                <li>Aktivitas ayunan tidak disarankan untuk ibu hamil</li>
+                                <li>Penjemputan tersedia untuk area Ubud, Sanur, Kuta, Legian, Seminyak, Canggu, Nusa
+                                    Dua, Jimbaran, dan Benoa</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- Sticky Sidebar -->
+            <div class="lg:w-1/3 relative">
+                <div class="sticky top-28">
+                    <div class="bg-white rounded-3xl shadow-floating border border-gray-100 p-6">
+                        <div class="flex justify-between items-center mb-6">
+                            <div>
+                                <span class="text-sm text-gray-500 font-bold strike-through line-through">Rp
+                                    850.000</span>
+                                <div class="flex items-baseline gap-1">
+                                    <span class="text-3xl font-display font-bold text-primary">Rp 650.000</span>
+                                    <span class="text-sm text-gray-500 font-medium">per orang</span>
+                                </div>
+                            </div>
+                            <div
+                                class="bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+                                Hemat 25%
+                            </div>
+                        </div>
+
+                        <!-- Booking Form -->
+                        <div class="space-y-4 mb-6">
+                            <div
+                                class="p-4 rounded-xl border border-gray-200 hover:border-primary cursor-pointer transition-colors flex items-center justify-between group">
+                                <div class="flex items-center gap-3">
+                                    <i
+                                        class="ph-duotone ph-calendar-blank text-2xl text-gray-400 group-hover:text-primary transition-colors"></i>
+                                    <div>
+                                        <label
+                                            class="block text-[10px] font-bold text-gray-400 uppercase">Tanggal</label>
+                                        <span class="font-semibold text-sm">Pilih tanggal</span>
+                                    </div>
+                                </div>
+                                <i class="ph-bold ph-caret-down text-gray-400"></i>
+                            </div>
+
+                            <div
+                                class="p-4 rounded-xl border border-gray-200 hover:border-primary cursor-pointer transition-colors flex items-center justify-between group">
+                                <div class="flex items-center gap-3">
+                                    <i
+                                        class="ph-duotone ph-users text-2xl text-gray-400 group-hover:text-primary transition-colors"></i>
+                                    <div>
+                                        <label
+                                            class="block text-[10px] font-bold text-gray-400 uppercase">Peserta</label>
+                                        <span class="font-semibold text-sm">2 Dewasa</span>
+                                    </div>
+                                </div>
+                                <i class="ph-bold ph-caret-down text-gray-400"></i>
+                            </div>
+                        </div>
+
+                        <a href="cart.html"
+                            class="block w-full text-center bg-primary hover:bg-orange-600 text-white font-bold py-4 rounded-xl shadow-lg shadow-orange-200/50 transition-all transform hover:-translate-y-1 mb-4">
+                            Cek Ketersediaan
+                        </a>
+
+                        <div class="flex items-center justify-center gap-2 text-xs text-gray-500 font-medium">
+                            <i class="ph-fill ph-check-circle text-green-500"></i> Batalin gratis sampai 24 jam sebelum
+                            acara
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Simple Footer -->
+    <footer class="bg-secondary text-white py-12 mt-12 rounded-t-[3rem]">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h3 class="font-display font-semibold text-2xl mb-4">FazalTravel</h3>
+            <div class="flex justify-center gap-6 text-sm text-gray-400 mb-8">
+                <a href="#" class="hover:text-white">Beranda</a>
+                <a href="#" class="hover:text-white">Destinasi</a>
+                <a href="#" class="hover:text-white">Bantuan</a>
+            </div>
+            <p class="text-xs text-gray-500">&copy; 2025 FazalTravel Inc. Hak cipta dilindungi.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

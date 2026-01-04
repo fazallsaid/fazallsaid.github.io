@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FazalTravel - Pengalaman Tak Terlupakan</title>
+
+    <!-- Fonts: Clash Display & Plus Jakarta Sans -->
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF5533', // GYG Orange
+                        secondary: '#1A2B49', // Deep Blue
+                        surface: '#F5F7FA', // Soft Gray Blue
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        display: ['Clash Display', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'card': '0 4px 12px rgba(0,0,0,0.05)',
+                        'floating': '0 12px 32px rgba(0,0,0,0.1)',
+                        'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.37)'
+                    },
+                    borderRadius: {
+                        'xl': '1rem',
+                        '2xl': '1.5rem',
+                        '3xl': '2rem',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Icons (Phosphor Icons) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body class="font-sans text-secondary bg-surface transition-colors duration-300">
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 w-full bg-white/90 backdrop-blur-md z-40 shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center gap-2 group">
+                <div
+                    class="bg-primary text-white p-2.5 rounded-xl group-hover:rotate-6 transition-transform duration-300">
+                    <i class="ph-bold ph-paper-plane-tilt text-xl"></i>
+                </div>
+                <span class="font-display font-semibold text-2xl tracking-tight text-secondary">FazalTravel</span>
+            </a>
+
+            <!-- Search Bar (Desktop) -->
+            <div class="hidden md:flex items-center flex-1 max-w-lg mx-12">
+                <div class="relative w-full group">
+                    <i
+                        class="ph ph-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-primary transition-colors"></i>
+                    <input type="text" placeholder="Cari wisata, tur, aktivitas..."
+                        class="w-full bg-gray-50 hover:bg-white focus:bg-white border hover:border-gray-200 focus:border-primary/50 text-sm font-medium border-transparent rounded-full py-3.5 pl-12 pr-4 outline-none transition-all duration-300 shadow-sm focus:shadow-md">
+                </div>
+            </div>
+
+            <!-- Right Actions -->
+            <div class="flex items-center gap-6">
+                <!-- Currency/Lang -->
+                <div class="hidden lg:flex items-center gap-4 text-sm font-semibold text-gray-600">
+                    <button class="hover:text-primary transition-colors flex items-center gap-1">
+                        IDR <i class="ph-bold ph-caret-down text-xs"></i>
+                    </button>
+                    <span class="text-gray-300 h-4 border-r"></span>
+                    <button class="hover:text-primary transition-colors flex items-center gap-1">
+                        Indonesia <i class="ph-bold ph-caret-down text-xs"></i>
+                    </button>
+                </div>
+
+                <!-- Auth Buttons -->
+                <div class="flex items-center gap-3">
+                    <a href="cart.html"
+                        class="p-2.5 hover:bg-gray-100 rounded-full text-secondary transition-colors relative group">
+                        <i class="ph-bold ph-shopping-cart text-xl"></i>
+                        <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-primary rounded-full hidden"></span>
+                    </a>
+                    <button onclick="toggleAuthModal()"
+                        class="hidden sm:block text-sm font-bold hover:text-primary transition-colors">Masuk</button>
+                    <button onclick="toggleAuthModal()"
+                        class="bg-primary hover:bg-orange-600 text-white text-sm font-bold py-3 px-6 rounded-full shadow-lg shadow-orange-200/50 transition-all transform hover:-translate-y-1 hover:shadow-orange-300/50">
+                        Daftar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Wrapper -->
+    <main class="pt-20">
+
+        <!-- Hero Section -->
+        <section class="relative h-[650px] flex items-center justify-center overflow-hidden">
+            <!-- Background Image -->
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1577717903315-1691ae25ab3f?q=80&w=2070&auto=format&fit=crop"
+                    alt="Bali Vibe"
+                    class="w-full h-full object-cover animate-[kenburns_20s_ease-in-out_infinite_alternate]"
+                    style="animation-name: kenburns; animation-duration: 40s;">
+                <div
+                    class="absolute inset-0 bg-gradient-to-br from-secondary/60 via-transparent to-secondary/30 mix-blend-multiply">
+                </div>
+                <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-surface to-transparent h-64">
+                </div>
+            </div>
+
+            <style>
+                @keyframes kenburns {
+                    0% {
+                        transform: scale(1) translate(0, 0);
+                    }
+
+                    100% {
+                        transform: scale(1.15) translate(-2%, -2%);
+                    }
+                }
+            </style>
+
+            <!-- Hero Content -->
+            <div class="relative z-10 w-full max-w-5xl px-4 text-center pb-12">
+                <h1
+                    class="font-display font-medium text-5xl md:text-7xl text-white mb-6 leading-[1.1] drop-shadow-2xl tracking-tight">
+                    Pengalaman tak terlupakan <br />
+                    <span class="font-light italic text-orange-200">menantimu.</span>
+                </h1>
+
+                <!-- Main Search Card -->
+                <div class="glass-panel rounded-3xl shadow-floating p-2.5 max-w-4xl mx-auto transform translate-y-8 animate-[fadeInUp_0.8s_ease-out_0.2s] opacity-0"
+                    style="animation-fill-mode: forwards;">
+                    <div class="flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x divide-gray-100/50">
+                        <!-- Destination Input -->
+                        <div class="flex-1 p-4 group cursor-pointer hover:bg-white/50 rounded-2xl transition-colors">
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-orange-50 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+                                    <i class="ph-duotone ph-map-pin text-xl"></i>
+                                </div>
+                                <div class="text-left flex-1">
+                                    <label
+                                        class="block text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-0.5">Mau
+                                        kemana?</label>
+                                    <input type="text" placeholder="Cari destinasi wisata"
+                                        class="w-full font-bold text-gray-800 bg-transparent outline-none placeholder-gray-400 text-lg">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Date Input -->
+                        <div
+                            class="flex-1 p-4 group cursor-pointer hover:bg-white/50 rounded-2xl transition-colors relative">
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-orange-50 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+                                    <i class="ph-duotone ph-calendar-blank text-xl"></i>
+                                </div>
+                                <div class="text-left w-full">
+                                    <label
+                                        class="block text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-0.5">Kapan?</label>
+                                    <span class="block font-bold text-lg text-gray-400">Pilih tanggal</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Search Button -->
+                        <div class="p-2 flex items-center justify-center">
+                            <button
+                                class="w-full md:w-auto h-full aspect-square bg-primary hover:bg-gray-900 text-white rounded-2xl shadow-lg flex items-center justify-center transition-all transform active:scale-95 group">
+                                <span class="md:hidden font-bold mr-2">Cari</span>
+                                <i
+                                    class="ph-bold ph-magnifying-glass text-2xl group-hover:scale-110 transition-transform"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust Indicators -->
+        <div class="bg-surface py-10">
+            <div class="max-w-6xl mx-auto px-4">
+                <div
+                    class="flex flex-wrap justify-center md:justify-between items-center gap-8 opacity-80 hover:opacity-100 transition-opacity">
+                    <div class="flex items-center gap-3">
+                        <i class="ph-duotone ph-check-circle text-primary text-2xl"></i>
+                        <span class="font-semibold text-gray-600">Batalin Gratis</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i class="ph-duotone ph-star text-yellow-500 text-2xl"></i>
+                        <span class="font-semibold text-gray-600">4.8/5 Rating Pelanggan</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i class="ph-duotone ph-headset text-blue-500 text-2xl"></i>
+                        <span class="font-semibold text-gray-600">Bantuan 24/7</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- content gap -->
+        <div class="h-8"></div>
+
+        <!-- Categories Section -->
+        <section class="max-w-7xl mx-auto px-4 py-8">
+            <h2 class="font-display font-semibold text-2xl md:text-3xl mb-8 flex items-center gap-2">
+                Cari berdasarkan kategori <i class="ph-bold ph-caret-right text-gray-300 text-xl"></i>
+            </h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                <!-- Category Item -->
+                <a href="#"
+                    class="group flex flex-col items-center gap-4 p-6 rounded-3xl bg-white shadow-sm hover:shadow-floating hover:-translate-y-1 transition-all cursor-pointer border border-transparent hover:border-gray-100">
+                    <div
+                        class="w-16 h-16 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                        <i class="ph-duotone ph-ticket text-3xl"></i>
+                    </div>
+                    <span
+                        class="font-bold text-sm text-gray-500 group-hover:text-secondary uppercase tracking-wide transition-colors">Tiket</span>
+                </a>
+                <a href="#"
+                    class="group flex flex-col items-center gap-4 p-6 rounded-3xl bg-white shadow-sm hover:shadow-floating hover:-translate-y-1 transition-all cursor-pointer border border-transparent hover:border-gray-100">
+                    <div
+                        class="w-16 h-16 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                        <i class="ph-duotone ph-bus text-3xl"></i>
+                    </div>
+                    <span
+                        class="font-bold text-sm text-gray-500 group-hover:text-secondary uppercase tracking-wide transition-colors">Tur</span>
+                </a>
+                <a href="#"
+                    class="group flex flex-col items-center gap-4 p-6 rounded-3xl bg-white shadow-sm hover:shadow-floating hover:-translate-y-1 transition-all cursor-pointer border border-transparent hover:border-gray-100">
+                    <div
+                        class="w-16 h-16 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                        <i class="ph-duotone ph-bowl-food text-3xl"></i>
+                    </div>
+                    <span
+                        class="font-bold text-sm text-gray-500 group-hover:text-secondary uppercase tracking-wide transition-colors">Kuliner</span>
+                </a>
+                <a href="#"
+                    class="group flex flex-col items-center gap-4 p-6 rounded-3xl bg-white shadow-sm hover:shadow-floating hover:-translate-y-1 transition-all cursor-pointer border border-transparent hover:border-gray-100">
+                    <div
+                        class="w-16 h-16 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                        <i class="ph-duotone ph-waves text-3xl"></i>
+                    </div>
+                    <span
+                        class="font-bold text-sm text-gray-500 group-hover:text-secondary uppercase tracking-wide transition-colors">Wisata
+                        Air</span>
+                </a>
+                <a href="#"
+                    class="group flex flex-col items-center gap-4 p-6 rounded-3xl bg-white shadow-sm hover:shadow-floating hover:-translate-y-1 transition-all cursor-pointer border border-transparent hover:border-gray-100">
+                    <div
+                        class="w-16 h-16 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                        <i class="ph-duotone ph-mountain text-3xl"></i>
+                    </div>
+                    <span
+                        class="font-bold text-sm text-gray-500 group-hover:text-secondary uppercase tracking-wide transition-colors">Alam</span>
+                </a>
+                <a href="#"
+                    class="group flex flex-col items-center gap-4 p-6 rounded-3xl bg-white shadow-sm hover:shadow-floating hover:-translate-y-1 transition-all cursor-pointer border border-transparent hover:border-gray-100">
+                    <div
+                        class="w-16 h-16 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                        <i class="ph-duotone ph-dots-three text-3xl"></i>
+                    </div>
+                    <span
+                        class="font-bold text-sm text-gray-500 group-hover:text-secondary uppercase tracking-wide transition-colors">Lainnya</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Top Destinations Section (INDONESIA) -->
+        <section class="max-w-7xl mx-auto px-4 py-16">
+            <h2 class="font-display font-semibold text-2xl md:text-3xl mb-8">Destinasi Populer di Indonesia</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                <!-- Card 1: Bali -->
+                <a href="#"
+                    class="group relative rounded-3xl overflow-hidden aspect-[3/4] shadow-card hover:shadow-floating transition-all">
+                    <img src="https://images.unsplash.com/photo-1533929736472-114d939dc726?q=80&w=2070&auto=format&fit=crop"
+                        alt="Bali"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80 group-hover:opacity-100 transition-opacity">
+                    </div>
+                    <span
+                        class="absolute bottom-6 left-6 font-display font-semibold text-white text-xl translate-y-2 group-hover:translate-y-0 transition-transform">Bali</span>
+                </a>
+                <!-- Card 2: Labuan Bajo -->
+                <a href="#"
+                    class="group relative rounded-3xl overflow-hidden aspect-[3/4] shadow-card hover:shadow-floating transition-all">
+                    <img src="https://images.unsplash.com/photo-1596423456860-264188583495?q=80&w=1974&auto=format&fit=crop"
+                        alt="Labuan Bajo"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80 group-hover:opacity-100 transition-opacity">
+                    </div>
+                    <span
+                        class="absolute bottom-6 left-6 font-display font-semibold text-white text-xl translate-y-2 group-hover:translate-y-0 transition-transform">Labuan
+                        Bajo</span>
+                </a>
+                <!-- Card 3: Yogyakarta -->
+                <a href="#"
+                    class="group relative rounded-3xl overflow-hidden aspect-[3/4] shadow-card hover:shadow-floating transition-all">
+                    <img src="https://images.unsplash.com/photo-1584810359583-96fc3448beaa?q=80&w=1974&auto=format&fit=crop"
+                        alt="Yogyakarta"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80 group-hover:opacity-100 transition-opacity">
+                    </div>
+                    <span
+                        class="absolute bottom-6 left-6 font-display font-semibold text-white text-xl translate-y-2 group-hover:translate-y-0 transition-transform">Yogyakarta</span>
+                </a>
+                <!-- Card 4: Lombok -->
+                <a href="#"
+                    class="group relative rounded-3xl overflow-hidden aspect-[3/4] shadow-card hover:shadow-floating transition-all">
+                    <img src="https://images.unsplash.com/photo-1549603038-080344d37521?q=80&w=1924&auto=format&fit=crop"
+                        alt="Lombok"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80 group-hover:opacity-100 transition-opacity">
+                    </div>
+                    <span
+                        class="absolute bottom-6 left-6 font-display font-semibold text-white text-xl translate-y-2 group-hover:translate-y-0 transition-transform">Lombok</span>
+                </a>
+                <!-- Card 5: Raja Ampat -->
+                <a href="#"
+                    class="group relative rounded-3xl overflow-hidden aspect-[3/4] shadow-card hover:shadow-floating transition-all">
+                    <img src="https://images.unsplash.com/photo-1516690553959-71a414d6b9b6?q=80&w=1974&auto=format&fit=crop"
+                        alt="Raja Ampat"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80 group-hover:opacity-100 transition-opacity">
+                    </div>
+                    <span
+                        class="absolute bottom-6 left-6 font-display font-semibold text-white text-xl translate-y-2 group-hover:translate-y-0 transition-transform">Raja
+                        Ampat</span>
+                </a>
+                <!-- Card 6: Bromo -->
+                <a href="#"
+                    class="group relative rounded-3xl overflow-hidden aspect-[3/4] shadow-card hover:shadow-floating transition-all">
+                    <img src="https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?q=80&w=2071&auto=format&fit=crop"
+                        alt="Bromo"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80 group-hover:opacity-100 transition-opacity">
+                    </div>
+                    <span
+                        class="absolute bottom-6 left-6 font-display font-semibold text-white text-xl translate-y-2 group-hover:translate-y-0 transition-transform">Bromo</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Popular Activities Section -->
+        <section
+            class="bg-white py-20 rounded-t-[3rem] shadow-[0_-20px_40px_rgba(0,0,0,0.03)] border-t border-gray-100">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="flex justify-between items-end mb-10">
+                    <div>
+                        <h2 class="font-display font-semibold text-3xl lg:text-4xl mb-3 text-secondary">Pengalaman Seru
+                        </h2>
+                        <p class="text-gray-500 font-medium text-lg">Pesan aktivitas yang bakal bikin liburanmu berkesan
+                        </p>
+                    </div>
+                    <a href="#"
+                        class="hidden md:flex items-center gap-2 text-primary font-bold hover:gap-4 transition-all">
+                        Lihat semua <i class="ph-bold ph-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Horizontal Scroll Container -->
+                <div class="flex gap-8 overflow-x-auto pb-10 -mx-4 px-4 snap-x hide-scrollbar">
+
+                    <!-- Activity Card 1 -->
+                    <a href="detail.html"
+                        class="min-w-[300px] md:min-w-[340px] bg-white rounded-3xl shadow-card hover:shadow-floating transition-all group snap-center cursor-pointer relative border border-gray-100 overflow-hidden transform hover:-translate-y-2">
+                        <!-- Image -->
+                        <div class="relative h-56 overflow-hidden">
+                            <span
+                                class="absolute top-4 left-4 bg-red-500 text-white text-[10px] uppercase font-extrabold tracking-wider px-3 py-1.5 rounded-lg z-10 shadow-sm">Laris
+                                Manis</span>
+                            <div
+                                class="absolute top-4 right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <button
+                                    class="w-10 h-10 rounded-full bg-white text-secondary shadow-lg flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+                                    <i class="ph-bold ph-heart text-xl"></i>
+                                </button>
+                            </div>
+                            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070&auto=format&fit=crop"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                alt="Resort">
+                        </div>
+                        <!-- Content -->
+                        <div class="p-6">
+                            <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">TUR PRIVAT
+                            </div>
+                            <h3
+                                class="font-display font-semibold text-secondary text-xl leading-tight mb-3 line-clamp-2 group-hover:text-primary transition-colors">
+                                Bali: Tur Tegalalang & Jungle Swing dengan Fotografer</h3>
+
+                            <div class="flex items-center gap-1.5 mb-4">
+                                <div class="flex text-yellow-400 text-sm">
+                                    <i class="ph-fill ph-star"></i>
+                                    <i class="ph-fill ph-star"></i>
+                                    <i class="ph-fill ph-star"></i>
+                                    <i class="ph-fill ph-star"></i>
+                                    <i class="ph-fill ph-star"></i>
+                                </div>
+                                <span class="text-xs font-semibold text-gray-500">(1,245 ulasan)</span>
+                            </div>
+
+                            <div class="flex items-end justify-between mt-4 pt-4 border-t border-gray-100">
+                                <div class="flex flex-col">
+                                    <span class="text-xs text-gray-400 font-medium">Mulai dari</span>
+                                    <div class="flex items-baseline gap-1">
+                                        <span class="text-lg font-bold text-secondary">Rp 650.000</span>
+                                        <span class="text-xs text-gray-400">/ orang</span>
+                                    </div>
+                                </div>
+                                <div
+                                    class="w-10 h-10 rounded-full bg-orange-50 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+                                    <i class="ph-bold ph-arrow-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Activity Card 2 -->
+                    <a href="detail.html"
+                        class="min-w-[300px] md:min-w-[340px] bg-white rounded-3xl shadow-card hover:shadow-floating transition-all group snap-center cursor-pointer relative border border-gray-100 overflow-hidden transform hover:-translate-y-2">
+                        <div class="relative h-56 overflow-hidden">
+                            <div
+                                class="absolute top-4 right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <button
+                                    class="w-10 h-10 rounded-full bg-white text-secondary shadow-lg flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+                                    <i class="ph-bold ph-heart text-xl"></i>
+                                </button>
+                            </div>
+                            <img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?q=80&w=2070&auto=format&fit=crop"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                alt="Komodo">
+                        </div>
+                        <div class="p-6">
+                            <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">OPEN TRIP
+                            </div>
+                            <h3
+                                class="font-display font-semibold text-secondary text-xl leading-tight mb-3 line-clamp-2 group-hover:text-primary transition-colors">
+                                Labuan Bajo: Speedboat ke Pulau Komodo & Padar</h3>
+
+                            <div class="flex items-center gap-1.5 mb-4">
+                                <div class="flex text-yellow-400 text-sm">
+                                    <i class="ph-fill ph-star"></i>
+                                    <i class="ph-fill ph-star"></i>
+                                    <i class="ph-fill ph-star"></i>
+                                    <i class="ph-fill ph-star"></i>
+                                    <i class="ph-fill ph-star-half"></i>
+                                </div>
+                                <span class="text-xs font-semibold text-gray-500">(842 ulasan)</span>
+                            </div>
+
+                            <div class="flex items-end justify-between mt-4 pt-4 border-t border-gray-100">
+                                <div class="flex flex-col">
+                                    <span class="text-xs text-gray-400 font-medium">Mulai dari</span>
+                                    <div class="flex items-baseline gap-1">
+                                        <span class="text-lg font-bold text-secondary">Rp 1.200.000</span>
+                                        <span class="text-xs text-gray-400">/ orang</span>
+                                    </div>
+                                </div>
+                                <div
+                                    class="w-10 h-10 rounded-full bg-orange-50 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+                                    <i class="ph-bold ph-arrow-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Activity Card 3 -->
+                    <a href="detail.html"
+                        class="min-w-[300px] md:min-w-[340px] bg-white rounded-3xl shadow-card hover:shadow-floating transition-all group snap-center cursor-pointer relative border border-gray-100 overflow-hidden transform hover:-translate-y-2">
+                        <div class="relative h-56 overflow-hidden">
+                            <span
+                                class="absolute top-4 left-4 bg-primary text-white text-[10px] uppercase font-extrabold tracking-wider px-3 py-1.5 rounded-lg z-10 shadow-sm">Paling
+                                Laku</span>
+                            <div
+                                class="absolute top-4 right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <button
+                                    class="w-10 h-10 rounded-full bg-white text-secondary shadow-lg flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+                                    <i class="ph-bold ph-heart text-xl"></i>
+                                </button>
+                            </div>
+                            <img src="https://images.unsplash.com/photo-1596402184320-417e7178b2cd?q=80&w=2070&auto=format&fit=crop"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                alt="Resort">
+                        </div>
+                        <div class="p-6">
+                            <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">JEEP
+                                ADVENTURE</div>
+                            <h3
+                                class="font-display font-semibold text-secondary text-xl leading-tight mb-3 line-clamp-2 group-hover:text-primary transition-colors">
+                                Bromo: Tur Sunrise Jeep Privat dari Malang/Surabaya</h3>
+
+                            <div class="flex items-center gap-1.5 mb-4">
+                                <div class="flex text-yellow-400 text-sm">
+                                    <i class="ph-fill ph-star"></i>
+                                    <i class="ph-fill ph-star"></i>
+                                    <i class="ph-fill ph-star"></i>
+                                    <i class="ph-fill ph-star"></i>
+                                    <i class="ph-fill ph-star"></i>
+                                </div>
+                                <span class="text-xs font-semibold text-gray-500">(2,301 ulasan)</span>
+                            </div>
+
+                            <div class="flex items-end justify-between mt-4 pt-4 border-t border-gray-100">
+                                <div class="flex flex-col">
+                                    <span class="text-xs text-gray-400 font-medium">Mulai dari</span>
+                                    <div class="flex items-baseline gap-1">
+                                        <span class="text-lg font-bold text-secondary">Rp 550.000</span>
+                                        <span class="text-xs text-gray-400">/ orang</span>
+                                    </div>
+                                </div>
+                                <div
+                                    class="w-10 h-10 rounded-full bg-orange-50 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+                                    <i class="ph-bold ph-arrow-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Activity Card 4 -->
+                    <a href="detail.html"
+                        class="min-w-[300px] md:min-w-[340px] bg-white rounded-3xl shadow-card hover:shadow-floating transition-all group snap-center cursor-pointer relative border border-gray-100 overflow-hidden transform hover:-translate-y-2">
+                        <div class="relative h-56 overflow-hidden">
+                            <div
+                                class="absolute top-4 right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <button
+                                    class="w-10 h-10 rounded-full bg-white text-secondary shadow-lg flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+                                    <i class="ph-bold ph-heart text-xl"></i>
+                                </button>
+                            </div>
+                            <img src="https://images.unsplash.com/photo-1584810359583-96fc3448beaa?q=80&w=1974&auto=format&fit=crop"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                alt="Yogyakarta">
+                        </div>
+                        <div class="p-6">
+                            <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">TIKET MASUK
+                            </div>
+                            <h3
+                                class="font-display font-semibold text-secondary text-xl leading-tight mb-3 line-clamp-2 group-hover:text-primary transition-colors">
+                                Yogyakarta: Tiket Candi Borobudur & Prambanan</h3>
+
+                            <div class="flex items-center gap-1.5 mb-4">
+                                <div class="flex text-yellow-400 text-sm">
+                                    <i class="ph-fill ph-star"></i>
+                                    <i class="ph-fill ph-star"></i>
+                                    <i class="ph-fill ph-star"></i>
+                                    <i class="ph-fill ph-star"></i>
+                                    <i class="ph-fill ph-star"></i>
+                                </div>
+                                <span class="text-xs font-semibold text-gray-500">(50rb+ ulasan)</span>
+                            </div>
+
+                            <div class="flex items-end justify-between mt-4 pt-4 border-t border-gray-100">
+                                <div class="flex flex-col">
+                                    <span class="text-xs text-gray-400 font-medium">Mulai dari</span>
+                                    <div class="flex items-baseline gap-1">
+                                        <span class="text-lg font-bold text-secondary">Rp 375.000</span>
+                                        <span class="text-xs text-gray-400">/ orang</span>
+                                    </div>
+                                </div>
+                                <div
+                                    class="w-10 h-10 rounded-full bg-orange-50 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+                                    <i class="ph-bold ph-arrow-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <a href="#"
+                    class="md:hidden flex items-center justify-center gap-2 text-primary font-bold border border-primary/20 bg-orange-50 rounded-full py-4 mt-8 hover:bg-primary hover:text-white transition-all">
+                    Lihat semua aktivitas
+                </a>
+
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-secondary text-white pt-20 pb-10 rounded-t-[3rem] -mt-10 overflow-hidden relative">
+            <!-- decorative circles -->
+            <div
+                class="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2">
+            </div>
+            <div
+                class="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2">
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 relative z-10">
+
+                <!-- Newsletter -->
+                <div
+                    class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 pb-16 border-b border-white/10">
+                    <div>
+                        <h3 class="font-display font-semibold text-2xl mb-2">Liburan impianmu dimulai di sini</h3>
+                        <p class="text-gray-400 text-sm">Daftar buat dapet tips travel, rekomendasi seru, dan inspirasi
+                            liburan.</p>
+                    </div>
+                    <div class="w-full md:w-auto flex gap-3">
+                        <input type="email" placeholder="Alamat email"
+                            class="w-full md:w-72 bg-white/5 border border-white/10 text-white rounded-xl px-5 py-3.5 outline-none focus:border-primary/50 focus:bg-white/10 transition-colors backdrop-blur-sm">
+                        <button
+                            class="bg-primary hover:bg-orange-600 text-white font-bold px-8 py-3.5 rounded-xl transition-colors whitespace-nowrap shadow-lg shadow-orange-900/20">
+                            Daftar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Links Grid -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-12 py-16">
+                    <div>
+                        <h4 class="font-display font-bold mb-6 text-lg">Bantuan</h4>
+                        <ul class="space-y-4 text-sm text-gray-400">
+                            <li><a href="#" class="hover:text-white transition-colors">Hubungi Kami</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">Legal</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">Kebijakan Privasi</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">Syarat & Ketentuan</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">Peta Situs</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-display font-bold mb-6 text-lg">Perusahaan</h4>
+                        <ul class="space-y-4 text-sm text-gray-400">
+                            <li><a href="#" class="hover:text-white transition-colors">Tentang Kami</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">Karir</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">Pers</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">Gift Cards</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-display font-bold mb-6 text-lg">Kerja Sama</h4>
+                        <ul class="space-y-4 text-sm text-gray-400">
+                            <li><a href="#" class="hover:text-white transition-colors">Jadi Supply Partner</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">Jadi Content Creator</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">Jadi Affiliate Partner</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-display font-bold mb-6 text-lg">Ikuti Kami</h4>
+                        <div class="flex gap-4 mb-8">
+                            <a href="#"
+                                class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
+                                <i class="ph-fill ph-facebook-logo text-xl"></i>
+                            </a>
+                            <a href="#"
+                                class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
+                                <i class="ph-fill ph-instagram-logo text-xl"></i>
+                            </a>
+                            <a href="#"
+                                class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
+                                <i class="ph-fill ph-twitter-logo text-xl"></i>
+                            </a>
+                            <a href="#"
+                                class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
+                                <i class="ph-fill ph-linkedin-logo text-xl"></i>
+                            </a>
+                        </div>
+                        <div class="text-sm text-gray-400">
+                            <p class="mb-3 font-semibold text-white">Download aplikasi</p>
+                            <div class="flex gap-3">
+                                <div
+                                    class="h-10 px-4 bg-gray-800/50 rounded-lg border border-gray-700 hover:border-gray-500 cursor-pointer flex items-center justify-center text-xs gap-2 transition-colors">
+                                    <i class="ph-fill ph-apple-logo text-lg"></i> App Store
+                                </div>
+                                <div
+                                    class="h-10 px-4 bg-gray-800/50 rounded-lg border border-gray-700 hover:border-gray-500 cursor-pointer flex items-center justify-center text-xs gap-2 transition-colors">
+                                    <i class="ph-fill ph-google-play-logo text-lg"></i> Google Play
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Bar -->
+                <div
+                    class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500 font-medium">
+                    <div>
+                        &copy; 2025 FazalTravel Inc. Hak cipta dilindungi.
+                    </div>
+                    <div class="flex items-center gap-8">
+                        <div class="flex items-center gap-2 hover:text-white cursor-pointer transition-colors">
+                            <i class="ph-fill ph-globe text-lg"></i>
+                            <span>Bahasa Indonesia</span>
+                        </div>
+                        <div class="flex items-center gap-2 hover:text-white cursor-pointer transition-colors">
+                            <i class="ph-fill ph-currency-dollar text-lg"></i>
+                            <span>IDR</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- Auth Modal -->
+    <div id="authModal" class="fixed inset-0 z-50 hidden opacity-0 pointer-events-none transition-all duration-300">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-secondary/80 backdrop-blur-sm" onclick="toggleAuthModal()"></div>
+
+        <!-- Modal Content -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md p-4 transform scale-95 transition-all duration-300"
+            id="authModalContent">
+            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden relative">
+                <!-- Close Button -->
+                <button onclick="toggleAuthModal()"
+                    class="absolute top-4 right-4 w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors z-10">
+                    <i class="ph-bold ph-x text-gray-500"></i>
+                </button>
+
+                <!-- Header Image -->
+                <div class="h-32 bg-primary relative overflow-hidden flex items-center justify-center">
+                    <div class="absolute inset-0 bg-gradient-to-r from-orange-600 to-primary"></div>
+                    <i
+                        class="ph-duotone ph-paper-plane-tilt text-6xl text-white/20 absolute -bottom-4 -right-4 rotate-12"></i>
+                    <h2 class="font-display font-bold text-2xl text-white relative z-10">Selamat Datang!</h2>
+                </div>
+
+                <!-- Form -->
+                <div class="p-8">
+                    <!-- Toggle Buttons -->
+                    <div class="flex gap-4 mb-6 p-1 bg-gray-50 rounded-xl relative">
+                        <div id="activeTabIndicator"
+                            class="absolute top-1 bottom-1 w-[calc(50%-4px)] bg-white shadow-sm rounded-lg transition-all duration-300 left-1">
+                        </div>
+                        <button onclick="switchAuthMode('login')" id="btnLoginToggle"
+                            class="flex-1 py-2.5 text-sm font-bold rounded-lg relative z-10 text-secondary transition-all">Masuk</button>
+                        <button onclick="switchAuthMode('register')" id="btnRegisterToggle"
+                            class="flex-1 py-2.5 text-sm font-bold rounded-lg relative z-10 text-gray-500 hover:text-gray-700 transition-all">Daftar</button>
+                    </div>
+
+                    <!-- Social Login (Shared) -->
+                    <div class="space-y-4">
+                        <button
+                            class="w-full py-3 px-4 border border-gray-200 rounded-xl flex items-center justify-center gap-3 hover:bg-gray-50 transition-colors font-semibold text-sm text-gray-700">
+                            <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-5 h-5"
+                                alt="Google">
+                            Lanjut dengan Google
+                        </button>
+                        <button
+                            class="w-full py-3 px-4 border border-gray-200 rounded-xl flex items-center justify-center gap-3 hover:bg-gray-50 transition-colors font-semibold text-sm text-gray-700">
+                            <img src="https://www.svgrepo.com/show/475647/facebook-color.svg" class="w-5 h-5"
+                                alt="Facebook">
+                            Lanjut dengan Facebook
+                        </button>
+                    </div>
+
+                    <div class="relative my-6 text-center">
+                        <div class="absolute inset-0 flex items-center">
+                            <div class="w-full border-t border-gray-100"></div>
+                        </div>
+                        <span class="relative bg-white px-4 text-xs font-semibold text-gray-400">atau pakai email</span>
+                    </div>
+
+                    <!-- Login Form -->
+                    <form id="loginForm" class="space-y-4 block transition-all duration-300">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Email</label>
+                            <input type="email"
+                                class="w-full p-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all"
+                                placeholder="name@example.com">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Password</label>
+                            <input type="password"
+                                class="w-full p-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all"
+                                placeholder="••••••••">
+                        </div>
+                        <div class="flex items-center justify-between text-xs">
+                            <a href="#" class="font-semibold text-primary hover:underline">Lupa password?</a>
+                        </div>
+                        <button type="button" onclick="alert('Login berhasil! (Simulasi)')"
+                            class="w-full py-3.5 bg-secondary hover:bg-gray-900 text-white rounded-xl font-bold shadow-lg transition-all transform active:scale-95">
+                            Masuk
+                        </button>
+                    </form>
+
+                    <!-- Register Form -->
+                    <form id="registerForm" class="space-y-4 hidden transition-all duration-300">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Nama Lengkap</label>
+                            <input type="text"
+                                class="w-full p-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all"
+                                placeholder="Fazal Said">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Email</label>
+                            <input type="email"
+                                class="w-full p-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all"
+                                placeholder="name@example.com">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Password</label>
+                            <input type="password"
+                                class="w-full p-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all"
+                                placeholder="••••••••">
+                        </div>
+                        <button type="button" onclick="alert('Pendaftaran berhasil! (Simulasi)')"
+                            class="w-full py-3.5 bg-primary hover:bg-orange-600 text-white rounded-xl font-bold shadow-lg transition-all transform active:scale-95">
+                            Daftar Sekarang
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Auth Toggle Logic
+        function switchAuthMode(mode) {
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            const btnLogin = document.getElementById('btnLoginToggle');
+            const btnRegister = document.getElementById('btnRegisterToggle');
+            const indicator = document.getElementById('activeTabIndicator');
+
+            if (mode === 'login') {
+                loginForm.classList.remove('hidden');
+                registerForm.classList.add('hidden');
+
+                // Update Button Styles
+                btnLogin.classList.add('text-secondary');
+                btnLogin.classList.remove('text-gray-500');
+                btnRegister.classList.remove('text-secondary');
+                btnRegister.classList.add('text-gray-500');
+
+                // Move Indicator
+                indicator.style.left = '4px';
+
+            } else {
+                loginForm.classList.add('hidden');
+                registerForm.classList.remove('hidden');
+
+                // Update Button Styles
+                btnRegister.classList.add('text-secondary');
+                btnRegister.classList.remove('text-gray-500');
+                btnLogin.classList.remove('text-secondary');
+                btnLogin.classList.add('text-gray-500');
+
+                // Move Indicator
+                indicator.style.left = 'calc(50% + 4px)';
+            }
+        }
+
+        // Modal Logic
+        function toggleAuthModal() {
+            const modal = document.getElementById('authModal');
+            const content = document.getElementById('authModalContent');
+
+            if (modal.classList.contains('hidden')) {
+                // Open
+                modal.classList.remove('hidden');
+                // Trigger reflow
+                void modal.offsetWidth;
+                modal.classList.remove('opacity-0', 'pointer-events-none');
+                content.classList.remove('scale-95');
+                content.classList.add('scale-100');
+            } else {
+                // Close
+                modal.classList.add('opacity-0', 'pointer-events-none');
+                content.classList.remove('scale-100');
+                content.classList.add('scale-95');
+
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 10) {
+                nav.classList.add('shadow-md');
+            } else {
+                nav.classList.remove('shadow-md');
+            }
+        });
+    </script>
+</body>
+
+</html>
