@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odoru Ponpokorin | Ado Ver.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=RocknRoll+One&family=Zen+Tokyo+Zoo&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css" id="main-style">
+    <link rel="stylesheet" href="style-pop.css" id="pop-style" disabled>
+</head>
+
+<body class="ado-mode">
+
+    <!-- Style Switcher -->
+    <div id="style-switcher">
+        <button id="btn-ado" class="style-btn active">ADO MODE</button>
+        <button id="btn-maruko" class="style-btn">MARUKO MODE</button>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="bgm" src="odoru.mp3" preload="auto"></audio>
+
+    <div id="loader">
+        <div class="glitch" data-text="SYSTEM BOOTING...">SYSTEM BOOTING...</div>
+        <div class="loader-bar">
+            <div class="bar-fill"></div>
+        </div>
+    </div>
+
+    <!-- Background Elements -->
+    <canvas id="noise"></canvas>
+    <div class="vignette"></div>
+    <div class="grid-bg"></div>
+    <div id="particle-container"></div>
+    <div id="speed-lines"></div>
+
+    <!-- Main Lyric Container -->
+    <main id="stage">
+        <div id="lyric-container">
+            <h1 class="intro-title glitch-layer" data-text="ODORU PONPOKORIN">ODORU PONPOKORIN</h1>
+            <h2 class="artist-name">Ado / Cover</h2>
+            <button id="start-btn">INITIALIZE SEQUENCE</button>
+        </div>
+    </main>
+
+    <!-- Overlay UI -->
+    <!-- Sync Controls (Hidden by script on play) -->
+    <div id="sync-controls">
+        <label>OFFSET (ms): <input type="number" id="offset-input" value="0"></label>
+        <div class="buttons">
+            <button id="btn-minus-100">-100ms</button>
+            <button id="btn-plus-100">+100ms</button>
+        </div>
+        <small>Adjust intro timing here!</small>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

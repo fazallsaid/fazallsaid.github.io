@@ -1,0 +1,696 @@
+:root {
+    --primary: #0ff;
+    --secondary: #f0f;
+    --tertiary: #fe0;
+    --bg-color: #050505;
+    --text-color: #fff;
+    --lyric-color-1: #00FFFF;
+    /* Cyan */
+    --lyric-color-2: #FF00FF;
+    /* Magenta */
+    --lyric-color-3: #FFD700;
+    /* Gold */
+    --lyric-color-4: #FFFFFF;
+    /* White */
+    --lyric-color-5: #FF0000;
+    /* Red */
+    --lyric-color-6: #00FF00;
+    /* Green */
+    --lyric-color-7: orange;
+    --font-main: 'Montserrat', sans-serif;
+    --font-jp: 'RocknRoll One', sans-serif;
+    --font-chaos: 'Zen Tokyo Zoo', cursive;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: none;
+    /* Custom cursor opportunity */
+}
+
+body {
+    background-color: var(--dark);
+    color: white;
+    font-family: var(--font-main);
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* --- Backgrounds --- */
+#noise {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -3;
+    opacity: 0.1;
+    pointer-events: none;
+}
+
+.grid-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    background-image:
+        linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 0, 85, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+    transform: perspective(500px) rotateX(60deg) translateY(-100px) translateZ(-200px);
+    animation: gridMove 20s linear infinite;
+    z-index: -2;
+}
+
+@keyframes gridMove {
+    0% {
+        transform: perspective(500px) rotateX(60deg) translateY(0) translateZ(-200px);
+    }
+
+    100% {
+        transform: perspective(500px) rotateX(60deg) translateY(50px) translateZ(-200px);
+    }
+}
+
+.vignette {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, transparent 40%, black 100%);
+    z-index: 100;
+    pointer-events: none;
+}
+
+/* --- Loader --- */
+#loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--dark);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    transition: transform 0.8s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.loader-bar {
+    width: 300px;
+    height: 4px;
+    background: #333;
+    margin-top: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.bar-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    background: var(--secondary);
+    box-shadow: 0 0 10px var(--secondary);
+    animation: loadFill 2s ease-in-out forwards;
+}
+
+@keyframes loadFill {
+    0% {
+        width: 0%;
+    }
+
+    40% {
+        width: 70%;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+/* --- Main Stage --- */
+#stage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    perspective: 1000px;
+    position: relative;
+    z-index: 10;
+}
+
+#lyric-container {
+    text-align: center;
+    position: relative;
+}
+
+/* Intro Styles */
+.intro-title {
+    font-size: 5rem;
+    font-family: var(--font-chaos);
+    color: var(--primary);
+    text-shadow: 2px 2px 0px var(--secondary);
+    margin-bottom: 2rem;
+}
+
+.artist-name {
+    font-size: 1.5rem;
+    letter-spacing: 10px;
+    color: var(--tertiary);
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeIn 1s ease 2.5s forwards;
+}
+
+#start-btn {
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    font-family: var(--font-main);
+    font-weight: 900;
+    color: var(--dark);
+    background: var(--secondary);
+    border: none;
+    clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+    opacity: 0;
+    animation: fadeIn 1s ease 3s forwards;
+}
+
+#start-btn:hover {
+    background: white;
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0.8), 5px 5px 0px var(--primary);
+    transform: scale(1.05);
+}
+
+/* Lyric Styles */
+.lyric-line {
+    font-family: var(--font-jp);
+    font-weight: 900;
+    white-space: nowrap;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+}
+
+.char {
+    display: inline-block;
+    opacity: 0;
+    transform: translateZ(50px);
+}
+
+/* Animations classes */
+.anim-pop-in .char {
+    animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.anim-shake {
+    animation: shake 0.1s infinite;
+    color: var(--tertiary);
+    font-size: 1.2em;
+}
+
+.anim-glitch {
+    position: relative;
+}
+
+.anim-glitch::before,
+.anim-glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.anim-glitch::before {
+    left: 2px;
+    text-shadow: -1px 0 red;
+    clip: rect(24px, 550px, 90px, 0);
+    animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+.anim-glitch::after {
+    left: -2px;
+    text-shadow: -1px 0 blue;
+    clip: rect(85px, 550px, 140px, 0);
+    animation: glitch-anim 2.5s infinite linear alternate-reverse;
+}
+
+/* Keyframes */
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        transform: scale(0) rotate(-10deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+@keyframes shake {
+    0% {
+        transform: translate(1px, 1px) rotate(0deg);
+    }
+
+    10% {
+        transform: translate(-1px, -2px) rotate(-1deg);
+    }
+
+    20% {
+        transform: translate(-3px, 0px) rotate(1deg);
+    }
+
+    30% {
+        transform: translate(3px, 2px) rotate(0deg);
+    }
+
+    40% {
+        transform: translate(1px, -1px) rotate(1deg);
+    }
+
+    50% {
+        transform: translate(-1px, 2px) rotate(-1deg);
+    }
+
+    60% {
+        transform: translate(-3px, 1px) rotate(0deg);
+    }
+
+    70% {
+        transform: translate(3px, 1px) rotate(-1deg);
+    }
+
+    80% {
+        transform: translate(-1px, -1px) rotate(1deg);
+    }
+
+    90% {
+        transform: translate(1px, 2px) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(1px, -2px) rotate(-1deg);
+    }
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Sync Controls */
+#sync-controls {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 1px solid var(--secondary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    z-index: 1000;
+    font-family: var(--font-main);
+    color: white;
+}
+
+#sync-controls input {
+    background: transparent;
+    border: 1px solid var(--secondary);
+    color: var(--secondary);
+    padding: 5px;
+    width: 80px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#sync-controls .buttons {
+    display: flex;
+    gap: 5px;
+}
+
+#sync-controls button {
+    background: #333;
+    color: white;
+    border: 1px solid #555;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+#sync-controls button:hover {
+    background: var(--secondary);
+    color: black;
+}
+
+.tap-mode-toggle {
+    margin-top: 10px;
+    border-top: 1px solid #555;
+    padding-top: 5px;
+    width: 100%;
+    text-align: center;
+}
+
+.tap-mode-toggle label {
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--tertiary);
+}
+
+.tap-active {
+    border: 2px solid var(--tertiary) !important;
+    box-shadow: 0 0 15px var(--tertiary);
+}
+
+/* --- VISUAL OVERHAUL: NEON MANGA MADNESS --- */
+:root {
+    --pop-yellow: #FFD700;
+    --pop-pink: #FF00FF;
+    --pop-cyan: #00FFFF;
+    --pop-black: #050505;
+}
+
+/* Speed Lines */
+#speed-lines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: repeating-conic-gradient(from 0deg,
+            transparent 0deg 10deg,
+            rgba(255, 255, 255, 0.1) 10deg 20deg);
+    opacity: 0;
+    z-index: 5;
+    mix-blend-mode: overlay;
+    animation: spin-slow 10s linear infinite;
+}
+
+.speed-active #speed-lines {
+    opacity: 1;
+    animation: spin-fast 0.5s linear infinite;
+}
+
+@keyframes spin-slow {
+    from {
+        transform: scale(1.5) rotate(0deg);
+    }
+
+    to {
+        transform: scale(1.5) rotate(360deg);
+    }
+}
+
+@keyframes spin-fast {
+    from {
+        transform: scale(1.5) rotate(0deg);
+    }
+
+    to {
+        transform: scale(1.5) rotate(360deg);
+    }
+}
+
+/* Particle System */
+#particle-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: var(--pop-yellow);
+    border-radius: 50%;
+    animation: explode 1s ease-out forwards;
+}
+
+@keyframes explode {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(var(--tx), var(--ty)) scale(0);
+        opacity: 0;
+    }
+}
+
+/* Typography Overhaul */
+.lyric-line {
+    font-family: 'Mochiy Pop One', 'RocknRoll One', sans-serif;
+    text-shadow: 4px 4px 0px var(--pop-black), 8px 8px 0px var(--pop-pink);
+    white-space: nowrap;
+    line-height: 1.2;
+    text-align: center;
+    perspective: 500px;
+}
+
+/* Animations */
+.anim-slam {
+    will-change: transform, opacity;
+    animation: slam-in 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes slam-in {
+    0% {
+        transform: scale(5) rotate(20deg);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+.anim-jump-rotate {
+    will-change: transform;
+    animation: jump-rotate 0.5s ease-out infinite alternate;
+}
+
+@keyframes jump-rotate {
+    0% {
+        transform: translateY(0) rotate(-5deg);
+    }
+
+    100% {
+        transform: translateY(-30px) rotate(5deg);
+    }
+}
+
+.anim-shutter {
+    will-change: transform, filter;
+    animation: shutter 0.1s infinite;
+}
+
+@keyframes shutter {
+    0% {
+        transform: scale(1);
+        filter: invert(0);
+    }
+
+    50% {
+        transform: scale(1.1);
+        filter: invert(1);
+    }
+
+    100% {
+        transform: scale(1);
+        filter: invert(0);
+    }
+}
+
+.anim-manga-shake {
+    will-change: transform;
+    animation: manga-shake 0.1s infinite;
+    color: var(--pop-yellow) !important;
+    text-shadow: 5px 5px var(--pop-pink) !important;
+}
+
+@keyframes manga-shake {
+    0% {
+        transform: translate(2px, 2px) rotate(0deg);
+    }
+
+    25% {
+        transform: translate(-2px, -2px) rotate(-2deg);
+    }
+
+    50% {
+        transform: translate(2px, -2px) rotate(2deg);
+    }
+
+    75% {
+        transform: translate(-2px, 2px) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(2px, 2px) rotate(0deg);
+    }
+}
+
+/* Camera Shake on Body */
+.camera-shake {
+    animation: cam-shake 0.2s cubic-bezier(.36, .07, .19, .97) both;
+}
+
+@keyframes cam-shake {
+
+    10%,
+    90% {
+        transform: translate3d(-5px, 0, 0);
+    }
+
+    20%,
+    80% {
+        transform: translate3d(10px, 0, 0) rotate(2deg);
+    }
+
+    30%,
+    50%,
+    70% {
+        transform: translate3d(-10px, 0, 0) rotate(-2deg);
+    }
+
+    40%,
+    60% {
+        transform: translate3d(10px, 0, 0);
+    }
+}
+
+/* UI Overlay */
+.ui-overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 900;
+    padding: 20px;
+    font-family: var(--font-main);
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.top-left {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: red;
+    animation: blink 1s infinite;
+}
+
+.top-right {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 5px 10px;
+}
+
+.bottom-left {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+
+.bottom-right {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 4px;
+}
+
+.audio-waves span {
+    width: 5px;
+    height: 20px;
+    background: var(--secondary);
+    animation: wave 1s ease-in-out infinite;
+}
+
+.audio-waves span:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.audio-waves span:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.audio-waves span:nth-child(4) {
+    animation-delay: 0.3s;
+}
+
+.audio-waves span:nth-child(5) {
+    animation-delay: 0.4s;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+@keyframes wave {
+
+    0%,
+    100% {
+        height: 10px;
+    }
+
+    50% {
+        height: 30px;
+    }
+}
+
+/* Custom Cursor */
+.cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--secondary);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    transition: transform 0.1s;
+    mix-blend-mode: difference;
+}
+
+body.is-playing .cursor {
+    opacity: 0;
+}
+
+body.is-playing {
+    cursor: none;
+    /* Hide real cursor too */
+}

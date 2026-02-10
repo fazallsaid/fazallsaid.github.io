@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODOROKI HAJIME!! 🚀🐧</title>
+
+    <!-- Fonts: Mochiy Pop One (Chunky Cute) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Zen+Maru+Gothic:wght@500;700;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Zen Maru Gothic', 'sans-serif'],
+                        display: ['Mochiy Pop One', 'sans-serif'],
+                    },
+                    colors: {
+                        'pop-yellow': '#FFE600',
+                        'pop-pink': '#FF6AC2',
+                        'pop-blue': '#40DDFF',
+                        'pop-purple': '#BA97FF',
+                        'pop-dark': '#2A2A2A',
+                    },
+                    backgroundImage: {
+                        'checker-pattern': "repeating-linear-gradient(45deg, #eee 25%, transparent 25%, transparent 75%, #eee 75%, #eee), repeating-linear-gradient(45deg, #eee 25%, #fff 25%, #fff 75%, #eee 75%, #eee)",
+                        'dot-pattern': "radial-gradient(#BA97FF 20%, transparent 20%)",
+                        'stripe-pattern': "repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(255,255,255,0.3) 10px, rgba(255,255,255,0.3) 20px)",
+                    },
+                    boxShadow: {
+                        'hard': '4px 4px 0px 0px #000',
+                        'hard-lg': '8px 8px 0px 0px #000',
+                        'hard-xl': '12px 12px 0px 0px #000',
+                    },
+                    animation: {
+                        'wiggle-const': 'wiggle 2s ease-in-out infinite',
+                        'bounce-wild': 'bounceWild 0.5s infinite alternate',
+                        'spin-slow': 'spin 10s linear infinite',
+                        'slide-bg': 'slideBg 20s linear infinite',
+                        'pop-in': 'popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
+                    },
+                    keyframes: {
+                        wiggle: {
+                            '0%, 100%': { transform: 'rotate(-3deg)' },
+                            '50%': { transform: 'rotate(3deg)' },
+                        },
+                        bounceWild: {
+                            '0%': { transform: 'translateY(0)' },
+                            '100%': { transform: 'translateY(-10px)' },
+                        },
+                        slideBg: {
+                            '0%': { backgroundPosition: '0% 0%' },
+                            '100%': { backgroundPosition: '100% 100%' },
+                        },
+                        popIn: {
+                            '0%': { opacity: '0', transform: 'scale(0.5)' },
+                            '100%': { opacity: '1', transform: 'scale(1)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* P-Maru Style Elements */
+        body {
+            background-color: #FFF9C4;
+            background-image:
+                radial-gradient(#FF6AC2 15%, transparent 16%),
+                radial-gradient(#40DDFF 15%, transparent 16%);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+        }
+
+        .text-stroke-white {
+            -webkit-text-stroke: 6px white;
+            paint-order: stroke fill;
+        }
+
+        .text-stroke-black {
+            -webkit-text-stroke: 4px black;
+            paint-order: stroke fill;
+            color: white;
+        }
+
+        .comic-border {
+            border: 4px solid #000;
+        }
+
+        .scrolling-text-container {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        /* Smooth wavy divider */
+        .wave-divider {
+            width: 100%;
+            height: 50px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z' fill='%23FFFFFF'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body class="overflow-x-hidden cursor-default selection:bg-pop-pink selection:text-white">
+
+    <!-- LOADING OVERLAY (Fake) -->
+    <div class="fixed inset-0 z-[100] bg-pop-yellow flex items-center justify-center transition-transform duration-700 ease-in-out"
+        x-data="{ show: true }" x-init="setTimeout(() => show = false, 1500)"
+        :class="show ? 'translate-y-0' : '-translate-y-full'">
+        <h1 class="font-display text-4xl md:text-6xl animate-bounce">LOADING... 🐧</h1>
+    </div>
+
+    <!-- HEADER -->
+    <header class="fixed top-4 left-0 w-full z-50 px-4">
+        <div
+            class="max-w-7xl mx-auto flex justify-between items-center bg-white comic-border rounded-full px-6 py-3 shadow-hard-lg transform hover:-translate-y-1 transition-transform">
+            <div class="font-display text-2xl text-pop-pink tracking-wider">HJM<span class="text-pop-blue">.WORLD</span>
+            </div>
+            <nav class="hidden md:flex gap-6 font-bold text-pop-dark">
+                <a href="#home"
+                    class="hover:text-pop-blue hover:underline decoration-4 decoration-wavy underline-offset-4">HOME</a>
+                <a href="#profile"
+                    class="hover:text-pop-pink hover:underline decoration-4 decoration-wavy underline-offset-4">PROFILE</a>
+                <a href="#gallery"
+                    class="hover:text-pop-yellow hover:underline decoration-4 decoration-wavy underline-offset-4">GALLERY</a>
+            </nav>
+            <a href="https://youtube.com/@TodorokiHajime" target="_blank"
+                class="bg-red-500 text-white font-bold px-6 py-2 rounded-full comic-border shadow-hard hover:bg-red-400 hover:scale-105 transition-all">
+                SUBSCRIBE!
+            </a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="min-h-screen relative pt-32 pb-20 px-4 overflow-hidden flex items-center justify-center">
+        <!-- Giant Rotating Background Element -->
+        <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150vw] h-[150vw] bg-white opacity-50 rounded-full border-[20px] border-pop-blue border-dashed animate-spin-slow pointer-events-none z-[-1]">
+        </div>
+
+        <div class="container mx-auto max-w-7xl relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+
+            <!-- TEXT AREA -->
+            <div class="text-center md:text-left order-2 md:order-1 relative">
+                <!-- Floating Sticker -->
+                <div
+                    class="absolute -top-20 right-0 w-32 h-32 bg-pop-blue rounded-full flex items-center justify-center text-white font-black comic-border shadow-hard rotate-12 animate-wiggle-const z-20">
+                    <div class="text-center leading-none">
+                        <span class="text-xs block">UNIT</span>
+                        <span class="text-xl">ReGLOSS</span>
+                    </div>
+                </div>
+
+                <div
+                    class="inline-block bg-pop-pink text-white font-bold px-4 py-1 rounded-lg comic-border shadow-hard mb-4 -rotate-2">
+                    UNIVERSAL BANCHO 👊
+                </div>
+
+                <h1 class="font-display text-7xl md:text-9xl text-pop-dark leading-none drop-shadow-sm mb-6 relative">
+                    <span class="block text-stroke-white text-pop-yellow relative z-10 -rotate-2">TODO</span>
+                    <span
+                        class="block text-stroke-white text-pop-blue relative z-10 rotate-2 translate-x-4 md:translate-x-12">ROKI</span>
+                    <span class="block text-stroke-white text-pop-pink relative z-10 -rotate-2">HAJIME</span>
+
+                    <!-- Shadow Text -->
+                    <span
+                        class="absolute top-2 left-2 text-pop-dark -z-0 opacity-20 blur-sm pointer-events-none">TODOROKI
+                        HAJIME</span>
+                </h1>
+
+                <p
+                    class="text-xl font-bold bg-white inline-block px-6 py-4 rounded-2xl comic-border shadow-hard rotate-1 max-w-md mx-auto md:mx-0">
+                    "Osu! I'm gonna conquer the world with cuteness! (And maybe some punches!)"
+                </p>
+
+                <div class="mt-8 flex justify-center md:justify-start gap-4">
+                    <div
+                        class="w-16 h-16 bg-white rounded-full comic-border shadow-hard flex items-center justify-center text-3xl animate-bounce cursor-pointer hover:bg-pop-yellow transition-colors">
+                        🐧</div>
+                    <div
+                        class="w-16 h-16 bg-white rounded-full comic-border shadow-hard flex items-center justify-center text-3xl animate-bounce delay-100 cursor-pointer hover:bg-pop-blue transition-colors">
+                        🎤</div>
+                    <div
+                        class="w-16 h-16 bg-white rounded-full comic-border shadow-hard flex items-center justify-center text-3xl animate-bounce delay-200 cursor-pointer hover:bg-pop-pink transition-colors">
+                        🥊</div>
+                </div>
+            </div>
+
+            <!-- IMAGE AREA -->
+            <div class="order-1 md:order-2 flex justify-center relative">
+                <!-- Frame Decoration -->
+                <div
+                    class="relative bg-white p-4 pb-16 rounded-[3rem] comic-border shadow-hard-xl rotate-3 w-full max-w-md">
+                    <div
+                        class="bg-pop-purple rounded-[2.5rem] overflow-hidden aspect-[3/4] border-4 border-black relative">
+                        <!-- Bg Pattern inside frame -->
+                        <div class="absolute inset-0 bg-dot-pattern [background-size:20px_20px] opacity-20"></div>
+
+                        <!-- Character Image (Using user's choice: art_1.jpg is rectangular, so it fits here perfectly) -->
+                        <img src="./img/todoroki_hajime_art_1.jpg" class="w-full h-full object-cover">
+
+                        <!-- Overlay Stickers -->
+                        <div
+                            class="absolute bottom-4 right-4 bg-pop-yellow text-black font-bold px-3 py-1 rounded-lg border-2 border-black -rotate-6">
+                            Nice Vibe!</div>
+                    </div>
+                    <div class="absolute bottom-5 left-1/2 -translate-x-1/2 font-display text-2xl text-pop-dark">HI !!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MARQUEE DIVIDER -->
+    <div class="bg-pop-blue comic-border border-x-0 py-4 -rotate-1 transform scale-105 shadow-hard relative z-20">
+        <div class="scrolling-text-container">
+            <h2 class="inline-block text-4xl font-display text-white text-stroke-black px-4">
+                ★ BANCHO ★ CUTE ★ PON ★ SINGER ★ BANCHO ★ CUTE ★ PON ★ SINGER ★ BANCHO ★ CUTE ★ PON ★ SINGER ★
+            </h2>
+        </div>
+    </div>
+
+    <!-- PROFILE CARDS SECTION -->
+    <section id="profile" class="py-24 px-4 bg-white relative">
+        <div class="absolute inset-0 bg-checker-pattern opacity-10"></div>
+
+        <div class="container mx-auto max-w-6xl relative z-10">
+            <h2
+                class="font-display text-5xl md:text-6xl text-center mb-16 text-stroke-black text-pop-yellow drop-shadow-[5px_5px_0px_#000]">
+                PROFILE DATA
+            </h2>
+
+            <!-- Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+
+                <!-- Card 1 -->
+                <div
+                    class="bg-[#FFEFD5] p-6 rounded-3xl comic-border shadow-hard hover:-translate-y-2 hover:shadow-hard-lg transition-all group">
+                    <div class="bg-white rounded-2xl h-48 mb-6 overflow-hidden border-2 border-black relative">
+                        <img src="./img/Todoroki-Hajime_pr-img_02.png"
+                            class="w-full h-full object-contain object-top pt-4 bg-pop-purple/20">
+                    </div>
+                    <h3 class="font-display text-2xl mb-2 text-pop-dark">WHO?</h3>
+                    <p class="font-bold text-slate-700 mb-4 bg-white p-3 rounded-xl border-2 border-slate-200">
+                        Leader of ReGLOSS! <br> Currently aiming for world domination via cuteness.
+                    </p>
+                    <div class="flex gap-2 flex-wrap">
+                        <span
+                            class="bg-pop-pink text-white font-bold px-3 py-1 rounded-full border-2 border-black text-sm">#Leader</span>
+                        <span
+                            class="bg-pop-blue text-white font-bold px-3 py-1 rounded-full border-2 border-black text-sm">#Bancho</span>
+                    </div>
+                </div>
+
+                <!-- Card 2 (Wide/Tall) -->
+                <div
+                    class="md:col-span-1 md:mt-12 bg-pop-blue p-6 rounded-3xl comic-border shadow-hard hover:-translate-y-2 hover:shadow-hard-lg transition-all rotate-2">
+                    <h3 class="font-display text-3xl mb-6 text-white text-stroke-black text-center">STATS</h3>
+
+                    <div class="space-y-4">
+                        <div class="bg-white p-4 rounded-xl border-2 border-black shadow-[4px_4px_0_rgba(0,0,0,0.2)]">
+                            <div class="flex justify-between font-bold mb-1">
+                                <span>Cuteness</span>
+                                <span>1000%</span>
+                            </div>
+                            <div class="h-4 bg-slate-200 rounded-full overflow-hidden border border-black">
+                                <div class="h-full bg-pop-pink w-full animate-wiggle-const"></div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-4 rounded-xl border-2 border-black shadow-[4px_4px_0_rgba(0,0,0,0.2)]">
+                            <div class="flex justify-between font-bold mb-1">
+                                <span>Coolness</span>
+                                <span>5%</span>
+                            </div>
+                            <div class="h-4 bg-slate-200 rounded-full overflow-hidden border border-black">
+                                <div class="h-full bg-pop-blue w-[5%]"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 text-center">
+                        <div
+                            class="inline-block bg-white px-4 py-2 font-black rounded-lg border-2 border-black transform -rotate-2">
+                            ACTUALLY VERY COOL!
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div
+                    class="bg-white p-6 rounded-3xl comic-border shadow-hard hover:-translate-y-2 hover:shadow-hard-lg transition-all">
+                    <div class="flex items-center gap-4 mb-6 border-b-4 border-black pb-4 border-dashed">
+                        <div
+                            class="w-12 h-12 bg-pop-yellow rounded-full border-2 border-black flex items-center justify-center font-black">
+                            ?</div>
+                        <h3 class="font-display text-2xl text-pop-dark">LIKES</h3>
+                    </div>
+                    <ul class="space-y-3 font-bold text-lg">
+                        <li class="flex items-center gap-3">
+                            <span class="text-2xl">🐧</span> Penguins
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="text-2xl">🎤</span> Singing
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="text-2xl">🍜</span> Ramen?
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="text-2xl">💤</span> Sleeping
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY SECTION -->
+    <section id="gallery" class="py-24 px-4 bg-pop-purple border-t-4 border-black relative">
+        <!-- SVG Wave Top -->
+        <div class="absolute -top-1 left-0 w-full transform -translate-y-full rotate-180">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none"
+                class="w-full h-12 fill-pop-purple stroke-black stroke-[4px]">
+                <path
+                    d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z">
+                </path>
+            </svg>
+        </div>
+
+        <div class="container mx-auto max-w-6xl text-center">
+            <h2 class="font-display text-5xl text-white text-stroke-black mb-12 animate-bounce-wild">
+                PHOTO GALLERY
+            </h2>
+
+            <div class="flex flex-wrap justify-center gap-8" x-data="{ activeImg: null }">
+
+                <!-- Polaroid 1 -->
+                <div class="bg-white p-3 pb-12 w-72 shadow-hard rotate-3 hover:rotate-0 hover:scale-110 hover:z-20 transition-all duration-300 cursor-pointer"
+                    @click="activeImg = './img/todoroki_hajime_art_2.jpg'">
+                    <div class="aspect-square bg-slate-200 border-2 border-black overflow-hidden bg-stripe-pattern">
+                        <img src="./img/todoroki_hajime_art_2.jpg" class="w-full h-full object-cover">
+                    </div>
+                </div>
+
+                <!-- Polaroid 2 -->
+                <div class="bg-white p-3 pb-12 w-72 shadow-hard -rotate-2 hover:rotate-0 hover:scale-110 hover:z-20 transition-all duration-300 cursor-pointer"
+                    @click="activeImg = './img/Todoroki-Hajime_pr-img_02.png'">
+                    <div
+                        class="aspect-square bg-pop-blue border-2 border-black overflow-hidden flex items-end justify-center">
+                        <img src="./img/Todoroki-Hajime_pr-img_02.png" class="w-[90%] h-auto">
+                    </div>
+                </div>
+
+                <!-- Polaroid 3 -->
+                <div class="bg-white p-3 pb-12 w-72 shadow-hard rotate-1 hover:rotate-0 hover:scale-110 hover:z-20 transition-all duration-300 cursor-pointer"
+                    @click="activeImg = './img/todoroki_hajime_art_1.jpg'">
+                    <div class="aspect-square bg-slate-200 border-2 border-black overflow-hidden">
+                        <img src="./img/todoroki_hajime_art_1.jpg" class="w-full h-full object-cover">
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                <div x-show="activeImg"
+                    class="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4 backdrop-blur-sm"
+                    @click.self="activeImg = null">
+                    <img :src="activeImg"
+                        class="max-h-[85vh] border-8 border-white rounded-lg shadow-2xl animate-pop-in">
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-pop-dark text-white py-12 text-center font-display border-t-4 border-black">
+        <h2 class="text-3xl mb-4 text-pop-yellow">THANKS FOR VISITING!</h2>
+        <div class="flex justify-center gap-4 text-sm font-sans font-bold text-gray-400">
+            <span>© COVER Corp</span>
+            <span>•</span>
+            <span>FAN SITE</span>
+            <span>•</span>
+            <span>MADE WITH 💖</span>
+        </div>
+    </footer>
+
+</body>
+
+</html>

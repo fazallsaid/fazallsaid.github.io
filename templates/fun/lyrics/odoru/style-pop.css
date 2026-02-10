@@ -1,0 +1,235 @@
+:root {
+    --pop-red: #ff4757;
+    --pop-yellow: #ffa502;
+    --pop-white: #ffffff;
+    --pop-blue: #1e90ff;
+    --font-pop: 'RocknRoll One', sans-serif;
+    /* Recycling for now as it fits */
+}
+
+body.pop-mode {
+    --primary: #FF5722;
+    /* Orange Red */
+    --secondary: #FFC107;
+    /* Amber */
+    --tertiary: #8BC34A;
+    /* Light Green */
+    --bg-color: #FFF9C4;
+    /* Light Yellow */
+    --text-color: #3E2723;
+    /* Dark Brown */
+
+    /* Mapped Lyric Colors for Maruko Theme */
+    --lyric-color-1: #FF5722;
+    /* Replace Cyan with Orange */
+    --lyric-color-2: #E91E63;
+    /* Replace Magenta with Pink */
+    --lyric-color-3: #4CAF50;
+    /* Replace Gold with Green */
+    --lyric-color-4: #3E2723;
+    /* Replace White with Dark Brown */
+    --lyric-color-5: #D84315;
+    /* Replace Red with Deep Orange */
+    --lyric-color-6: #009688;
+    /* Replace Green with Teal */
+    --lyric-color-7: #FF9800;
+    /* Replace Orange with... Orange */
+
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'RocknRoll One', sans-serif;
+    overflow: hidden;
+}
+
+/* Polka Dot Background */
+body.pop-mode .grid-bg {
+    background-image: radial-gradient(var(--pop-white) 20%, transparent 20%);
+    background-size: 30px 30px;
+    background-position: 0 0;
+    transform: none;
+    animation: panBackground 20s linear infinite;
+    opacity: 0.5;
+}
+
+@keyframes panBackground {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 100% 100%;
+    }
+}
+
+/* Hide chaotic elements */
+body.pop-mode #noise,
+body.pop-mode .vignette {
+    display: none;
+}
+
+/* Loader */
+body.pop-mode #loader {
+    background: var(--pop-white);
+    color: var(--pop-red);
+}
+
+body.pop-mode .loader-bar {
+    background: #eee;
+    border-radius: 20px;
+}
+
+body.pop-mode .bar-fill {
+    background: var(--pop-red);
+    box-shadow: none;
+    border-radius: 20px;
+}
+
+/* Typography */
+body.pop-mode .intro-title {
+    font-family: var(--font-pop);
+    color: var(--pop-red);
+    text-shadow: 4px 4px 0px var(--pop-white);
+    -webkit-text-stroke: 2px var(--pop-red);
+}
+
+body.pop-mode .artist-name {
+    color: var(--pop-blue);
+    background: var(--pop-white);
+    padding: 5px 15px;
+    border-radius: 50px;
+    display: inline-block;
+}
+
+/* Button */
+body.pop-mode #start-btn {
+    background: var(--pop-red);
+    color: var(--pop-white);
+    border-radius: 50px;
+    clip-path: none;
+    box-shadow: 0 5px 0 #b33939;
+    border: none;
+}
+
+body.pop-mode #start-btn:hover {
+    transform: translateY(2px);
+    box-shadow: 0 3px 0 #b33939;
+}
+
+body.pop-mode #start-btn:active {
+    transform: translateY(5px);
+    box-shadow: none;
+}
+
+/* Lyrics */
+body.pop-mode .lyric-line {
+    text-shadow: 3px 3px 0 var(--pop-white);
+}
+
+/* Pop Animations overrides */
+body.pop-mode .anim-glitch::before,
+body.pop-mode .anim-glitch::after {
+    display: none;
+}
+
+body.pop-mode .anim-glitch {
+    animation: bounce 0.5s infinite alternate;
+    color: var(--pop-blue);
+}
+
+body.pop-mode .anim-shake {
+    animation: swing 1s infinite ease-in-out;
+    color: var(--pop-red);
+}
+
+body.pop-mode .anim-pop-in .char {
+    animation: jumpPop 0.5s ease forwards;
+    /* Custom pop for this mode */
+    transform-origin: bottom center;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translate(-50%, -50%) translateY(0);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) translateY(-20px);
+    }
+}
+
+@keyframes swing {
+    0% {
+        transform: translate(-50%, -50%) rotate(-5deg);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) rotate(5deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(-5deg);
+    }
+}
+
+@keyframes jumpPop {
+    0% {
+        transform: scale(0) translateY(50px);
+        opacity: 0;
+    }
+
+    50% {
+        transform: scale(1.2) translateY(-20px);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Switcher Buttons */
+#style-switcher {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    display: flex;
+    gap: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 50px;
+    backdrop-filter: blur(5px);
+}
+
+.style-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 20px;
+    font-family: var(--font-main);
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.style-btn.active {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px white;
+}
+
+#btn-ado {
+    background: #000;
+    color: #0ff;
+    border: 1px solid #0ff;
+}
+
+#btn-maruko {
+    background: #ffb703;
+    color: #d63031;
+    border: 1px solid #fff;
+}
+
+body.pop-mode #style-switcher {
+    background: rgba(255, 255, 255, 0.5);
+}

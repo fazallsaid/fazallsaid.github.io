@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Sistem - RSUD Harapan Insan Sendawar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/alpinejs" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        jakarta: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        medical: {
+                            dark: '#1B4D3E',      /* Darkest Green */
+                            primary: '#2D6A4F',   /* Standard Green */
+                            light: '#40916C',     /* Lighter Green */
+                            accent: '#52B788',    /* Accent Green */
+                            bg: '#D8F3DC',        /* Very Light Green */
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Abstract Background */
+        .bg-medical-abstract {
+            background: linear-gradient(135deg, #1B4D3E 0%, #2D6A4F 50%, #40916C 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Decorative Blobs */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.6;
+        }
+
+        .blob-1 {
+            top: -10%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: #52B788;
+        }
+
+        .blob-2 {
+            bottom: -10%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: #081c15;
+        }
+
+        /* Smooth Input Transition */
+        .input-group:focus-within svg {
+            color: #1B4D3E;
+        }
+    </style>
+</head>
+
+<body class="bg-medical-abstract min-h-screen flex items-center justify-center font-jakarta p-4">
+
+    <!-- Decorative Blobs -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <!-- Main Card -->
+    <div class="bg-white w-full max-w-[450px] rounded-[2rem] shadow-2xl relative z-10 p-8 sm:p-10"
+        x-data="{ showPassword: false }">
+
+        <!-- Logo Section -->
+        <div class="flex flex-col items-center justify-center mb-6">
+            <div
+                class="w-20 h-20 bg-medical-dark rounded-2xl flex items-center justify-center shadow-lg mb-4 transform hover:scale-105 transition-transform duration-300 overflow-hidden">
+                <!-- Using the logo image inside the container without filters -->
+                <!-- Ensure containment and centering -->
+                <img src="img/rs_harapan_insan_sendawar.png" alt="Logo RSUD" class="w-full h-full object-contain p-2">
+            </div>
+            <h1 class="text-2xl font-bold text-gray-900 mb-1">Login Sistem</h1>
+            <p class="text-gray-500 text-center text-xs px-4">
+                Mendukung koordinasi dan kolaborasi antar unit pelayanan RSUD secara terintegrasi
+            </p>
+        </div>
+
+        <!-- Login Form -->
+        <form action="#" class="space-y-5">
+
+            <!-- Email Input -->
+            <div class="group">
+                <div class="relative flex items-center input-group">
+                    <!-- Icon -->
+                    <span class="absolute left-4 transition-colors duration-200 text-gray-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                            <path
+                                d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z" />
+                            <path
+                                d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z" />
+                        </svg>
+                    </span>
+                    <!-- Input -->
+                    <input type="email" placeholder="Email"
+                        class="w-full pl-12 pr-4 py-3.5 rounded-xl border-2 border-[#1B4D3E] text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-4 focus:ring-medical-accent/20 transition-all font-medium">
+                </div>
+            </div>
+
+            <!-- Password Input -->
+            <div class="group">
+                <div class="relative flex items-center input-group">
+                    <!-- Lock Icon -->
+                    <span class="absolute left-4 transition-colors duration-200 text-gray-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                            <path fill-rule="evenodd"
+                                d="M12 1.5a5.25 5.25 0 0 0-5.25 5.25v3a3 3 0 0 0-3 3v6.75a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3v-6.75a3 3 0 0 0-3-3v-3c0-2.9-2.35-5.25-5.25-5.25Zm3.75 8.25v-3a3.75 3.75 0 1 0-7.5 0v3h7.5Z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </span>
+                    <!-- Input -->
+                    <input :type="showPassword ? 'text' : 'password'" placeholder="Password"
+                        class="w-full pl-12 pr-12 py-3.5 rounded-xl border-2 border-[#1B4D3E] text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-4 focus:ring-medical-accent/20 transition-all font-medium">
+
+                    <!-- Toggle Icon -->
+                    <button type="button" @click="showPassword = !showPassword"
+                        class="absolute right-4 text-gray-400 hover:text-gray-600 focus:outline-none p-1">
+                        <!-- Eye Slash (Hidden) -->
+                        <svg x-show="!showPassword" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                            fill="currentColor" class="w-6 h-6">
+                            <path
+                                d="M3.53 2.47a.75.75 0 0 0-1.06 1.06l18 18a.75.75 0 1 0 1.06-1.06l-18-18ZM22.676 12.553a11.249 11.249 0 0 1-2.631 4.31l-3.099-3.099a5.25 5.25 0 0 0-6.71-6.71L7.759 4.577a11.217 11.217 0 0 1 4.242-.827c4.97 0 9.185 3.223 10.675 7.69.103.308.103.65 0 1.113Z" />
+                            <path
+                                d="M15.75 12c0 .18-.013.357-.037.53l-4.244-4.243A3.75 3.75 0 0 1 15.75 12ZM12.53 15.713l-4.243-4.244a3.75 3.75 0 0 0 4.243 4.243Z" />
+                            <path
+                                d="M6.75 12c0-.619.107-1.213.304-1.764l-3.1-3.1a11.25 11.25 0 0 0-2.63 4.31c-.103.308-.103.65 0 1.114 1.49 4.467 5.705 7.69 10.675 7.69 1.5 0 2.939-.294 4.242-.827l-2.477-2.477A5.25 5.25 0 0 1 6.75 12Z" />
+                        </svg>
+                        <!-- Eye (Visible) -->
+                        <svg x-show="showPassword" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                            fill="currentColor" class="w-6 h-6" style="display: none;">
+                            <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+                            <path fill-rule="evenodd"
+                                d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.103.308.103.65 0 1.114-1.49 4.467-5.705 7.69-10.675 7.69-4.97 0-9.185-3.223-10.675-7.69a1.75 1.75 0 0 1 0-1.114ZM12.001 5.25a6.75 6.75 0 0 1 6.708 5.957.536.536 0 1 1-1.064.215A5.25 5.25 0 1 0 5.358 11.42a.536.536 0 1 1-1.064-.215 6.75 6.75 0 0 1 7.707-5.955Z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Forgot Password -->
+            <div class="flex justify-end">
+                <a href="#" class="text-gray-500 hover:text-medical-dark text-sm font-semibold transition-colors">Lupa
+                    Password</a>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="button" onclick="window.location.href='index.html'"
+                class="w-full bg-gradient-to-r from-medical-dark to-medical-primary hover:from-medical-primary hover:to-medical-light text-white font-bold text-lg py-3.5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform active:scale-[0.98]">
+                Login
+            </button>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>

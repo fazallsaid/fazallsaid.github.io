@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ventyra Health OS</title>
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        display: ['"Outfit"', 'sans-serif'],
+                    },
+                    colors: {
+                        // Bio-Digital Palette
+                        mint: {
+                            50: '#ecfdf5',
+                            400: '#34d399',
+                            500: '#10b981',
+                            glow: 'rgba(52, 211, 153, 0.5)'
+                        },
+                        cyan: {
+                            50: '#ecfeff',
+                            400: '#22d3ee',
+                            500: '#06b6d4',
+                            glow: 'rgba(34, 211, 238, 0.5)'
+                        },
+                        // Dark Mode Backgrounds
+                        void: '#0B0F19', // Deepest dark
+                        surface: '#121826', // Card bg
+
+                        // Light Mode Backgrounds
+                        snow: '#F3F4F6', // Lighter grey for better contrast
+                        paper: '#FFFFFF',
+                    },
+                    backgroundImage: {
+                        'mesh-dark': "radial-gradient(at 0% 0%, hsla(192,100%,50%,0.1) 0px, transparent 50%), radial-gradient(at 100% 100%, hsla(156,100%,50%,0.05) 0px, transparent 50%)",
+                        'mesh-light': "radial-gradient(at 0% 0%, hsla(192,100%,50%,0.1) 0px, transparent 50%), radial-gradient(at 100% 100%, hsla(156,100%,50%,0.05) 0px, transparent 50%)",
+                    },
+                    boxShadow: {
+                        'glow-cyan': '0 0 20px -5px rgba(34, 211, 238, 0.3)',
+                        'glow-mint': '0 0 20px -5px rgba(52, 211, 153, 0.3)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Glassmorphism Utilities */
+        .glass-panel {
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .dark .glass-panel {
+            background: rgba(18, 24, 38, 0.6);
+            border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        .light .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            /* More opaque for light mode */
+            border-color: rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(156, 163, 175, 0.3);
+            border-radius: 20px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(156, 163, 175, 0.5);
+        }
+
+        .nav-item.active {
+            color: #22d3ee;
+            background: rgba(34, 211, 238, 0.1);
+        }
+
+        .light .nav-item.active {
+            color: #0891b2;
+            /* Darker Cyan for Light Mode */
+            background: rgba(6, 182, 212, 0.1);
+        }
+
+        /* Light Mode Text Overrides */
+        .light .text-slate-200 {
+            color: #1e293b;
+        }
+
+        /* Slate 800 */
+        .light .text-slate-500 {
+            color: #64748b;
+        }
+
+        /* Slate 500 */
+        .light .text-white {
+            color: #0f172a !important;
+        }
+
+        /* Force dark text on white bg */
+
+        /* Specific override for sidebar brand in light mode */
+        .light aside .text-white {
+            color: #0f172a !important;
+        }
+
+        .light aside .text-slate-500 {
+            color: #64748b !important;
+        }
+
+        /* Sidebar in light mode */
+        .light aside {
+            background-color: #ffffff;
+            border-right: 1px solid #e2e8f0;
+        }
+    </style>
+</head>
+
+<body class="bg-void text-slate-200 antialiased font-sans selection:bg-cyan-500/30 selection:text-cyan-200">
+
+    <div class="flex h-screen overflow-hidden bg-mesh-light dark:bg-mesh-dark transition-all duration-300 relative"
+        id="mainContainer">
+
+        <!-- Sidebar Navigation -->
+        <aside class="w-20 lg:w-64 flex flex-col justify-between py-6 px-4 z-50 transition-colors duration-300">
+            <!-- Brand -->
+            <div class="flex items-center gap-3 px-2 mb-8">
+                <div
+                    class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-400 to-mint-400 flex items-center justify-center shadow-glow-cyan">
+                    <i class="ph-bold ph-heartbeat text-white text-xl" style="color: white !important;"></i>
+                </div>
+                <div class="hidden lg:block">
+                    <h1
+                        class="font-display font-bold text-lg tracking-wide transition-colors text-slate-900 dark:text-gray-100">
+                        Ventyra<span class="text-cyan-400">.OS</span></h1>
+                    <p class="text-[10px] uppercase tracking-widest text-slate-500 font-semibold">Sistem Rumah Sakit</p>
+                </div>
+            </div>
+
+            <!-- Menu -->
+            <nav class="flex-1 space-y-2">
+                <a href="index.html"
+                    class="nav-item active flex items-center gap-3 px-3 py-3 rounded-xl transition-all duration-200 group">
+                    <i class="ph-duotone ph-squares-four text-2xl group-hover:text-cyan-400 transition-colors"></i>
+                    <span
+                        class="hidden lg:block text-sm font-medium group-hover:text-cyan-400 transition-colors">Dashboard</span>
+                </a>
+                <a href="queue.html"
+                    class="nav-item text-slate-500 hover:bg-slate-100 dark:hover:bg-white/5 hover:text-cyan-400 flex items-center gap-3 px-3 py-3 rounded-xl transition-all duration-200 group">
+                    <i class="ph-duotone ph-megaphone text-2xl group-hover:text-cyan-400 transition-colors"></i>
+                    <span
+                        class="hidden lg:block text-sm font-medium group-hover:text-cyan-400 transition-colors">Antrian
+                        & Panggilan</span>
+                </a>
+                <a href="patients.html"
+                    class="nav-item text-slate-500 hover:bg-slate-100 dark:hover:bg-white/5 hover:text-mint-400 flex items-center gap-3 px-3 py-3 rounded-xl transition-all duration-200 group">
+                    <i class="ph-duotone ph-users text-2xl group-hover:text-mint-400 transition-colors"></i>
+                    <span class="hidden lg:block text-sm font-medium group-hover:text-mint-400 transition-colors">Data
+                        Pasien</span>
+                </a>
+                <a href="appointments.html"
+                    class="nav-item text-slate-500 hover:bg-slate-100 dark:hover:bg-white/5 hover:text-purple-400 flex items-center gap-3 px-3 py-3 rounded-xl transition-all duration-200 group">
+                    <i class="ph-duotone ph-calendar-check text-2xl group-hover:text-purple-400 transition-colors"></i>
+                    <span
+                        class="hidden lg:block text-sm font-medium group-hover:text-purple-400 transition-colors">Jadwal
+                        Temu</span>
+                </a>
+                <a href="doctors.html"
+                    class="nav-item text-slate-500 hover:bg-slate-100 dark:hover:bg-white/5 hover:text-rose-400 flex items-center gap-3 px-3 py-3 rounded-xl transition-all duration-200 group">
+                    <i class="ph-duotone ph-stethoscope text-2xl group-hover:text-rose-400 transition-colors"></i>
+                    <span class="hidden lg:block text-sm font-medium group-hover:text-rose-400 transition-colors">Data
+                        Dokter</span>
+                </a>
+            </nav>
+
+            <!-- Bottom Actions -->
+            <div class="space-y-4">
+                <!-- Theme Toggle -->
+                <button onclick="toggleTheme()"
+                    class="w-full flex items-center gap-3 px-3 py-3 rounded-xl bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 transition-all border border-slate-200 dark:border-white/5 text-slate-400 hover:text-slate-900 dark:hover:text-white">
+                    <i id="themeIcon" class="ph-duotone ph-moon text-xl transition-transform duration-500"></i>
+                    <span class="hidden lg:block text-sm font-medium" id="themeText">Mode Gelap</span>
+                </button>
+
+                <!-- User Profile -->
+                <div class="flex items-center gap-3 px-2 pt-4 border-t border-slate-200 dark:border-white/5">
+                    <div class="relative">
+                        <img src="https://ui-avatars.com/api/?name=Fazal+Said&background=random&color=fff"
+                            class="w-10 h-10 rounded-full border-2 border-slate-100 dark:border-surface shadow-lg">
+                        <div
+                            class="absolute bottom-0 right-0 w-3 h-3 bg-mint-500 rounded-full border-2 border-slate-100 dark:border-surface">
+                        </div>
+                    </div>
+                    <div class="hidden lg:block overflow-hidden">
+                        <p class="text-sm font-bold truncate text-slate-900 dark:text-white transition-colors">Dr. Fazal
+                            Said</p>
+                        <p class="text-xs text-slate-500 truncate">Direktur Utama</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main
+            class="flex-1 overflow-y-auto relative rounded-l-[2rem] bg-snow dark:bg-surface shadow-[-10px_0_40px_rgba(0,0,0,0.1)] transition-colors duration-300 border-l border-slate-200 dark:border-white/5">
+            <div class="p-8 lg:p-10 max-w-7xl mx-auto space-y-8">
+
+                <!-- Header -->
+                <header class="flex justify-between items-center">
+                    <div>
+                        <h2
+                            class="text-2xl lg:text-3xl font-display font-bold text-slate-900 dark:text-white transition-colors">
+                            Selamat Malam, Dr. Fazal <span class="animate-wave inline-block">👋</span></h2>
+                        <p class="text-slate-500 mt-1 flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-mint-400 animate-pulse"></span>
+                            Sistem Operasional &bull; Efisiensi 98%
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="relative hidden md:block">
+                            <input type="text" placeholder="Cari pasien, RM, atau ruangan..."
+                                class="pl-10 pr-4 py-2.5 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 w-64 text-sm transition-all text-slate-700 dark:text-slate-200 placeholder-slate-400">
+                            <i class="ph-bold ph-magnifying-glass absolute left-3.5 top-3 text-slate-400"></i>
+                        </div>
+                        <button
+                            class="p-2.5 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-400 hover:text-cyan-400 dark:hover:text-cyan-400 hover:bg-cyan-50 dark:hover:bg-cyan-500/10 transition-all relative">
+                            <div
+                                class="absolute top-2 right-2.5 w-2 h-2 bg-rose-500 rounded-full border border-white dark:border-surface">
+                            </div>
+                            <i class="ph-bold ph-bell text-xl"></i>
+                        </button>
+                    </div>
+                </header>
+
+                <!-- Bento Grid Layout -->
+                <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
+                    <!-- Stats: Patients -->
+                    <div class="glass-panel p-6 rounded-3xl relative overflow-hidden group">
+                        <div class="flex justify-between items-start mb-4">
+                            <div
+                                class="w-12 h-12 rounded-2xl bg-cyan-400/10 flex items-center justify-center text-cyan-400 group-hover:scale-110 transition-transform duration-300">
+                                <i class="ph-duotone ph-users-three text-2xl"></i>
+                            </div>
+                            <span
+                                class="flex items-center gap-1 text-xs font-semibold text-mint-500 bg-mint-400/10 px-2 py-1 rounded-full">
+                                <i class="ph-bold ph-trend-up"></i> +12.5%
+                            </span>
+                        </div>
+                        <h3 class="text-slate-500 text-sm font-medium">Pasien Baru</h3>
+                        <p class="text-3xl font-bold text-slate-900 dark:text-white mt-1 transition-colors">1,208</p>
+                        <div
+                            class="absolute -right-6 -bottom-6 w-24 h-24 bg-cyan-400/20 rounded-full blur-2xl group-hover:bg-cyan-400/30 transition-all">
+                        </div>
+                    </div>
+
+                    <!-- Stats: Operations -->
+                    <div class="glass-panel p-6 rounded-3xl relative overflow-hidden group">
+                        <div class="flex justify-between items-start mb-4">
+                            <div
+                                class="w-12 h-12 rounded-2xl bg-purple-400/10 flex items-center justify-center text-purple-400 group-hover:scale-110 transition-transform duration-300">
+                                <i class="ph-duotone ph-bed text-2xl"></i>
+                            </div>
+                            <span
+                                class="flex items-center gap-1 text-xs font-semibold text-purple-500 bg-purple-400/10 px-2 py-1 rounded-full">
+                                4 Kamar Kosong
+                            </span>
+                        </div>
+                        <h3 class="text-slate-500 text-sm font-medium">Okupansi Bed</h3>
+                        <p class="text-3xl font-bold text-slate-900 dark:text-white mt-1 transition-colors">85%</p>
+                        <div
+                            class="absolute -right-6 -bottom-6 w-24 h-24 bg-purple-400/20 rounded-full blur-2xl group-hover:bg-purple-400/30 transition-all">
+                        </div>
+                    </div>
+
+                    <!-- Stats: Earnings (Wide) -->
+                    <div
+                        class="glass-panel p-6 rounded-3xl md:col-span-2 relative overflow-hidden flex flex-col justify-center">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-transparent dark:from-cyan-500/20 opacity-50">
+                        </div>
+                        <div class="relative z-10 flex justify-between items-end">
+                            <div>
+                                <h3 class="text-slate-500 text-sm font-medium mb-1">Pendapatan Bulan Ini</h3>
+                                <div class="flex items-baseline gap-2">
+                                    <p
+                                        class="text-4xl font-display font-bold text-slate-900 dark:text-white transition-colors">
+                                        Rp 4.2M</p>
+                                    <span class="text-sm text-mint-500 font-semibold mb-2">+8.2% vs lalu</span>
+                                </div>
+                            </div>
+                            <button
+                                class="px-4 py-2 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-xl text-sm font-semibold hover:shadow-lg hover:scale-105 transition-all">
+                                Lihat Laporan
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Main Chart Area -->
+                    <div class="glass-panel p-6 rounded-3xl md:col-span-2 lg:col-span-3 h-[300px] lg:h-[400px]">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="font-bold text-lg text-slate-800 dark:text-white transition-colors">Tren
+                                Kunjungan Pasien</h3>
+                            <div class="flex gap-2">
+                                <button
+                                    class="px-3 py-1 rounded-lg text-xs font-medium bg-cyan-400/10 text-cyan-600 dark:text-cyan-400">Mingguan</button>
+                                <button
+                                    class="px-3 py-1 rounded-lg text-xs font-medium hover:bg-slate-100 dark:hover:bg-white/5 text-slate-500">Bulanan</button>
+                            </div>
+                        </div>
+                        <div class="relative h-[80%] w-full">
+                            <canvas id="mainChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Upcoming Schedule (Vertical) -->
+                    <div class="glass-panel p-6 rounded-3xl lg:row-span-2 flex flex-col">
+                        <h3 class="font-bold text-lg text-slate-800 dark:text-white mb-6 transition-colors">Jadwal Hari
+                            Ini</h3>
+                        <div class="space-y-4 flex-1 overflow-y-auto pr-2 custom-scrollbar">
+
+                            <!-- Card 1 -->
+                            <div
+                                class="p-4 rounded-2xl bg-white dark:bg-white/5 border border-slate-100 dark:border-white/5 hover:border-cyan-400/50 transition-colors group cursor-pointer shadow-sm dark:shadow-none">
+                                <div class="flex justify-between items-start mb-2">
+                                    <span class="text-xs font-bold text-slate-400">09:00</span>
+                                    <i
+                                        class="ph-fill ph-video-camera text-slate-400 group-hover:text-cyan-400 transition-colors"></i>
+                                </div>
+                                <h4 class="font-bold text-slate-800 dark:text-white mb-1 transition-colors">Cek Rutin
+                                    Pasien</h4>
+                                <div class="flex items-center gap-2">
+                                    <img src="https://ui-avatars.com/api/?name=Andi+W&background=random"
+                                        class="w-6 h-6 rounded-full">
+                                    <span class="text-xs text-slate-500">Dr. Andi (Kardiologi)</span>
+                                </div>
+                            </div>
+
+                            <!-- Card 2 -->
+                            <div
+                                class="p-4 rounded-2xl bg-white dark:bg-white/5 border border-slate-100 dark:border-white/5 hover:border-mint-400/50 transition-colors group cursor-pointer relative overflow-hidden shadow-sm dark:shadow-none">
+                                <div class="absolute left-0 top-0 w-1 h-full bg-mint-400"></div>
+                                <div class="flex justify-between items-start mb-2">
+                                    <span class="text-xs font-bold text-mint-600 dark:text-mint-500">11:30</span>
+                                    <span
+                                        class="text-[10px] px-2 py-0.5 rounded bg-mint-400/10 text-mint-600 dark:text-mint-500 font-bold">URGENT</span>
+                                </div>
+                                <h4 class="font-bold text-slate-800 dark:text-white mb-1 transition-colors">Operasi
+                                    Jantung</h4>
+                                <div class="flex items-center gap-2">
+                                    <img src="https://ui-avatars.com/api/?name=Siti+N&background=random"
+                                        class="w-6 h-6 rounded-full">
+                                    <span class="text-xs text-slate-500">Ibu Siti (R. 302)</span>
+                                </div>
+                            </div>
+
+                            <!-- Card 3 -->
+                            <div
+                                class="p-4 rounded-2xl bg-white dark:bg-white/5 border border-slate-100 dark:border-white/5 hover:border-purple-400/50 transition-colors group cursor-pointer shadow-sm dark:shadow-none">
+                                <div class="flex justify-between items-start mb-2">
+                                    <span class="text-xs font-bold text-slate-400">14:00</span>
+                                    <i
+                                        class="ph-fill ph-users text-slate-400 group-hover:text-purple-400 transition-colors"></i>
+                                </div>
+                                <h4 class="font-bold text-slate-800 dark:text-white mb-1 transition-colors">Rapat Komite
+                                    Medis</h4>
+                                <div class="flex items-center gap-2">
+                                    <div class="flex -space-x-2">
+                                        <div
+                                            class="w-6 h-6 rounded-full bg-slate-200 dark:bg-slate-700 border-2 border-white dark:border-surface">
+                                        </div>
+                                        <div
+                                            class="w-6 h-6 rounded-full bg-slate-300 dark:bg-slate-600 border-2 border-white dark:border-surface">
+                                        </div>
+                                    </div>
+                                    <span class="text-xs text-slate-500">+5 lainnya</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Patients Table -->
+                    <div class="glass-panel p-6 rounded-3xl md:col-span-3">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="font-bold text-lg text-slate-800 dark:text-white transition-colors">Pasien
+                                Terbaru</h3>
+                            <button class="text-cyan-500 text-sm font-semibold hover:underline">Lihat Semua</button>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="text-xs text-slate-500 border-b border-slate-200 dark:border-white/5">
+                                        <th class="py-3 font-semibold uppercase tracking-wider pl-2">Pasien</th>
+                                        <th class="py-3 font-semibold uppercase tracking-wider">Diagnosa</th>
+                                        <th class="py-3 font-semibold uppercase tracking-wider">Dokter</th>
+                                        <th class="py-3 font-semibold uppercase tracking-wider">Status</th>
+                                        <th class="py-3 font-semibold uppercase tracking-wider"></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-sm">
+                                    <tr
+                                        class="group hover:bg-slate-50 dark:hover:bg-white/5 transition-colors border-b border-slate-50 dark:border-white/5 last:border-0">
+                                        <td class="py-3 pl-2">
+                                            <div class="flex items-center gap-3">
+                                                <img src="https://ui-avatars.com/api/?name=Siti+Aminah&background=0D0&color=fff"
+                                                    class="w-8 h-8 rounded-lg">
+                                                <span class="font-bold text-slate-700 dark:text-slate-200">Siti
+                                                    Aminah</span>
+                                            </div>
+                                        </td>
+                                        <td class="py-3 text-slate-500">Hipertensi</td>
+                                        <td class="py-3 text-slate-500">Dr. Hartono</td>
+                                        <td class="py-3">
+                                            <span
+                                                class="inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-xs font-bold bg-mint-400/10 text-mint-600 dark:text-mint-500 border border-mint-400/20">
+                                                <span class="w-1.5 h-1.5 rounded-full bg-mint-400"></span> Pulang
+                                            </span>
+                                        </td>
+                                        <td class="py-3 text-right">
+                                            <button class="text-slate-400 hover:text-cyan-400"><i
+                                                    class="ph-bold ph-dots-three-vertical text-lg"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr
+                                        class="group hover:bg-slate-50 dark:hover:bg-white/5 transition-colors border-b border-slate-50 dark:border-white/5 last:border-0">
+                                        <td class="py-3 pl-2">
+                                            <div class="flex items-center gap-3">
+                                                <img src="https://ui-avatars.com/api/?name=Budi+Santoso&background=000&color=fff"
+                                                    class="w-8 h-8 rounded-lg">
+                                                <span class="font-bold text-slate-700 dark:text-slate-200">Budi
+                                                    Santoso</span>
+                                            </div>
+                                        </td>
+                                        <td class="py-3 text-slate-500">Fraktur Tulang</td>
+                                        <td class="py-3 text-slate-500">Dr. Setiawan</td>
+                                        <td class="py-3">
+                                            <span
+                                                class="inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-xs font-bold bg-amber-400/10 text-amber-600 dark:text-amber-500 border border-amber-400/20">
+                                                <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span> Perawatan
+                                            </span>
+                                        </td>
+                                        <td class="py-3 text-right">
+                                            <button class="text-slate-400 hover:text-cyan-400"><i
+                                                    class="ph-bold ph-dots-three-vertical text-lg"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr
+                                        class="group hover:bg-slate-50 dark:hover:bg-white/5 transition-colors border-b border-slate-50 dark:border-white/5 last:border-0">
+                                        <td class="py-3 pl-2">
+                                            <div class="flex items-center gap-3">
+                                                <img src="https://ui-avatars.com/api/?name=Clara+W&background=00F&color=fff"
+                                                    class="w-8 h-8 rounded-lg">
+                                                <span class="font-bold text-slate-700 dark:text-slate-200">Clara
+                                                    Wijaya</span>
+                                            </div>
+                                        </td>
+                                        <td class="py-3 text-slate-500">Alergi Akut</td>
+                                        <td class="py-3 text-slate-500">Dr. Linda</td>
+                                        <td class="py-3">
+                                            <span
+                                                class="inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-xs font-bold bg-rose-400/10 text-rose-600 dark:text-rose-500 border border-rose-400/20">
+                                                <span class="w-1.5 h-1.5 rounded-full bg-rose-400"></span> Kritis
+                                            </span>
+                                        </td>
+                                        <td class="py-3 text-right">
+                                            <button class="text-slate-400 hover:text-cyan-400"><i
+                                                    class="ph-bold ph-dots-three-vertical text-lg"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Logic -->
+    <script>
+        // 1. Theme Logic
+        function toggleTheme() {
+            const html = document.documentElement;
+            const body = document.body;
+            const themeIcon = document.getElementById('themeIcon');
+            const themeText = document.getElementById('themeText');
+
+            if (html.classList.contains('dark')) {
+                // Switch to Light
+                html.classList.remove('dark');
+                html.classList.add('light');
+                body.classList.remove('bg-void', 'text-slate-200');
+                body.classList.add('bg-paper', 'text-slate-800');
+
+                themeIcon.classList.remove('ph-moon', 'rotate-0');
+                themeIcon.classList.add('ph-sun', 'rotate-180');
+                themeText.innerText = "Mode Terang";
+            } else {
+                // Switch to Dark
+                html.classList.remove('light');
+                html.classList.add('dark');
+                body.classList.remove('bg-paper', 'text-slate-800');
+                body.classList.add('bg-void', 'text-slate-200');
+
+                themeIcon.classList.remove('ph-sun', 'rotate-180');
+                themeIcon.classList.add('ph-moon', 'rotate-0');
+                themeText.innerText = "Mode Gelap";
+            }
+
+            // Update Chart Colors on Theme Switch
+            updateChartTheme(html.classList.contains('dark'));
+
+            // Save Preference
+            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+        }
+
+        // Init Theme from Storage
+        if (localStorage.getItem('theme') === 'light') {
+            toggleTheme();
+        }
+
+        // 2. Chart Configuration
+        let myChart;
+
+        function initChart() {
+            const ctx = document.getElementById('mainChart').getContext('2d');
+
+            // Gradient Logic
+            let gradient = ctx.createLinearGradient(0, 0, 0, 400);
+            gradient.addColorStop(0, 'rgba(34, 211, 238, 0.4)'); // Cyan with opacity
+            gradient.addColorStop(1, 'rgba(34, 211, 238, 0.0)');
+
+            // Data
+            const data = {
+                labels: ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'],
+                datasets: [{
+                    label: 'Tingkat Kesembuhan',
+                    data: [65, 59, 80, 81, 56, 95, 88],
+                    fill: true,
+                    backgroundColor: gradient,
+                    borderColor: '#22d3ee',
+                    borderWidth: 3,
+                    tension: 0.4,
+                    pointBackgroundColor: '#121826',
+                    pointBorderColor: '#22d3ee',
+                    pointBorderWidth: 2,
+                    pointRadius: 4,
+                    pointHoverRadius: 6
+                }]
+            };
+
+            const config = {
+                type: 'line',
+                data: data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: 'rgba(18, 24, 38, 0.9)',
+                            titleColor: '#fff',
+                            bodyColor: '#cbd5e1',
+                            borderColor: 'rgba(255,255,255,0.1)',
+                            borderWidth: 1,
+                            padding: 10,
+                            displayColors: false,
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { display: false, drawBorder: false },
+                            ticks: { color: '#94a3b8' }
+                        },
+                        y: {
+                            grid: { color: 'rgba(148, 163, 184, 0.1)', drawBorder: false },
+                            ticks: { color: '#94a3b8' },
+                            beginAtZero: true
+                        }
+                    }
+                }
+            };
+
+            myChart = new Chart(ctx, config);
+        }
+
+        function updateChartTheme(isDark) {
+            if (!myChart) return;
+
+            const color = isDark ? '#22d3ee' : '#0891b2'; // Cyan 400 vs Cyan 600
+            const gridColor = isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)';
+            const tickColor = isDark ? '#94a3b8' : '#64748b';
+            const pointBg = isDark ? '#121826' : '#ffffff';
+
+            myChart.data.datasets[0].borderColor = color;
+            myChart.data.datasets[0].pointBorderColor = color;
+            myChart.data.datasets[0].pointBackgroundColor = pointBg;
+            myChart.options.scales.y.grid.color = gridColor;
+            myChart.options.scales.x.ticks.color = tickColor;
+            myChart.options.scales.y.ticks.color = tickColor;
+
+            myChart.update();
+        }
+
+        // Init
+        document.addEventListener('DOMContentLoaded', initChart);
+
+    </script>
+</body>
+
+</html>
