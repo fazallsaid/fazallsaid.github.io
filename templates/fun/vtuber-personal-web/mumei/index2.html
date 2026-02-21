@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nanashi Mumei | The Night Watcher</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'night-bg': '#0c1220',
+                        'night-accent': '#1a263d',
+                        'lantern-gold': '#ffca85',
+                        'lantern-orange': '#d48c4a',
+                        'feathers-teal': '#3c6e71',
+                        'parchment': '#e0d8c3',
+                    },
+                    fontFamily: {
+                        'ancient': ['"Spectral"', 'serif'],
+                        'body': ['"Lato"', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        // Efek konstelasi bintang samar
+                        'stars': "url('https://www.transparenttextures.com/patterns/stardust.png')",
+                    },
+                    animation: {
+                        'flicker': 'flicker 4s infinite ease-in-out',
+                        'float-slow': 'float 8s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        flicker: {
+                            '0%, 100%': { opacity: 0.8 },
+                            '50%': { opacity: 0.4 },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0c1220;
+            color: #e0d8c3;
+        }
+        /* Efek Cahaya Lentera Hangat */
+        .lantern-glow-container::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(circle, rgba(255, 202, 133, 0.2) 0%, rgba(212, 140, 74, 0.1) 40%, transparent 70%);
+            filter: blur(60px);
+            z-index: -1;
+            animation: flicker 5s infinite alternate;
+        }
+
+        /* Garis pemisah kuno */
+        .hr-ancient {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, transparent, #d48c4a, transparent);
+            margin: 2rem 0;
+            opacity: 0.5;
+        }
+
+        .text-gold-glow {
+            text-shadow: 0 0 15px rgba(255, 202, 133, 0.6);
+        }
+    </style>
+</head>
+<body class="bg-night-bg font-body bg-stars selection:bg-lantern-orange selection:text-night-bg">
+
+    <nav class="p-6 max-w-6xl mx-auto flex justify-between items-center border-b border-night-accent/50">
+        <div class="font-ancient text-2xl tracking-[0.2em] text-lantern-gold uppercase">Mumei.</div>
+        <div class="flex gap-8 text-sm tracking-widest uppercase opacity-70">
+            <a href="#" class="hover:text-lantern-gold hover:opacity-100 transition">The Guardian</a>
+            <a href="#" class="hover:text-lantern-gold hover:opacity-100 transition">Records</a>
+        </div>
+    </nav>
+
+    <section class="min-h-[80vh] flex flex-col md:flex-row items-center justify-center max-w-6xl mx-auto p-6 relative lantern-glow-container">
+        
+        <div class="md:w-1/2 z-10 order-2 md:order-1 text-center md:text-left">
+            <h2 class="text-lantern-orange font-ancient italic text-xl mb-4 tracking-wider animate-flicker">The Wanderer in the Dark</h2>
+            <h1 class="text-5xl md:text-7xl font-ancient font-bold mb-6 leading-tight text-gold-glow">
+                NANASHI <br> MUMEI
+            </h1>
+            <p class="text-lg opacity-80 leading-relaxed max-w-md mx-auto md:mx-0">
+                "When once she was just an observer, she now enjoys her everyday interactions with civilizations and its people."
+            </p>
+            <div class="mt-10">
+                 <a href="#" class="group relative inline-flex items-center overflow-hidden rounded border border-lantern-gold px-8 py-3 focus:outline-none focus:ring">
+                    <span class="absolute inset-y-0 left-0 w-[2px] bg-lantern-gold transition-all group-hover:w-full group-active:bg-lantern-orange"></span>
+                    <span class="relative text-sm font-bold text-lantern-gold transition-colors group-hover:text-night-bg tracking-widest uppercase">
+                      Enter Archive
+                    </span>
+                  </a>
+            </div>
+        </div>
+
+        <div class="md:w-1/2 order-1 md:order-2 relative flex justify-center">
+            <div class="absolute top-0 left-10 text-4xl text-feathers-teal opacity-40 animate-float-slow">🪶</div>
+            <div class="absolute bottom-20 right-10 text-3xl text-lantern-gold opacity-30 animate-float-slow" style="animation-delay: 2s;">✨</div>
+
+            <img src="img/mumei_3.png" alt="Mumei Elegant" class="relative z-10 max-h-[600px] drop-shadow-[0_0_30px_rgba(212,140,74,0.3)]">
+        </div>
+    </section>
+
+    <section class="max-w-5xl mx-auto p-6 py-20">
+        <div class="bg-night-accent/30 border border-lantern-orange/30 p-8 md:p-12 relative overflow-hidden rounded-lg backdrop-blur-sm">
+            <div class="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/asfalt-dark.png')] mix-blend-overlay"></div>
+            
+            <div class="grid md:grid-cols-5 gap-10 relative z-10">
+                <div class="md:col-span-3 space-y-6">
+                    <h3 class="font-ancient text-3xl text-lantern-gold">The Chronicle</h3>
+                    <p class="leading-loose text-parchment/80 font-light">
+                        The Guardian of Civilization, a traveling owl who has borne witness to numerous events. Even though glimpses of past memories—seen and forgotten throughout her endless journey—occasionally surface, she is now a lovely girl who relishes each and every day.
+                    </p>
+                    <div class="flex items-center gap-2 text-lantern-orange italic font-ancient">
+                        <span class="w-6 h-[1px] bg-lantern-orange"></span>
+                        <span>"Oh hi! Hoo’s this?"</span>
+                    </div>
+                </div>
+                
+                <div class="md:col-span-2 border-l border-lantern-orange/30 pl-10 flex flex-col justify-center space-y-6 font-ancient">
+                    <div>
+                        <span class="block text-sm text-lantern-gold uppercase tracking-widest opacity-60">Affiliation</span>
+                        <span class="text-xl">Hololive EN (Council)</span>
+                    </div>
+                    <div>
+                        <span class="block text-sm text-lantern-gold uppercase tracking-widest opacity-60">Debut Date</span>
+                        <span class="text-xl">August 23, 2021</span>
+                    </div>
+                    <div>
+                        <span class="block text-sm text-lantern-gold uppercase tracking-widest opacity-60">Fan Name</span>
+                        <span class="text-xl">Hoomans</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-4xl mx-auto p-6 pb-20 text-center">
+        <h2 class="font-ancient text-4xl text-lantern-gold mb-12">Traveler's Notes</h2>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="bg-night-accent/20 p-8 border-t-2 border-feathers-teal rounded-b-xl hover:bg-night-accent/40 transition">
+                <h3 class="font-ancient text-2xl mb-6 text-feathers-teal">Cherished Things</h3>
+                <ul class="space-y-4 font-body text-left inline-block mx-auto">
+                    <li class="flex items-center gap-3"><span class="text-lantern-gold">✦</span> Obtaining knowledge</li>
+                    <li class="flex items-center gap-3"><span class="text-lantern-gold">✦</span> Vegetable broth</li>
+                    <li class="flex items-center gap-3"><span class="text-lantern-gold">✦</span> Drawing stuff</li>
+                </ul>
+            </div>
+            <div class="bg-night-accent/20 p-8 border-t-2 border-red-900/50 rounded-b-xl hover:bg-night-accent/40 transition">
+                 <h3 class="font-ancient text-2xl mb-6 text-red-400/80">Avoid At All Costs</h3>
+                 <ul class="space-y-4 font-body text-left inline-block mx-auto opacity-70">
+                    <li class="flex items-center gap-3"><span class="text-red-900">✕</span> Forgetting things</li>
+                    <li class="flex items-center gap-3"><span class="text-red-900">✕</span> Mud & Mosquitoes</li>
+                    <li class="flex items-center gap-3"><span class="text-red-900">✕</span> Printers (Evil tech)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer class="text-center py-10 opacity-40 font-ancient text-sm">
+        <div class="hr-ancient max-w-xl mx-auto"></div>
+        <p>#watchMEI | #drawMEI</p>
+    </footer>
+
+</body>
+</html>

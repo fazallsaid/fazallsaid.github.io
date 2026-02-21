@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AZKi - Virtual Diva | Modern Ver.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'azki-main': '#E4007F',
+                        'azki-dark': '#1a1a1a',
+                        'azki-light': '#F9F9F9',
+                        'azki-glass': 'rgba(255, 255, 255, 0.7)',
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        jp: ['Zen Kaku Gothic New', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'diagonal-stripes': 'linear-gradient(45deg, #f3f3f3 25%, transparent 25%, transparent 50%, #f3f3f3 50%, #f3f3f3 75%, transparent 75%, transparent)',
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(0,0,0,0.05)',
+                        'glow': '0 0 20px rgba(228, 0, 127, 0.15)',
+                        'card': '0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FAFAFA;
+            background-image: radial-gradient(circle at 10% 20%, rgba(228, 0, 127, 0.03) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(228, 0, 127, 0.03) 0%, transparent 20%);
+            scroll-behavior: smooth;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .text-stroke-azki {
+            -webkit-text-stroke: 1px #E4007F;
+            color: transparent;
+        }
+
+        .diagonal-bg {
+            background-size: 20px 20px;
+            opacity: 0.5;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #E4007F;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #c0006b;
+        }
+
+        /* Animation Classes */
+        .fade-in-up {
+            animation: fade-in-up 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes fade-in-up {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-100 {
+            animation-delay: 0.1s;
+        }
+
+        .delay-200 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-300 {
+            animation-delay: 0.3s;
+        }
+
+        .delay-400 {
+            animation-delay: 0.4s;
+        }
+
+        .delay-500 {
+            animation-delay: 0.5s;
+        }
+
+        .hover-lift {
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.01);
+        }
+
+        /* Reveal on Scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body class="font-sans text-slate-800 antialiased overflow-x-hidden selection:bg-azki-main selection:text-white">
+
+    <!-- Decorative Details -->
+    <div class="fixed top-0 left-0 w-full h-full pointer-events-none z-0">
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-slate-50 border-l border-slate-100 hidden lg:block"></div>
+        <div class="absolute top-[10%] left-[5%] w-64 h-64 border border-azki-main/5 rounded-full"></div>
+        <div class="absolute bottom-[20%] right-[10%] w-96 h-96 border border-slate-200 rounded-full"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 px-6 py-4 glass-panel border-b border-white/50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#" class="text-2xl font-black tracking-tighter text-slate-900 group">
+                AZ<span class="text-azki-main group-hover:text-slate-900 transition-colors">Ki</span>
+            </a>
+            <div class="hidden md:flex gap-8 text-sm font-semibold tracking-wide text-slate-500">
+                <a href="#home" class="hover:text-azki-main transition-colors">Home</a>
+                <a href="#profile" class="hover:text-azki-main transition-colors">Profile</a>
+                <a href="#schedule" class="hover:text-azki-main transition-colors">Schedule</a>
+                <a href="#music" class="hover:text-azki-main transition-colors">Music</a>
+            </div>
+            <button
+                class="bg-slate-900 text-white px-5 py-2 rounded-full text-xs font-bold hover:bg-azki-main transition-colors duration-300">
+                Stream Now
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="home"
+        class="relative z-10 w-full min-h-screen flex flex-col lg:flex-row items-center justify-center p-4 lg:p-0 pt-20">
+
+        <!-- Left Content Section -->
+        <section
+            class="w-full lg:w-1/2 h-full flex flex-col justify-center px-6 lg:px-20 py-12 lg:py-0 order-2 lg:order-1">
+            <div class="max-w-xl mx-auto lg:mx-0 fade-in-up">
+                <!-- Header / Identity -->
+                <div class="flex items-center gap-3 mb-6">
+                    <span
+                        class="px-3 py-1 bg-azki-main/10 text-azki-main text-xs font-bold tracking-widest uppercase rounded-sm border border-azki-main/20">Hololive
+                        Gen 0</span>
+                    <span class="h-px w-12 bg-slate-300"></span>
+                    <span class="text-slate-400 text-xs font-serif italic">Virtual Diva</span>
+                </div>
+
+                <!-- Main Typo -->
+                <h1 class="text-6xl lg:text-8xl font-black tracking-tighter leading-none mb-2 text-slate-900">
+                    AZ<span class="text-azki-main">Ki</span>
+                </h1>
+                <h2 class="text-xl lg:text-2xl font-light text-slate-500 mb-8 tracking-wide font-jp">
+                    あずき <span class="mx-2 opacity-30">|</span> Virtual Diva
+                </h2>
+
+                <!-- Lore / Bio -->
+                <div
+                    class="glass-panel p-6 lg:p-8 rounded-2xl mb-8 shadow-soft relative overflow-hidden group fade-in-up delay-100 hover:shadow-glow transition-shadow duration-500">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
+                        </svg>
+                    </div>
+                    <p class="text-slate-600 leading-relaxed text-sm lg:text-base border-l-2 border-azki-main pl-4">
+                        A diva who became reborn into the virtual world in order to fabricate a new world.
+                        No matter the time, place, or position, she warps through all the barricades with her dazzling
+                        talent.
+                    </p>
+                </div>
+
+                <!-- Catchphrase Quoted -->
+                <blockquote
+                    class="text-lg lg:text-xl font-medium text-slate-800 italic mb-10 fade-in-up delay-200 relative">
+                    <span class="text-4xl text-azki-main opacity-20 absolute -top-4 -left-2 font-serif">"</span>
+                    I'm the Virtual Diva AZKi! I love music and singing!
+                </blockquote>
+
+                <!-- Actions / Schedule -->
+                <div class="flex flex-col sm:flex-row gap-4 fade-in-up delay-300">
+                    <a href="#schedule"
+                        class="px-8 py-4 bg-slate-900 text-white font-bold rounded-lg shadow-lg hover:bg-azki-main hover:shadow-glow hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2 group">
+                        <span>Check Schedule</span>
+                        <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                    </a>
+
+                    <button
+                        class="px-8 py-4 bg-white text-slate-800 font-bold rounded-lg border border-slate-200 shadow-sm hover:border-azki-main hover:text-azki-main hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2">
+                        <span>#AZKiART</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Right Visual Section -->
+        <section
+            class="w-full lg:w-1/2 h-screen relative flex items-end justify-center overflow-hidden order-1 lg:order-2">
+            <!-- Background Elements for Image -->
+            <div class="absolute inset-0 bg-diagonal-stripes diagonal-bg z-0"></div>
+            <div
+                class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[120%] h-3/4 bg-gradient-to-t from-white via-transparent to-transparent z-20">
+            </div>
+
+            <!-- Character Image -->
+            <img src="img/azki.png" alt="AZKi Virtual Diva"
+                class="relative z-10 w-auto h-[85%] lg:h-[95%] object-cover object-bottom drop-shadow-2xl fade-in-up hover:scale-105 transition-transform duration-700 ease-out origin-bottom">
+
+            <!-- Floating Elements -->
+            <div
+                class="absolute top-1/4 right-10 z-20 glass-panel p-4 rounded-xl shadow-soft animate-bounce duration-[3000ms]">
+                <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Latest Song</p>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-slate-200 rounded flex items-center justify-center text-azki-main">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-slate-800">Inochi</p>
+                        <p class="text-xs text-slate-500">Original Song</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- PROFILE SECTION -->
+    <section id="profile" class="relative z-10 w-full py-24 px-6 lg:px-20 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col lg:flex-row gap-16 items-center">
+                <!-- Image Side -->
+                <div class="w-full lg:w-1/2 reveal">
+                    <div class="relative rounded-3xl overflow-hidden aspect-[4/5] shadow-2xl group">
+                        <img src="img/azki.png"
+                            class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110"
+                            alt="AZKi Close Up">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-azki-main/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">
+                            <h3 class="text-white text-3xl font-bold">AZKi</h3>
+                            <p class="text-white/90">Virtual Diva</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Info Side -->
+                <div class="w-full lg:w-1/2 reveal">
+                    <h5 class="text-azki-main font-bold tracking-widest uppercase mb-2">Profile</h5>
+                    <h2 class="text-4xl lg:text-5xl font-black text-slate-900 mb-8">Who is <span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-azki-main to-purple-600">AZKi</span>?
+                    </h2>
+
+                    <div class="space-y-6">
+                        <!-- Stat Cards -->
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="glass-panel p-6 rounded-2xl hover-lift">
+                                <h4 class="text-slate-400 text-xs font-bold uppercase tracking-wider mb-2">Birthday</h4>
+                                <p class="text-2xl font-bold text-slate-800">July 1st</p>
+                            </div>
+                            <div class="glass-panel p-6 rounded-2xl hover-lift">
+                                <h4 class="text-slate-400 text-xs font-bold uppercase tracking-wider mb-2">Height</h4>
+                                <p class="text-2xl font-bold text-slate-800">158 cm</p>
+                            </div>
+                        </div>
+
+                        <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100">
+                            <h4 class="text-slate-900 font-bold mb-4 flex items-center gap-2">
+                                <svg class="w-5 h-5 text-azki-main" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                                    </path>
+                                </svg>
+                                Likes
+                            </h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span
+                                    class="px-4 py-2 bg-white rounded-full text-sm font-medium text-slate-600 shadow-sm border border-slate-200">Singing</span>
+                                <span
+                                    class="px-4 py-2 bg-white rounded-full text-sm font-medium text-slate-600 shadow-sm border border-slate-200">Drawing</span>
+                                <span
+                                    class="px-4 py-2 bg-white rounded-full text-sm font-medium text-slate-600 shadow-sm border border-slate-200">Vegetable
+                                    Broth</span>
+                                <span
+                                    class="px-4 py-2 bg-white rounded-full text-sm font-medium text-slate-600 shadow-sm border border-slate-200">Knowledge</span>
+                            </div>
+                        </div>
+
+                        <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100">
+                            <h4 class="text-slate-900 font-bold mb-4 flex items-center gap-2">
+                                <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636">
+                                    </path>
+                                </svg>
+                                Dislikes
+                            </h4>
+                            <p class="text-slate-600 leading-relaxed">
+                                Forgetting things, Mud, Printers, Mosquitoes
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SCHEDULE SECTION -->
+    <section id="schedule" class="relative z-10 w-full py-24 px-6 lg:px-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <h5 class="text-azki-main font-bold tracking-widest uppercase mb-2">Schedule</h5>
+                <h2 class="text-4xl font-black text-slate-900">Weekly Stream Schedule</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Schedule Card 1 -->
+                <div class="bg-white p-8 rounded-3xl shadow-card hover-lift group reveal relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-5">
+                        <span class="text-6xl font-black text-slate-900">01</span>
+                    </div>
+                    <div class="flex items-center gap-4 mb-6">
+                        <div
+                            class="w-12 h-12 rounded-full bg-azki-main/10 text-azki-main flex items-center justify-center font-bold">
+                            Mon
+                        </div>
+                        <span class="px-3 py-1 bg-slate-100 rounded text-xs font-bold text-slate-500">20:00 JST</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-800 mb-2 group-hover:text-azki-main transition-colors">
+                        Singing Stream</h3>
+                    <p class="text-slate-500 mb-6 font-jp text-sm">歌枠 / Singing your request songs!</p>
+                    <button
+                        class="w-full py-3 border border-slate-200 rounded-xl text-sm font-bold text-slate-600 hover:bg-azki-main hover:text-white hover:border-azki-main transition-all">
+                        Set Reminder
+                    </button>
+                </div>
+
+                <!-- Schedule Card 2 -->
+                <div
+                    class="bg-white p-8 rounded-3xl shadow-card hover-lift group reveal relative overflow-hidden delay-100">
+                    <div class="absolute top-0 right-0 p-4 opacity-5">
+                        <span class="text-6xl font-black text-slate-900">02</span>
+                    </div>
+                    <div class="flex items-center gap-4 mb-6">
+                        <div
+                            class="w-12 h-12 rounded-full bg-blue-50 text-blue-500 flex items-center justify-center font-bold">
+                            Fri
+                        </div>
+                        <span class="px-3 py-1 bg-slate-100 rounded text-xs font-bold text-slate-500">22:00 JST</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-800 mb-2 group-hover:text-azki-main transition-colors">
+                        GeoGuessr</h3>
+                    <p class="text-slate-500 mb-6 font-jp text-sm">Where am I? Let's travel the world.</p>
+                    <button
+                        class="w-full py-3 border border-slate-200 rounded-xl text-sm font-bold text-slate-600 hover:bg-azki-main hover:text-white hover:border-azki-main transition-all">
+                        Set Reminder
+                    </button>
+                </div>
+
+                <!-- Schedule Card 3 -->
+                <div
+                    class="bg-white p-8 rounded-3xl shadow-card hover-lift group reveal relative overflow-hidden delay-200">
+                    <div class="absolute top-0 right-0 p-4 opacity-5">
+                        <span class="text-6xl font-black text-slate-900">03</span>
+                    </div>
+                    <div class="flex items-center gap-4 mb-6">
+                        <div
+                            class="w-12 h-12 rounded-full bg-purple-50 text-purple-500 flex items-center justify-center font-bold">
+                            Sat
+                        </div>
+                        <span class="px-3 py-1 bg-slate-100 rounded text-xs font-bold text-slate-500">21:00 JST</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-800 mb-2 group-hover:text-azki-main transition-colors">
+                        SorAZ Collab</h3>
+                    <p class="text-slate-500 mb-6 font-jp text-sm">With Sora-chan! Minecraft building time.</p>
+                    <button
+                        class="w-full py-3 border border-slate-200 rounded-xl text-sm font-bold text-slate-600 hover:bg-azki-main hover:text-white hover:border-azki-main transition-all">
+                        Set Reminder
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MUSIC SECTION -->
+    <section id="music" class="relative z-10 w-full py-24 px-6 lg:px-20 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex justify-between items-end mb-16 reveal">
+                <div>
+                    <h5 class="text-azki-main font-bold tracking-widest uppercase mb-2">Music</h5>
+                    <h2 class="text-4xl font-black text-slate-900">Latest Songs</h2>
+                </div>
+                <a href="#"
+                    class="hidden md:flex items-center gap-2 font-bold text-slate-500 hover:text-azki-main transition-colors">
+                    View Discography <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="flex flex-col gap-8">
+                <!-- Song Item 1 -->
+                <div
+                    class="flex flex-col md:flex-row gap-8 items-center bg-slate-50 rounded-3xl p-6 hover:shadow-lg transition-all reveal group">
+                    <div class="w-full md:w-64 h-64 md:h-48 rounded-2xl overflow-hidden bg-slate-200 relative shrink-0">
+                        <div
+                            class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div
+                                class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-azki-main shadow-lg">
+                                <svg class="w-5 h-5 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div
+                            class="w-full h-full bg-gradient-to-br from-azki-main to-purple-800 flex items-center justify-center">
+                            <span class="text-white font-bold opacity-50">INOCHI</span>
+                        </div>
+                    </div>
+                    <div class="flex-1 text-center md:text-left">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-2">Inochi</h3>
+                        <p class="text-slate-500 mb-4">Released 2024 • Original Song</p>
+                        <div class="flex gap-2 justify-center md:justify-start">
+                            <button
+                                class="px-4 py-2 bg-white border border-slate-200 rounded-lg text-sm font-bold text-slate-600 hover:border-azki-main hover:text-azki-main transition-colors">Spotify</button>
+                            <button
+                                class="px-4 py-2 bg-white border border-slate-200 rounded-lg text-sm font-bold text-slate-600 hover:border-red-500 hover:text-red-500 transition-colors">YouTube</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Song Item 2 -->
+                <div
+                    class="flex flex-col md:flex-row gap-8 items-center bg-slate-50 rounded-3xl p-6 hover:shadow-lg transition-all reveal delay-100 group">
+                    <div class="w-full md:w-64 h-64 md:h-48 rounded-2xl overflow-hidden bg-slate-200 relative shrink-0">
+                        <div
+                            class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div
+                                class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-azki-main shadow-lg">
+                                <svg class="w-5 h-5 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div
+                            class="w-full h-full bg-gradient-to-br from-slate-800 to-black flex items-center justify-center border border-slate-700">
+                            <span class="text-white font-bold opacity-50">without U</span>
+                        </div>
+                    </div>
+                    <div class="flex-1 text-center md:text-left">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-2">without U</h3>
+                        <p class="text-slate-500 mb-4">Released 2019 • Major Debut Album</p>
+                        <div class="flex gap-2 justify-center md:justify-start">
+                            <button
+                                class="px-4 py-2 bg-white border border-slate-200 rounded-lg text-sm font-bold text-slate-600 hover:border-azki-main hover:text-azki-main transition-colors">Spotify</button>
+                            <button
+                                class="px-4 py-2 bg-white border border-slate-200 rounded-lg text-sm font-bold text-slate-600 hover:border-red-500 hover:text-red-500 transition-colors">YouTube</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 py-16 px-6 lg:px-20 text-slate-400">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex items-center gap-4">
+                <div class="text-3xl font-black text-white">AZ<span class="text-azki-main">Ki</span></div>
+                <div class="h-8 w-px bg-slate-700"></div>
+                <div class="text-xs font-semibold tracking-widest text-slate-500 uppercase">
+                    Virtual Diva<br>Hololive Production
+                </div>
+            </div>
+
+            <div class="flex gap-8 text-sm font-bold">
+                <a href="#" class="hover:text-white transition-colors">Twitter</a>
+                <a href="#" class="hover:text-white transition-colors">YouTube</a>
+                <a href="#" class="hover:text-white transition-colors">Hololive</a>
+            </div>
+
+            <div class="text-xs text-slate-600 font-mono">
+                © 2017-2024 COVER CORP.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Reveal Script -->
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+
+</html>

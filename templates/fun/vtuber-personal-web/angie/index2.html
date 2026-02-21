@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>anG (Angie) || The Soft Diary</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Patrick+Hand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        diary: {
+                            cream: '#FFFDD0',
+                            pink: '#FFB7B2',
+                            lilac: '#E2F0CB',
+                            purple: '#C7CEEA',
+                            text: '#6B5B95'
+                        }
+                    },
+                    fontFamily: {
+                        hand: ['Gochi Hand', 'cursive'],
+                        body: ['Patrick Hand', 'cursive'],
+                    },
+                    boxShadow: {
+                        'soft': '4px 4px 10px rgba(0,0,0,0.1)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FFFDD0;
+            background-image:
+                linear-gradient(#E2F0CB 1px, transparent 1px),
+                linear-gradient(90deg, #E2F0CB 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .washi-tape {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-2deg);
+            width: 100px;
+            height: 25px;
+            background-color: rgba(255, 183, 178, 0.7);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            z-index: 20;
+        }
+
+        .washi-tape::before,
+        .washi-tape::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 5px;
+            background-image: radial-gradient(circle, #fff 20%, transparent 20%);
+            background-size: 4px 4px;
+        }
+
+        .paper-cut {
+            clip-path: polygon(2% 2%, 98% 1%, 100% 98%, 1% 99%);
+        }
+
+        .sticker {
+            filter: drop-shadow(2px 2px 0px rgba(255, 255, 255, 1)) drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.1));
+        }
+
+        /* Handwritten Animation */
+        @keyframes float {
+            0% {
+                transform: translateY(0px) rotate(1deg);
+            }
+
+            50% {
+                transform: translateY(-5px) rotate(-1deg);
+            }
+
+            100% {
+                transform: translateY(0px) rotate(1deg);
+            }
+        }
+
+        .float-anim {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+
+<body class="font-body text-diary-text min-h-screen p-4 md:p-8 overflow-x-hidden">
+
+    <!-- Navbar: Bookmark Style -->
+    <nav class="fixed top-0 right-8 z-50 flex gap-4">
+        <a href="index.html"
+            class="bg-pop-yellow h-16 w-10 hover:h-20 transition-all duration-300 rounded-b-lg shadow-soft bg-yellow-200 flex items-end justify-center pb-2">
+            <i class="fa-solid fa-bolt text-yellow-600"></i>
+        </a>
+        <a href="index2.html"
+            class="bg-diary-pink h-20 w-10 rounded-b-lg shadow-soft flex items-end justify-center pb-2 border-t-0 border-x border-b border-pink-300">
+            <i class="fa-solid fa-heart text-white"></i>
+        </a>
+        <a href="index3.html"
+            class="bg-gray-300 h-16 w-10 hover:h-20 transition-all duration-300 rounded-b-lg shadow-soft flex items-end justify-center pb-2">
+            <i class="fa-solid fa-gamepad text-gray-600"></i>
+        </a>
+    </nav>
+
+    <div class="max-w-5xl mx-auto pt-10">
+
+        <!-- Header: Scribble -->
+        <div class="text-center relative mb-12">
+            <h1 class="font-hand text-6xl md:text-8xl text-diary-text rotate-2 relative z-10 inline-block">
+                Dear Diary: anG
+                <svg class="absolute -bottom-4 left-0 w-full h-4 text-diary-pink opacity-70" viewBox="0 0 100 10"
+                    preserveAspectRatio="none">
+                    <path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="3" fill="none" />
+                </svg>
+            </h1>
+            <p class="font-body text-2xl mt-4 text-gray-500 -rotate-1">#anGｪﾙｽ໒꒱</p>
+        </div>
+
+        <!-- Scrapbook Layout -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+
+            <!-- Photo Polaroid (Left) -->
+            <div class="col-span-1 md:col-span-5 relative group">
+                <div
+                    class="bg-white p-4 pb-16 shadow-lg rotate-[-3deg] transition-transform group-hover:rotate-0 duration-500 paper-cut">
+                    <div class="washi-tape bg-blue-200/50"></div>
+                    <img src="img/aNG_1.png"
+                        class="w-full h-96 object-cover object-top filter sepia-[0.2] group-hover:sepia-0 transition-all">
+                    <p class="font-hand text-2xl text-center mt-4 text-gray-400">My Favorite Outfit! ♡</p>
+                </div>
+                <!-- Mini Sticker -->
+                <div class="absolute -bottom-6 -right-6 bg-white p-2 rounded-full shadow-md rotate-12 sticker">
+                    <img src="img/aNG_logo.png" class="w-16 h-16 object-contain">
+                </div>
+            </div>
+
+            <!-- Diary Entry (Right) -->
+            <div class="col-span-1 md:col-span-7 bg-white p-8 shadow-soft relative rounded-2xl rotate-1 paper-cut">
+                <div class="washi-tape bg-red-200/50" style="left: 20%;"></div>
+                <div class="washi-tape bg-green-200/50" style="left: 80%; transform: rotate(3deg);"></div>
+
+                <h2
+                    class="font-hand text-4xl mb-4 text-diary-pink inline-block border-b-2 border-dashed border-diary-lilac">
+                    About Me...</h2>
+                <div class="font-body text-xl leading-loose space-y-4">
+                    <p>
+                        <span class="text-3xl">H</span>ello diary! Today I want to introduce myself properly!
+                        My name is <strong class="text-diary-text">Angie (anG)</strong> from ColorSing! ✨
+                    </p>
+                    <p>
+                        I really, really love <strong>sweets 🍰</strong> and <strong>spicy foods 🌶️</strong>!
+                        Is it weird to like both? Hehe.
+                        My birthday is on <strong>Nov 29th</strong>, don't forget it okay?
+                    </p>
+                    <div class="bg-diary-lilac/30 p-4 rounded-lg rotate-[-1deg] inline-block mt-2">
+                        <i class="fa-solid fa-quote-left text-diary-purple mr-2"></i>
+                        Full Volume, Full Energy!
+                        <i class="fa-solid fa-quote-right text-diary-purple ml-2"></i>
+                    </div>
+                </div>
+
+                <!-- Stats scratched on paper -->
+                <div class="mt-8 grid grid-cols-2 gap-4">
+                    <div class="bg-yellow-50 p-3 rounded shadow-sm rotate-1 text-center border border-yellow-100">
+                        <i class="fa-solid fa-ruler-vertical text-yellow-300 text-xl"></i>
+                        <span class="block text-lg">164 cm</span>
+                    </div>
+                    <div class="bg-pink-50 p-3 rounded shadow-sm -rotate-2 text-center border border-pink-100">
+                        <i class="fa-solid fa-microphone text-pink-300 text-xl"></i>
+                        <span class="block text-lg">Deb: 11 May</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stickers & Links Section (Bottom) -->
+            <div class="col-span-1 md:col-span-12 mt-8 flex flex-wrap justify-center gap-8 relative">
+                <!-- Decorative doodles -->
+                <i class="fa-solid fa-star text-yellow-300 absolute top-0 left-10 text-4xl float-anim"></i>
+                <i class="fa-solid fa-heart text-pink-300 absolute bottom-0 right-10 text-4xl float-anim"
+                    style="animation-delay: 1s;"></i>
+
+                <!-- Social Links as Stamps -->
+                <a href="#" class="group relative">
+                    <div class="bg-white p-3 shadow-md rotate-3 group-hover:scale-110 transition-transform rounded-lg">
+                        <i class="fa-brands fa-twitter text-4xl text-blue-400"></i>
+                    </div>
+                    <span
+                        class="absolute -bottom-8 left-0 w-full text-center font-hand text-sm opacity-0 group-hover:opacity-100 transition-opacity">Tweet!</span>
+                </a>
+                <a href="#" class="group relative">
+                    <div class="bg-white p-3 shadow-md -rotate-2 group-hover:scale-110 transition-transform rounded-lg">
+                        <i class="fa-brands fa-youtube text-4xl text-red-400"></i>
+                    </div>
+                    <span
+                        class="absolute -bottom-8 left-0 w-full text-center font-hand text-sm opacity-0 group-hover:opacity-100 transition-opacity">Watch!</span>
+                </a>
+                <a href="#" class="group relative">
+                    <div class="bg-white p-3 shadow-md rotate-6 group-hover:scale-110 transition-transform rounded-lg">
+                        <i class="fa-solid fa-music text-4xl text-purple-400"></i>
+                    </div>
+                    <span
+                        class="absolute -bottom-8 left-0 w-full text-center font-hand text-sm opacity-0 group-hover:opacity-100 transition-opacity">Sing!</span>
+                </a>
+            </div>
+
+            <!-- Footer Note -->
+            <div class="col-span-1 md:col-span-12 text-center mt-12 pb-8">
+                <p class="font-hand text-gray-400 text-lg">
+                    -- End of Day -- <br>
+                    <span class="text-sm">© ColorSing 2025</span>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

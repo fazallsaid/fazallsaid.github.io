@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nanashi Mumei | The Guardian</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=La+Belle+Aurore&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'mumei-brown': '#6d543e',
+                        'mumei-cream': '#f4e9d6',
+                        'mumei-accent': '#d47a4a',
+                        'mumei-dark': '#2c241b',
+                    },
+                    fontFamily: {
+                        'serif': ['"Cinzel"', 'serif'],
+                        'hand': ['"La Belle Aurore"', 'cursive'],
+                        'sans': ['"Quicksand"', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'paper-texture': "url('https://www.transparenttextures.com/patterns/cream-paper.png')",
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom CSS buat hal-hal yang AI suka males bikin */
+        body {
+            background-color: #f4e9d6;
+            background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
+        }
+        .torn-paper {
+            position: relative;
+        }
+        .torn-paper::after {
+            content: "";
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0 L1200,0 L1200,40 L0,20 Z" fill="%232c241b"/></svg>'); /* Simple ragged edge effect */
+            background-size: cover;
+            transform: rotate(180deg);
+        }
+        .float-anim {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        .photo-card {
+            box-shadow: 10px 10px 0px rgba(44, 36, 27, 0.2);
+            transition: all 0.3s ease;
+        }
+        .photo-card:hover {
+            transform: translate(-5px, -5px) rotate(-2deg);
+            box-shadow: 15px 15px 0px rgba(212, 122, 74, 0.4);
+        }
+    </style>
+</head>
+<body class="text-mumei-dark font-sans overflow-x-hidden">
+
+    <nav class="flex justify-between items-center p-6 max-w-6xl mx-auto relative z-20">
+        <div class="text-2xl font-serif font-bold tracking-widest text-mumei-brown">MUMEI.</div>
+        <div class="hidden md:flex gap-8 font-hand text-xl font-bold tracking-wider">
+            <a href="#about" class="hover:text-mumei-accent transform hover:-rotate-3 transition">Who?</a>
+            <a href="#schedule" class="hover:text-mumei-accent transform hover:rotate-3 transition">Plans</a>
+            <a href="#gallery" class="hover:text-mumei-accent transform hover:-rotate-3 transition">Memories</a>
+        </div>
+    </nav>
+
+    <section class="min-h-screen flex flex-col md:flex-row items-center justify-center max-w-6xl mx-auto p-6 relative">
+        
+        <div class="md:w-1/2 z-10 space-y-4">
+            <span class="font-hand text-3xl text-mumei-accent rotate-[-5deg] inline-block mb-2">Oh hi! Hoo’s this?</span>
+            <h1 class="text-6xl md:text-8xl font-serif font-bold leading-tight text-mumei-brown">
+                NANASHI <br> <span class="ml-10 text-mumei-dark">MUMEI</span>
+            </h1>
+            <p class="text-lg md:text-xl leading-relaxed opacity-80 pl-2 border-l-4 border-mumei-accent">
+                The Guardian of Civilization. A traveling owl who has borne witness to numerous events... and forgotten most of them.
+            </p>
+            
+            <div class="pt-6 flex gap-4">
+                <a href="#" class="px-8 py-3 bg-mumei-dark text-mumei-cream font-serif tracking-widest hover:bg-mumei-accent transition shadow-lg">WATCH STREAM</a>
+                <a href="#" class="px-8 py-3 border-2 border-mumei-brown text-mumei-brown font-serif tracking-widest hover:bg-mumei-brown hover:text-white transition">WIKI</a>
+            </div>
+        </div>
+
+        <div class="md:w-1/2 relative mt-10 md:mt-0">
+            <div class="absolute top-0 right-10 w-64 h-64 bg-mumei-accent rounded-full opacity-20 filter blur-3xl"></div>
+            <div class="absolute bottom-0 left-10 w-64 h-64 bg-mumei-brown rounded-full opacity-20 filter blur-3xl"></div>
+            
+            <div class="relative z-10 float-anim">
+                <img src="img/mumei_1.png" alt="Nanashi Mumei" class="w-full max-w-md mx-auto drop-shadow-2xl grayscale-0 hover:grayscale transition duration-500">
+                
+                <div class="absolute -bottom-10 -right-5 bg-white p-4 shadow-xl rotate-3 transform max-w-[200px]">
+                    <p class="font-hand text-xl text-mumei-dark">"I forgor... 💀"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="bg-mumei-dark text-mumei-cream py-20 relative overflow-hidden">
+        <div class="max-w-5xl mx-auto p-6 grid md:grid-cols-2 gap-12 items-center">
+            
+            <div class="border border-mumei-accent p-8 relative">
+                <div class="absolute -top-3 -left-3 bg-mumei-accent text-mumei-dark px-4 py-1 font-bold font-serif">IDENTITY CARD</div>
+                <ul class="space-y-4 font-sans text-lg mt-4">
+                    <li class="flex justify-between border-b border-gray-700 pb-2"><span>Agency</span> <span class="font-bold text-mumei-accent">Hololive EN</span></li>
+                    <li class="flex justify-between border-b border-gray-700 pb-2"><span>Birthday</span> <span>August 4</span></li>
+                    <li class="flex justify-between border-b border-gray-700 pb-2"><span>Height</span> <span>156 cm</span></li>
+                    <li class="flex justify-between border-b border-gray-700 pb-2"><span>Fan Name</span> <span>Hoomans</span></li>
+                    <li class="flex justify-between pt-2"><span>Illustrator</span> <span>Azure</span></li>
+                </ul>
+            </div>
+
+            <div class="space-y-8">
+                <div>
+                    <h3 class="font-serif text-3xl text-mumei-accent mb-4">Likes <span class="text-sm font-sans opacity-50">(Yummy!)</span></h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-mumei-cream text-mumei-dark px-4 py-2 rounded-full font-bold">Knowledge</span>
+                        <span class="bg-mumei-cream text-mumei-dark px-4 py-2 rounded-full font-bold">Vegetable Broth</span>
+                        <span class="bg-mumei-cream text-mumei-dark px-4 py-2 rounded-full font-bold">Singing</span>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-serif text-3xl text-red-400 mb-4">Dislikes <span class="text-sm font-sans opacity-50">(No thanks)</span></h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="border border-red-400 text-red-400 px-4 py-2 rounded-full">Forgetting Things</span>
+                        <span class="border border-red-400 text-red-400 px-4 py-2 rounded-full">Mud</span>
+                        <span class="border border-red-400 text-red-400 px-4 py-2 rounded-full">Mosquitoes</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="schedule" class="py-20 max-w-4xl mx-auto p-6">
+        <h2 class="text-center font-serif text-5xl text-mumei-brown mb-12">Weekly Plans</h2>
+        
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-white p-6 photo-card border-t-4 border-mumei-accent">
+                <div class="font-hand text-2xl text-gray-400 mb-2">Monday</div>
+                <div class="font-bold text-xl text-mumei-dark">Chatting Stream</div>
+                <p class="text-sm text-gray-500 mt-2">20:00 JST - Let's talk about berries!</p>
+            </div>
+             <div class="bg-white p-6 photo-card border-t-4 border-mumei-brown">
+                <div class="font-hand text-2xl text-gray-400 mb-2">Wednesday</div>
+                <div class="font-bold text-xl text-mumei-dark">Guitar Practice</div>
+                <p class="text-sm text-gray-500 mt-2">21:00 JST - Wonderwall again?</p>
+            </div>
+             <div class="bg-white p-6 photo-card border-t-4 border-mumei-accent">
+                <div class="font-hand text-2xl text-gray-400 mb-2">Saturday</div>
+                <div class="font-bold text-xl text-mumei-dark">COLLAB!</div>
+                <p class="text-sm text-gray-500 mt-2">19:00 JST - With Kronii (Time)</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-mumei-dark text-mumei-cream p-10 text-center font-serif text-sm">
+        <p>Hashtags: #watchMEI | #drawMEI | #memeMEI</p>
+        <p class="mt-4 opacity-50">Created by Shirasagi Kei © 2026</p>
+    </footer>
+
+</body>
+</html>

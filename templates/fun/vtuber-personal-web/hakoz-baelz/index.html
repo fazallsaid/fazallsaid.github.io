@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hakos Baelz | Worldwide Rat Idol</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bangers&family=Montserrat:wght@400;700;900&family=Rubik+Glitch&display=swap"
+        rel="stylesheet">
+    <style>
+        .font-bangers {
+            font-family: 'Bangers', cursive;
+        }
+
+        .font-montserrat {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .font-glitch {
+            font-family: 'Rubik Glitch', system-ui;
+        }
+
+        .chaos-bg {
+            background-color: #121212;
+            background-image:
+                radial-gradient(#E60012 1px, transparent 1px),
+                radial-gradient(#E60012 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+        }
+
+        .stroke-text {
+            -webkit-text-stroke: 2px black;
+            color: white;
+        }
+
+        .glitch-hover:hover {
+            animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+        }
+
+        @keyframes glitch {
+            0% {
+                transform: translate(0)
+            }
+
+            20% {
+                transform: translate(-2px, 2px)
+            }
+
+            40% {
+                transform: translate(-2px, -2px)
+            }
+
+            60% {
+                transform: translate(2px, 2px)
+            }
+
+            80% {
+                transform: translate(2px, -2px)
+            }
+
+            100% {
+                transform: translate(0)
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #121212;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #E60012;
+            border: 2px solid #121212;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff1a1a;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'bae-red': '#E60012',
+                        'bae-black': '#121212',
+                        'bae-white': '#F5F5F5',
+                        'bae-gold': '#FFD700',
+                    },
+                    animation: {
+                        'spin-slow': 'spin 12s linear infinite',
+                        'wiggle': 'wiggle 1s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        wiggle: {
+                            '0%, 100%': { transform: 'rotate(-3deg)' },
+                            '50%': { transform: 'rotate(3deg)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="chaos-bg text-bae-black overflow-x-hidden font-montserrat selection:bg-bae-gold selection:text-bae-black">
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full z-50 p-4 mix-blend-difference text-bae-white">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-3xl font-glitch text-bae-red">HAKOS BAELZ</h1>
+            <div class="hidden md:flex gap-6 font-bangers text-xl">
+                <a href="#hero" class="hover:text-bae-red transition-colors">HOME</a>
+                <a href="#about" class="hover:text-bae-red transition-colors">LORE</a>
+                <a href="#gallery" class="hover:text-bae-red transition-colors">GALLERY</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="min-h-screen flex items-center justify-center relative overflow-hidden py-20">
+        <!-- Background Elements -->
+        <div class="absolute inset-0 bg-dotted-pattern opacity-10"></div>
+        <div class="absolute top-20 left-10 w-32 h-32 bg-bae-red rounded-full blur-3xl opacity-50 animate-pulse"></div>
+        <div
+            class="absolute bottom-20 right-10 w-64 h-64 bg-bae-gold rounded-full blur-3xl opacity-30 animate-pulse delay-700">
+        </div>
+
+        <div class="container mx-auto grid md:grid-cols-2 gap-8 items-center relative z-10 px-4">
+            <!-- Text Content -->
+            <div class="order-2 md:order-1 space-y-6 text-center md:text-left" x-data="{ show: false }"
+                x-init="setTimeout(() => show = true, 500)">
+                <div
+                    class="inline-block bg-bae-gold px-4 py-1 -rotate-2 transform font-bold border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                    HOLOLIVE ENGLISH -PROMISE-
+                </div>
+
+                <h1 class="text-7xl md:text-9xl font-glitch text-bae-white leading-none drop-shadow-[5px_5px_0px_rgba(230,0,18,1)] transition-all duration-500"
+                    :class="show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
+                    CHAOS<br><span class="text-bae-red">RAT</span>
+                </h1>
+
+                <p
+                    class="text-xl md:text-2xl font-bangers text-bae-white max-w-lg mx-auto md:mx-0 tracking-wide bg-black/50 p-2 transform rotate-1">
+                    "WAZZUP!! It's your worldwide Rat Idol --- Hakos Baelz!"
+                </p>
+
+                <div class="flex gap-4 justify-center md:justify-start pt-4">
+                    <a href="#about"
+                        class="bg-bae-red text-white font-bangers text-2xl px-8 py-3 rounded-none border-4 border-black shadow-[8px_8px_0px_0px_white] hover:shadow-[4px_4px_0px_0px_white] hover:translate-x-1 hover:translate-y-1 transition-all transform hover:-rotate-2">
+                        Who Am I?
+                    </a>
+                </div>
+            </div>
+
+            <!-- Image -->
+            <div class="order-1 md:order-2 relative flex justify-center group" x-data>
+                <!-- Decorative Circle behind -->
+                <div
+                    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] border-[10px] border-dashed border-bae-white/20 rounded-full animate-spin-slow">
+                </div>
+
+                <!-- Character Image -->
+                <img src="img/hakos_baelz.png" alt="Hakos Baelz"
+                    class="relative w-full max-w-md md:max-w-lg object-contain drop-shadow-2xl transform transition duration-500 hover:scale-105 hover:rotate-2 z-20"
+                    style="filter: drop-shadow(0 0 20px rgba(230, 0, 18, 0.4));">
+
+                <!-- Sticker effect outline via SVG filter or simple drop-shadow hack -->
+            </div>
+        </div>
+
+        <!-- Marquee -->
+        <div
+            class="absolute bottom-0 left-0 w-full bg-bae-gold border-y-4 border-black overflow-hidden py-2 rotate-1 transform origin-bottom-left scale-105">
+            <div class="whitespace-nowrap animate-marquee inline-block font-bangers text-4xl text-black">
+                WARNING: CHAOS INBOUND // WATCH YOUR CHEESE // WORLDWIDE IDOL // WARNING: CHAOS INBOUND // WATCH YOUR
+                CHEESE // WORLDWIDE IDOL //
+            </div>
+        </div>
+        <style>
+            .animate-marquee {
+                display: inline-block;
+                animation: marquee 20s linear infinite;
+            }
+
+            @keyframes marquee {
+                0% {
+                    transform: translateX(0);
+                }
+
+                100% {
+                    transform: translateX(-50%);
+                }
+            }
+        </style>
+    </section>
+
+    <!-- Lore Section -->
+    <section id="about" class="py-20 bg-bae-white relative">
+        <div class="container mx-auto px-4">
+            <h2
+                class="text-6xl font-glitch text-center mb-16 text-bae-black drop-shadow-[4px_4px_0px_rgba(230,0,18,1)]">
+                LORE & INFO
+            </h2>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div
+                    class="bg-white border-4 border-black p-6 shadow-[8px_8px_0px_0px_#E60012] transform hover:-translate-y-2 transition-transform hover:shadow-[12px_12px_0px_0px_#E60012] -rotate-1">
+                    <div class="bg-black text-bae-gold font-bangers text-2xl p-2 mb-4 text-center inline-block w-full">
+                        THE AVATAR OF CHAOS
+                    </div>
+                    <p class="font-bold text-lg mb-2">Concept</p>
+                    <p class="text-gray-700">Born from the concept of "Chaos" itself. Despite her chaotic nature, she
+                        has a relatively organized side... sometimes.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div
+                    class="bg-white border-4 border-black p-6 shadow-[8px_8px_0px_0px_#E60012] transform hover:-translate-y-2 transition-transform hover:shadow-[12px_12px_0px_0px_#E60012] rotate-2 mt-8 md:mt-0 z-10">
+                    <div class="bg-bae-red text-white font-bangers text-2xl p-2 mb-4 text-center inline-block w-full">
+                        PERSONALITY
+                    </div>
+                    <p class="font-bold text-lg mb-2">Loud & Proud</p>
+                    <p class="text-gray-700">Energetic, expressive, and full of life. She loves coffee, dancing, and
+                        teasing her chat (The Brats).</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div
+                    class="bg-white border-4 border-black p-6 shadow-[8px_8px_0px_0px_#E60012] transform hover:-translate-y-2 transition-transform hover:shadow-[12px_12px_0px_0px_#E60012] -rotate-1">
+                    <div class="bg-bae-gold text-black font-bangers text-2xl p-2 mb-4 text-center inline-block w-full">
+                        UNIT
+                    </div>
+                    <p class="font-bold text-lg mb-2">Hololive EN -Promise-</p>
+                    <p class="text-gray-700">Formerly of the Council, she now leads (mostly in spirit) the Promise unit.
+                        Watch out for her dice rolls!</p>
+                </div>
+            </div>
+
+            <!-- Fun Facts -->
+            <!-- Profile Stats & Hashtags -->
+            <div class="mt-20 flex flex-col md:flex-row gap-8 items-start justify-center">
+                <!-- Profile Box -->
+                <div
+                    class="bg-bae-black text-white p-8 border-4 border-bae-red transform rotate-1 shadow-[10px_10px_0px_0px_#FFD700] flex-1 w-full relative overflow-hidden group">
+                    <div
+                        class="absolute -right-10 -top-10 text-9xl text-bae-white/10 font-glitch select-none group-hover:rotate-12 transition-transform">
+                        IDOL</div>
+                    <h3 class="text-4xl font-bangers text-bae-red mb-6 border-b-4 border-bae-gold inline-block">
+                        PROFILE_STATS.exe</h3>
+                    <div class="grid grid-cols-1 gap-y-3 font-montserrat text-lg relative z-10">
+                        <div class="flex justify-between border-b border-bae-white/20 pb-1">
+                            <span class="text-bae-gold font-bold">Role</span>
+                            <span>Chaos / Rat Idol</span>
+                        </div>
+                        <div class="flex justify-between border-b border-bae-white/20 pb-1">
+                            <span class="text-bae-gold font-bold">Birthday</span>
+                            <span>Feb 29 (Leap Year!)</span>
+                        </div>
+                        <div class="flex justify-between border-b border-bae-white/20 pb-1">
+                            <span class="text-bae-gold font-bold">Debut</span>
+                            <span>August 23, 2021</span>
+                        </div>
+                        <div class="flex justify-between border-b border-bae-white/20 pb-1">
+                            <span class="text-bae-gold font-bold">Height</span>
+                            <span>149 cm (Smol)</span>
+                        </div>
+                        <div class="flex justify-between border-b border-bae-white/20 pb-1">
+                            <span class="text-bae-gold font-bold">Mama</span>
+                            <span>Mika Pikazo</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hashtags Box -->
+                <div
+                    class="bg-bae-gold text-black p-8 border-4 border-black transform -rotate-2 shadow-[10px_10px_0px_0px_#E60012] flex-1 w-full md:max-w-md">
+                    <h3 class="text-4xl font-bangers mb-6 border-b-4 border-black inline-block">TAGS</h3>
+                    <ul class="space-y-3 font-bold font-montserrat">
+                        <li
+                            class="flex items-center gap-3 hover:translate-x-2 transition-transform cursor-crosshair group">
+                            <span class="bg-black text-white px-3 py-1 text-sm group-hover:bg-bae-red">STREAM</span>
+                            <span class="text-xl">#TeleBAE</span>
+                        </li>
+                        <li
+                            class="flex items-center gap-3 hover:translate-x-2 transition-transform cursor-crosshair group">
+                            <span class="bg-black text-white px-3 py-1 text-sm group-hover:bg-bae-red">ART</span>
+                            <span class="text-xl">#BaelzBrush</span>
+                        </li>
+                        <li
+                            class="flex items-center gap-3 hover:translate-x-2 transition-transform cursor-crosshair group">
+                            <span class="bg-black text-white px-3 py-1 text-sm group-hover:bg-bae-red">MUSIC</span>
+                            <span class="text-xl">#BaeBeatz</span>
+                        </li>
+                        <li
+                            class="flex items-center gap-3 hover:translate-x-2 transition-transform cursor-crosshair group">
+                            <span class="bg-black text-white px-3 py-1 text-sm group-hover:bg-bae-red">MEME</span>
+                            <span class="text-xl">#YABAE</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Likes & Dislikes Section -->
+    <section class="py-20 bg-bae-black relative overflow-hidden border-t-4 border-white">
+        <!-- Glitch Background -->
+        <div class="absolute inset-0 opacity-10"
+            style="background-image: repeating-linear-gradient(45deg, #E60012 0, #E60012 2px, transparent 2px, transparent 10px);">
+        </div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <h2 class="text-6xl font-glitch text-white text-center mb-16 stroke-text drop-shadow-[5px_5px_0px_#E60012]">
+                PREFERENCES
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-0 border-4 border-white bg-white shadow-[15px_15px_0px_0px_#E60012]">
+                <!-- LIKES -->
+                <div
+                    class="p-8 md:p-12 border-b-4 md:border-b-0 md:border-r-4 border-black bg-bae-white relative group overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-40 w-40" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-5xl font-bangers text-bae-red mb-8">LIKES <span
+                            class="text-black text-2xl align-middle">(YES PLEASE)</span></h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span
+                            class="px-4 py-2 bg-bae-gold border-2 border-black font-bold font-montserrat transform hover:scale-110 transition-transform hover:rotate-3 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">Coffee
+                            ☕</span>
+                        <span
+                            class="px-4 py-2 bg-bae-gold border-2 border-black font-bold font-montserrat transform hover:scale-110 transition-transform hover:-rotate-2 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">Fried
+                            Cheese 🧀</span>
+                        <span
+                            class="px-4 py-2 bg-bae-gold border-2 border-black font-bold font-montserrat transform hover:scale-110 transition-transform hover:rotate-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">RPGs
+                            🎮</span>
+                        <span
+                            class="px-4 py-2 bg-bae-gold border-2 border-black font-bold font-montserrat transform hover:scale-110 transition-transform hover:-rotate-3 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">Sim
+                            Games</span>
+                        <span
+                            class="px-4 py-2 bg-bae-gold border-2 border-black font-bold font-montserrat transform hover:scale-110 transition-transform hover:rotate-2 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">Anisong
+                            🎵</span>
+                        <span
+                            class="px-4 py-2 bg-bae-gold border-2 border-black font-bold font-montserrat transform hover:scale-110 transition-transform hover:-rotate-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">J-Pop
+                            / K-Pop</span>
+                        <span
+                            class="px-4 py-2 bg-bae-gold border-2 border-black font-bold font-montserrat transform hover:scale-110 transition-transform hover:rotate-3 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">EDM
+                            / Hardstyle 🔊</span>
+                    </div>
+                </div>
+
+                <!-- DISLIKES -->
+                <div class="p-8 md:p-12 bg-bae-black text-white relative group overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-40 w-40" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                        </svg>
+                    </div>
+                    <h3 class="text-5xl font-bangers text-gray-400 mb-8">DISLIKES <span
+                            class="text-white text-2xl align-middle">(NO THANKS)</span></h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span
+                            class="px-4 py-2 bg-gray-800 border-2 border-white font-bold font-montserrat transform hover:scale-110 transition-transform hover:rotate-1 text-white shadow-[4px_4px_0px_0px_rgba(255,255,255,0.5)]">The
+                            Dark 🌑</span>
+                        <span
+                            class="px-4 py-2 bg-gray-800 border-2 border-white font-bold font-montserrat transform hover:scale-110 transition-transform hover:-rotate-2 text-white shadow-[4px_4px_0px_0px_rgba(255,255,255,0.5)]">Jump
+                            Scares 😱</span>
+                        <span
+                            class="px-4 py-2 bg-gray-800 border-2 border-white font-bold font-montserrat transform hover:scale-110 transition-transform hover:rotate-2 text-white shadow-[4px_4px_0px_0px_rgba(255,255,255,0.5)]">Silence</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section class="py-20 bg-bae-white relative border-t-4 border-black">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-6xl font-glitch text-bae-black mb-12 drop-shadow-[4px_4px_0px_#FFD700]">
+                WEEKLY SCHEDULE
+            </h2>
+
+            <div
+                class="max-w-6xl mx-auto bg-white border-4 border-black p-4 shadow-[15px_15px_0px_0px_black] transform rotate-1 transition-transform hover:rotate-0">
+                <!-- Fake Calendar Header -->
+                <div
+                    class="bg-bae-red text-white font-bangers text-3xl py-3 border-b-4 border-black mb-6 flex flex-col md:flex-row justify-between px-6 items-center gap-4">
+                    <span class="text-4xl text-black stroke-text-white drop-shadow-md">FEBRUARY // WEEK 2</span>
+                    <span
+                        class="text-lg font-montserrat bg-black text-bae-gold px-4 py-1 transform -rotate-2 font-bold shadow-[4px_4px_0px_0px_white]">EST
+                        TIMEZONE</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-7 gap-3">
+                    <!-- Days -->
+                    <template x-for="day in ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN']">
+                        <div
+                            class="border-2 border-black min-h-[140px] p-2 flex flex-col hover:bg-bae-gold/20 transition-colors group relative overflow-hidden">
+                            <span
+                                class="font-black font-bangers text-2xl border-b-2 border-black mb-2 self-start bg-black text-white px-2 transform -rotate-1 group-hover:rotate-0 transition-transform"
+                                x-text="day"></span>
+
+                            <!-- Day-Specific Logic -->
+                            <div x-show="['TUE', 'SAT'].includes(day)"
+                                class="mt-auto bg-bae-red text-white text-sm font-bold p-2 border-2 border-black transform group-hover:scale-105 transition-transform shadow-[2px_2px_0px_0px_black]">
+                                <span x-text="day === 'SAT' ? 'KARAOKE 🎤' : 'MINECRAFT ⛏️'"></span>
+                                <div class="text-xs mt-1 bg-black/20 rounded px-1">20:00 JST</div>
+                            </div>
+
+                            <div x-show="day === 'THU'"
+                                class="mt-auto bg-purple-600 text-white text-sm font-bold p-2 border-2 border-black transform group-hover:scale-105 transition-transform shadow-[2px_2px_0px_0px_black]">
+                                <span>COLLAB! 🎲</span>
+                                <div class="text-xs mt-1 bg-black/20 rounded px-1">19:00 JST</div>
+                            </div>
+
+                            <div x-show="day === 'SUN'"
+                                class="mt-auto bg-bae-gold text-black text-sm font-bold p-2 border-2 border-black transform group-hover:scale-105 transition-transform shadow-[2px_2px_0px_0px_black]">
+                                <span>CHATTING 💬</span>
+                                <div class="text-xs mt-1 bg-white/20 rounded px-1">11:00 JST</div>
+                            </div>
+
+                            <div x-show="['MON', 'WED', 'FRI'].includes(day)"
+                                class="absolute inset-0 flex items-center justify-center opacity-30 pointer-events-none">
+                                <span class="font-bangers text-4xl text-gray-300 -rotate-45">REST?</span>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery / Vibe Check -->
+    <section id="gallery" class="py-20 bg-bae-red overflow-hidden">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-6xl font-glitch text-white mb-10 stroke-text">VIBE CHECK</h2>
+
+            <div class="flex flex-wrap justify-center gap-8 items-center">
+                <!-- Placeholder for gallery images, using text for now as we only have profile pics -->
+                <div
+                    class="w-64 h-64 bg-white border-4 border-black flex items-center justify-center transform rotate-3 shadow-[8px_8px_0px_0px_rgba(0,0,0,0.5)]">
+                    <span class="font-bangers text-3xl">CHAOS</span>
+                </div>
+                <!-- Using the second image if exists -->
+                <div
+                    class="w-72 h-72 bg-black border-4 border-white flex items-center justify-center transform -rotate-2 shadow-[8px_8px_0px_0px_rgba(0,0,0,0.5)] overflow-hidden relative group">
+                    <img src="img/hakos_baelz.png"
+                        class="absolute w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform">
+                    <span class="font-bangers text-3xl text-bae-gold relative z-10">RAT</span>
+                </div>
+                <div
+                    class="w-64 h-64 bg-bae-gold border-4 border-black flex items-center justify-center transform rotate-6 shadow-[8px_8px_0px_0px_rgba(0,0,0,0.5)]">
+                    <span class="font-bangers text-3xl">IDOL</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-10 border-t-8 border-bae-gold">
+        <div class="container mx-auto text-center">
+            <h2 class="text-5xl font-glitch text-bae-red mb-4">HAKOS BAELZ</h2>
+            <p class="font-montserrat mb-8">Remember to witness the chaos!</p>
+
+            <div class="flex justify-center gap-6 mb-8">
+                <a href="#"
+                    class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-black font-bold hover:bg-bae-red hover:text-white transition-colors">YT</a>
+                <a href="#"
+                    class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-black font-bold hover:bg-bae-red hover:text-white transition-colors">X</a>
+            </div>
+
+            <p class="text-sm opacity-50">&copy; 2026 Hololive Production. Fan Site Design.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

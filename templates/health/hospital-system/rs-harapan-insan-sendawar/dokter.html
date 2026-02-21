@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokter - RSUD Harapan Insan Sendawar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/91500c2459.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        jakarta: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        medical: {
+                            dark: '#114B3E',       // Sidebar active & headings
+                            primary: '#1B4D3E',
+                            light: '#40916C',
+                            surface: '#F5F7FA', // Main background very light blueish gray
+                            hover: '#E8F5E9',
+                        },
+                        status: {
+                            success: '#10B981', // Green
+                            warning: '#F59E0B', // Yellow
+                            danger: '#EF4444',  // Red
+                        }
+                    },
+                    boxShadow: {
+                        'card': '0 2px 5px rgba(0,0,0,0.02), 0 0 0 1px rgba(0,0,0,0.02)',
+                        'floating': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
+                    },
+                    borderRadius: {
+                        'xl': '0.75rem',
+                        '2xl': '1rem',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #F8F9FA;
+        }
+
+        /* Sidebar Styling */
+        .sidebar-link {
+            transition: all 0.2s;
+            color: #64748B;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            /* gap-4 */
+            padding: 1rem 1.25rem;
+            /* px-5 py-4 */
+            border-radius: 1rem;
+            /* rounded-2xl */
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-link:hover:not(.active) {
+            background-color: #F1F5F9;
+            color: #114B3E;
+        }
+
+        .sidebar-link.active {
+            background-color: #114B3E;
+            /* medical-dark */
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(17, 75, 62, 0.2);
+        }
+
+        /* Checkbox Custom Style */
+        .custom-checkbox {
+            appearance: none;
+            background-color: #fff;
+            margin: 0;
+            font: inherit;
+            color: currentColor;
+            width: 1.25em;
+            height: 1.25em;
+            border: 2px solid #CBD5E1;
+            border-radius: 0.25em;
+            display: grid;
+            place-content: center;
+            transition: 120ms transform ease-in-out;
+            cursor: pointer;
+        }
+
+        .custom-checkbox::before {
+            content: "";
+            width: 0.65em;
+            height: 0.65em;
+            transform: scale(0);
+            transition: 120ms transform ease-in-out;
+            box-shadow: inset 1em 1em #fff;
+            /* Checkmark color */
+            background-color: #114B3E;
+            transform-origin: center;
+            clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+        }
+
+        .custom-checkbox:checked {
+            background-color: #114B3E;
+            border-color: #114B3E;
+        }
+
+        /* Tooltip Arrow */
+        .tooltip-arrow::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -8px;
+            /* Adjust according to arrow size */
+            margin-top: -8px;
+            border-width: 8px;
+            border-style: solid;
+            border-color: transparent #3B82F6 transparent transparent;
+            /* Match tooltip bg color */
+        }
+    </style>
+</head>
+
+<body class="font-jakarta text-slate-600 antialiased selection:bg-medical-light/30">
+
+    <!-- SIDEBAR -->
+    <aside
+        class="fixed top-0 left-0 h-full w-72 bg-white/50 backdrop-blur-md border-r border-slate-200/60 p-6 z-40 hidden lg:flex flex-col">
+        <!-- Logo Area -->
+        <div class="flex flex-col items-center mb-10 pt-4">
+            <div
+                class="w-20 h-20 bg-gradient-to-br from-medical-dark to-medical-primary rounded-2xl flex items-center justify-center shadow-lg shadow-medical-primary/20 mb-4">
+                <img src="img/rs_harapan_insan_sendawar.png" alt="Logo"
+                    class="w-14 h-14 object-contain brightness-0 invert">
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="flex-1 space-y-2">
+            <a href="dashboard.html" class="sidebar-link group">
+                <i class="fa-solid fa-chart-pie w-6 transition-transform group-hover:scale-110"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="pasien.html" class="sidebar-link group">
+                <i class="fa-solid fa-user-injured w-6 transition-transform group-hover:scale-110"></i>
+                <span>Pasien</span>
+            </a>
+            <a href="dokter.html" class="sidebar-link active group">
+                <i class="fa-solid fa-user-doctor w-6 transition-transform group-hover:scale-110"></i>
+                <span>Dokter</span>
+            </a>
+            <a href="farmasi.html" class="sidebar-link group">
+                <i class="fa-solid fa-prescription-bottle-medical w-6 transition-transform group-hover:scale-110"></i>
+                <span>Farmasi</span>
+            </a>
+            <a href="pengaturan.html" class="sidebar-link group">
+                <i class="fa-solid fa-gear w-6 transition-transform group-hover:scale-110"></i>
+                <span>Pengaturan</span>
+            </a>
+        </nav>
+
+        <!-- Bottom Actions -->
+        <div class="pt-6 border-t border-slate-100">
+            <a href="index.html" class="sidebar-link group text-red-500 hover:bg-red-50 hover:text-red-600">
+                <i class="fa-solid fa-arrow-right-from-bracket w-6 transition-transform group-hover:scale-110"></i>
+                <span>Log Out</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="ml-0 lg:ml-72 p-6 lg:p-10 min-h-screen relative">
+
+        <!-- TOP HEADER -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
+            <div>
+                <h1 class="text-3xl font-bold text-slate-900 tracking-tight">Dokter</h1>
+                <p class="text-slate-500 mt-1">Kelola dan pantau data Pasien</p>
+            </div>
+
+            <!-- Right Actions -->
+            <div class="flex items-center gap-4 self-end md:self-auto">
+                <span class="text-sm font-semibold text-slate-500 hidden md:inline">2 Pemberitahuan Belum Dibaca</span>
+                <button
+                    class="relative w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-600 hover:border-medical-primary hover:text-medical-primary transition shadow-sm">
+                    <i class="fa-regular fa-bell"></i>
+                    <span
+                        class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-slate-50">2</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- TABS & SEARCH -->
+        <div class="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
+            <!-- Tabs -->
+            <div class="flex gap-8 border-b border-gray-100 w-full md:w-auto overflow-x-auto pb-1">
+                <button onclick="filterTable('all')" id="tab-all"
+                    class="tab-btn pb-2 text-sm font-bold text-slate-900 border-b-2 border-slate-900 transition-colors whitespace-nowrap">
+                    Semua Pasien
+                </button>
+                <button onclick="filterTable('selesai')" id="tab-selesai"
+                    class="tab-btn pb-2 text-sm font-semibold text-slate-400 border-b-2 border-transparent hover:text-slate-600 transition-colors whitespace-nowrap">
+                    Selesai Diperiksa
+                </button>
+                <button onclick="filterTable('belum')" id="tab-belum"
+                    class="tab-btn pb-2 text-sm font-semibold text-slate-400 border-b-2 border-transparent hover:text-slate-600 transition-colors whitespace-nowrap">
+                    Belum Diperiksa
+                </button>
+            </div>
+
+            <!-- Search -->
+            <div class="relative w-full md:w-64">
+                <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Pencarian Nama Pasien"
+                    class="w-full pl-4 pr-10 py-2.5 rounded-xl border border-slate-200 bg-white text-sm focus:outline-none focus:border-medical-primary focus:ring-1 focus:ring-medical-primary transition placeholder:text-slate-400">
+                <button
+                    class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-medical-primary transition">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- TABLE DATA -->
+        <div class="bg-white rounded-3xl shadow-card overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead>
+                        <tr class="border-b border-slate-100">
+                            <th
+                                class="w-16 text-center px-4 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">
+                                No</th>
+                            <th class="px-4 py-4 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">
+                                Nama Lengkap</th>
+                            <th class="px-4 py-4 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">
+                                Umur</th>
+                            <th class="px-4 py-4 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">
+                                Alamat</th>
+                            <th class="px-4 py-4 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">
+                                Tanggal</th>
+                            <th class="px-4 py-4 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">
+                                Status</th>
+                            <th class="px-4 py-4 text-center text-xs font-bold text-slate-500 uppercase tracking-wider">
+                                Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="doctorTableBody">
+                        <!-- Row 1: Dr. Richard's Patient -->
+                        <tr class="data-row hover:bg-slate-50 transition border-b border-slate-50" data-status="belum"
+                            data-doktor="Dr. Richard">
+                            <td class="text-center py-4 text-slate-500 font-bold text-sm">1.</td>
+                            <td class="py-4 font-semibold text-slate-900 text-sm">
+                                <span class="patient-name">Handoko Cahyadi Rizki</span>
+                                <div class="text-xs text-medical-light font-medium mt-1"><i
+                                        class="fa-solid fa-user-doctor mr-1"></i>Dr. Richard</div>
+                            </td>
+                            <td class="py-4 text-slate-600 text-sm font-semibold">24 Tahun</td>
+                            <td class="py-4 text-slate-600 text-sm font-semibold">Jalan Parikesit 203 Surabaya</td>
+                            <td class="py-4 text-slate-600 text-sm font-semibold">24 September 2025</td>
+                            <td class="py-4">
+                                <span
+                                    class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-700 shadow-sm">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-red-500"></span>
+                                    <span class="text-xs font-bold">Belum Diperiksa</span>
+                                </span>
+                            </td>
+                            <td class="py-4 text-center">
+                                <div class="flex justify-center gap-2 action-container">
+                                    <button
+                                        class="w-8 h-8 flex items-center justify-center rounded-lg bg-teal-50 text-teal-700 hover:bg-teal-100 transition border border-teal-100">
+                                        <i class="fa-solid fa-file-invoice-dollar"></i>
+                                    </button>
+                                    <button onclick="handleCheck(this)"
+                                        class="check-btn w-8 h-8 flex items-center justify-center rounded-lg bg-indigo-50 text-indigo-600 hover:bg-indigo-100 transition border border-indigo-100 group relative">
+                                        <i class="fa-solid fa-check"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Row 2: Dr. Susan's Patient (Check button should be hidden) -->
+                        <tr class="data-row hover:bg-slate-50 transition border-b border-slate-50" data-status="selesai"
+                            data-doktor="Dr. Susan">
+                            <td class="text-center py-4 text-slate-500 font-bold text-sm">2.</td>
+                            <td class="py-4 font-semibold text-slate-900 text-sm">
+                                <span class="patient-name">Siti Aminah Putri</span>
+                                <div class="text-xs text-slate-400 font-medium mt-1"><i
+                                        class="fa-solid fa-user-doctor mr-1"></i>Dr. Susan</div>
+                            </td>
+                            <td class="py-4 text-slate-600 text-sm font-semibold">32 Tahun</td>
+                            <td class="py-4 text-slate-600 text-sm font-semibold">Jalan Darmo Permai 12 Surabaya</td>
+                            <td class="py-4 text-slate-600 text-sm font-semibold">24 September 2025</td>
+                            <td class="py-4">
+                                <span
+                                    class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-700 shadow-sm">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-medical-dark"></span>
+                                    <span class="text-xs font-bold">Selesai Diperiksa</span>
+                                </span>
+                            </td>
+                            <td class="py-4 text-center">
+                                <div class="flex justify-center gap-2 action-container">
+                                    <button
+                                        class="w-8 h-8 flex items-center justify-center rounded-lg bg-teal-50 text-teal-700 hover:bg-teal-100 transition border border-teal-100">
+                                        <i class="fa-solid fa-file-invoice-dollar"></i>
+                                    </button>
+                                    <button onclick="handleCheck(this)"
+                                        class="check-btn w-8 h-8 flex items-center justify-center rounded-lg bg-indigo-50 text-indigo-600 hover:bg-indigo-100 transition border border-indigo-100 group relative">
+                                        <i class="fa-solid fa-check"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Row 3: Dr. Richard's Patient -->
+                        <tr class="data-row hover:bg-slate-50 transition border-b border-slate-50" data-status="selesai"
+                            data-doktor="Dr. Richard">
+                            <td class="text-center py-4 text-slate-500 font-bold text-sm">3.</td>
+                            <td class="py-4 font-semibold text-slate-900 text-sm">
+                                <span class="patient-name">Budi Santoso</span>
+                                <div class="text-xs text-medical-light font-medium mt-1"><i
+                                        class="fa-solid fa-user-doctor mr-1"></i>Dr. Richard</div>
+                            </td>
+                            <td class="py-4 text-slate-600 text-sm font-semibold">45 Tahun</td>
+                            <td class="py-4 text-slate-600 text-sm font-semibold">Jalan Kertajaya 88 Surabaya</td>
+                            <td class="py-4 text-slate-600 text-sm font-semibold">23 September 2025</td>
+                            <td class="py-4">
+                                <span
+                                    class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-700 shadow-sm">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-medical-dark"></span>
+                                    <span class="text-xs font-bold">Selesai Diperiksa</span>
+                                </span>
+                            </td>
+                            <td class="py-4 text-center">
+                                <div class="flex justify-center gap-2 action-container">
+                                    <button
+                                        class="w-8 h-8 flex items-center justify-center rounded-lg bg-teal-50 text-teal-700 hover:bg-teal-100 transition border border-teal-100">
+                                        <i class="fa-solid fa-file-invoice-dollar"></i>
+                                    </button>
+                                    <button onclick="handleCheck(this)"
+                                        class="check-btn w-8 h-8 flex items-center justify-center rounded-lg bg-indigo-50 text-indigo-600 hover:bg-indigo-100 transition border border-indigo-100 group relative">
+                                        <i class="fa-solid fa-check"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Row 4: Dr. Bambang's Patient (Check button should be hidden) -->
+                        <tr class="data-row hover:bg-slate-50 transition border-b border-slate-50" data-status="selesai"
+                            data-doktor="Dr. Bambang">
+                            <td class="text-center py-4 text-slate-500 font-bold text-sm">4.</td>
+                            <td class="py-4 font-semibold text-slate-900 text-sm">
+                                <span class="patient-name">Rian Ekky Pradipta</span>
+                                <div class="text-xs text-slate-400 font-medium mt-1"><i
+                                        class="fa-solid fa-user-doctor mr-1"></i>Dr. Bambang</div>
+                            </td>
+                            <td class="py-4 text-slate-600 text-sm font-semibold">22 Tahun</td>
+                            <td class="py-4 text-slate-600 text-sm font-semibold">Jalan Diponegoro 101 Surabaya</td>
+                            <td class="py-4 text-slate-600 text-sm font-semibold">25 September 2025</td>
+                            <td class="py-4">
+                                <span
+                                    class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-700 shadow-sm">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-medical-dark"></span>
+                                    <span class="text-xs font-bold">Selesai Diperiksa</span>
+                                </span>
+                            </td>
+                            <td class="py-4 text-center">
+                                <div class="flex justify-center gap-2 action-container">
+                                    <button
+                                        class="w-8 h-8 flex items-center justify-center rounded-lg bg-teal-50 text-teal-700 hover:bg-teal-100 transition border border-teal-100">
+                                        <i class="fa-solid fa-file-invoice-dollar"></i>
+                                    </button>
+                                    <button onclick="handleCheck(this)"
+                                        class="check-btn w-8 h-8 flex items-center justify-center rounded-lg bg-indigo-50 text-indigo-600 hover:bg-indigo-100 transition border border-indigo-100 group relative">
+                                        <i class="fa-solid fa-check"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Row 5: Dr. Susan's Patient -->
+                        <tr class="data-row hover:bg-slate-50 transition border-b border-slate-50" data-status="selesai"
+                            data-doktor="Dr. Susan">
+                            <td class="text-center py-4 text-slate-500 font-bold text-sm">5.</td>
+                            <td class="py-4 font-semibold text-slate-900 text-sm">
+                                <span class="patient-name">Dewi Lestari</span>
+                                <div class="text-xs text-slate-400 font-medium mt-1"><i
+                                        class="fa-solid fa-user-doctor mr-1"></i>Dr. Susan</div>
+                            </td>
+                            <td class="py-4 text-slate-600 text-sm font-semibold">30 Tahun</td>
+                            <td class="py-4 text-slate-600 text-sm font-semibold">Jalan Pahlawan 5 Surabaya</td>
+                            <td class="py-4 text-slate-600 text-sm font-semibold">20 September 2025</td>
+                            <td class="py-4">
+                                <span
+                                    class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-700 shadow-sm">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-medical-dark"></span>
+                                    <span class="text-xs font-bold">Selesai Diperiksa</span>
+                                </span>
+                            </td>
+                            <td class="py-4 text-center">
+                                <div class="flex justify-center gap-2 action-container">
+                                    <button
+                                        class="w-8 h-8 flex items-center justify-center rounded-lg bg-teal-50 text-teal-700 hover:bg-teal-100 transition border border-teal-100">
+                                        <i class="fa-solid fa-file-invoice-dollar"></i>
+                                    </button>
+                                    <button onclick="handleCheck(this)"
+                                        class="check-btn w-8 h-8 flex items-center justify-center rounded-lg bg-indigo-50 text-indigo-600 hover:bg-indigo-100 transition border border-indigo-100 group relative">
+                                        <i class="fa-solid fa-check"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Row 6: Dr. Richard's Patient -->
+                        <tr class="data-row hover:bg-slate-50 transition border-b border-slate-50" data-status="selesai"
+                            data-doktor="Dr. Richard">
+                            <td class="text-center py-4 text-slate-500 font-bold text-sm">6.</td>
+                            <td class="py-4 font-semibold text-slate-900 text-sm">
+                                <span class="patient-name">Joko Susilo</span>
+                                <div class="text-xs text-medical-light font-medium mt-1"><i
+                                        class="fa-solid fa-user-doctor mr-1"></i>Dr. Richard</div>
+                            </td>
+                            <td class="py-4 text-slate-600 text-sm font-semibold">50 Tahun</td>
+                            <td class="py-4 text-slate-600 text-sm font-semibold">Jalan Raya Darmo 10 Surabaya</td>
+                            <td class="py-4 text-slate-600 text-sm font-semibold">18 September 2025</td>
+                            <td class="py-4">
+                                <span
+                                    class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-700 shadow-sm">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-medical-dark"></span>
+                                    <span class="text-xs font-bold">Selesai Diperiksa</span>
+                                </span>
+                            </td>
+                            <td class="py-4 text-center">
+                                <div class="flex justify-center gap-2 action-container">
+                                    <button
+                                        class="w-8 h-8 flex items-center justify-center rounded-lg bg-teal-50 text-teal-700 hover:bg-teal-100 transition border border-teal-100">
+                                        <i class="fa-solid fa-file-invoice-dollar"></i>
+                                    </button>
+                                    <button onclick="handleCheck(this)"
+                                        class="check-btn w-8 h-8 flex items-center justify-center rounded-lg bg-indigo-50 text-indigo-600 hover:bg-indigo-100 transition border border-indigo-100 group relative">
+                                        <i class="fa-solid fa-check"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Row 7: Dr. Bambang's Patient -->
+                        <tr class="data-row hover:bg-slate-50 transition border-b border-slate-50" data-status="selesai"
+                            data-doktor="Dr. Bambang">
+                            <td class="text-center py-4 text-slate-500 font-bold text-sm">7.</td>
+                            <td class="py-4 font-semibold text-slate-900 text-sm">
+                                <span class="patient-name">Maria Ulfa</span>
+                                <div class="text-xs text-slate-400 font-medium mt-1"><i
+                                        class="fa-solid fa-user-doctor mr-1"></i>Dr. Bambang</div>
+                            </td>
+                            <td class="py-4 text-slate-600 text-sm font-semibold">28 Tahun</td>
+                            <td class="py-4 text-slate-600 text-sm font-semibold">Jalan Mawar 7 Surabaya</td>
+                            <td class="py-4 text-slate-600 text-sm font-semibold">15 September 2025</td>
+                            <td class="py-4">
+                                <span
+                                    class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-700 shadow-sm">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-medical-dark"></span>
+                                    <span class="text-xs font-bold">Selesai Diperiksa</span>
+                                </span>
+                            </td>
+                            <td class="py-4 text-center">
+                                <div class="flex justify-center gap-2 action-container">
+                                    <button
+                                        class="w-8 h-8 flex items-center justify-center rounded-lg bg-teal-50 text-teal-700 hover:bg-teal-100 transition border border-teal-100">
+                                        <i class="fa-solid fa-file-invoice-dollar"></i>
+                                    </button>
+                                    <button onclick="handleCheck(this)"
+                                        class="check-btn w-8 h-8 flex items-center justify-center rounded-lg bg-indigo-50 text-indigo-600 hover:bg-indigo-100 transition border border-indigo-100 group relative">
+                                        <i class="fa-solid fa-check"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Row 8: Dr. Susan's Patient -->
+                        <tr class="data-row hover:bg-slate-50 transition border-b border-slate-50" data-status="selesai"
+                            data-doktor="Dr. Susan">
+                            <td class="text-center py-4 text-slate-500 font-bold text-sm">8.</td>
+                            <td class="py-4 font-semibold text-slate-900 text-sm">
+                                <span class="patient-name">Agus Setiawan</span>
+                                <div class="text-xs text-slate-400 font-medium mt-1"><i
+                                        class="fa-solid fa-user-doctor mr-1"></i>Dr. Susan</div>
+                            </td>
+                            <td class="py-4 text-slate-600 text-sm font-semibold">40 Tahun</td>
+                            <td class="py-4 text-slate-600 text-sm font-semibold">Jalan Kenjeran 20 Surabaya</td>
+                            <td class="py-4 text-slate-600 text-sm font-semibold">12 September 2025</td>
+                            <td class="py-4">
+                                <span
+                                    class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-700 shadow-sm">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-medical-dark"></span>
+                                    <span class="text-xs font-bold">Selesai Diperiksa</span>
+                                </span>
+                            </td>
+                            <td class="py-4 text-center">
+                                <div class="flex justify-center gap-2 action-container">
+                                    <button
+                                        class="w-8 h-8 flex items-center justify-center rounded-lg bg-teal-50 text-teal-700 hover:bg-teal-100 transition border border-teal-100">
+                                        <i class="fa-solid fa-file-invoice-dollar"></i>
+                                    </button>
+                                    <button onclick="handleCheck(this)"
+                                        class="check-btn w-8 h-8 flex items-center justify-center rounded-lg bg-indigo-50 text-indigo-600 hover:bg-indigo-100 transition border border-indigo-100 group relative">
+                                        <i class="fa-solid fa-check"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Row 9: Dr. Richard's Patient -->
+                        <tr class="data-row hover:bg-slate-50 transition border-b border-slate-50" data-status="selesai"
+                            data-doktor="Dr. Richard">
+                            <td class="text-center py-4 text-slate-500 font-bold text-sm">9.</td>
+                            <td class="py-4 font-semibold text-slate-900 text-sm">
+                                <span class="patient-name">Putri Indah</span>
+                                <div class="text-xs text-medical-light font-medium mt-1"><i
+                                        class="fa-solid fa-user-doctor mr-1"></i>Dr. Richard</div>
+                            </td>
+                            <td class="py-4 text-slate-600 text-sm font-semibold">27 Tahun</td>
+                            <td class="py-4 text-slate-600 text-sm font-semibold">Jalan Gubeng 33 Surabaya</td>
+                            <td class="py-4 text-slate-600 text-sm font-semibold">10 September 2025</td>
+                            <td class="py-4">
+                                <span
+                                    class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-700 shadow-sm">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-medical-dark"></span>
+                                    <span class="text-xs font-bold">Selesai Diperiksa</span>
+                                </span>
+                            </td>
+                            <td class="py-4 text-center">
+                                <div class="flex justify-center gap-2 action-container">
+                                    <button
+                                        class="w-8 h-8 flex items-center justify-center rounded-lg bg-teal-50 text-teal-700 hover:bg-teal-100 transition border border-teal-100">
+                                        <i class="fa-solid fa-file-invoice-dollar"></i>
+                                    </button>
+                                    <button onclick="handleCheck(this)"
+                                        class="check-btn w-8 h-8 flex items-center justify-center rounded-lg bg-indigo-50 text-indigo-600 hover:bg-indigo-100 transition border border-indigo-100 group relative">
+                                        <i class="fa-solid fa-check"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- FOOTER / PAGINATION -->
+        <div class="flex items-center justify-between mt-6">
+            <span class="text-sm font-semibold text-slate-500">Menampilkan 9 dari 493 Data</span>
+            <div class="flex items-center gap-2">
+                <button
+                    class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-200 text-slate-500 transition">
+                    <i class="fa-solid fa-chevron-left text-xs"></i>
+                </button>
+                <button
+                    class="w-8 h-8 flex items-center justify-center rounded-lg bg-medical-dark text-white font-bold text-sm shadow-md shadow-medical-dark/20">1</button>
+                <button
+                    class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-100 text-slate-500 font-bold text-sm transition">2</button>
+                <button
+                    class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-100 text-slate-500 font-bold text-sm transition">3</button>
+                <button
+                    class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-100 text-slate-500 font-bold text-sm transition">4</button>
+                <button
+                    class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-100 text-slate-500 font-bold text-sm transition">5</button>
+                <button
+                    class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-200 text-slate-500 transition">
+                    <i class="fa-solid fa-chevron-right text-xs"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="h-10"></div>
+    </main>
+
+    <script>
+        // Logged-in Doctor Simulation
+        const loggedInDoctor = 'Dr. Richard';
+
+        // Handle Check Button Click
+        function handleCheck(btn) {
+            // For now, do nothing (placeholder)
+            console.log("Check button clicked for " + loggedInDoctor);
+        }
+
+        // --- Table Logic ---
+        let currentStatus = 'all';
+
+        function renderTable() {
+            const searchInput = document.getElementById("searchInput").value.toUpperCase();
+            const rows = document.querySelectorAll(".data-row");
+
+            rows.forEach(row => {
+                const status = row.getAttribute('data-status');
+                const name = row.querySelector(".patient-name").textContent.toUpperCase();
+                const assignedDoctor = row.getAttribute('data-doktor') || ''; // Get assigned doctor
+
+                // 1. Filter Logic
+                const statusMatch = (currentStatus === 'all') || (status === currentStatus);
+                const searchMatch = name.indexOf(searchInput) > -1;
+
+                // 2. Button Visibility Logic
+                const checkBtn = row.querySelector('.check-btn');
+                if (checkBtn) {
+                    if (assignedDoctor === loggedInDoctor) {
+                        checkBtn.style.display = 'inline-flex'; // Show if matches logged in doctor
+                    } else {
+                        checkBtn.style.display = 'none'; // Hide otherwise
+                    }
+                }
+
+                if (statusMatch && searchMatch) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        }
+
+        function filterTable(status) {
+            currentStatus = status;
+            const tabs = document.querySelectorAll('.tab-btn');
+            tabs.forEach(tab => {
+                tab.classList.remove('font-bold', 'text-slate-900', 'border-slate-900');
+                tab.classList.add('font-semibold', 'text-slate-400', 'border-transparent');
+
+                if (tab.id === 'tab-' + status) {
+                    tab.classList.remove('font-semibold', 'text-slate-400', 'border-transparent');
+                    tab.classList.add('font-bold', 'text-slate-900', 'border-slate-900');
+                }
+            });
+            renderTable();
+        }
+
+        function searchTable() {
+            renderTable();
+        }
+
+        // Initial Render
+        document.addEventListener('DOMContentLoaded', () => {
+            renderTable();
+        });
+    </script>
+</body>
+
+</html>

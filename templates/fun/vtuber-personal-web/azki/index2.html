@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AZKi - Emotional Diva | Premium Ver.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'premium-dark': '#0F1012',
+                        'premium-charcoal': '#1A1C20',
+                        'premium-gold': '#D4AF37',
+                        'premium-gold-light': '#F4D03F',
+                        'premium-silver': '#C0C0C0',
+                    },
+                    fontFamily: {
+                        serif: ['Cormorant Garamond', 'serif'],
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    },
+                    letterSpacing: {
+                        'widest-xl': '0.25em',
+                        'widest-2xl': '0.5em',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0F1012;
+            color: #Eaeaea;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Subtle animated grain */
+        .noise-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .text-gold-gradient {
+            background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 200% auto;
+            animation: shine 5s linear infinite;
+        }
+
+        @keyframes shine {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        .slide-in-up {
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideInUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        /* Intersection Observer Animation Classes */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease-out;
+        }
+
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-200 {
+            animation-delay: 0.2s;
+            transition-delay: 0.2s;
+        }
+
+        .delay-400 {
+            animation-delay: 0.4s;
+            transition-delay: 0.4s;
+        }
+
+        .delay-600 {
+            animation-delay: 0.6s;
+            transition-delay: 0.6s;
+        }
+
+        .hover-gold-line::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: #D4AF37;
+            transition: width 0.4s ease;
+        }
+
+        .hover-gold-line:hover::after {
+            width: 100%;
+        }
+
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -60px;
+            width: 40px;
+            height: 1px;
+            background-color: #D4AF37;
+        }
+
+        /* Image Parallax Effect Wrapper */
+        .image-wrapper {
+            clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
+        }
+
+        @media (max-width: 768px) {
+            .image-wrapper {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+            }
+        }
+    </style>
+</head>
+
+<body class="antialiased min-h-screen relative selection:bg-premium-gold selection:text-black">
+
+    <div class="noise-bg"></div>
+
+    <!-- Navigation (Minimalist) -->
+    <nav class="fixed top-0 w-full p-6 md:p-8 flex justify-between items-center z-40 mix-blend-difference text-white transition-all duration-300"
+        id="navbar">
+        <div class="text-xs tracking-widest-xl uppercase font-sans">Hololive / Gen 0</div>
+        <div class="hidden md:flex gap-12 text-xs tracking-widest uppercase font-sans">
+            <a href="#hero" class="relative hover-gold-line opacity-70 hover:opacity-100 transition-opacity">Home</a>
+            <a href="#about" class="relative hover-gold-line opacity-70 hover:opacity-100 transition-opacity">About</a>
+            <a href="#schedule"
+                class="relative hover-gold-line opacity-70 hover:opacity-100 transition-opacity">Schedule</a>
+            <a href="#music" class="relative hover-gold-line opacity-70 hover:opacity-100 transition-opacity">Music</a>
+        </div>
+        <div
+            class="text-xs tracking-widest-xl uppercase font-sans border border-white/20 px-4 py-2 hover:bg-white hover:text-black transition-colors duration-500 cursor-pointer">
+            Menu
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="w-full max-w-[1600px] h-screen flex flex-col md:flex-row relative z-10 mx-auto">
+
+        <!-- Text Content -->
+        <div
+            class="w-full md:w-[45%] h-full flex flex-col justify-center px-8 md:pl-24 lg:pl-32 relative z-20 pt-20 md:pt-0">
+
+            <div class="slide-in-left">
+                <p class="text-premium-gold text-sm tracking-widest-xl uppercase mb-4 font-sans">The Emotional Diva</p>
+                <h1 class="text-7xl md:text-9xl font-serif text-white leading-[0.85] mb-6">
+                    <span class="block">AZ</span>
+                    <span
+                        class="block text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-600 italic">Ki</span>
+                </h1>
+            </div>
+
+            <div class="slide-in-left delay-200">
+                <div class="w-24 h-px bg-premium-gold mb-8 opacity-50"></div>
+                <p class="text-gray-400 font-sans font-light leading-loose max-w-md text-sm md:text-base text-justify">
+                    Reborn into the virtual world to fabricate a new reality.
+                    With a voice that transcends boundaries, she delivers emotions straight to the heart.
+                    <span class="block mt-4 text-white italic font-serif text-lg">"I love music and singing."</span>
+                </p>
+            </div>
+
+            <div class="mt-12 group slide-in-left delay-400">
+                <a href="#music"
+                    class="inline-block relative px-8 py-3 overflow-hidden border border-white/20 text-white font-sans text-xs tracking-widest uppercase hover:border-premium-gold transition-colors duration-500">
+                    <span class="relative z-10 group-hover:text-black transition-colors duration-500">Listen to
+                        Works</span>
+                    <div
+                        class="absolute inset-0 bg-premium-gold transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out z-0">
+                    </div>
+                </a>
+            </div>
+
+        </div>
+
+        <!-- Image Content -->
+        <div class="w-full md:w-[55%] h-[50vh] md:h-full relative overflow-hidden image-wrapper">
+            <!-- Decorative circle behind -->
+            <div
+                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full border border-premium-gold/10 z-0 animate-[spin_60s_linear_infinite]">
+            </div>
+            <div
+                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full border border-white/5 z-0 animate-[spin_40s_linear_infinite_reverse]">
+            </div>
+
+            <!-- Main Image -->
+            <img src="img/azki_2.png" alt="AZKi Premium"
+                class="absolute bottom-0 md:left-10 w-auto h-[90%] md:h-[95%] object-cover object-center drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] z-10 slide-in-up delay-200 hover:scale-[1.02] transition-transform duration-[2000ms]">
+
+            <!-- Floating Text overlay -->
+            <div class="absolute bottom-20 right-10 md:right-20 z-20 text-right slide-in-up delay-600">
+                <div class="text-6xl md:text-8xl font-serif text-white/5 font-bold leading-none select-none">
+                    07/01
+                </div>
+                <div class="text-xs text-premium-gold tracking-widest mt-2 uppercase">
+                    Birthday Celebration
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTENT WRAPPER -->
+    <div class="relative z-30 bg-[#0F1012]">
+
+        <!-- ABOUT SECTION -->
+        <section id="about" class="py-32 px-6 md:px-24 max-w-[1400px] mx-auto">
+            <div class="flex flex-col md:flex-row gap-16 items-start">
+                <div class="w-full md:w-1/3 reveal-on-scroll">
+                    <h2 class="text-4xl md:text-5xl font-serif italic text-white mb-6 section-title">Profile</h2>
+                    <div class="w-full aspect-[3/4] bg-premium-charcoal relative overflow-hidden group">
+                        <!-- Placeholder/Alternative Image -->
+                        <img src="img/azki.png"
+                            class="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
+                            alt="AZKi Profile">
+                    </div>
+                </div>
+                <div class="w-full md:w-2/3 pt-12 reveal-on-scroll delay-200">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                        <div>
+                            <h3 class="text-xs text-premium-gold uppercase tracking-widest mb-2">Name</h3>
+                            <p class="text-2xl font-serif text-white border-b border-white/10 pb-4">AZKi (あずき)</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xs text-premium-gold uppercase tracking-widest mb-2">Agency</h3>
+                            <p class="text-2xl font-serif text-white border-b border-white/10 pb-4">Hololive (Gen 0)</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xs text-premium-gold uppercase tracking-widest mb-2">Likes</h3>
+                            <p class="text-lg font-sans text-gray-400">Obtaining knowledge, Vegetable broth, Drawing,
+                                Singing</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xs text-premium-gold uppercase tracking-widest mb-2">Dislikes</h3>
+                            <p class="text-lg font-sans text-gray-400">Forgetting things, Mud, Printers, Mosquitoes</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-16">
+                        <h3 class="text-xs text-premium-gold uppercase tracking-widest mb-6">Keywords</h3>
+                        <div class="flex flex-wrap gap-4">
+                            <span
+                                class="px-6 py-2 border border-white/10 text-sm font-sans tracking-widest uppercase hover:bg-white hover:text-black transition-colors">Yuka
+                                (Floor)</span>
+                            <span
+                                class="px-6 py-2 border border-white/10 text-sm font-sans tracking-widest uppercase hover:bg-white hover:text-black transition-colors">Tenjou
+                                (Ceiling)</span>
+                            <span
+                                class="px-6 py-2 border border-white/10 text-sm font-sans tracking-widest uppercase hover:bg-white hover:text-black transition-colors">Kaitakusha</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCHEDULE SECTION -->
+        <section id="schedule" class="py-32 bg-premium-charcoal relative">
+            <div class="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+            </div>
+            <div class="max-w-[1200px] mx-auto px-6 md:px-24 mt-[80px]">
+                <div class="text-center mb-16 reveal-on-scroll">
+                    <h2 class="text-4xl md:text-6xl font-serif text-white mb-4">Weekly Schedule</h2>
+                    <p class="text-premium-gold text-xs tracking-widest-2xl uppercase">Live Stream & Premiere</p>
+                </div>
+
+                <div
+                    class="grid grid-cols-1 md:grid-cols-3 gap-0 border-t border-b border-white/10 reveal-on-scroll delay-200">
+                    <!-- Schedule Item 1 -->
+                    <div
+                        class="group border-b md:border-b-0 md:border-r border-white/10 p-10 hover:bg-white/5 transition-colors duration-300">
+                        <div
+                            class="text-4xl font-serif text-white/20 mb-4 group-hover:text-premium-gold transition-colors">
+                            01</div>
+                        <h3 class="text-xl font-sans font-bold mb-2">Singing Stream</h3>
+                        <p class="text-sm text-gray-400 mb-6">Karaoke Night / Utawaku</p>
+                        <div class="flex justify-between items-end">
+                            <span class="text-xs tracking-widest uppercase border border-white/20 px-2 py-1">20:00
+                                JST</span>
+                            <span
+                                class="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-premium-gold group-hover:text-black group-hover:border-transparent transition-all">
+                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Schedule Item 2 -->
+                    <div
+                        class="group border-b md:border-b-0 md:border-r border-white/10 p-10 hover:bg-white/5 transition-colors duration-300">
+                        <div
+                            class="text-4xl font-serif text-white/20 mb-4 group-hover:text-premium-gold transition-colors">
+                            02</div>
+                        <h3 class="text-xl font-sans font-bold mb-2">Collab: SorAZ</h3>
+                        <p class="text-sm text-gray-400 mb-6">Minecraft Adventure</p>
+                        <div class="flex justify-between items-end">
+                            <span class="text-xs tracking-widest uppercase border border-white/20 px-2 py-1">21:00
+                                JST</span>
+                            <span
+                                class="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-premium-gold group-hover:text-black group-hover:border-transparent transition-all">
+                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Schedule Item 3 -->
+                    <div class="group p-10 hover:bg-white/5 transition-colors duration-300">
+                        <div
+                            class="text-4xl font-serif text-white/20 mb-4 group-hover:text-premium-gold transition-colors">
+                            03</div>
+                        <h3 class="text-xl font-sans font-bold mb-2">GeoGuesser</h3>
+                        <p class="text-sm text-gray-400 mb-6">Traveling the world virtually</p>
+                        <div class="flex justify-between items-end">
+                            <span class="text-xs tracking-widest uppercase border border-white/20 px-2 py-1">22:00
+                                JST</span>
+                            <span
+                                class="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-premium-gold group-hover:text-black group-hover:border-transparent transition-all">
+                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MUSIC SECTION -->
+        <section id="music" class="py-32 px-6 md:px-24">
+            <div class="max-w-[1400px] mx-auto">
+                <div class="flex justify-between items-end mb-16 reveal-on-scroll">
+                    <div>
+                        <h2 class="text-4xl md:text-5xl font-serif italic text-white mb-2">Discography</h2>
+                        <p class="text-gray-500 font-sans text-sm">Latest releases and original songs</p>
+                    </div>
+                    <a href="#"
+                        class="hidden md:inline-block text-xs uppercase tracking-widest hover:text-premium-gold transition-colors">View
+                        All Discography -></a>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 reveal-on-scroll delay-200">
+                    <!-- Music Card 1 -->
+                    <div class="group cursor-pointer">
+                        <div class="w-full aspect-square bg-white/5 overflow-hidden relative mb-4">
+                            <div
+                                class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <div
+                                    class="w-16 h-16 rounded-full border border-white flex items-center justify-center transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M8 5v14l11-7z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <!-- Mock Album Art -->
+                            <div
+                                class="w-full h-full bg-gradient-to-br from-indigo-900 to-purple-800 flex items-center justify-center">
+                                <span class="font-serif italic text-2xl opacity-50">Inochi</span>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-serif text-white group-hover:text-premium-gold transition-colors">Inochi
+                        </h3>
+                        <p class="text-xs text-gray-500 uppercase tracking-widest">Original Song</p>
+                    </div>
+
+                    <!-- Music Card 2 -->
+                    <div class="group cursor-pointer">
+                        <div class="w-full aspect-square bg-white/5 overflow-hidden relative mb-4">
+                            <div
+                                class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <div
+                                    class="w-16 h-16 rounded-full border border-white flex items-center justify-center transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M8 5v14l11-7z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <!-- Mock Album Art -->
+                            <div
+                                class="w-full h-full bg-gradient-to-br from-gray-900 to-black flex items-center justify-center border border-white/10">
+                                <span class="font-serif italic text-2xl opacity-50">Without U</span>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-serif text-white group-hover:text-premium-gold transition-colors">
+                            without U</h3>
+                        <p class="text-xs text-gray-500 uppercase tracking-widest">Major Debut Album</p>
+                    </div>
+
+                    <!-- Music Card 3 -->
+                    <div class="group cursor-pointer">
+                        <div class="w-full aspect-square bg-white/5 overflow-hidden relative mb-4">
+                            <div
+                                class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <div
+                                    class="w-16 h-16 rounded-full border border-white flex items-center justify-center transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M8 5v14l11-7z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <!-- Mock Album Art -->
+                            <div
+                                class="w-full h-full bg-gradient-to-br from-pink-900 to-red-900 flex items-center justify-center">
+                                <span class="font-serif italic text-2xl opacity-50">Intersection</span>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-serif text-white group-hover:text-premium-gold transition-colors">
+                            Intersection</h3>
+                        <p class="text-xs text-gray-500 uppercase tracking-widest">Single</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="py-12 border-t border-white/10 px-6 md:px-24">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="text-2xl font-serif font-bold tracking-tighter">AZKi</div>
+                <div class="flex gap-8 text-xs uppercase tracking-widest text-gray-500">
+                    <a href="#" class="hover:text-white transition-colors">Twitter</a>
+                    <a href="#" class="hover:text-white transition-colors">YouTube</a>
+                    <a href="#" class="hover:text-white transition-colors">Hololive Production</a>
+                </div>
+                <div class="text-[10px] text-gray-600 uppercase tracking-widest">
+                    © 2016 COVER Corp.
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Footer Lines -->
+    <div class="fixed bottom-0 left-0 w-full h-px bg-white/5 z-40"></div>
+    <div class="fixed top-0 right-0 h-full w-px bg-white/5 z-40 hidden md:block"></div>
+
+    <!-- Simple Intersection Observer for Animations -->
+    <script>
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+
+</html>

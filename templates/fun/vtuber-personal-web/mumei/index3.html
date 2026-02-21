@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oh hi! :D | Nanashi Mumei</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;600&family=Patrick+Hand&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'berry-red': '#ff6b6b',
+                        'berry-light': '#ff9e9e',
+                        'owl-brown': '#5d4037',
+                        'owl-beige': '#f9f3e6',
+                        'paper-white': '#fffdf5',
+                    },
+                    fontFamily: {
+                        'cute': ['"Fredoka"', 'sans-serif'],
+                        'doodle': ['"Patrick Hand"', 'cursive'],
+                    },
+                    boxShadow: {
+                        'sticker': '4px 4px 0px rgba(93, 64, 55, 0.15)',
+                        'sticker-hover': '6px 6px 0px rgba(93, 64, 55, 0.25)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f9f3e6;
+            background-image: radial-gradient(#d7ccc8 1px, transparent 1px);
+            background-size: 20px 20px; /* Efek kertas titik-titik (Dot Grid) */
+        }
+        
+        /* Efek Washi Tape (Selotip) */
+        .tape {
+            background-color: rgba(255, 107, 107, 0.5);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            backdrop-filter: blur(2px);
+            transform: rotate(-2deg);
+        }
+
+        /* Animasi goyang-goyang lucu */
+        .wiggle:hover {
+            animation: wiggle 0.5s ease-in-out infinite;
+        }
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-3deg); }
+            50% { transform: rotate(3deg); }
+        }
+    </style>
+</head>
+<body class="text-owl-brown font-cute overflow-x-hidden">
+
+    <nav class="p-6 flex justify-center">
+        <div class="bg-white px-8 py-3 rounded-full border-2 border-owl-brown shadow-sticker flex gap-8 items-center transform rotate-1">
+            <a href="#" class="font-doodle text-xl hover:text-berry-red hover:scale-110 transition">Home</a>
+            <div class="w-2 h-2 bg-berry-red rounded-full"></div>
+            <a href="#" class="font-doodle text-xl hover:text-berry-red hover:scale-110 transition">Profile</a>
+            <div class="w-2 h-2 bg-berry-red rounded-full"></div>
+            <a href="#" class="font-doodle text-xl hover:text-berry-red hover:scale-110 transition">Gallery</a>
+        </div>
+    </nav>
+
+    <header class="max-w-5xl mx-auto p-6 mt-4 flex flex-col md:flex-row items-center gap-10">
+        
+        <div class="md:w-1/2 relative">
+            <div class="absolute -top-10 -left-10 text-6xl opacity-20 transform -rotate-12">🦉</div>
+            
+            <div class="bg-white p-8 rounded-[2rem] border-4 border-dashed border-berry-light relative shadow-xl">
+                <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 w-32 h-8 tape"></div>
+                
+                <h2 class="font-doodle text-3xl text-berry-red mb-2">Oh hi! Hoo’s this?</h2>
+                <h1 class="text-6xl font-bold mb-4 text-owl-brown tracking-tight">Nanashi Mumei</h1>
+                <p class="text-lg leading-relaxed font-medium text-gray-600">
+                    A traveling owl who loves civilizations! <br>
+                    (And berries. And maybe forgotten memories...)
+                </p>
+                <div class="mt-6 flex gap-3">
+                    <span class="bg-berry-light text-white px-4 py-1 rounded-full text-sm font-bold shadow-sm">#watchMEI</span>
+                    <span class="bg-berry-light text-white px-4 py-1 rounded-full text-sm font-bold shadow-sm">#drawMEI</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="md:w-1/2 flex justify-center relative">
+            <div class="absolute bg-white w-80 h-80 rounded-full border-4 border-owl-brown opacity-50 top-10 transform scale-110"></div>
+            
+            <img src="img/mumei.png" alt="Cute Mumei" class="relative z-10 w-80 md:w-96 filter drop-shadow-xl hover:scale-105 transition duration-300 transform rotate-2">
+            
+            <div class="absolute bottom-0 right-10 bg-yellow-200 p-3 rounded-lg shadow-sticker transform rotate-6 font-doodle font-bold">
+                Civilization is fun! ✨
+            </div>
+        </div>
+    </header>
+
+    <section class="max-w-4xl mx-auto p-6 mt-10">
+        <div class="grid md:grid-cols-2 gap-8">
+            
+            <div class="bg-white p-6 rounded-3xl border-2 border-owl-brown shadow-sticker relative transform -rotate-1 hover:rotate-0 transition duration-300">
+                <div class="absolute -top-4 -right-4 text-4xl wiggle">🪶</div>
+                <h3 class="font-doodle text-3xl text-berry-red mb-4 border-b-2 border-dashed border-berry-light pb-2">About Me</h3>
+                
+                <div class="space-y-3 font-medium">
+                    <div class="flex items-center gap-3">
+                        <span class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">🎂</span>
+                        <span>August 4th (Birthday!)</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">📏</span>
+                        <span>156 cm (Smol but mighty)</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center">👥</span>
+                        <span>Fans: <b>Hoomans</b></span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">🎨</span>
+                        <span>Mama: Azure-sensei</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-3xl border-2 border-owl-brown shadow-sticker relative transform rotate-1 hover:rotate-0 transition duration-300">
+                <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 w-24 h-6 tape bg-blue-300/50"></div>
+                <h3 class="font-doodle text-3xl text-owl-brown mb-4 text-center">My Bucket List 📝</h3>
+                
+                <ul class="space-y-2 font-doodle text-xl">
+                    <li class="flex items-center gap-2">
+                        <input type="checkbox" checked class="accent-berry-red w-5 h-5">
+                        <span class="line-through decoration-berry-red">Learn Japanese (again)</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <input type="checkbox" class="accent-berry-red w-5 h-5">
+                        <span>Write a song on Guitar</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <input type="checkbox" class="accent-berry-red w-5 h-5">
+                        <span>Collab with Senpais!</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <input type="checkbox" class="accent-berry-red w-5 h-5">
+                        <span>Find more berries 🍒</span>
+                    </li>
+                </ul>
+            </div>
+            
+        </div>
+    </section>
+
+    <section class="max-w-5xl mx-auto p-6 mt-8 mb-20 text-center">
+        <h2 class="font-doodle text-4xl text-owl-brown mb-8">Things I Love & Hate</h2>
+        
+        <div class="flex flex-wrap justify-center gap-6">
+            <div class="bg-green-100 text-green-800 px-6 py-3 rounded-2xl font-bold shadow-sm transform hover:-translate-y-1 transition">
+                Drawings 🎨
+            </div>
+            <div class="bg-red-100 text-red-800 px-6 py-3 rounded-2xl font-bold shadow-sm transform hover:-translate-y-1 transition">
+                Vegetable Broth 🍲
+            </div>
+            <div class="bg-gray-200 text-gray-500 px-6 py-3 rounded-2xl font-bold shadow-sm transform hover:-translate-y-1 transition line-through decoration-2">
+                Printers 🖨️
+            </div>
+            <div class="bg-gray-200 text-gray-500 px-6 py-3 rounded-2xl font-bold shadow-sm transform hover:-translate-y-1 transition line-through decoration-2">
+                Forgetting Stuff 🧠
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-white border-t-4 border-dashed border-berry-light py-8 text-center mt-12">
+        <p class="font-doodle text-2xl text-berry-red mb-2">Thanks for visiting, Hooman!</p>
+        <p class="text-sm opacity-50 font-cute">Designed with ❤️ by Shirasagi Kei</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>anG (Angie) || The Angel's Patisserie</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cafe: {
+                            cream: '#FDF6E3',
+                            strawberry: '#FF9999',
+                            matcha: '#A8C69F',
+                            choco: '#5D4037',
+                            gold: '#D4AF37'
+                        }
+                    },
+                    fontFamily: {
+                        script: ['"Dancing Script"', 'cursive'],
+                        serif: ['"Playfair Display"', 'serif'],
+                        body: ['"Lato"', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'paper': '0 10px 30px -10px rgba(93, 64, 55, 0.2)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FDF6E3;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23d4af37' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+
+        .receipt-border {
+            background-image: radial-gradient(circle, transparent 50%, #FDF6E3 50%), radial-gradient(circle, transparent 50%, #FDF6E3 50%);
+            background-position: bottom left, bottom right;
+            background-size: 20px 20px;
+            background-repeat: repeat-x;
+        }
+
+        .flower-divider {
+            display: flex;
+            align-items: center;
+            color: #FF9999;
+            margin: 1.5rem 0;
+        }
+
+        .flower-divider::before,
+        .flower-divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 2px dotted #FF9999;
+        }
+
+        .flower-divider i {
+            margin: 0 10px;
+            font-size: 1.2rem;
+        }
+
+        .menu-item-dot {
+            flex-grow: 1;
+            border-bottom: 2px dotted #dbc3b7;
+            margin: 0 10px;
+            position: relative;
+            top: -5px;
+        }
+
+        .float-gentle {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+    </style>
+</head>
+
+<body class="font-body text-cafe-choco min-h-screen py-8 px-4 flex justify-center items-start">
+
+    <!-- Sticky Nav as a Label -->
+    <nav class="fixed top-6 left-0 z-50 transform -translate-x-2 transition-transform hover:translate-x-0">
+        <div class="bg-cafe-strawberry text-white py-3 px-6 rounded-r-full shadow-md flex gap-4 items-center">
+            <i class="fa-solid fa-utensils"></i>
+            <div class="flex gap-4 font-serif italic">
+                <a href="index.html" class="hover:text-cafe-cream transition-colors">Pop!</a>
+                <span class="opacity-50">|</span>
+                <a href="index2.html" class="hover:text-cafe-cream transition-colors">Diary</a>
+                <span class="opacity-50">|</span>
+                <span class="font-bold border-b border-white">Cafe</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Menu Card -->
+    <div class="bg-white max-w-3xl w-full shadow-paper rounded-sm relative border-t-8 border-cafe-strawberry">
+
+        <!-- Header Section -->
+        <div class="text-center pt-12 pb-8 px-8 relative">
+            <h2 class="font-script text-3xl text-cafe-matcha mb-2">Patisserie & Cafe</h2>
+            <h1 class="font-serif text-6xl md:text-7xl text-cafe-choco tracking-tight">
+                Chez anG
+            </h1>
+            <p class="font-serif italic text-cafe-strawberry mt-2">"Sweet Melodies & Spicy Treats"</p>
+
+            <div class="flower-divider">
+                <i class="fa-solid fa-seedling"></i>
+                <i class="fa-solid fa-leaf"></i>
+                <i class="fa-solid fa-seedling"></i>
+            </div>
+        </div>
+
+        <!-- Content Grid -->
+        <div class="px-8 md:px-16 pb-16 grid grid-cols-1 md:grid-cols-12 gap-12">
+
+            <!-- Left Column: Character (Menu Special) -->
+            <div class="col-span-1 md:col-span-5 flex flex-col items-center">
+                <div
+                    class="relative w-full aspect-[3/4] border-4 border-cafe-cream outline outline-1 outline-cafe-gold shadow-lg overflow-hidden group">
+                    <img src="img/aNG_1.png"
+                        class="w-full h-full object-cover object-[25%_0] transition-transform duration-700 group-hover:scale-105">
+
+                    <!-- Sticker Label -->
+                    <div
+                        class="absolute top-4 right-4 bg-cafe-strawberry text-white font-serif italic px-3 py-1 rounded-full shadow-md transform rotate-12">
+                        Chef's Choice!
+                    </div>
+                </div>
+
+                <div class="mt-6 text-center w-full">
+                    <h3 class="font-serif text-2xl mb-1">Angie (anG)</h3>
+                    <p class="text-sm italic text-gray-400 mb-4">#anGｪﾙｽ໒꒱</p>
+
+                    <div class="w-full border-t border-b border-dashed border-cafe-matcha py-3 my-2">
+                        <div class="flex justify-between items-center text-sm">
+                            <span>Debut Date</span>
+                            <span class="font-bold">11 May</span>
+                        </div>
+                        <div class="flex justify-between items-center text-sm mt-1">
+                            <span>Height</span>
+                            <span class="font-bold">164 cm</span>
+                        </div>
+                    </div>
+
+                    <button
+                        class="w-full bg-cafe-choco text-cafe-cream py-2 mt-2 font-serif rounded-sm hover:bg-cafe-strawberry transition-colors">
+                        Add to Order <i class="fa-solid fa-heart ml-1 text-xs"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Column: Menu Items (Lore & Stats) -->
+            <div class="col-span-1 md:col-span-7">
+
+                <!-- Section: Ingredients (Lore) -->
+                <div class="mb-8">
+                    <h3 class="font-serif text-2xl border-b-2 border-cafe-cream pb-2 mb-4 inline-block pr-8">
+                        Main Ingredients <span class="text-xs align-top text-cafe-gold ml-1">Lore</span>
+                    </h3>
+                    <p
+                        class="font-body text-gray-600 leading-relaxed italic border-l-4 border-cafe-strawberry pl-4 py-1 bg-red-50">
+                        "A pinch of sugar, a dash of spice, and a whole lot of LOUD singing!
+                        I'm Angie from ColorSing, serving you full energy performance every day!"
+                    </p>
+                </div>
+
+                <!-- Section: Menu (Links & Stats) -->
+                <div class="mb-8">
+                    <h3 class="font-serif text-2xl border-b-2 border-cafe-cream pb-2 mb-4 inline-block pr-8">
+                        Daily Specials <span class="text-xs align-top text-cafe-gold ml-1">Links</span>
+                    </h3>
+
+                    <ul class="space-y-4">
+                        <li class="group cursor-pointer">
+                            <div class="flex items-baseline justify-between">
+                                <span class="font-bold group-hover:text-cafe-strawberry transition-colors">
+                                    <i class="fa-brands fa-youtube mr-2 text-red-400"></i> Official Channel
+                                </span>
+                                <span class="menu-item-dot"></span>
+                                <span class="font-serif italic text-cafe-gold">Free</span>
+                            </div>
+                            <p class="text-xs text-gray-400 pl-6">Streaming singing & chatting</p>
+                        </li>
+                        <li class="group cursor-pointer">
+                            <div class="flex items-baseline justify-between">
+                                <span class="font-bold group-hover:text-blue-400 transition-colors">
+                                    <i class="fa-brands fa-twitter mr-2 text-blue-400"></i> Twitter Updates
+                                </span>
+                                <span class="menu-item-dot"></span>
+                                <span class="font-serif italic text-cafe-gold">Daily</span>
+                            </div>
+                            <p class="text-xs text-gray-400 pl-6">Check for schedule & memes</p>
+                        </li>
+                        <li class="group cursor-pointer">
+                            <div class="flex items-baseline justify-between">
+                                <span class="font-bold group-hover:text-cafe-matcha transition-colors">
+                                    <i class="fa-solid fa-music mr-2 text-green-400"></i> ColorSing Profile
+                                </span>
+                                <span class="menu-item-dot"></span>
+                                <span class="font-serif italic text-cafe-gold">VIP</span>
+                            </div>
+                            <p class="text-xs text-gray-400 pl-6">Support the stream!</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Footer / Receipt Bottom -->
+                <div class="mt-12 text-center relative">
+                    <i class="fa-solid fa-barcode text-4xl block opacity-20 mb-2"></i>
+                    <p class="font-script text-xl text-cafe-strawberry">Thank you for visiting!</p>
+                    <p class="text-xs text-gray-400 mt-1 uppercase tracking-widest">© ColorSing 2025</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Decorative Floating Elements -->
+        <i
+            class="fa-solid fa-stroopwafel absolute -top-6 -left-6 text-5xl text-cafe-choco opacity-20 rotate-12 float-gentle"></i>
+        <i class="fa-solid fa-cookie-bite absolute bottom-12 -right-8 text-6xl text-cafe-strawberry opacity-20 -rotate-12 float-gentle"
+            style="animation-delay: 1s;"></i>
+
+    </div>
+
+</body>
+
+</html>

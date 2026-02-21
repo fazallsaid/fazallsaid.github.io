@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tadaimalive Gacha Simulator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Animasi getar pas gacha */
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            70% { transform: translate(3px, 1px) rotate(-1deg); }
+            80% { transform: translate(-1px, -1px) rotate(1deg); }
+            90% { transform: translate(1px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
+        .shake-anim {
+            animation: shake 0.5s;
+            animation-iteration-count: infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex items-center justify-center font-sans">
+
+    <div class="w-full max-w-md bg-gray-800 rounded-xl shadow-2xl overflow-hidden border border-gray-700">
+        <div class="bg-indigo-600 p-4 text-center">
+            <h1 class="text-xl font-bold tracking-wider">TADAIMALIVE GACHA</h1>
+            <p class="text-xs text-indigo-200">Official Simulator (Unofficial)</p>
+        </div>
+
+        <div id="gacha-display" class="h-64 flex flex-col items-center justify-center bg-gray-900 relative transition-all">
+            <div id="result-content" class="text-center p-4">
+                <div class="text-6xl mb-4">💎</div>
+                <p class="text-gray-400">Tekan tombol buat buang duit...</p>
+            </div>
+        </div>
+
+        <div class="p-6 bg-gray-800">
+            <div class="flex justify-between text-sm text-gray-400 mb-4">
+                <span>Saldo: <span class="text-green-400">∞ IDR</span></span>
+                <span>SSR Rate: <span class="text-yellow-400">2%</span></span>
+            </div>
+            
+            <button onclick="pullGacha()" id="btn-pull" class="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold py-3 px-6 rounded-lg transform transition active:scale-95 shadow-lg flex justify-center items-center gap-2">
+                <span>🎲 PULL 1x (GRATIS)</span>
+            </button>
+        </div>
+
+        <div class="bg-gray-950 p-4 h-32 overflow-y-auto border-t border-gray-700">
+            <h3 class="text-xs font-bold text-gray-500 uppercase mb-2">Riwayat Kehancuran:</h3>
+            <ul id="history-list" class="space-y-1 text-sm font-mono">
+                </ul>
+        </div>
+    </div>
+
+    <script>
+        // --- DATA ---
+        const rates = {
+            SSR: 0.02, // 2%
+            SR: 0.18,  // 18%
+            R: 0.80    // 80%
+        };
+
+        const talentPool = {
+            SSR: [
+                { name: "Yuuka (Tsundere Model)", color: "text-yellow-400", icon: "👑" },
+                { name: "Lophius Toru (Awakened)", color: "text-blue-400", icon: "🐉" }
+            ],
+            SR: [
+                { name: "Manager Galak", color: "text-purple-400", icon: "😎" },
+                { name: "Artist Freelance", color: "text-purple-400", icon: "🎨" },
+                { name: "Programmer Lembur", color: "text-purple-400", icon: "💻" }
+            ],
+            R: [
+                { name: "Kabel HDMI Rusak", color: "text-gray-400", icon: "🔌" },
+                { name: "PC Kentang", color: "text-gray-400", icon: "🥔" },
+                { name: "Bot Viewer", color: "text-gray-400", icon: "🤖" },
+                { name: "Kopi Sachet", color: "text-gray-400", icon: "☕" }
+            ]
+        };
+
+        // --- LOGIC ---
+        function pullGacha() {
+            const display = document.getElementById('gacha-display');
+            const content = document.getElementById('result-content');
+            const btn = document.getElementById('btn-pull');
+
+            // 1. UI Loading State
+            btn.disabled = true;
+            btn.innerHTML = "Wait...";
+            content.innerHTML = `<div class="text-4xl animate-bounce">📦</div><p class="mt-2 text-yellow-300">Membuka Box...</p>`;
+            display.classList.add('shake-anim'); // Efek getar
+
+            // 2. Simulasi Delay Network (1 detik)
+            setTimeout(() => {
+                display.classList.remove('shake-anim');
+                
+                // 3. Core Logic (RNG)
+                const rand = Math.random(); // 0.0 s/d 1.0
+                let rarity = 'R';
+                
+                if (rand < rates.SSR) {
+                    rarity = 'SSR';
+                } else if (rand < (rates.SSR + rates.SR)) {
+                    rarity = 'SR';
+                }
+
+                // Ambil item random dari pool
+                const pool = talentPool[rarity];
+                const item = pool[Math.floor(Math.random() * pool.length)];
+
+                // 4. Update UI Hasil
+                showResult(rarity, item);
+                addToHistory(rarity, item);
+
+                // Reset tombol
+                btn.disabled = false;
+                btn.innerHTML = "<span>🎲 PULL LAGI</span>";
+
+            }, 800);
+        }
+
+        function showResult(rarity, item) {
+            const content = document.getElementById('result-content');
+            let bgEffect = "";
+            let textEffect = "";
+
+            if (rarity === 'SSR') {
+                bgEffect = "bg-yellow-900/50"; // Highlight gold
+                textEffect = "animate-pulse drop-shadow-[0_0_10px_rgba(255,215,0,0.8)]";
+            } else if (rarity === 'SR') {
+                bgEffect = "bg-purple-900/30";
+            }
+
+            // Render
+            content.innerHTML = `
+                <div class="text-6xl mb-2 transform transition hover:scale-110 duration-200">${item.icon}</div>
+                <div class="text-3xl font-bold ${item.color} ${textEffect}">${rarity}</div>
+                <h2 class="text-xl font-semibold mt-1">${item.name}</h2>
+            `;
+            
+            // Ubah background container sebentar
+            const display = document.getElementById('gacha-display');
+            display.className = `h-64 flex flex-col items-center justify-center relative transition-all ${bgEffect}`;
+            
+            // Reset background setelah 1 detik (biar gak nempel terus)
+            setTimeout(() => {
+                if(rarity !== 'SSR') display.className = `h-64 flex flex-col items-center justify-center bg-gray-900 relative transition-all`;
+            }, 1000);
+        }
+
+        function addToHistory(rarity, item) {
+            const list = document.getElementById('history-list');
+            const li = document.createElement('li');
+            const colorClass = rarity === 'SSR' ? 'text-yellow-400 font-bold' : (rarity === 'SR' ? 'text-purple-400' : 'text-gray-500');
+            
+            li.innerHTML = `<span class="${colorClass}">[${rarity}]</span> ${item.name}`;
+            list.prepend(li); // Tambah ke paling atas
+        }
+    </script>
+</body>
+</html>

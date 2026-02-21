@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasien - RSUD Harapan Insan Sendawar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/91500c2459.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        jakarta: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        medical: {
+                            dark: '#114B3E',       // Sidebar active & headings
+                            primary: '#1B4D3E',
+                            light: '#40916C',
+                            surface: '#F5F7FA', // Main background very light blueish gray
+                            hover: '#E8F5E9',
+                        },
+                        status: {
+                            success: '#10B981', // Green
+                            warning: '#F59E0B', // Yellow
+                            danger: '#EF4444',  // Red
+                        }
+                    },
+                    boxShadow: {
+                        'card': '0 2px 5px rgba(0,0,0,0.02), 0 0 0 1px rgba(0,0,0,0.02)',
+                        'floating': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
+                    },
+                    borderRadius: {
+                        'xl': '0.75rem',
+                        '2xl': '1rem',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #F8F9FA;
+        }
+
+        /* Sidebar Styling */
+        .sidebar-link {
+            transition: all 0.2s;
+            color: #64748B;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            /* gap-4 */
+            padding: 1rem 1.25rem;
+            /* px-5 py-4 */
+            border-radius: 1rem;
+            /* rounded-2xl */
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-link:hover:not(.active) {
+            background-color: #F1F5F9;
+            color: #114B3E;
+        }
+
+        .sidebar-link.active {
+            background-color: #114B3E;
+            color: white;
+            box-shadow: 0 4px 12px rgba(17, 75, 62, 0.15);
+        }
+
+        /* Standard Table Styling */
+        table {
+            border-collapse: collapse;
+            /* Standard collapse */
+            width: 100%;
+        }
+
+        th {
+            font-weight: 700;
+            color: #64748B;
+            font-size: 0.875rem;
+            /* text-sm */
+            padding: 1rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid #E2E8F0;
+            background-color: #F8FAFC;
+            /* Slight header bg */
+        }
+
+        th:first-child {
+            border-top-left-radius: 0.75rem;
+        }
+
+        th:last-child {
+            border-top-right-radius: 0.75rem;
+        }
+
+        tbody tr {
+            background-color: white;
+            border-bottom: 1px solid #F1F5F9;
+            transition: background-color 0.2s;
+        }
+
+        tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        tbody tr:hover {
+            background-color: #F8FAFC;
+        }
+
+        td {
+            padding: 1rem 1.5rem;
+            font-size: 0.875rem;
+            /* text-sm */
+            color: #1E293B;
+            font-weight: 600;
+            vertical-align: middle;
+        }
+
+        /* Tab Active State Utility */
+        .tab-btn.active {
+            color: #0F172A;
+            /* Slate-900 */
+            border-bottom-width: 2px;
+            border-color: #0F172A;
+        }
+
+        .tab-btn:not(.active) {
+            color: #94A3B8;
+            /* Slate-400 */
+            border-color: transparent;
+        }
+
+        .tab-btn:not(.active):hover {
+            color: #475569;
+            /* Slate-600 */
+        }
+    </style>
+</head>
+
+<body class="font-jakarta flex h-screen bg-[#F8F9FA] overflow-hidden text-slate-800">
+
+    <!-- SIDEBAR -->
+    <aside class="w-[280px] bg-white h-full flex flex-col border-r border-slate-100 flex-shrink-0 z-40">
+        <div class="p-8 flex items-center justify-center">
+            <div
+                class="w-20 h-20 bg-medical-dark rounded-2xl flex items-center justify-center shadow-lg overflow-hidden relative group">
+                <!-- Using the same logo path as dashboard -->
+                <img src="img/rs_harapan_insan_sendawar.png"
+                    onerror="this.src='https://via.placeholder.com/150/114B3E/FFFFFF?text=RS'" alt="Logo RS"
+                    class="w-full h-full object-contain p-2">
+                <div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition"></div>
+            </div>
+        </div>
+
+        <nav class="flex-1 px-6 mt-2 overflow-y-auto">
+            <a href="dashboard.html" class="sidebar-link">
+                <!-- Dashboard Icon (Grid) -->
+                <i class="fa-solid fa-table-columns text-lg w-6 text-center"></i>
+                Dashboard
+            </a>
+            <a href="#" class="sidebar-link active">
+                <!-- Pasien Icon (User/Person) -->
+                <i class="fa-solid fa-user-injured text-lg w-6 text-center"></i>
+                Pasien
+            </a>
+            <a href="#" class="sidebar-link">
+                <!-- Dokter Icon (Stethoscope or User Doctor) -->
+                <i class="fa-solid fa-user-doctor text-lg w-6 text-center"></i>
+                Dokter
+            </a>
+            <a href="#" class="sidebar-link">
+                <!-- Farmasi Icon (Prescription/Kit) -->
+                <i class="fa-solid fa-kit-medical text-lg w-6 text-center"></i>
+                Farmasi
+            </a>
+            <div class="my-4 border-t border-dashed border-gray-200"></div>
+            <a href="#" class="sidebar-link">
+                <!-- Settings Icon (Gear) -->
+                <i class="fa-solid fa-gear text-lg w-6 text-center"></i>
+                Pengaturan
+            </a>
+        </nav>
+
+        <div class="p-8">
+            <a href="login.html"
+                class="flex items-center gap-4 px-5 py-3 rounded-2xl font-bold text-sm text-gray-500 hover:text-red-500 hover:bg-red-50 transition group">
+                <i
+                    class="fa-solid fa-arrow-right-from-bracket text-lg w-6 text-center group-hover:translate-x-1 transition-transform"></i>
+                Log Out
+            </a>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 overflow-y-auto bg-[#F8F9FA] p-8 lg:p-12 relative">
+
+        <!-- HEADER -->
+        <header class="flex justify-between items-start mb-10">
+            <div>
+                <h1 class="text-3xl font-extrabold text-slate-900 tracking-tight mb-2">Pasien</h1>
+                <p class="text-slate-500 font-medium">Data Pasien di RSUD Harapan Insan Sendawar</p>
+            </div>
+            <div class="flex items-center gap-4">
+                <span class="text-sm font-bold text-slate-500">2 Pemberitahuan Belum Dibaca</span>
+                <button class="relative bg-transparent p-2 rounded-full hover:bg-gray-100 transition">
+                    <i class="fa-regular fa-bell text-xl text-slate-800"></i>
+                    <span
+                        class="absolute top-1 right-1.5 h-2.5 w-2.5 rounded-full ring-2 ring-[#F8F9FA] bg-red-500"></span>
+                    <span
+                        class="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white">2</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- FILTERS & SEARCH -->
+        <div class="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
+            <!-- Tabs -->
+            <div
+                class="flex items-center gap-8 border-b border-transparent w-full md:w-auto overflow-x-auto pb-1 md:pb-0">
+                <button onclick="filterTable('all')" id="tab-all"
+                    class="tab-btn active font-bold pb-2 px-1 whitespace-nowrap transition">Semua Pasien</button>
+                <button onclick="filterTable('selesai')" id="tab-selesai"
+                    class="tab-btn font-semibold pb-2 px-1 whitespace-nowrap transition">Selesai Dilayani</button>
+                <button onclick="filterTable('proses')" id="tab-proses"
+                    class="tab-btn font-semibold pb-2 px-1 whitespace-nowrap transition">Proses Dilayani</button>
+                <button onclick="filterTable('belum')" id="tab-belum"
+                    class="tab-btn font-semibold pb-2 px-1 whitespace-nowrap transition">Belum Dilayani</button>
+            </div>
+
+            <!-- Search -->
+            <div class="w-full md:w-80 relative">
+                <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Pencarian Nama Pasien"
+                    class="w-full pl-4 pr-10 py-3 rounded-xl bg-white border border-gray-200 focus:outline-none focus:border-medical-dark focus:ring-1 focus:ring-medical-dark text-sm placeholder-gray-400 font-medium shadow-sm transition">
+                <i class="fa-solid fa-magnifying-glass absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+            </div>
+        </div>
+
+        <!-- TABLE DATA -->
+        <div class="bg-white rounded-3xl shadow-card overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead>
+                        <tr>
+                            <th class="w-16 text-center px-4">No</th> <!-- Center Only header -->
+                            <th>Nama Lengkap</th>
+                            <th>Umur</th>
+                            <th>Tanggal</th>
+                            <th>Status</th>
+                            <th class="text-center">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="patientTableBody">
+                        <!-- Row 1: Selesai -->
+                        <tr class="data-row" data-status="selesai">
+                            <td class="text-center text-slate-500 font-bold">1.</td>
+                            <td class="patient-name">Handoko Cahyadi Rizki</td>
+                            <td>24 Tahun</td>
+                            <td>24 September 2025</td>
+                            <td>
+                                <span
+                                    class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-100 bg-white text-slate-700">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-medical-dark"></span>
+                                    <span class="text-xs font-bold">Selesai Dilayani</span>
+                                </span>
+                            </td>
+                            <td class="text-center">
+                                <div class="flex justify-center gap-3">
+                                    <button
+                                        class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 text-teal-600 hover:bg-teal-50 transition shadow-sm">
+                                        <i class="fa-solid fa-file-invoice"></i> <!-- Icon for Detail/View -->
+                                    </button>
+                                    <button
+                                        class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 text-indigo-600 hover:bg-indigo-50 transition shadow-sm">
+                                        <i class="fa-regular fa-pen-to-square"></i> <!-- Icon for Edit -->
+                                    </button>
+                                    <button
+                                        class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 text-red-500 hover:bg-red-50 transition shadow-sm">
+                                        <i class="fa-regular fa-trash-can"></i> <!-- Icon for Delete -->
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Row 2: Belum -->
+                        <tr class="data-row" data-status="belum">
+                            <td class="text-center text-slate-500 font-bold">2.</td>
+                            <td class="patient-name">Fajar Maulana Sidiq</td>
+                            <td>28 Tahun</td>
+                            <td>25 September 2025</td>
+                            <td>
+                                <span
+                                    class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-100 bg-white text-slate-700">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-red-600"></span>
+                                    <span class="text-xs font-bold">Belum Dilayani</span>
+                                </span>
+                            </td>
+                            <td class="text-center">
+                                <div class="flex justify-center gap-3">
+                                    <button
+                                        class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 text-teal-600 hover:bg-teal-50 transition shadow-sm">
+                                        <i class="fa-solid fa-file-invoice"></i>
+                                    </button>
+                                    <button
+                                        class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 text-indigo-600 hover:bg-indigo-50 transition shadow-sm">
+                                        <i class="fa-regular fa-pen-to-square"></i>
+                                    </button>
+                                    <button
+                                        class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 text-red-500 hover:bg-red-50 transition shadow-sm">
+                                        <i class="fa-regular fa-trash-can"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Row 3: Proses -->
+                        <tr class="data-row" data-status="proses">
+                            <td class="text-center text-slate-500 font-bold">3.</td>
+                            <td class="patient-name">Siti Aminah Putri</td>
+                            <td>32 Tahun</td>
+                            <td>24 September 2025</td>
+                            <td>
+                                <span
+                                    class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-100 bg-white text-slate-700">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-yellow-400"></span>
+                                    <span class="text-xs font-bold">Proses Dilayani</span>
+                                </span>
+                            </td>
+                            <td class="text-center">
+                                <div class="flex justify-center gap-3">
+                                    <button
+                                        class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 text-teal-600 hover:bg-teal-50 transition shadow-sm">
+                                        <i class="fa-solid fa-file-invoice"></i>
+                                    </button>
+                                    <button
+                                        class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 text-indigo-600 hover:bg-indigo-50 transition shadow-sm">
+                                        <i class="fa-regular fa-pen-to-square"></i>
+                                    </button>
+                                    <button
+                                        class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 text-red-500 hover:bg-red-50 transition shadow-sm">
+                                        <i class="fa-regular fa-trash-can"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Row 4: Selesai -->
+                        <tr class="data-row" data-status="selesai">
+                            <td class="text-center text-slate-500 font-bold">4.</td>
+                            <td class="patient-name">Budi Santoso</td>
+                            <td>45 Tahun</td>
+                            <td>23 September 2025</td>
+                            <td>
+                                <span
+                                    class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-100 bg-white text-slate-700">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-medical-dark"></span>
+                                    <span class="text-xs font-bold">Selesai Dilayani</span>
+                                </span>
+                            </td>
+                            <td class="text-center">
+                                <div class="flex justify-center gap-3">
+                                    <button
+                                        class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 text-teal-600 hover:bg-teal-50 transition shadow-sm">
+                                        <i class="fa-solid fa-file-invoice"></i>
+                                    </button>
+                                    <button
+                                        class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 text-indigo-600 hover:bg-indigo-50 transition shadow-sm">
+                                        <i class="fa-regular fa-pen-to-square"></i>
+                                    </button>
+                                    <button
+                                        class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 text-red-500 hover:bg-red-50 transition shadow-sm">
+                                        <i class="fa-regular fa-trash-can"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Row 5: Belum -->
+                        <tr class="data-row" data-status="belum">
+                            <td class="text-center text-slate-500 font-bold">5.</td>
+                            <td class="patient-name">Rian Ekky Pradipta</td>
+                            <td>22 Tahun</td>
+                            <td>25 September 2025</td>
+                            <td>
+                                <span
+                                    class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-100 bg-white text-slate-700">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-red-600"></span>
+                                    <span class="text-xs font-bold">Belum Dilayani</span>
+                                </span>
+                            </td>
+                            <td class="text-center">
+                                <div class="flex justify-center gap-3">
+                                    <button
+                                        class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 text-teal-600 hover:bg-teal-50 transition shadow-sm">
+                                        <i class="fa-solid fa-file-invoice"></i>
+                                    </button>
+                                    <button
+                                        class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 text-indigo-600 hover:bg-indigo-50 transition shadow-sm">
+                                        <i class="fa-regular fa-pen-to-square"></i>
+                                    </button>
+                                    <button
+                                        class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 text-red-500 hover:bg-red-50 transition shadow-sm">
+                                        <i class="fa-regular fa-trash-can"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Row 6: Proses -->
+                        <tr class="data-row" data-status="proses">
+                            <td class="text-center text-slate-500 font-bold">6.</td>
+                            <td class="patient-name">Dewi Persik Sari</td>
+                            <td>30 Tahun</td>
+                            <td>24 September 2025</td>
+                            <td>
+                                <span
+                                    class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-100 bg-white text-slate-700">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-yellow-400"></span>
+                                    <span class="text-xs font-bold">Proses Dilayani</span>
+                                </span>
+                            </td>
+                            <td class="text-center">
+                                <div class="flex justify-center gap-3">
+                                    <button
+                                        class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 text-teal-600 hover:bg-teal-50 transition shadow-sm">
+                                        <i class="fa-solid fa-file-invoice"></i>
+                                    </button>
+                                    <button
+                                        class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 text-indigo-600 hover:bg-indigo-50 transition shadow-sm">
+                                        <i class="fa-regular fa-pen-to-square"></i>
+                                    </button>
+                                    <button
+                                        class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 text-red-500 hover:bg-red-50 transition shadow-sm">
+                                        <i class="fa-regular fa-trash-can"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Row 7: Selesai -->
+                        <tr class="data-row" data-status="selesai">
+                            <td class="text-center text-slate-500 font-bold">7.</td>
+                            <td class="patient-name">Agus Yudhoyono</td>
+                            <td>40 Tahun</td>
+                            <td>22 September 2025</td>
+                            <td>
+                                <span
+                                    class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-100 bg-white text-slate-700">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-medical-dark"></span>
+                                    <span class="text-xs font-bold">Selesai Dilayani</span>
+                                </span>
+                            </td>
+                            <td class="text-center">
+                                <div class="flex justify-center gap-3">
+                                    <button
+                                        class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 text-teal-600 hover:bg-teal-50 transition shadow-sm">
+                                        <i class="fa-solid fa-file-invoice"></i>
+                                    </button>
+                                    <button
+                                        class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 text-indigo-600 hover:bg-indigo-50 transition shadow-sm">
+                                        <i class="fa-regular fa-pen-to-square"></i>
+                                    </button>
+                                    <button
+                                        class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 text-red-500 hover:bg-red-50 transition shadow-sm">
+                                        <i class="fa-regular fa-trash-can"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- PAGINATION -->
+        <div class="flex justify-between items-center mt-6">
+            <span class="text-sm font-bold text-slate-600">Menampilkan 10 dari 493 Data</span>
+            <div class="flex items-center gap-2">
+                <button
+                    class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-200 text-slate-500 transition">
+                    <i class="fa-solid fa-chevron-left text-xs"></i>
+                </button>
+                <button
+                    class="w-8 h-8 flex items-center justify-center rounded-lg bg-medical-dark text-white font-bold text-sm shadow-md transition">1</button>
+                <button
+                    class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-100 text-slate-500 font-bold text-sm transition">2</button>
+                <button
+                    class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-100 text-slate-500 font-bold text-sm transition">3</button>
+                <button
+                    class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-100 text-slate-500 font-bold text-sm transition">4</button>
+                <button
+                    class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-100 text-slate-500 font-bold text-sm transition">5</button>
+                <button
+                    class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-200 text-slate-500 transition">
+                    <i class="fa-solid fa-chevron-right text-xs"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="h-10"></div>
+    </main>
+
+    <!-- MODAL DETAIL PASIEN -->
+    <div id="detailModal" class="fixed inset-0 z-50 hidden">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity" onclick="closeModal()"></div>
+
+        <!-- Modal Content -->
+        <div class="absolute inset-y-0 right-0 w-full max-w-4xl bg-[#F8F9FA] shadow-2xl transform transition-transform duration-300 translate-x-full overflow-y-auto"
+            id="modalPanel">
+
+            <div class="p-8">
+                <!-- Header -->
+                <div class="flex items-center justify-between mb-8">
+                    <div class="flex items-center gap-4">
+                        <h2 class="text-xl font-bold text-slate-900">Detail Data</h2>
+                        <div class="h-6 w-px bg-slate-300 mx-2"></div>
+                        <div class="flex items-center gap-2">
+                            <button
+                                class="w-8 h-8 rounded-full bg-slate-200 text-slate-500 hover:bg-slate-300 flex items-center justify-center transition">
+                                <i class="fa-solid fa-chevron-left text-xs"></i>
+                            </button>
+                            <button
+                                class="w-8 h-8 rounded-full bg-white shadow-sm text-slate-900 hover:bg-slate-50 flex items-center justify-center transition">
+                                <i class="fa-solid fa-chevron-right text-xs"></i>
+                            </button>
+                        </div>
+                        <span class="text-slate-400 font-medium text-sm">2 dari 493</span>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <div
+                            class="bg-white border border-gray-200 rounded-full px-4 py-2 flex items-center gap-2 shadow-sm">
+                            <div class="w-3 h-3 rounded-full bg-medical-dark"></div>
+                            <span class="text-sm font-bold text-slate-800">Selesai Dilayani</span>
+                        </div>
+                        <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 transition">
+                            <i class="fa-solid fa-xmark text-2xl"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Main Card: Identity -->
+                <div
+                    class="bg-white rounded-2xl p-6 shadow-card mb-6 border border-slate-100 flex justify-between items-center">
+                    <h1 class="text-3xl font-bold text-slate-900">Handoko Cahyadi Rizki</h1>
+                    <div class="bg-slate-50 border border-slate-100 px-4 py-2 rounded-lg flex items-center gap-2">
+                        <i class="fa-solid fa-user text-slate-800 text-sm"></i>
+                        <span class="font-bold text-slate-800 text-sm">Pasien Lama</span>
+                    </div>
+                </div>
+
+                <!-- Split Layout -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <!-- Left: Data Lengkap -->
+                    <div class="bg-white rounded-2xl p-6 shadow-card border border-slate-100">
+                        <h3 class="text-lg font-bold text-slate-900 mb-6">Data Lengkap Pasien</h3>
+
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center border-b border-gray-100 pb-3">
+                                <span class="text-slate-400 font-medium">Nomor KTP</span>
+                                <span class="font-bold text-slate-900 font-mono">1710003245084345</span>
+                            </div>
+                            <div class="flex justify-between items-center border-b border-gray-100 pb-3">
+                                <span class="text-slate-400 font-medium">Tanggal Lahir</span>
+                                <span class="font-bold text-slate-900">20 Januari 2001</span>
+                            </div>
+                            <div class="flex justify-between items-center border-b border-gray-100 pb-3">
+                                <span class="text-slate-400 font-medium">Jenis Kelamin</span>
+                                <span class="font-bold text-slate-900">Laki - Laki</span>
+                            </div>
+                            <div class="flex justify-between items-center border-b border-gray-100 pb-3">
+                                <span class="text-slate-400 font-medium">Nomor HP</span>
+                                <span class="font-bold text-slate-900">085123423847</span>
+                            </div>
+
+                            <!-- Address Dropdown -->
+                            <div class="pt-2">
+                                <div class="flex justify-between items-center mb-2 cursor-pointer group">
+                                    <span class="text-slate-400 font-medium">Alamat Lengkap</span>
+                                    <i
+                                        class="fa-solid fa-caret-down text-slate-400 group-hover:text-slate-600 transition"></i>
+                                </div>
+                                <p class="text-right text-slate-900 font-medium leading-relaxed">
+                                    Jl. Pandawa No.33D, RT.01/RW.01, Ambarukmo, Caturtunggal, Kec. Depok, Kabupaten
+                                    Sleman, Daerah Istimewa Yogyakarta 55281
+                                </p>
+                            </div>
+                            <div class="border-b border-gray-100"></div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Riwayat -->
+                    <div class="bg-white rounded-2xl p-6 shadow-card border border-slate-100">
+                        <h3 class="text-lg font-bold text-slate-900 mb-6">Riwayat Periksa</h3>
+
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center border-b border-gray-100 pb-3">
+                                <span class="text-slate-400 font-medium">Tanggal Periksa</span>
+                                <span class="font-bold text-slate-900">24 September 2025</span>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between items-center mb-3">
+                                    <span class="text-slate-400 font-medium">Keluhan Pasien / Riwayat Singkat</span>
+                                    <i class="fa-solid fa-caret-down text-slate-400"></i>
+                                </div>
+                                <p class="text-slate-900 leading-relaxed text-justify">
+                                    Saya datang karena sudah tiga hari ini mengalami demam disertai sakit kepala dan
+                                    badan terasa lemas. Selain itu, tenggorokan terasa sakit dan kadang muncul batuk
+                                    kering, terutama pada malam hari. Nafsu makan juga menurun dan tidur menjadi kurang
+                                    nyenyak. Saya memiliki riwayat maag dan asma ringan, namun terakhir kambuh sudah
+                                    cukup lama dan saat ini tidak sedang mengonsumsi obat rutin.
+                                </p>
+                            </div>
+                            <div class="border-b border-gray-100 pt-2"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Doctor Card -->
+                <div
+                    class="bg-white rounded-2xl p-6 shadow-card border border-slate-100 mb-6 flex justify-between items-center">
+                    <h3 class="text-lg font-bold text-slate-900">Dokter Yang Memeriksa</h3>
+                    <div class="flex items-center gap-4">
+                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80"
+                            class="w-12 h-12 rounded-full object-cover grayscale">
+                        <div class="text-right">
+                            <h4 class="font-bold text-slate-900">Dr. Richard</h4>
+                            <p class="text-xs text-slate-400 font-medium">Dokter Umum</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Medicine Card -->
+                <div class="bg-white rounded-2xl p-6 shadow-card border border-slate-100 mb-6">
+                    <h3 class="text-lg font-bold text-slate-900 mb-6">Obat yang diberikan</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-y-4 gap-x-8">
+                        <div class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-slate-900"></span>
+                            <span class="text-slate-600 font-medium">Paracetamol</span>
+                            <span class="font-bold text-slate-900 ml-auto">200mL</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-slate-900"></span>
+                            <span class="text-slate-600 font-medium">Paracetamol</span>
+                            <span class="font-bold text-slate-900 ml-auto">200mL</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-slate-900"></span>
+                            <span class="text-slate-600 font-medium">Paracetamol</span>
+                            <span class="font-bold text-slate-900 ml-auto">200mL</span>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-slate-900"></span>
+                            <span class="text-slate-600 font-medium">Paracetamol</span>
+                            <span class="font-bold text-slate-900 ml-auto">400mL</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-slate-900"></span>
+                            <span class="text-slate-600 font-medium">Paracetamol</span>
+                            <span class="font-bold text-slate-900 ml-auto">400mL</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-slate-900"></span>
+                            <span class="text-slate-600 font-medium">Paracetamol</span>
+                            <span class="font-bold text-slate-900 ml-auto">400mL</span>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-slate-900"></span>
+                            <span class="text-slate-600 font-medium">Paracetamol</span>
+                            <span class="font-bold text-slate-900 ml-auto">2 Tablet</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-slate-900"></span>
+                            <span class="text-slate-600 font-medium">Paracetamol</span>
+                            <span class="font-bold text-slate-900 ml-auto">4 Tablet</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-slate-900"></span>
+                            <span class="text-slate-600 font-medium">Paracetamol</span>
+                            <span class="font-bold text-slate-900 ml-auto">4 Tablet</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL EDIT PASIEN -->
+    <div id="editModal" class="fixed inset-0 z-50 hidden">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity" onclick="closeEditModal()">
+        </div>
+
+        <!-- Modal Content -->
+        <div class="absolute inset-y-0 right-0 w-full max-w-4xl bg-[#F8F9FA] shadow-2xl transform transition-transform duration-300 translate-x-full overflow-y-auto"
+            id="editModalPanel">
+
+            <div class="p-8">
+                <!-- Header -->
+                <div class="flex items-center justify-between mb-8">
+                    <div class="flex items-center gap-4">
+                        <h2 class="text-xl font-bold text-slate-900">Edit Data</h2>
+                        <div class="h-6 w-px bg-slate-300 mx-2"></div>
+                        <div class="flex items-center gap-2">
+                            <button
+                                class="w-8 h-8 rounded-full bg-slate-200 text-slate-500 hover:bg-slate-300 flex items-center justify-center transition">
+                                <i class="fa-solid fa-chevron-left text-xs"></i>
+                            </button>
+                            <button
+                                class="w-8 h-8 rounded-full bg-white shadow-sm text-slate-900 hover:bg-slate-50 flex items-center justify-center transition">
+                                <i class="fa-solid fa-chevron-right text-xs"></i>
+                            </button>
+                        </div>
+                        <span class="text-slate-400 font-medium text-sm">2 dari 493</span>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <div
+                            class="bg-white border border-gray-200 rounded-full px-4 py-2 flex items-center gap-2 shadow-sm">
+                            <div class="w-3 h-3 rounded-full bg-medical-dark"></div>
+                            <span class="text-sm font-bold text-slate-800">Selesai Dilayani</span>
+                        </div>
+                        <button onclick="closeEditModal()" class="text-slate-400 hover:text-slate-600 transition">
+                            <i class="fa-solid fa-xmark text-2xl"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Main Card: Identity -->
+                <div
+                    class="bg-white rounded-2xl p-6 shadow-card mb-6 border border-slate-100 flex justify-between items-center">
+                    <h1 class="text-3xl font-bold text-slate-900">Handoko Cahyadi Rizki</h1>
+                    <div class="bg-slate-50 border border-slate-100 px-4 py-2 rounded-lg flex items-center gap-2">
+                        <i class="fa-solid fa-user text-slate-800 text-sm"></i>
+                        <span class="font-bold text-slate-800 text-sm">Pasien Lama</span>
+                    </div>
+                </div>
+
+                <!-- Split Layout -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <!-- Left: Data Lengkap (EDITABLE) -->
+                    <div class="bg-white rounded-2xl p-6 shadow-card border border-slate-100">
+                        <h3 class="text-lg font-bold text-slate-900 mb-6">Data Lengkap Pasien</h3>
+
+                        <div class="space-y-4">
+                            <!-- KTP Input -->
+                            <div class="flex items-center justify-between gap-4">
+                                <label class="text-slate-400 font-medium w-1/3">Nomor KTP</label>
+                                <input type="text" value="1710003245084345"
+                                    class="w-2/3 px-3 py-2 border border-slate-300 rounded-md text-slate-900 font-bold font-mono focus:outline-none focus:border-medical-primary focus:ring-1 focus:ring-medical-primary transition text-right">
+                            </div>
+
+                            <!-- DOB Input -->
+                            <div class="flex items-center justify-between gap-4">
+                                <label class="text-slate-400 font-medium w-1/3">Tanggal Lahir</label>
+                                <input type="text" value="20 Januari 2001"
+                                    class="w-2/3 px-3 py-2 border border-slate-300 rounded-md text-slate-900 font-bold focus:outline-none focus:border-medical-primary focus:ring-1 focus:ring-medical-primary transition text-right">
+                            </div>
+
+                            <!-- Gender Select -->
+                            <div class="flex items-center justify-between gap-4">
+                                <label class="text-slate-400 font-medium w-1/3">Jenis Kelamin</label>
+                                <div class="w-2/3 relative">
+                                    <select
+                                        class="w-full px-3 py-2 border border-slate-300 rounded-md text-slate-900 font-bold appearance-none focus:outline-none focus:border-medical-primary focus:ring-1 focus:ring-medical-primary transition text-right bg-white cursor-pointer pr-8">
+                                        <option value="Laki - Laki" selected>Laki - Laki</option>
+                                        <option value="Perempuan">Perempuan</option>
+                                    </select>
+                                    <i
+                                        class="fa-solid fa-caret-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none"></i>
+                                </div>
+                            </div>
+
+                            <!-- HP Input -->
+                            <div class="flex items-center justify-between gap-4">
+                                <label class="text-slate-400 font-medium w-1/3">Nomor HP</label>
+                                <input type="text" value="085123423847"
+                                    class="w-2/3 px-3 py-2 border border-slate-300 rounded-md text-slate-900 font-bold focus:outline-none focus:border-medical-primary focus:ring-1 focus:ring-medical-primary transition text-right">
+                            </div>
+
+                            <!-- Address Textarea -->
+                            <div class="pt-2">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="text-slate-400 font-medium">Alamat Lengkap</span>
+                                    <i class="fa-solid fa-caret-down text-slate-400"></i>
+                                </div>
+                                <div class="p-3 border border-slate-300 rounded-lg bg-white">
+                                    <textarea rows="4"
+                                        class="w-full text-right text-slate-900 font-medium leading-relaxed resize-none focus:outline-none bg-transparent">Jl. Pandawa No.33D, RT.01/RW.01, Ambarukmo, Caturtunggal, Kec. Depok, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55281</textarea>
+                                </div>
+                            </div>
+                            <div class="border-b border-gray-100"></div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Riwayat (READ ONLY / STATIC in this view) -->
+                    <div class="bg-white rounded-2xl p-6 shadow-card border border-slate-100">
+                        <h3 class="text-lg font-bold text-slate-900 mb-6">Riwayat Periksa</h3>
+
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center border-b border-gray-100 pb-3">
+                                <span class="text-slate-400 font-medium">Tanggal Periksa</span>
+                                <span class="font-bold text-slate-900">24 September 2025</span>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between items-center mb-3">
+                                    <span class="text-slate-400 font-medium">Keluhan Pasien / Riwayat Singkat</span>
+                                    <i class="fa-solid fa-caret-down text-slate-400"></i>
+                                </div>
+                                <p class="text-slate-900 leading-relaxed text-justify">
+                                    Saya datang karena sudah tiga hari ini mengalami demam disertai sakit kepala dan
+                                    badan terasa lemas. Selain itu, tenggorokan terasa sakit dan kadang muncul batuk
+                                    kering, terutama pada malam hari. Nafsu makan juga menurun dan tidur menjadi kurang
+                                    nyenyak. Saya memiliki riwayat maag dan asma ringan, namun terakhir kambuh sudah
+                                    cukup lama dan saat ini tidak sedang mengonsumsi obat rutin.
+                                </p>
+                            </div>
+                            <div class="border-b border-gray-100 pt-2"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Doctor Card (EDITABLE) -->
+                <div
+                    class="bg-white rounded-2xl p-6 shadow-card border border-slate-100 mb-6 flex justify-between items-center">
+                    <h3 class="text-lg font-bold text-slate-900">Dokter Yang Memeriksa</h3>
+                    <div class="relative min-w-[300px]">
+                        <select
+                            class="w-full px-4 py-3 border border-slate-300 rounded-lg text-slate-900 font-bold appearance-none focus:outline-none focus:border-medical-primary focus:ring-1 focus:ring-medical-primary transition bg-white cursor-pointer pr-10 text-right">
+                            <option value="Dr. Richard" selected>Dr. Richard (Dokter Umum)</option>
+                            <option value="Dr. Susan">Dr. Susan (Spesialis Anak)</option>
+                            <option value="Dr. Bambang">Dr. Bambang (Spesialis Dalam)</option>
+                        </select>
+                        <i
+                            class="fa-solid fa-caret-down absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none"></i>
+                    </div>
+                </div>
+
+                <!-- Medicine Card (STATIC) -->
+                <div class="bg-white rounded-2xl p-6 shadow-card border border-slate-100 mb-6">
+                    <h3 class="text-lg font-bold text-slate-900 mb-6">Obat yang diberikan</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-y-4 gap-x-8">
+                        <div class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-slate-900"></span>
+                            <span class="text-slate-600 font-medium">Paracetamol</span>
+                            <span class="font-bold text-slate-900 ml-auto">200mL</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-slate-900"></span>
+                            <span class="text-slate-600 font-medium">Paracetamol</span>
+                            <span class="font-bold text-slate-900 ml-auto">200mL</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-slate-900"></span>
+                            <span class="text-slate-600 font-medium">Paracetamol</span>
+                            <span class="font-bold text-slate-900 ml-auto">200mL</span>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-slate-900"></span>
+                            <span class="text-slate-600 font-medium">Paracetamol</span>
+                            <span class="font-bold text-slate-900 ml-auto">400mL</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-slate-900"></span>
+                            <span class="text-slate-600 font-medium">Paracetamol</span>
+                            <span class="font-bold text-slate-900 ml-auto">400mL</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-slate-900"></span>
+                            <span class="text-slate-600 font-medium">Paracetamol</span>
+                            <span class="font-bold text-slate-900 ml-auto">400mL</span>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-slate-900"></span>
+                            <span class="text-slate-600 font-medium">Paracetamol</span>
+                            <span class="font-bold text-slate-900 ml-auto">2 Tablet</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-slate-900"></span>
+                            <span class="text-slate-600 font-medium">Paracetamol</span>
+                            <span class="font-bold text-slate-900 ml-auto">4 Tablet</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-slate-900"></span>
+                            <span class="text-slate-600 font-medium">Paracetamol</span>
+                            <span class="font-bold text-slate-900 ml-auto">4 Tablet</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // State management
+        let currentStatus = 'all';
+
+        // --- Table Logic ---
+
+        function renderTable() {
+            const searchInput = document.getElementById("searchInput").value.toUpperCase();
+            const rows = document.querySelectorAll(".data-row");
+
+            rows.forEach(row => {
+                const status = row.getAttribute('data-status');
+                const name = row.querySelector(".patient-name").textContent.toUpperCase();
+
+                // Logic: Row must match BOTH status (if not 'all') AND search query
+                const statusMatch = (currentStatus === 'all') || (status === currentStatus);
+                const searchMatch = name.indexOf(searchInput) > -1;
+
+                if (statusMatch && searchMatch) {
+                    row.style.display = ""; // Show
+                } else {
+                    row.style.display = "none"; // Hide
+                }
+            });
+        }
+
+        function filterTable(status) {
+            currentStatus = status;
+
+            // Update UI Tabs
+            const tabs = document.querySelectorAll('.tab-btn');
+            tabs.forEach(tab => {
+                // Reset basic styles
+                tab.classList.remove('active', 'font-bold', 'text-slate-900', 'border-slate-900');
+                tab.classList.add('font-semibold', 'text-slate-400', 'border-transparent');
+
+                // Apply active style if matches
+                if (tab.id === 'tab-' + status) {
+                    tab.classList.remove('font-semibold', 'text-slate-400', 'border-transparent');
+                    tab.classList.add('active', 'font-bold', 'text-slate-900', 'border-slate-900');
+                }
+            });
+
+            renderTable();
+        }
+
+        function searchTable() {
+            renderTable();
+        }
+
+        // --- Detail Modal Logic ---
+
+        function openModal() {
+            const modal = document.getElementById('detailModal');
+            const panel = document.getElementById('modalPanel');
+
+            modal.classList.remove('hidden');
+            // Small delay to allow display:block to apply before transition
+            setTimeout(() => {
+                panel.classList.remove('translate-x-full');
+            }, 10);
+
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('detailModal');
+            const panel = document.getElementById('modalPanel');
+
+            panel.classList.add('translate-x-full');
+
+            // Wait for transition to finish before hiding
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+
+        // --- Edit Modal Logic ---
+
+        function openEditModal() {
+            const modal = document.getElementById('editModal');
+            const panel = document.getElementById('editModalPanel');
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                panel.classList.remove('translate-x-full');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeEditModal() {
+            const modal = document.getElementById('editModal');
+            const panel = document.getElementById('editModalPanel');
+
+            panel.classList.add('translate-x-full');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+            document.body.style.overflow = 'auto';
+        }
+
+        // Attach event listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Detail Buttons (File Invoice Icon)
+            const detailButtons = document.querySelectorAll('.fa-file-invoice');
+            detailButtons.forEach(icon => {
+                const btn = icon.closest('button');
+                if (btn) btn.setAttribute('onclick', 'openModal()');
+            });
+
+            // 2. Edit Buttons (Pen To Square Icon)
+            const editButtons = document.querySelectorAll('.fa-pen-to-square');
+            editButtons.forEach(icon => {
+                const btn = icon.closest('button');
+                if (btn) btn.setAttribute('onclick', 'openEditModal()');
+            });
+        });
+    </script>
+
+</body>
+
+</html>

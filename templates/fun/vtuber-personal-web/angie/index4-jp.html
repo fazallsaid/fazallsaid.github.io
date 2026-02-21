@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>anG (Angie) || 原宿ストリートスナップ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;800&family=Kaushan+Script&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        street: {
+                            base: '#FAFAFA',    // Off-white
+                            text: '#222222',    // Soft Black
+                            accent1: '#FFB5D8', // Pastel Pink (Sakura)
+                            accent2: '#B5EAD7', // Pastel Mint
+                            accent3: '#C7CEEA'  // Pastel Periwinkle
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Outfit"', 'sans-serif'],
+                        brush: ['"Kaushan Script"', 'cursive'],
+                    },
+                    letterSpacing: {
+                        'tightest': '-0.05em',
+                        'widest': '0.2em',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FAFAFA;
+            /* Grid texture for "Cutting Mat" feel */
+            background-image:
+                linear-gradient(#E5E5E5 1px, transparent 1px),
+                linear-gradient(90deg, #E5E5E5 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        /* Barcode Generator style */
+        .barcode {
+            background: repeating-linear-gradient(90deg,
+                    #222 0px,
+                    #222 2px,
+                    transparent 2px,
+                    transparent 4px,
+                    #222 4px,
+                    #222 8px,
+                    transparent 8px,
+                    transparent 9px);
+            height: 40px;
+            width: 100%;
+        }
+
+        /* V4 Addition: Dot Leader Style from V3, adapted for V1 Street Style */
+        .menu-item-dot {
+            flex-grow: 1;
+            border-bottom: 3px dotted #222;
+            /* Bolder dots for street style */
+            margin: 0 10px;
+            position: relative;
+            top: -6px;
+        }
+
+        .img-stack {
+            transition: transform 0.3s ease;
+        }
+
+        .img-stack:hover {
+            transform: translateY(-10px) rotate(0deg) !important;
+            z-index: 50;
+        }
+
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+    </style>
+</head>
+
+<body
+    class="font-sans text-street-text min-h-screen overflow-x-hidden selection:bg-street-accent1 selection:text-white">
+
+    <!-- Top Bar: Marquee -->
+    <div class="fixed top-0 left-0 w-full bg-street-text text-white py-1 z-50 border-b border-white">
+        <div class="marquee-container text-xs font-bold tracking-widest uppercase">
+            <div class="marquee-content">
+                新刊 • 原宿ストリートスナップ • anG デビュー記念 • ColorSing 独占配信 • 新刊 • 原宿ストリートスナップ •
+                anG デビュー記念 • ColorSing 独占配信 •
+            </div>
+        </div>
+    </div>
+
+    <!-- Magazine Header -->
+    <header
+        class="pt-20 pb-8 px-4 md:px-12 flex justify-between items-end border-b-2 border-street-text mx-4 md:mx-12 mb-12">
+        <div>
+            <h2 class="font-brush text-3xl text-street-accent1 transform -rotate-6 -mb-4 ml-8">Special Issue!</h2>
+            <h1 class="text-8xl md:text-9xl font-extrabold tracking-tightest leading-[0.8]">
+                anG<span
+                    class="text-street-text text-xl align-top ml-2 tracking-normal font-medium max-w-[100px] inline-block mt-4 leading-tight">VOL.01<br>2025年<br>5月</span>
+            </h1>
+        </div>
+        <div class="hidden md:block text-right">
+            <img src="img/aNG_logo.png"
+                class="w-32 mb-2 ml-auto object-contain filter drop-shadow-md transform hover:rotate-6 transition-transform"
+                alt="anG Logo">
+            <div class="barcode w-32 mb-1 ml-auto"></div>
+            <p class="text-xs font-mono">ID: 11052025-ANGIE</p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 md:px-12 pb-24 grid grid-cols-1 md:grid-cols-12 gap-y-12 md:gap-x-12">
+
+        <!-- Left Column: Featured Model -->
+        <div class="col-span-1 md:col-span-5 relative h-[600px] md:h-[800px] flex items-center justify-center">
+
+            <!-- Background Shape -->
+            <div class="absolute inset-x-8 inset-y-12 border border-street-text transform rotate-3 z-0"></div>
+            <div
+                class="absolute inset-x-8 inset-y-12 bg-street-accent2 transform -rotate-2 z-0 opacity-50 mix-blend-multiply">
+            </div>
+
+            <!-- Model Image -->
+            <img src="img/aNG_1.png"
+                class="relative z-10 h-full object-contain filter drop-shadow-xl img-stack transform hover:scale-105 transition-transform duration-500">
+
+            <!-- Sticker: New Arrival -->
+            <div
+                class="absolute top-20 right-0 bg-street-accent1 text-white font-bold p-4 rounded-full w-24 h-24 flex items-center justify-center text-center leading-none text-sm transform rotate-12 z-20 shadow-lg border-2 border-white">
+                NEW<br>ARRIVAL
+            </div>
+
+            <!-- Caption -->
+            <div
+                class="absolute bottom-0 left-0 bg-white border border-street-text p-4 z-20 max-w-xs shadow-[4px_4px_0_#222]">
+                <p class="font-bold text-lg uppercase mb-1">Look 01: カジュアル</p>
+                <p class="text-xs text-gray-500">「快適だけどオシャレ。<br>歌の練習やクレープを食べに行くのにぴったり！」</p>
+            </div>
+        </div>
+
+        <!-- Right Column: Editorial Tone -->
+        <div class="col-span-1 md:col-span-7 flex flex-col justify-center">
+
+            <!-- Headline -->
+            <div class="mb-12">
+                <h2 class="text-5xl md:text-7xl font-bold leading-none mb-6">
+                    FULL VOLUME,<br>
+                    <span
+                        class="text-stroke text-transparent bg-clip-text bg-gradient-to-r from-street-accent1 to-street-accent3"
+                        style="-webkit-text-stroke: 2px #222;">FULL ENERGY.</span>
+                </h2>
+                <div class="w-24 h-2 bg-street-text mb-6"></div>
+                <p class="text-xl md:text-2xl font-light leading-relaxed max-w-lg">
+                    <span class="font-bold bg-street-accent1 px-1">anG（えんじ）</span>を紹介します。
+                    配信をライブ会場に変えるColorSingの新星。
+                    激辛好きで、甘党中毒。
+                </p>
+            </div>
+
+            <!-- Profile Grid -->
+            <div class="grid grid-cols-2 gap-4 mb-12">
+                <div class="border-t border-street-text pt-2">
+                    <p class="text-xs text-gray-400 uppercase">デビュー</p>
+                    <p class="font-bold text-xl">2025年5月11日</p>
+                </div>
+                <div class="border-t border-street-text pt-2">
+                    <p class="text-xs text-gray-400 uppercase">身長</p>
+                    <p class="font-bold text-xl">164 CM</p>
+                </div>
+                <div class="border-t border-street-text pt-2">
+                    <p class="text-xs text-gray-400 uppercase">タグ</p>
+                    <p class="font-bold text-sm mt-1">#ねぇんじぇ #えんじりえ</p>
+                </div>
+                <div class="border-t border-street-text pt-2">
+                    <p class="text-xs text-gray-400 uppercase">ファンネーム</p>
+                    <p class="font-bold text-sm mt-1">#anGｪﾙｽ໒꒱</p>
+                </div>
+            </div>
+
+            <!-- V4 Fusion: Daily Routine (Adapted from V3 Daily Specials) -->
+            <!-- Using V1 styling (Bold fonts, street colors) with V3 layout (List with dots) -->
+            <div class="space-y-6 mt-4">
+
+                <h3
+                    class="font-bold text-lg border-b-2 border-street-text pb-2 mb-4 inline-block transform -rotate-1 bg-street-accent1 px-2 text-white shadow-[2px_2px_0_#222]">
+                    DAILY ROUTINE <span class="text-xs bg-white text-street-text px-1 ml-2 font-mono">スケジュール</span>
+                </h3>
+
+                <ul class="space-y-6 font-sans">
+                    <!-- Item 1 -->
+                    <li class="group cursor-pointer">
+                        <div class="flex items-baseline justify-between mb-1">
+                            <span
+                                class="font-bold text-2xl md:text-3xl group-hover:text-street-accent1 transition-colors flex items-center">
+                                <i class="fa-brands fa-youtube mr-3 text-red-500 text-xl md:text-2xl"></i> YouTube
+                            </span>
+                            <span class="menu-item-dot"></span>
+                            <span
+                                class="font-bold font-mono text-lg md:text-xl transform rotate-3 bg-street-text text-white px-2 shadow-[2px_2px_0_rgba(0,0,0,0.2)]">FREE</span>
+                        </div>
+                        <p
+                            class="text-sm font-bold text-gray-400 pl-10 md:pl-12 tracking-widest uppercase border-l-4 border-street-accent1 pl-2">
+                            オリジナル & カバー曲
+                        </p>
+                    </li>
+
+                    <!-- Item 2 -->
+                    <li class="group cursor-pointer">
+                        <div class="flex items-baseline justify-between mb-1">
+                            <span
+                                class="font-bold text-2xl md:text-3xl group-hover:text-blue-400 transition-colors flex items-center">
+                                <i class="fa-brands fa-twitter mr-3 text-blue-400 text-xl md:text-2xl"></i> Twitter
+                            </span>
+                            <span class="menu-item-dot"></span>
+                            <span
+                                class="font-bold font-mono text-lg md:text-xl transform -rotate-2 bg-street-text text-white px-2 shadow-[2px_2px_0_rgba(0,0,0,0.2)]">DAILY</span>
+                        </div>
+                        <p
+                            class="text-sm font-bold text-gray-400 pl-10 md:pl-12 tracking-widest uppercase border-l-4 border-street-accent2 pl-2">
+                            スケジュール投稿 & 独り言
+                        </p>
+                    </li>
+
+                    <!-- Item 3 -->
+                    <li class="group cursor-pointer">
+                        <div class="flex items-baseline justify-between mb-1">
+                            <span
+                                class="font-bold text-2xl md:text-3xl group-hover:text-street-accent2 transition-colors flex items-center">
+                                <i class="fa-solid fa-music mr-3 text-green-400 text-xl md:text-2xl"></i> ColorSing
+                            </span>
+                            <span class="menu-item-dot"></span>
+                            <span
+                                class="font-bold font-mono text-lg md:text-xl transform rotate-1 bg-street-text text-white px-2 shadow-[2px_2px_0_rgba(0,0,0,0.2)]">VIP</span>
+                        </div>
+                        <p
+                            class="text-sm font-bold text-gray-400 pl-10 md:pl-12 tracking-widest uppercase border-l-4 border-street-accent3 pl-2">
+                            歌枠 & イベント
+                        </p>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer
+        class="border-t-2 border-street-text py-8 px-4 md:px-12 text-center text-xs font-mono uppercase tracking-widest flex justify-between">
+        <span>© COLORSING 2025</span>
+        <span>DESIGNED BY anG's CREATIVE TEAM</span>
+    </footer>
+
+</body>
+
+</html>

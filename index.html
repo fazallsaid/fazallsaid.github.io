@@ -1,12 +1,42 @@
 <!DOCTYPE html>
 <html lang="en" class="light">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fazal Said | A Passionate Backend Developer in Laravel</title>
+
+    <!-- SEO Meta Tags -->
+    <title>Fazal Said | Jasa Website & Backend Developer Laravel</title>
+    <meta name="title" content="Fazal Said | Jasa Website & Backend Developer Laravel">
+    <meta name="description"
+        content="Butuh jasa website? Fazal Said melayani jasa bikin web murah, profesional, dan terpercaya. Spesialis jasa web jogja dan backend developer Laravel untuk berbagai aplikasi Anda.">
+    <meta name="keywords"
+        content="jasa website, jasa bikin web murah, jasa web jogja, jasa pembuatan website, web developer laravel, programmer php jogja, bikin website murah profesional, jasa web design, web custom laravel, jasa web perusahaan, jasa web toko online">
+    <meta name="author" content="Fazal Said">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Indonesian">
+    <meta name="google-site-verification" content="kR5Kh7CEdZZP088S_FAQr7GYVFxZnaiRy-w0HmXdS5E" />
+    <link rel="canonical" href="https://fazallsaid.github.io/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://fazallsaid.github.io/">
+    <meta property="og:title" content="Fazal Said | Jasa Website & Backend Developer Laravel">
+    <meta property="og:description"
+        content="Mencari jasa bikin web murah dan berkualitas? Kami melayani jasa web jogja dan sekitarnya. Buat website custom: company profile, e-commerce, dan web app berbasis Laravel.">
+    <meta property="og:image" content="https://fazallsaid.github.io/logo/fazal.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://fazallsaid.github.io/">
+    <meta property="twitter:title" content="Fazal Said | Jasa Website & Backend Developer Laravel">
+    <meta property="twitter:description"
+        content="Butuh website untuk bisnis? Fazal Said melayani jasa bikin web murah, profesional, dan terpercaya. Spesialis jasa web jogja dan Laravel developer.">
+    <meta property="twitter:image" content="https://fazallsaid.github.io/logo/fazal.jpg">
+
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -25,9 +55,17 @@
     </script>
     <style>
         @keyframes float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-            100% { transform: translateY(0); }
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
         }
 
         .gradient-text {
@@ -39,9 +77,17 @@
         }
 
         @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         .gradient-border {
@@ -71,7 +117,7 @@
             transform: translateY(100%);
         }
 
-        .font-fira-code{
+        .font-fira-code {
             font-family: 'Fira Code';
         }
 
@@ -83,7 +129,7 @@
             width: 300px;
             height: 100vh;
             background: white;
-            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
             transition: right 0.3s ease;
             z-index: 1000;
         }
@@ -102,7 +148,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0, 0, 0, 0.5);
             z-index: 999;
             display: none;
         }
@@ -196,15 +242,19 @@
         }
     </style>
 </head>
-<body class="font-fira-code bg-white dark:bg-dark text-gray-900 dark:text-light transition-colors duration-300" oncontextmenu="return false;">
+
+<body class="font-fira-code bg-white dark:bg-dark text-gray-900 dark:text-light transition-colors duration-300"
+    oncontextmenu="return false;">
     <!-- Navbar -->
     <nav class="fixed top-0 left-0 w-full p-6 bg-white dark:bg-dark shadow-md z-50 transition-colors duration-300">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
             <!-- Brand -->
             <div class="gradient-text text-2xl font-bold">
                 <a href="./">
-                    <img src="../logo/fazal-dark.png" class="block dark:hidden" style="width: 10%;" alt="Fazal Said Logo Light" />
-                    <img src="../logo/fazal-white.png" class="hidden dark:block" style="width: 10%;" alt="Fazal Said Logo Dark" />
+                    <img src="../logo/fazal-dark.png" class="block dark:hidden" style="width: 10%;"
+                        alt="Fazal Said Logo Light" />
+                    <img src="../logo/fazal-white.png" class="hidden dark:block" style="width: 10%;"
+                        alt="Fazal Said Logo Dark" />
                 </a>
             </div>
 
@@ -213,22 +263,30 @@
                 <a href="#home" class="hover:text-primary dark:hover:text-primary transition-colors">Home</a>
                 <a href="#about" class="hover:text-primary dark:hover:text-primary transition-colors">About</a>
                 <a href="freebies/" class="hover:text-primary dark:hover:text-primary transition-colors">Freebies</a>
-                <a href="class/" class="hover:text-primary dark:hover:text-primary transition-colors">Class</a>
+
                 <a href="#projects" class="hover:text-primary dark:hover:text-primary transition-colors">Projects</a>
                 <a href="#contact" class="hover:text-primary dark:hover:text-primary transition-colors">Contact</a>
             </div>
 
             <!-- Theme Toggle & Mobile Menu -->
             <div class="flex gap-4">
-                <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
+                <button id="theme-toggle"
+                    class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
                     <svg id="theme-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path id="sun-icon" class="hidden dark:block" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
-                        <path id="moon-icon" class="block dark:hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                        <path id="sun-icon" class="hidden dark:block" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+                        </path>
+                        <path id="moon-icon" class="block dark:hidden" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
+                        </path>
                     </svg>
                 </button>
                 <button class="md:hidden p-2" id="mobile-menu-btn">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
             </div>
@@ -239,13 +297,14 @@
             <div class="flex flex-col gap-4 p-6">
                 <button id="close-menu" class="self-end p-2">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
                     </svg>
                 </button>
                 <a href="#home" class="hover:text-primary dark:hover:text-primary transition-colors">Home</a>
                 <a href="#about" class="hover:text-primary dark:hover:text-primary transition-colors">About</a>
                 <a href="freebies" class="hover:text-primary dark:hover:text-primary transition-colors">Freebies</a>
-                <a href="class" class="hover:text-primary dark:hover:text-primary transition-colors">Class</a>
+
                 <a href="#projects" class="hover:text-primary dark:hover:text-primary transition-colors">Projects</a>
                 <a href="#contact" class="hover:text-primary dark:hover:text-primary transition-colors">Contact</a>
             </div>
@@ -277,41 +336,53 @@
     <section id="about" class="py-24 px-8 md:px-24 bg-gray-50 dark:bg-gray-800">
         <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-12 items-center">
             <div class="w-full md:w-1/2">
-                <img src="logo/fazal.jpg" alt="John Doe" 
-                     class="w-full rounded-3xl shadow-xl border-4 border-white dark:border-gray-800">
+                <img src="logo/fazal.jpg" alt="John Doe"
+                    class="w-full rounded-3xl shadow-xl border-4 border-white dark:border-gray-800">
             </div>
             <div class="w-full md:w-1/2">
                 <h2 class="gradient-text text-4xl font-bold mb-6">About Me</h2>
-                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-6 text-justify" style="white-space: pre-line;">
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-6 text-justify"
+                    style="white-space: pre-line;">
                     Web Developer focusing on PHP programming language, in Laravel framework.
-                    With 7+ years of experience in the language, I have created several websites with various purposes. Starting from websites for exams, reporting, music rental, etc.
+                    With 7+ years of experience in the language, I have created several websites with various purposes.
+                    Starting from websites for exams, reporting, music rental, etc.
 
                     If you want to get a website at an affordable price, contact me.
                 </p>
                 <div class="flex gap-4 mt-6">
-                    <a href="https://github.com/fazallsaid" target="_blank" class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
+                    <a href="https://github.com/fazallsaid" target="_blank"
+                        class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            <path
+                                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                         </svg>
                     </a>
-                    <a href="https://instagram.com/fazallsaid" target="_blank" class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
+                    <a href="https://instagram.com/fazallsaid" target="_blank"
+                        class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                         </svg>
                     </a>
-                    <a href="https://tiktok.com/@fazallsaid" target="_blank" class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
+                    <a href="https://tiktok.com/@fazallsaid" target="_blank"
+                        class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                            <path
+                                d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
                         </svg>
                     </a>
-                    <a href="https://twitter.com/fazallsaid__" target="_blank" class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
+                    <a href="https://twitter.com/fazallsaid__" target="_blank"
+                        class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            <path
+                                d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
                         </svg>
                     </a>
-                    <a href="https://wa.me/62895386138202" target="_blank" class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
+                    <a href="https://wa.me/62895386138202" target="_blank"
+                        class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.381l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.381l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
                         </svg>
                     </a>
                 </div>
@@ -326,8 +397,7 @@
             <!-- Project cards with dark mode classes -->
             <div class="project-card group rounded-3xl overflow-hidden shadow-lg 
                        hover:shadow-2xl transition-shadow relative bg-white dark:bg-gray-800">
-                <img src="projects/ang_property.png" alt="Project" 
-                     class="w-full h-64 object-cover transform transition-all 
+                <img src="projects/ang_property.png" alt="Project" class="w-full h-64 object-cover transform transition-all 
                             group-hover:scale-110">
                 <div class="p-6">
                     <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">Ang Property</h3>
@@ -337,14 +407,14 @@
                         <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">2025</span>
                     </div>
                     <p class="text-gray-600 dark:text-gray-400 mb-6">
-                        A marketing website for properties located in Indonesia, especially in West Java, DKI Jakarta and Banten.
+                        A marketing website for properties located in Indonesia, especially in West Java, DKI Jakarta
+                        and Banten.
                     </p>
                 </div>
             </div>
             <div class="project-card group rounded-3xl overflow-hidden shadow-lg 
                        hover:shadow-2xl transition-shadow relative bg-white dark:bg-gray-800">
-                <img src="projects/udin_gallery.png" alt="Project" 
-                     class="w-full h-64 object-cover transform transition-all 
+                <img src="projects/udin_gallery.png" alt="Project" class="w-full h-64 object-cover transform transition-all 
                             group-hover:scale-110">
                 <div class="p-6">
                     <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">Udin Gallery</h3>
@@ -361,29 +431,30 @@
 
             <div class="project-card group rounded-3xl overflow-hidden shadow-lg 
                        hover:shadow-2xl transition-shadow relative bg-white dark:bg-gray-800">
-                <img src="projects/kwas_system.png" alt="Project" 
-                     class="w-full h-64 object-cover transform transition-all 
+                <img src="projects/kwas_system.png" alt="Project" class="w-full h-64 object-cover transform transition-all 
                             group-hover:scale-110">
                 <div class="p-6">
-                    <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">KWaS - An Data Backup System</h3>
+                    <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">KWaS - An Data Backup System
+                    </h3>
                     <div class="flex gap-4 mb-4">
                         <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">PHP</span>
                         <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Laravel 11</span>
                         <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">2025</span>
                     </div>
                     <p class="text-gray-600 dark:text-gray-400 mb-6">
-                        A data backup website system and tracking system of product process and product delivery to suppliers who cooperate with KWaS factory.
+                        A data backup website system and tracking system of product process and product delivery to
+                        suppliers who cooperate with KWaS factory.
                     </p>
                 </div>
             </div>
 
             <div class="project-card group rounded-3xl overflow-hidden shadow-lg 
                        hover:shadow-2xl transition-shadow relative bg-white dark:bg-gray-800">
-                <img src="projects/stocarium.png" alt="Project" 
-                     class="w-full h-64 object-cover transform transition-all 
+                <img src="projects/stocarium.png" alt="Project" class="w-full h-64 object-cover transform transition-all 
                             group-hover:scale-110">
                 <div class="p-6">
-                    <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">Stocarium - An Inventory Website</h3>
+                    <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">Stocarium - An Inventory Website
+                    </h3>
                     <div class="flex gap-4 mb-4">
                         <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">PHP</span>
                         <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Laravel 11</span>
@@ -397,8 +468,7 @@
 
             <div class="project-card group rounded-3xl overflow-hidden shadow-lg 
                        hover:shadow-2xl transition-shadow relative bg-white dark:bg-gray-800">
-                <img src="projects/databankUniv.png" alt="Project" 
-                     class="w-full h-64 object-cover transform transition-all 
+                <img src="projects/databankUniv.png" alt="Project" class="w-full h-64 object-cover transform transition-all 
                             group-hover:scale-110">
                 <div class="p-6">
                     <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">Databank of Universities</h3>
@@ -408,7 +478,9 @@
                         <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">2024</span>
                     </div>
                     <p class="text-gray-600 dark:text-gray-400 mb-6">
-                        Databank of Universities is an API-based web application that gives anyone access to university data across Indonesia. It is designed to help developers and others who want to integrate university information into their projects.
+                        Databank of Universities is an API-based web application that gives anyone access to university
+                        data across Indonesia. It is designed to help developers and others who want to integrate
+                        university information into their projects.
                     </p>
                     <!-- <button class="gradient-text font-bold flex items-center gap-2 preview-btn" 
                             data-url="https://krsjawa3.com">
@@ -422,11 +494,11 @@
 
             <div class="project-card group rounded-3xl overflow-hidden shadow-lg 
                        hover:shadow-2xl transition-shadow relative bg-white dark:bg-gray-800">
-                <img src="projects/krs_jawa.jpg" alt="Project" 
-                     class="w-full h-64 object-cover transform transition-all 
+                <img src="projects/krs_jawa.jpg" alt="Project" class="w-full h-64 object-cover transform transition-all 
                             group-hover:scale-110">
                 <div class="p-6">
-                    <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">Klinik Rumah Swadaya Jawa III (PUPR)</h3>
+                    <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">Klinik Rumah Swadaya Jawa III
+                        (PUPR)</h3>
                     <div class="flex gap-4 mb-4">
                         <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">PHP</span>
                         <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Laravel 11</span>
@@ -435,11 +507,12 @@
                     <p class="text-gray-600 dark:text-gray-400 mb-6">
                         A goverment website to give more information for any citizens who want to build a house.
                     </p>
-                    <button class="gradient-text font-bold flex items-center gap-2 preview-btn" 
-                            data-url="https://krsjawa3.com">
+                    <button class="gradient-text font-bold flex items-center gap-2 preview-btn"
+                        data-url="https://krsjawa3.com">
                         Website Preview
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                         </svg>
                     </button>
                 </div>
@@ -447,8 +520,7 @@
 
             <div class="project-card group rounded-3xl overflow-hidden shadow-lg 
                        hover:shadow-2xl transition-shadow relative bg-white dark:bg-gray-800">
-                <img src="projects/sihandarung.jpg" alt="Project" 
-                     class="w-full h-64 object-cover transform transition-all 
+                <img src="projects/sihandarung.jpg" alt="Project" class="w-full h-64 object-cover transform transition-all 
                             group-hover:scale-110">
                 <div class="p-6">
                     <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">Sihandarung</h3>
@@ -458,7 +530,8 @@
                         <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">2024</span>
                     </div>
                     <p class="text-gray-600 dark:text-gray-400 mb-6">
-                        An internal company website that aims to facilitate the company and each division in making their work reports.
+                        An internal company website that aims to facilitate the company and each division in making
+                        their work reports.
                     </p>
                     <!-- <button class="gradient-text font-bold flex items-center gap-2 preview-btn" 
                             data-url="">
@@ -472,8 +545,7 @@
 
             <div class="project-card group rounded-3xl overflow-hidden shadow-lg 
                        hover:shadow-2xl transition-shadow relative bg-white dark:bg-gray-800">
-                <img src="projects/menapak.jpg" alt="Project" 
-                     class="w-full h-64 object-cover transform transition-all 
+                <img src="projects/menapak.jpg" alt="Project" class="w-full h-64 object-cover transform transition-all 
                             group-hover:scale-110">
                 <div class="p-6">
                     <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">Menapak Indonesia</h3>
@@ -483,13 +555,15 @@
                         <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">2024</span>
                     </div>
                     <p class="text-gray-600 dark:text-gray-400 mb-6">
-                        A humanitarian organization website, which aims to provide information related to the activities and latest news about the organization.
+                        A humanitarian organization website, which aims to provide information related to the activities
+                        and latest news about the organization.
                     </p>
-                    <button class="gradient-text font-bold flex items-center gap-2 preview-btn" 
-                            data-url="https://menapak.org">
+                    <button class="gradient-text font-bold flex items-center gap-2 preview-btn"
+                        data-url="https://menapak.org">
                         Website Preview
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                         </svg>
                     </button>
                 </div>
@@ -497,8 +571,7 @@
 
             <div class="project-card group rounded-3xl overflow-hidden shadow-lg 
                        hover:shadow-2xl transition-shadow relative bg-white dark:bg-gray-800">
-                <img src="projects/threefalse.jpg" alt="Project" 
-                     class="w-full h-64 object-cover transform transition-all 
+                <img src="projects/threefalse.jpg" alt="Project" class="w-full h-64 object-cover transform transition-all 
                             group-hover:scale-110">
                 <div class="p-6">
                     <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">Three False</h3>
@@ -522,11 +595,11 @@
 
             <div class="project-card group rounded-3xl overflow-hidden shadow-lg 
                        hover:shadow-2xl transition-shadow relative bg-white dark:bg-gray-800">
-                <img src="projects/gm_musika.jpg" alt="Project" 
-                     class="w-full h-64 object-cover transform transition-all 
+                <img src="projects/gm_musika.jpg" alt="Project" class="w-full h-64 object-cover transform transition-all 
                             group-hover:scale-110">
                 <div class="p-6">
-                    <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">Instruments Loan "GM Musika"</h3>
+                    <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">Instruments Loan "GM Musika"
+                    </h3>
                     <div class="flex gap-4 mb-4">
                         <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">PHP</span>
                         <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Codeigniter 3</span>
@@ -547,8 +620,7 @@
 
             <div class="project-card group rounded-3xl overflow-hidden shadow-lg 
                        hover:shadow-2xl transition-shadow relative bg-white dark:bg-gray-800">
-                <img src="projects/arwana_store.jpg" alt="Project" 
-                     class="w-full h-64 object-cover transform transition-all 
+                <img src="projects/arwana_store.jpg" alt="Project" class="w-full h-64 object-cover transform transition-all 
                             group-hover:scale-110">
                 <div class="p-6">
                     <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">Arwana Store</h3>
@@ -572,8 +644,7 @@
 
             <div class="project-card group rounded-3xl overflow-hidden shadow-lg 
                        hover:shadow-2xl transition-shadow relative bg-white dark:bg-gray-800">
-                <img src="projects/srn.jpg" alt="Project" 
-                     class="w-full h-64 object-cover transform transition-all 
+                <img src="projects/srn.jpg" alt="Project" class="w-full h-64 object-cover transform transition-all 
                             group-hover:scale-110">
                 <div class="p-6">
                     <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">Sambal Resep Njenot</h3>
@@ -597,11 +668,11 @@
 
             <div class="project-card group rounded-3xl overflow-hidden shadow-lg 
                        hover:shadow-2xl transition-shadow relative bg-white dark:bg-gray-800">
-                <img src="projects/kompensasi.png" alt="Project" 
-                     class="w-full h-64 object-cover transform transition-all 
+                <img src="projects/kompensasi.png" alt="Project" class="w-full h-64 object-cover transform transition-all 
                             group-hover:scale-110">
                 <div class="p-6">
-                    <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">Compensation for Lectures at STMIK Akakom</h3>
+                    <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">Compensation for Lectures at
+                        STMIK Akakom</h3>
                     <div class="flex gap-4 mb-4">
                         <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">PHP</span>
                         <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Codeigniter 3</span>
@@ -622,8 +693,7 @@
 
             <div class="project-card group rounded-3xl overflow-hidden shadow-lg 
                        hover:shadow-2xl transition-shadow relative bg-white dark:bg-gray-800">
-                <img src="projects/ujian_online.png" alt="Project" 
-                     class="w-full h-64 object-cover transform transition-all 
+                <img src="projects/ujian_online.png" alt="Project" class="w-full h-64 object-cover transform transition-all 
                             group-hover:scale-110">
                 <div class="p-6">
                     <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">Online Exam Website</h3>
@@ -633,7 +703,8 @@
                         <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">2018</span>
                     </div>
                     <p class="text-gray-600 dark:text-gray-400 mb-6">
-                        A website that is used as a tool to conduct exams at MAN Sintang, especially for the End of Semester Exams.
+                        A website that is used as a tool to conduct exams at MAN Sintang, especially for the End of
+                        Semester Exams.
                     </p>
                     <!-- <button class="gradient-text font-bold flex items-center gap-2 preview-btn" 
                             data-url="https://menapakindonesia.org">
@@ -647,11 +718,11 @@
 
             <div class="project-card group rounded-3xl overflow-hidden shadow-lg 
                        hover:shadow-2xl transition-shadow relative bg-white dark:bg-gray-800">
-                <img src="projects/po_budiman.jpg" alt="Project" 
-                     class="w-full h-64 object-cover transform transition-all 
+                <img src="projects/po_budiman.jpg" alt="Project" class="w-full h-64 object-cover transform transition-all 
                             group-hover:scale-110">
                 <div class="p-6">
-                    <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">P.O Budiman Ticket Order With SMS Gateway</h3>
+                    <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">P.O Budiman Ticket Order With
+                        SMS Gateway</h3>
                     <div class="flex gap-4 mb-4">
                         <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">PHP</span>
                         <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">No Framework</span>
@@ -677,60 +748,23 @@
         <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-12 items-center">
             <div class="w-full md:w-full">
                 <h2 class="gradient-text text-4xl font-bold mb-6 text-center">Collaboration</h2>
-                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-6 text-justify" style="white-space: pre-line;">
-                    I am open to collaborative projects, whether it's for a new project or an old project that I have developed, and one of them is the Databank of Universities project.
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-6 text-justify"
+                    style="white-space: pre-line;">
+                    I am open to collaborative projects, whether it's for a new project or an old project that I have
+                    developed, and one of them is the Databank of Universities project.
 
-                    This project focuses on developing API/Rest API for university data across Indonesia. The goal is, so that developers or parties who want to use this data, can access it easily (of course it must be used as wisely as possible).
+                    This project focuses on developing API/Rest API for university data across Indonesia. The goal is,
+                    so that developers or parties who want to use this data, can access it easily (of course it must be
+                    used as wisely as possible).
 
-                    If you are interested in collaborating, you can contact me in the <a href="#about" class="text-[#1d2ef3] dark:text-[#85ff62]">About Me</a> section.
+                    If you are interested in collaborating, you can contact me in the <a href="#about"
+                        class="text-[#1d2ef3] dark:text-[#85ff62]">About Me</a> section.
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- AI Tools -->
-    <section id="ai-sketch" class="py-24 px-8 md:px-24">
-        <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-12 items-center">
-            <div class="w-full md:w-full">
-                <h2 class="gradient-text text-4xl text-center font-bold mb-6">No idea where to start?</h2>
-                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-6 text-justify" style="white-space: pre-line;">
-                    My AI tool is ready to help you design sketch diagrams and basic views, and consult for additional features.
-                </p>
-                <div class="max-w-4xl mx-auto bg-white dark:bg-gray-800 rounded-3xl shadow-lg p-8">
-                    <form id="sketch-form" class="space-y-6">
-                        <div>
-                            <label for="website-name" class="block text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">Website Name</label>
-                            <input type="text" id="website-name" name="websiteName" class="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="e.g., My Awesome Blog">
-                        </div>
-                        <div>
-                            <label for="website-category" class="block text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">Website Category</label>
-                            <input type="text" id="website-category" name="websiteCategory" class="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="e.g., Personal Blog, E-commerce, Portfolio">
-                        </div>
-                        <div>
-                            <label for="about-website" class="block text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">About Website</label>
-                            <textarea id="about-website" name="aboutWebsite" rows="4" class="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Describe your website, its purpose, and key features."></textarea>
-                        </div>
-                        <div>
-                            <label for="website-features" class="block text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">Specific Features</label>
-                            <textarea id="website-features" name="websiteFeatures" rows="4" class="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="List desired features, e.g., image gallery, contact form, testimonials section..."></textarea>
-                        </div>
-                        <button type="submit" class="gradient-border group px-8 py-4 bg-white dark:bg-dark rounded-full shadow-lg hover:shadow-xl transition-all overflow-hidden w-full">
-                            <span class="relative z-10 font-bold text-gray-900 dark:text-gray-100">Generate Sketch</span>
-                            <span class="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-20 group-hover:opacity-50 transition-opacity"></span>
-                        </button>
-                    </form>
-                    <div id="sketch-results" class="mt-12 hidden">
-                        <h3 class="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100 text-center">Generated Sketch</h3>
-                        <div id="sketch-display" class="bg-gray-100 dark:bg-gray-700 rounded-lg p-6 flex justify-center items-center relative min-h-[300px]">
-                            <p id="sketch-placeholder" class="text-gray-500 dark:text-gray-400">Sketch will appear here...</p>
-                            <div id="mermaid-diagram" class="hidden"></div>
-                            <button id="view-sketch-demo" class="absolute bottom-4 right-4 bg-primary text-white px-4 py-2 rounded-full hidden">View Demo</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+
     <!-- Media Section -->
     <section id="touch" class="py-24 px-8 md:px-24 bg-gray-50 dark:bg-gray-800">
         <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-12 items-center">
@@ -744,15 +778,11 @@
     <!-- Modal -->
     <div class="modal" id="previewModal">
         <div class="modal-content">
-            <button id="screenshot-btn" class="modal-close" style="right: 4.5rem; background: rgba(0, 128, 0, 0.7);" title="Download Screenshot">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                </svg>
-            </button>
+
             <button class="modal-close" id="closeModal" title="Close">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
                 </svg>
             </button>
             <div class="loading">Loading...</div>
@@ -764,12 +794,14 @@
     <footer id="contact" class="py-12 px-8 md:px-24 bg-white dark:bg-dark border-t dark:border-gray-800">
         <div class="max-w-6xl mx-auto text-center">
             <div class="flex justify-center gap-6 mb-8">
-                <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
+                <a href="#"
+                    class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
                     <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
                         <!-- GitHub Icon -->
                     </svg>
                 </a>
-                <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
+                <a href="#"
+                    class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
                     <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
                         <!-- LinkedIn Icon -->
                     </svg>
@@ -783,7 +815,7 @@
         // Theme toggle functionality
         const themeToggle = document.getElementById('theme-toggle');
         const html = document.documentElement;
-        
+
         // Check for saved theme preference or use system preference
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             html.classList.add('dark');
@@ -799,7 +831,7 @@
 
         // Cursor follower
         const follower = document.querySelector('.follower');
-        
+
         if (follower) {
             document.addEventListener('mousemove', (e) => {
                 follower.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
@@ -950,7 +982,7 @@
                     try {
                         const errorData = await scriptResponse.json(); // Coba parse error jika ada
                         console.error('Pesan error dari Apps Script:', errorData.message);
-                    } catch(e) { /* Tidak ada JSON error body */ }
+                    } catch (e) { /* Tidak ada JSON error body */ }
                 }
             } catch (scriptError) {
                 console.error('Error saat mengirim data ke Apps Script:', scriptError);
@@ -961,170 +993,7 @@
         window.addEventListener('load', fetchLocationAndLogVisitor);
     </script>
 
-    <!-- Include Mermaid.js for diagram rendering -->
-    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js"></script>
-<script>
-    mermaid.initialize({ startOnLoad: false });
 
-    // --- LOGIKA GENERATOR SKETSA AI ---
-    const apiKey = 'AIzaSyDJobYTsoELPiHdOgyI7WMPIobLdgJ8n-8'; // <-- PENTING: PASTE KUNCI API ANDA DI SINI
-    const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
-
-    const sketchForm = document.getElementById('sketch-form');
-    const sketchResults = document.getElementById('sketch-results');
-    const sketchPlaceholder = document.getElementById('sketch-placeholder');
-    const sketchDisplay = document.getElementById('sketch-display');
-    const viewSketchDemoBtn = document.getElementById('view-sketch-demo');
-
-    const cleanApiResponse = (rawText) => {
-        return rawText.replace(/```(html|mermaid)?\n/g, '').replace(/```/g, '').trim();
-    };
-
-    sketchForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-
-        const websiteName = document.getElementById('website-name').value;
-        const websiteCategory = document.getElementById('website-category').value;
-        const aboutWebsite = document.getElementById('about-website').value;
-        // Ambil nilai dari input fitur baru
-        const websiteFeatures = document.getElementById('website-features').value;
-
-        if (!websiteName || !websiteCategory || !aboutWebsite) {
-            alert('Mohon isi nama, kategori, dan deskripsi website.');
-            return;
-        }
-
-        // --- Reset UI dan Status Loading ---
-        sketchResults.classList.remove('hidden');
-        sketchDisplay.classList.remove('justify-center', 'items-center'); // Hapus centering sementara
-        sketchPlaceholder.textContent = 'Sedang membuat preview tampilan... Mohon tunggu.';
-        sketchPlaceholder.classList.remove('hidden');
-        viewSketchDemoBtn.classList.add('hidden');
-        viewSketchDemoBtn.removeAttribute('data-html-content');
-
-        // --- PROMPT BARU YANG LEBIH CANGGIH ---
-        const htmlPrompt = `
-        Act as a world-class UI/UX designer and senior frontend developer.
-        Your task is to create several standalone HTML files for website wireframes using only Tailwind CSS.
-        The design should be MODERN, FRESH, ELEGANT and NOT MONOTON. Use a nice color palette, typography, and lots of spacing.
-        Responses should be raw HTML code ONLY, starting directly with \`<!DOCTYPE html>\`. Do not include explanations or fence markers.
-
-        Here are the project details:
-        - Website Name: "${websiteName}"
-        - Website Category: "${websiteCategory}"
-        - About The Website: "${aboutWebsite}"
-        - Required Features (must be included): "${websiteFeatures}"
-
-        Required Structure:
-        1.  Modern and responsive header with navigation links.
-        2.  An engaging Hero section with a clear title, short description, and main call-to-action button.
-        3.  A Features section that visually displays key features. If users request a gallery, testimonials, or contact form, make it a visually appealing section for them. Use placeholder images (for example, from https://placehold.co/600x400) if needed.
-        4.  "About Us" section.
-        5.  A clean and simple footer with social media icon links and copyright text.
-        If multiple pages are desired from the features, create more than one page.
-        Make sure the entire layout is responsive and looks good on mobile devices.
-        `;
-
-        try {
-            console.log("Requesting HTML wireframe with advanced prompt...");
-            const htmlResponse = await fetch(API_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    contents: [{ parts: [{ text: htmlPrompt }] }],
-                    generationConfig: {
-                        temperature: 0.7, // Sedikit lebih kreatif
-                    },
-                    safetySettings: [
-                        { "category": "HARM_CATEGORY_HARASSMENT", "threshold": "BLOCK_NONE" },
-                        { "category": "HARM_CATEGORY_HATE_SPEECH", "threshold": "BLOCK_NONE" },
-                        { "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT", "threshold": "BLOCK_NONE" },
-                        { "category": "HARM_CATEGORY_DANGEROUS_CONTENT", "threshold": "BLOCK_NONE" }
-                    ]
-                })
-            });
-
-            if (!htmlResponse.ok) {
-                const errorData = await htmlResponse.json();
-                throw new Error(`API Error: ${errorData.error.message}`);
-            }
-            
-            const htmlJson = await htmlResponse.json();
-            
-            if (!htmlJson.candidates || !htmlJson.candidates[0].content) {
-                throw new Error("Invalid response structure from API.");
-            }
-
-            const htmlCode = cleanApiResponse(htmlJson.candidates[0].content.parts[0].text);
-            
-            console.log("HTML code received.");
-
-            // Atur ulang display untuk memusatkan tombol
-            sketchDisplay.classList.add('justify-center', 'items-center');
-            sketchPlaceholder.classList.add('hidden');
-            
-            viewSketchDemoBtn.setAttribute('data-html-content', htmlCode);
-            viewSketchDemoBtn.classList.remove('hidden'); // Tampilkan tombol di tengah
-
-        } catch (error) {
-            console.error('Error during AI Sketch Generation:', error);
-            sketchPlaceholder.textContent = `Terjadi kesalahan: ${error.message}.`;
-            sketchPlaceholder.classList.remove('hidden');
-        }
-    });
-
-    // --- Event listener untuk tombol "View Demo" ---
-    viewSketchDemoBtn.addEventListener('click', () => {
-        const htmlContent = viewSketchDemoBtn.getAttribute('data-html-content');
-        if (!htmlContent) {
-            alert('Tidak ada konten demo yang bisa ditampilkan.');
-            return;
-        }
-        openModal();
-        previewFrame.srcdoc = htmlContent;
-        previewFrame.onload = () => {
-            loading.style.display = 'none';
-            previewFrame.style.display = 'block';
-        };
-    });
-
-    // --- LOGIKA BARU UNTUK SCREENSHOT ---
-    const screenshotBtn = document.getElementById('screenshot-btn');
-    screenshotBtn.addEventListener('click', () => {
-        const iframe = document.getElementById('previewFrame');
-        const iframeContent = iframe.contentWindow.document.body;
-
-        if (!iframeContent) {
-            alert("Konten demo belum siap untuk di-screenshot.");
-            return;
-        }
-        
-        // Beri feedback ke user
-        screenshotBtn.style.background = "rgba(255, 165, 0, 0.7)"; // Ubah warna jadi oranye
-        
-        html2canvas(iframeContent, {
-            width: iframeContent.scrollWidth,
-            height: iframeContent.scrollHeight,
-            windowWidth: iframeContent.scrollWidth,
-            windowHeight: iframeContent.scrollHeight,
-            useCORS: true,
-            allowTaint: true
-        }).then(canvas => {
-            const link = document.createElement('a');
-            link.download = 'website-sketch.png';
-            link.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-            link.click();
-            link.remove();
-            
-            // Kembalikan warna tombol
-            screenshotBtn.style.background = "rgba(0, 128, 0, 0.7)";
-        }).catch(err => {
-            console.error("Gagal melakukan screenshot:", err);
-            alert("Maaf, terjadi kesalahan saat mengambil screenshot.");
-            // Kembalikan warna tombol
-            screenshotBtn.style.background = "rgba(0, 128, 0, 0.7)";
-        });
-    });
-</script>
 </body>
+
 </html>
