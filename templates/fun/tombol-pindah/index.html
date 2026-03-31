@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pertanyaan Penting</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #171c26 0%, #2b323c 100%);
+            overflow: hidden;
+            color: #ffffff;
+        }
+
+        .container {
+            position: relative;
+            background: rgba(108, 122, 137, 0.15);
+            backdrop-filter: blur(15px);
+            padding: 40px 50px;
+            border-radius: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            max-width: 90%;
+            z-index: 10;
+        }
+
+        h1 {
+            color: #ffffff;
+            font-size: 28px;
+            margin-bottom: 30px;
+            font-weight: 800;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+            min-height: 60px;
+            align-items: center;
+        }
+
+        button {
+            padding: 12px 32px;
+            font-size: 18px;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        #btn-yes {
+            background: linear-gradient(45deg, #9b534d 0%, #8c4d43 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(139, 74, 69, 0.4);
+        }
+
+        #btn-yes:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 74, 69, 0.6);
+        }
+
+        #btn-no {
+            background: #908674;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            position: absolute;
+        }
+
+        .hidden-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: center;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .hidden-message.show {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .hidden-message h2 {
+            color: #9b534d;
+            font-size: 32px;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hidden-message p {
+            color: #a0aec0;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hidden-message" id="success-msg">
+        <h2>Yeay!</h2>
+        <p>Mari kita berteman ! ✨</p>
+        <p>Aku Shirasagi Kei, bisa dipanggil Kei !</p>
+    </div>
+
+    <div class="container" id="main-card">
+        <h1 id="question">Mau temenan sama aku?</h1>
+        <div class="buttons" id="btn-container">
+            <button id="btn-yes">Lesgoo!</button>
+            <button id="btn-no">Ngga dulu</button>
+        </div>
+    </div>
+
+    <script>
+        const btnNo = document.getElementById('btn-no');
+        const btnYes = document.getElementById('btn-yes');
+        const btnContainer = document.getElementById('btn-container');
+        const mainCard = document.getElementById('main-card');
+        const successMsg = document.getElementById('success-msg');
+
+        // Set initial position of 'no' relative to its container to keep layout clean
+        btnNo.style.position = 'static';
+
+        function lari() {
+            if (btnNo.parentElement !== document.body) {
+                document.body.appendChild(btnNo);
+                btnNo.style.zIndex = '999';
+            }
+            btnNo.style.position = 'fixed';
+            
+            const maxX = window.innerWidth - btnNo.offsetWidth;
+            const maxY = window.innerHeight - btnNo.offsetHeight;
+
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+
+            btnNo.style.left = randomX + 'px';
+            btnNo.style.top = randomY + 'px';
+        }
+
+        btnNo.addEventListener('mouseover', lari);
+
+        // For mobile touches
+        btnNo.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            lari();
+        });
+
+        btnYes.addEventListener('click', () => {
+            mainCard.style.display = 'none';
+            successMsg.classList.add('show');
+            btnNo.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

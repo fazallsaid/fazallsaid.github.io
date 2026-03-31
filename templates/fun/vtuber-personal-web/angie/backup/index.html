@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>anG (Angie) || 原宿ストリートスナップ</title>
+    <title>anG (Angie) || Harajuku Street Snap</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;800&family=Kaushan+Script&display=swap"
         rel="stylesheet">
@@ -59,16 +59,6 @@
             width: 100%;
         }
 
-        /* V4 Addition: Dot Leader Style from V3, adapted for V1 Street Style */
-        .menu-item-dot {
-            flex-grow: 1;
-            border-bottom: 3px dotted #222;
-            /* Bolder dots for street style */
-            margin: 0 10px;
-            position: relative;
-            top: -6px;
-        }
-
         .img-stack {
             transition: transform 0.3s ease;
         }
@@ -107,8 +97,8 @@
     <div class="fixed top-0 left-0 w-full bg-street-text text-white py-1 z-50 border-b border-white">
         <div class="marquee-container text-xs font-bold tracking-widest uppercase">
             <div class="marquee-content">
-                新刊 • 原宿ストリートスナップ • anG デビュー記念 • ColorSing 独占配信 • 新刊 • 原宿ストリートスナップ •
-                anG デビュー記念 • ColorSing 独占配信 •
+                New Issue • Harajuku Street Snap • anG Debut Special • ColorSing Exclusive • New Issue • Harajuku Street
+                Snap • anG Debut Special • ColorSing Exclusive •
             </div>
         </div>
     </div>
@@ -120,7 +110,8 @@
             <h2 class="font-brush text-3xl text-street-accent1 transform -rotate-6 -mb-4 ml-8">Special Issue!</h2>
             <h1 class="text-8xl md:text-9xl font-extrabold tracking-tightest leading-[0.8]">
                 anG<span
-                    class="text-street-text text-xl align-top ml-2 tracking-normal font-medium max-w-[100px] inline-block mt-4 leading-tight">VOL.01<br>2025年<br>5月</span>
+                    class="text-street-text text-xl align-top ml-2 tracking-normal font-medium max-w-[100px] inline-block mt-4 leading-tight">VOL.01<br>MAY
+                    2025</span>
             </h1>
         </div>
         <div class="hidden md:block text-right">
@@ -156,8 +147,9 @@
             <!-- Caption -->
             <div
                 class="absolute bottom-0 left-0 bg-white border border-street-text p-4 z-20 max-w-xs shadow-[4px_4px_0_#222]">
-                <p class="font-bold text-lg uppercase mb-1">Look 01: カジュアル</p>
-                <p class="text-xs text-gray-500">「快適だけどオシャレ。<br>歌の練習やクレープを食べに行くのにぴったり！」</p>
+                <p class="font-bold text-lg uppercase mb-1">Look 01: Casual</p>
+                <p class="text-xs text-gray-500">"Comfortable yet stylish. Perfect for singing practice or grabbing
+                    crepes!"</p>
             </div>
         </div>
 
@@ -174,93 +166,58 @@
                 </h2>
                 <div class="w-24 h-2 bg-street-text mb-6"></div>
                 <p class="text-xl md:text-2xl font-light leading-relaxed max-w-lg">
-                    <span class="font-bold bg-street-accent1 px-1">anG（えんじ）</span>を紹介します。
-                    配信をライブ会場に変えるColorSingの新星。
-                    激辛好きで、甘党中毒。
+                    Meet <span class="font-bold bg-street-accent1 px-1">anG (Angie)</span>.
+                    The rising star from ColorSing who turns every stream into a concert.
+                    Spicy food lover. Sweet tooth addict.
                 </p>
             </div>
 
             <!-- Profile Grid -->
             <div class="grid grid-cols-2 gap-4 mb-12">
                 <div class="border-t border-street-text pt-2">
-                    <p class="text-xs text-gray-400 uppercase">デビュー</p>
-                    <p class="font-bold text-xl">2025年5月11日</p>
+                    <p class="text-xs text-gray-400 uppercase">Debut</p>
+                    <p class="font-bold text-xl">11 MAY 2025</p>
                 </div>
                 <div class="border-t border-street-text pt-2">
-                    <p class="text-xs text-gray-400 uppercase">身長</p>
+                    <p class="text-xs text-gray-400 uppercase">Height</p>
                     <p class="font-bold text-xl">164 CM</p>
                 </div>
                 <div class="border-t border-street-text pt-2">
-                    <p class="text-xs text-gray-400 uppercase">タグ</p>
+                    <p class="text-xs text-gray-400 uppercase">Tags</p>
                     <p class="font-bold text-sm mt-1">#ねぇんじぇ #えんじりえ</p>
                 </div>
                 <div class="border-t border-street-text pt-2">
-                    <p class="text-xs text-gray-400 uppercase">ファンネーム</p>
+                    <p class="text-xs text-gray-400 uppercase">Fan Name</p>
                     <p class="font-bold text-sm mt-1">#anGｪﾙｽ໒꒱</p>
                 </div>
             </div>
 
-            <!-- V4 Fusion: Daily Routine (Adapted from V3 Daily Specials) -->
-            <!-- Using V1 styling (Bold fonts, street colors) with V3 layout (List with dots) -->
-            <div class="space-y-6 mt-4">
-
-                <h3
-                    class="font-bold text-lg border-b-2 border-street-text pb-2 mb-4 inline-block transform -rotate-1 bg-street-accent1 px-2 text-white shadow-[2px_2px_0_#222]">
-                    DAILY ROUTINE <span class="text-xs bg-white text-street-text px-1 ml-2 font-mono">スケジュール</span>
-                </h3>
-
-                <ul class="space-y-6 font-sans">
-                    <!-- Item 1 -->
-                    <li class="group cursor-pointer">
-                        <div class="flex items-baseline justify-between mb-1">
-                            <span
-                                class="font-bold text-2xl md:text-3xl group-hover:text-street-accent1 transition-colors flex items-center">
-                                <i class="fa-brands fa-youtube mr-3 text-red-500 text-xl md:text-2xl"></i> YouTube
-                            </span>
-                            <span class="menu-item-dot"></span>
-                            <span
-                                class="font-bold font-mono text-lg md:text-xl transform rotate-3 bg-street-text text-white px-2 shadow-[2px_2px_0_rgba(0,0,0,0.2)]">FREE</span>
-                        </div>
-                        <p
-                            class="text-sm font-bold text-gray-400 pl-10 md:pl-12 tracking-widest uppercase border-l-4 border-street-accent1 pl-2">
-                            オリジナル & カバー曲
-                        </p>
-                    </li>
-
-                    <!-- Item 2 -->
-                    <li class="group cursor-pointer">
-                        <div class="flex items-baseline justify-between mb-1">
-                            <span
-                                class="font-bold text-2xl md:text-3xl group-hover:text-blue-400 transition-colors flex items-center">
-                                <i class="fa-brands fa-twitter mr-3 text-blue-400 text-xl md:text-2xl"></i> Twitter
-                            </span>
-                            <span class="menu-item-dot"></span>
-                            <span
-                                class="font-bold font-mono text-lg md:text-xl transform -rotate-2 bg-street-text text-white px-2 shadow-[2px_2px_0_rgba(0,0,0,0.2)]">DAILY</span>
-                        </div>
-                        <p
-                            class="text-sm font-bold text-gray-400 pl-10 md:pl-12 tracking-widest uppercase border-l-4 border-street-accent2 pl-2">
-                            スケジュール投稿 & 独り言
-                        </p>
-                    </li>
-
-                    <!-- Item 3 -->
-                    <li class="group cursor-pointer">
-                        <div class="flex items-baseline justify-between mb-1">
-                            <span
-                                class="font-bold text-2xl md:text-3xl group-hover:text-street-accent2 transition-colors flex items-center">
-                                <i class="fa-solid fa-music mr-3 text-green-400 text-xl md:text-2xl"></i> ColorSing
-                            </span>
-                            <span class="menu-item-dot"></span>
-                            <span
-                                class="font-bold font-mono text-lg md:text-xl transform rotate-1 bg-street-text text-white px-2 shadow-[2px_2px_0_rgba(0,0,0,0.2)]">VIP</span>
-                        </div>
-                        <p
-                            class="text-sm font-bold text-gray-400 pl-10 md:pl-12 tracking-widest uppercase border-l-4 border-street-accent3 pl-2">
-                            歌枠 & イベント
-                        </p>
-                    </li>
-                </ul>
+            <!-- Social Links (Magazine Cover Lines) -->
+            <div class="space-y-4">
+                <a href="#" class="block group">
+                    <div
+                        class="flex items-center justify-between border-b border-gray-200 pb-2 group-hover:pl-4 transition-all">
+                        <span
+                            class="font-bold text-3xl md:text-4xl text-street-text group-hover:text-street-accent1">YOUTUBE</span>
+                        <i class="fa-solid fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform"></i>
+                    </div>
+                </a>
+                <a href="#" class="block group">
+                    <div
+                        class="flex items-center justify-between border-b border-gray-200 pb-2 group-hover:pl-4 transition-all">
+                        <span
+                            class="font-bold text-3xl md:text-4xl text-street-text group-hover:text-blue-400">TWITTER</span>
+                        <i class="fa-solid fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform"></i>
+                    </div>
+                </a>
+                <a href="#" class="block group">
+                    <div
+                        class="flex items-center justify-between border-b border-gray-200 pb-2 group-hover:pl-4 transition-all">
+                        <span
+                            class="font-bold text-3xl md:text-4xl text-street-text group-hover:text-street-accent2">COLORSING</span>
+                        <i class="fa-solid fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform"></i>
+                    </div>
+                </a>
             </div>
 
         </div>
