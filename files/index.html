@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>File Manager</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #0f1117;
+      color: #e0e0e0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── LOGIN ── */
+    #login-screen {
+      background: #1a1d27;
+      border: 1px solid #2e3147;
+      border-radius: 12px;
+      padding: 40px 48px;
+      width: 360px;
+      text-align: center;
+    }
+    #login-screen h2 { font-size: 1.4rem; margin-bottom: 6px; color: #fff; }
+    #login-screen p  { font-size: 0.85rem; color: #888; margin-bottom: 28px; }
+
+    .input-wrap {
+      position: relative;
+      margin-bottom: 16px;
+    }
+    .input-wrap input {
+      width: 100%;
+      padding: 11px 42px 11px 14px;
+      background: #0f1117;
+      border: 1px solid #2e3147;
+      border-radius: 8px;
+      color: #e0e0e0;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color .2s;
+    }
+    .input-wrap input:focus { border-color: #5b6af0; }
+    .toggle-pw {
+      position: absolute; right: 12px; top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer; color: #666; font-size: 1rem;
+      background: none; border: none;
+    }
+
+    #login-btn {
+      width: 100%;
+      padding: 11px;
+      background: #5b6af0;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    #login-btn:hover { background: #4a58d8; }
+
+    #login-error {
+      margin-top: 12px;
+      font-size: 0.82rem;
+      color: #f07070;
+      display: none;
+    }
+
+    /* ── FILE MANAGER ── */
+    #app {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #1a1d27;
+      border-bottom: 1px solid #2e3147;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    header .brand { font-size: 1rem; font-weight: 600; color: #fff; }
+    header .brand span { color: #5b6af0; }
+
+    #logout-btn {
+      background: none;
+      border: 1px solid #2e3147;
+      color: #aaa;
+      padding: 6px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.82rem;
+      transition: all .2s;
+    }
+    #logout-btn:hover { border-color: #f07070; color: #f07070; }
+
+    .toolbar {
+      background: #13151f;
+      border-bottom: 1px solid #2e3147;
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .nav-btn {
+      background: #1a1d27;
+      border: 1px solid #2e3147;
+      color: #ccc;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.82rem;
+      transition: all .2s;
+    }
+    .nav-btn:hover:not(:disabled) { background: #2a2d3e; color: #fff; }
+    .nav-btn:disabled { opacity: 0.35; cursor: default; }
+
+    #breadcrumb {
+      flex: 1;
+      background: #0f1117;
+      border: 1px solid #2e3147;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 0.82rem;
+      color: #888;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    #breadcrumb span { color: #5b6af0; cursor: pointer; }
+    #breadcrumb span:hover { text-decoration: underline; }
+
+    .view-toggle button {
+      background: #1a1d27;
+      border: 1px solid #2e3147;
+      color: #888;
+      padding: 6px 10px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all .2s;
+    }
+    .view-toggle button:first-child { border-radius: 6px 0 0 6px; }
+    .view-toggle button:last-child  { border-radius: 0 6px 6px 0; border-left: none; }
+    .view-toggle button.active { background: #5b6af0; color: #fff; border-color: #5b6af0; }
+
+    #search-box {
+      background: #0f1117;
+      border: 1px solid #2e3147;
+      border-radius: 6px;
+      padding: 6px 12px;
+      color: #e0e0e0;
+      font-size: 0.82rem;
+      outline: none;
+      width: 180px;
+      transition: border-color .2s;
+    }
+    #search-box:focus { border-color: #5b6af0; }
+
+    /* ── CONTENT ── */
+    #content {
+      flex: 1;
+      padding: 24px;
+      overflow-y: auto;
+    }
+
+    /* Grid view */
+    #file-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 14px;
+    }
+
+    .file-item {
+      background: #1a1d27;
+      border: 1px solid #2e3147;
+      border-radius: 10px;
+      padding: 16px 12px 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: all .2s;
+      user-select: none;
+    }
+    .file-item:hover { background: #22263a; border-color: #5b6af0; transform: translateY(-2px); }
+
+    .file-icon { font-size: 2.4rem; margin-bottom: 8px; display: block; }
+    .file-name {
+      font-size: 0.75rem;
+      color: #ccc;
+      word-break: break-word;
+      line-height: 1.3;
+    }
+    .file-type-badge {
+      display: inline-block;
+      margin-top: 6px;
+      font-size: 0.65rem;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: #2e3147;
+      color: #888;
+      text-transform: uppercase;
+    }
+
+    /* List view */
+    #file-list { display: none; }
+    #file-list table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+    #file-list th {
+      text-align: left;
+      padding: 10px 14px;
+      background: #1a1d27;
+      color: #888;
+      font-weight: 500;
+      border-bottom: 1px solid #2e3147;
+    }
+    #file-list td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #1e2130;
+      color: #ccc;
+      cursor: pointer;
+    }
+    #file-list tr:hover td { background: #1e2235; }
+    #file-list .row-icon { font-size: 1.1rem; margin-right: 8px; }
+
+    #empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: #555;
+      display: none;
+    }
+    #empty-state .big { font-size: 3rem; margin-bottom: 12px; }
+
+    /* ── THUMBNAIL ── */
+    .file-thumb {
+      width: 100%;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 8px;
+      background: #0f1117;
+      display: block;
+    }
+    .file-item.has-thumb { padding: 10px 10px 12px; }
+    .file-item.has-thumb .file-icon { display: none; }
+
+    .file-item { position: relative; }
+    .dl-btn {
+      position: absolute;
+      top: 6px; right: 6px;
+      background: rgba(15,17,23,.75);
+      border: 1px solid #2e3147;
+      color: #aaa;
+      border-radius: 5px;
+      padding: 2px 6px;
+      font-size: 0.7rem;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity .15s, color .15s;
+      z-index: 2;
+    }
+    .file-item:hover .dl-btn { opacity: 1; }
+    .dl-btn:hover { color: #5b6af0; border-color: #5b6af0; }
+
+    .row-dl {
+      background: none;
+      border: 1px solid #2e3147;
+      color: #666;
+      border-radius: 5px;
+      padding: 3px 8px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all .15s;
+    }
+    .row-dl:hover { color: #5b6af0; border-color: #5b6af0; }
+
+    /* ── PREVIEW MODAL ── */
+    #preview-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.85);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 16px;
+      backdrop-filter: blur(4px);
+    }
+    #preview-modal.open { display: flex; }
+
+    #preview-modal img {
+      max-width: 90vw;
+      max-height: 80vh;
+      border-radius: 10px;
+      box-shadow: 0 8px 40px rgba(0,0,0,.6);
+      object-fit: contain;
+    }
+
+    #preview-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #1a1d27;
+      border: 1px solid #2e3147;
+      border-radius: 10px;
+      padding: 10px 18px;
+    }
+    #preview-name { font-size: 0.88rem; color: #ccc; }
+    #preview-open {
+      background: #5b6af0;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 6px 14px;
+      font-size: 0.82rem;
+      cursor: pointer;
+    }
+    #preview-open:hover { background: #4a58d8; }
+    #preview-dl {
+      background: none;
+      border: 1px solid #2e3147;
+      color: #ccc;
+      border-radius: 6px;
+      padding: 6px 14px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    #preview-dl:hover { border-color: #5b6af0; color: #5b6af0; }
+    #preview-close {
+      background: none;
+      border: 1px solid #2e3147;
+      color: #aaa;
+      border-radius: 6px;
+      padding: 6px 14px;
+      font-size: 0.82rem;
+      cursor: pointer;
+    }
+    #preview-close:hover { border-color: #f07070; color: #f07070; }
+
+    #preview-nav {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 16px;
+      pointer-events: none;
+    }
+    .pnav-btn {
+      pointer-events: all;
+      background: rgba(26,29,39,.85);
+      border: 1px solid #2e3147;
+      color: #ccc;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .pnav-btn:hover { background: #5b6af0; color: #fff; border-color: #5b6af0; }
+
+    /* status bar */
+    #statusbar {
+      background: #1a1d27;
+      border-top: 1px solid #2e3147;
+      padding: 6px 24px;
+      font-size: 0.75rem;
+      color: #555;
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <h2>🔐 File Manager</h2>
+  <p>Masukkan kunci akses untuk melanjutkan</p>
+  <div class="input-wrap">
+    <input type="password" id="pw-input" placeholder="Kunci akses..." />
+    <button class="toggle-pw" onclick="togglePw()" title="Tampilkan/sembunyikan">👁</button>
+  </div>
+  <button id="login-btn" onclick="doLogin()">Masuk</button>
+  <div id="login-error">Kunci salah. Coba lagi.</div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <header>
+    <div class="brand"><span>📁</span> File Manager</div>
+    <button id="logout-btn" onclick="doLogout()">Keluar</button>
+  </header>
+
+  <div class="toolbar">
+    <button class="nav-btn" id="btn-back" onclick="goBack()" disabled>← Back</button>
+    <button class="nav-btn" id="btn-up"   onclick="goUp()"   disabled>↑ Up</button>
+    <div id="breadcrumb">~</div>
+    <div class="view-toggle">
+      <button id="btn-grid" class="active" onclick="setView('grid')" title="Grid">⊞</button>
+      <button id="btn-list"               onclick="setView('list')" title="List">☰</button>
+    </div>
+    <input id="search-box" type="text" placeholder="Cari file..." oninput="renderCurrent()" />
+  </div>
+
+  <div id="content">
+    <div id="file-grid"></div>
+    <div id="file-list"><table><thead><tr>
+      <th>Nama</th><th>Tipe</th><th></th>
+    </tr></thead><tbody id="list-body"></tbody></table></div>
+    <div id="empty-state"><div class="big">🗂️</div>Folder ini kosong</div>
+  </div>
+
+  <div id="statusbar">
+    <span id="stat-path">/</span>
+    <span id="stat-count"></span>
+  </div>
+</div>
+
+<!-- PREVIEW MODAL -->
+<div id="preview-modal" onclick="closePreview(event)">
+  <div id="preview-nav">
+    <button class="pnav-btn" onclick="previewNav(-1); event.stopPropagation()">‹</button>
+    <button class="pnav-btn" onclick="previewNav(1);  event.stopPropagation()">›</button>
+  </div>
+  <img id="preview-img" src="" alt="" />
+  <div id="preview-bar" onclick="event.stopPropagation()">
+    <span id="preview-name"></span>
+    <button id="preview-open" onclick="window.open(previewList[previewIdx].path,'_blank')">Buka asli ↗</button>
+    <button id="preview-dl"   onclick="downloadFile(previewList[previewIdx].path, previewList[previewIdx].name)">⬇ Download</button>
+    <button id="preview-close" onclick="closePreview()">✕ Tutup</button>
+  </div>
+</div>
+
+<script>
+  // ── CONFIG ──────────────────────────────────────────────────────────────
+  const HASH = "9e864ba77d5cd0f93c1da1db84cc42db3c79589ca0e096dab4175ad61327bb33";
+  const SESSION_KEY = "fm_auth";
+
+  // ── FILE TREE ────────────────────────────────────────────────────────────
+  const TREE = {
+    "~": {
+      type: "dir",
+      children: {
+        "assets": {
+          type: "dir",
+          children: {
+            "images": {
+              type: "dir",
+              children: {
+                "mascott": {
+                  type: "dir",
+                  children: {
+                    "ventyra": {
+                      type: "dir",
+                      children: {
+                        "1768227877.png":           { type: "file", path: "assets/images/mascott/ventyra/1768227877.png" },
+                        "1768227927.png":           { type: "file", path: "assets/images/mascott/ventyra/1768227927.png" },
+                        "1768228033.png":           { type: "file", path: "assets/images/mascott/ventyra/1768228033.png" },
+                        "1768228069.png":           { type: "file", path: "assets/images/mascott/ventyra/1768228069.png" },
+                        "Bengong_Tomori.png":       { type: "file", path: "assets/images/mascott/ventyra/Bengong_Tomori.png" },
+                        "Confused_Tomori.png":      { type: "file", path: "assets/images/mascott/ventyra/Confused_Tomori.png" },
+                        "Failed_Tomori.png":        { type: "file", path: "assets/images/mascott/ventyra/Failed_Tomori.png" },
+                        "Giving_a_Tips_Tomori.png": { type: "file", path: "assets/images/mascott/ventyra/Giving_a_Tips_Tomori.png" },
+                        "handling_a_laptop_tomori.png": { type: "file", path: "assets/images/mascott/ventyra/handling_a_laptop_tomori.png" },
+                        "Happy_Tomori.png":         { type: "file", path: "assets/images/mascott/ventyra/Happy_Tomori.png" },
+                        "misaka_on_the_laptop.png": { type: "file", path: "assets/images/mascott/ventyra/misaka_on_the_laptop.png" },
+                        "Panic_Tomori.png":         { type: "file", path: "assets/images/mascott/ventyra/Panic_Tomori.png" },
+                        "Sad_Tomori.png":           { type: "file", path: "assets/images/mascott/ventyra/Sad_Tomori.png" },
+                        "tyra_normal_chibi.png":    { type: "file", path: "assets/images/mascott/ventyra/tyra_normal_chibi.png" },
+                        "tyra_normal.png":          { type: "file", path: "assets/images/mascott/ventyra/tyra_normal.png" },
+                        "Tyra_Profile_Photo.png":   { type: "file", path: "assets/images/mascott/ventyra/Tyra_Profile_Photo.png" },
+                      }
+                    },
+                    "cute_tomori.png":            { type: "file", path: "assets/images/mascott/cute_tomori.png" },
+                    "failed_processing_tomori.png":{ type: "file", path: "assets/images/mascott/failed_processing_tomori.png" },
+                    "happy_tomori.png":            { type: "file", path: "assets/images/mascott/happy_tomori.png" },
+                    "misaka_natal.png":            { type: "file", path: "assets/images/mascott/misaka_natal.png" },
+                    "normal_tomori.png":           { type: "file", path: "assets/images/mascott/normal_tomori.png" },
+                    "panic_tomori.png":            { type: "file", path: "assets/images/mascott/panic_tomori.png" },
+                    "processing_data_tomori.png":  { type: "file", path: "assets/images/mascott/processing_data_tomori.png" },
+                    "promotion_tomori.png":        { type: "file", path: "assets/images/mascott/promotion_tomori.png" },
+                    "thinking_tomori.png":         { type: "file", path: "assets/images/mascott/thinking_tomori.png" },
+                  }
+                },
+                "others": {
+                  type: "dir",
+                  children: {
+                    "christmas_sale": {
+                      type: "dir",
+                      children: {
+                        "sale.png": { type: "file", path: "assets/images/others/christmas_sale/sale.png" },
+                      }
+                    },
+                    "ft_blue.png":              { type: "file", path: "assets/images/others/ft_blue.png" },
+                    "ft_white.png":             { type: "file", path: "assets/images/others/ft_white.png" },
+                    "just_logo.png":            { type: "file", path: "assets/images/others/just_logo.png" },
+                    "logo_ventyra.png":         { type: "file", path: "assets/images/others/logo_ventyra.png" },
+                    "logo_ventyra_white.png":   { type: "file", path: "assets/images/others/logo_ventyra_white.png" },
+                    "ventyra_labs_blue.png":    { type: "file", path: "assets/images/others/ventyra_labs_blue.png" },
+                    "ventyra_labs_white.png":   { type: "file", path: "assets/images/others/ventyra_labs_white.png" },
+                    "ventyra_logo_with_bg.png": { type: "file", path: "assets/images/others/ventyra_logo_with_bg.png" },
+                  }
+                }
+              }
+            }
+          }
+        },
+        "class": {
+          type: "dir",
+          children: {
+            "pdf": {
+              type: "dir",
+              children: {
+                "Theory_1_-_Folder_Structure.pdf": { type: "file", path: "class/pdf/Theory_1_-_Folder_Structure.pdf" }
+              }
+            },
+            "pptx": {
+              type: "dir",
+              children: {
+                "meet1.pptx": { type: "file", path: "class/pptx/meet1.pptx" }
+              }
+            }
+          }
+        },
+        "list_tampilan.csv":     { type: "file", path: "list_tampilan.csv" },
+        "lyrics.png":            { type: "file", path: "lyrics.png" },
+        "lyrics_source_code.zip":{ type: "file", path: "lyrics_source_code.zip" },
+      }
+    }
+  };
+
+  // ── AUTH ─────────────────────────────────────────────────────────────────
+  async function sha256(str) {
+    const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,"0")).join("");
+  }
+
+  async function doLogin() {
+    const val = document.getElementById("pw-input").value;
+    const h   = await sha256(val);
+    if (h === HASH) {
+      sessionStorage.setItem(SESSION_KEY, "1");
+      showApp();
+    } else {
+      const err = document.getElementById("login-error");
+      err.style.display = "block";
+      setTimeout(() => err.style.display = "none", 3000);
+    }
+  }
+
+  function doLogout() {
+    sessionStorage.removeItem(SESSION_KEY);
+    document.getElementById("app").style.display = "none";
+    document.getElementById("login-screen").style.display = "block";
+    document.getElementById("pw-input").value = "";
+    document.body.style.alignItems = "center";
+  }
+
+  function togglePw() {
+    const inp = document.getElementById("pw-input");
+    inp.type = inp.type === "password" ? "text" : "password";
+  }
+
+  document.getElementById("pw-input").addEventListener("keydown", e => {
+    if (e.key === "Enter") doLogin();
+  });
+
+  // ── NAVIGATION ───────────────────────────────────────────────────────────
+  let currentPath = ["~"];
+  let history     = [];
+  let viewMode    = "grid";
+
+  function getNode(pathArr) {
+    let node = TREE["~"];
+    for (let i = 1; i < pathArr.length; i++) {
+      node = node.children[pathArr[i]];
+      if (!node) return null;
+    }
+    return node;
+  }
+
+  function navigate(name) {
+    history.push([...currentPath]);
+    currentPath.push(name);
+    renderCurrent();
+  }
+
+  function goBack() {
+    if (!history.length) return;
+    currentPath = history.pop();
+    renderCurrent();
+  }
+
+  function goUp() {
+    if (currentPath.length <= 1) return;
+    history.push([...currentPath]);
+    currentPath.pop();
+    renderCurrent();
+  }
+
+  function goTo(idx) {
+    history.push([...currentPath]);
+    currentPath = currentPath.slice(0, idx + 1);
+    renderCurrent();
+  }
+
+  // ── ICONS ────────────────────────────────────────────────────────────────
+  const IMAGE_EXTS = new Set(["png","jpg","jpeg","webp","gif","svg","bmp"]);
+
+  function isImage(name) {
+    return IMAGE_EXTS.has(name.split(".").pop().toLowerCase());
+  }
+
+  function getIcon(name, type) {
+    if (type === "dir") return "📁";
+    const ext = name.split(".").pop().toLowerCase();
+    const map = {
+      png:"🖼️", jpg:"🖼️", jpeg:"🖼️", webp:"🖼️", gif:"🖼️", svg:"🖼️",
+      pdf:"📄", pptx:"📊", ppt:"📊", xlsx:"📗", xls:"📗", docx:"📝", doc:"📝",
+      zip:"🗜️", rar:"🗜️", "7z":"🗜️",
+      mp4:"🎬", mkv:"🎬", avi:"🎬",
+      mp3:"🎵", wav:"🎵",
+      html:"🌐", css:"🎨", js:"⚙️", ts:"⚙️", php:"🐘",
+      csv:"📋", txt:"📃", json:"📋", xml:"📋",
+    };
+    return map[ext] || "📎";
+  }
+
+  function getExt(name) {
+    const parts = name.split(".");
+    return parts.length > 1 ? parts.pop().toUpperCase() : "—";
+  }
+
+  // ── RENDER ───────────────────────────────────────────────────────────────
+  function renderCurrent() {
+    const node   = getNode(currentPath);
+    const query  = document.getElementById("search-box").value.toLowerCase();
+    const grid   = document.getElementById("file-grid");
+    const list   = document.getElementById("list-body");
+    const empty  = document.getElementById("empty-state");
+
+    grid.innerHTML = "";
+    list.innerHTML = "";
+
+    // breadcrumb
+    const bc = document.getElementById("breadcrumb");
+    bc.innerHTML = currentPath.map((seg, i) =>
+      `<span onclick="goTo(${i})">${seg}</span>`
+    ).join(" / ");
+
+    // nav buttons
+    document.getElementById("btn-back").disabled = history.length === 0;
+    document.getElementById("btn-up").disabled   = currentPath.length <= 1;
+
+    if (!node || node.type !== "dir") return;
+
+    let entries = Object.entries(node.children);
+
+    // filter
+    if (query) entries = entries.filter(([n]) => n.toLowerCase().includes(query));
+
+    // sort: dirs first
+    entries.sort(([an, av], [bn, bv]) => {
+      if (av.type === bv.type) return an.localeCompare(bn);
+      return av.type === "dir" ? -1 : 1;
+    });
+
+    if (entries.length === 0) {
+      empty.style.display = "block";
+      document.getElementById("stat-count").textContent = "0 item";
+    } else {
+      empty.style.display = "none";
+      document.getElementById("stat-count").textContent = `${entries.length} item`;
+    }
+
+    document.getElementById("stat-path").textContent = currentPath.join(" / ");
+
+    entries.forEach(([name, node]) => {
+      if (viewMode === "grid") {
+        const el = document.createElement("div");
+        el.className = "file-item";
+        const img = (node.type === "file" && isImage(name))
+          ? `<img class="file-thumb" src="${node.path}" alt="${name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" /><span class="file-icon" style="display:none">${getIcon(name, node.type)}</span>`
+          : `<span class="file-icon">${getIcon(name, node.type)}</span>`;
+        if (node.type === "file" && isImage(name)) el.classList.add("has-thumb");
+        el.innerHTML = `
+          ${img}
+          <div class="file-name">${name}</div>
+          <span class="file-type-badge">${node.type === "dir" ? "folder" : getExt(name)}</span>
+          ${node.type === "file" ? `<button class="dl-btn" title="Download">⬇</button>` : ""}
+        `;
+        el.onclick = () => node.type === "dir" ? navigate(name) : openFile(node.path, name);
+        if (node.type === "file") {
+          el.querySelector(".dl-btn").onclick = e => {
+            e.stopPropagation();
+            downloadFile(node.path, name);
+          };
+        }
+        grid.appendChild(el);
+      } else {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td><span class="row-icon">${getIcon(name, node.type)}</span>${name}</td>
+          <td>${node.type === "dir" ? "Folder" : getExt(name)}</td>
+          <td>${node.type === "file" ? `<button class="row-dl">⬇ Download</button>` : ""}</td>
+        `;
+        tr.onclick = () => node.type === "dir" ? navigate(name) : openFile(node.path, name);
+        if (node.type === "file") {
+          tr.querySelector(".row-dl").onclick = e => {
+            e.stopPropagation();
+            downloadFile(node.path, name);
+          };
+        }
+        list.appendChild(tr);
+      }
+    });
+  }
+
+  // ── DOWNLOAD ─────────────────────────────────────────────────────────────
+  function downloadFile(path, name) {
+    const a = document.createElement("a");
+    a.href     = path;
+    a.download = name;
+    a.click();
+  }
+
+  // ── PREVIEW ──────────────────────────────────────────────────────────────
+  let previewList = [];
+  let previewIdx  = 0;
+
+  function openFile(path, name) {
+    if (isImage(name)) {
+      // kumpulkan semua gambar di folder ini untuk navigasi
+      const node = getNode(currentPath);
+      previewList = Object.entries(node.children)
+        .filter(([n, v]) => v.type === "file" && isImage(n))
+        .map(([n, v]) => ({ name: n, path: v.path }));
+      previewIdx = previewList.findIndex(f => f.path === path);
+      showPreview();
+    } else {
+      window.open(path, "_blank");
+    }
+  }
+
+  function showPreview() {
+    const f = previewList[previewIdx];
+    document.getElementById("preview-img").src  = f.path;
+    document.getElementById("preview-name").textContent = f.name;
+    document.getElementById("preview-modal").classList.add("open");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closePreview(e) {
+    if (e && e.target !== document.getElementById("preview-modal")) return;
+    document.getElementById("preview-modal").classList.remove("open");
+    document.getElementById("preview-img").src = "";
+    document.body.style.overflow = "";
+  }
+
+  function previewNav(dir) {
+    previewIdx = (previewIdx + dir + previewList.length) % previewList.length;
+    showPreview();
+  }
+
+  document.addEventListener("keydown", e => {
+    const modal = document.getElementById("preview-modal");
+    if (!modal.classList.contains("open")) return;
+    if (e.key === "Escape")      { closePreview(); }
+    if (e.key === "ArrowRight")  { previewNav(1); }
+    if (e.key === "ArrowLeft")   { previewNav(-1); }
+  });
+
+  // ── VIEW TOGGLE ──────────────────────────────────────────────────────────
+  function setView(mode) {
+    viewMode = mode;
+    document.getElementById("file-grid").style.display = mode === "grid" ? "grid" : "none";
+    document.getElementById("file-list").style.display = mode === "list" ? "block" : "none";
+    document.getElementById("btn-grid").classList.toggle("active", mode === "grid");
+    document.getElementById("btn-list").classList.toggle("active", mode === "list");
+    renderCurrent();
+  }
+
+  // ── INIT ─────────────────────────────────────────────────────────────────
+  function showApp() {
+    document.getElementById("login-screen").style.display = "none";
+    document.getElementById("app").style.display = "flex";
+    document.body.style.alignItems = "flex-start";
+    renderCurrent();
+  }
+
+  if (sessionStorage.getItem(SESSION_KEY) === "1") {
+    showApp();
+  }
+</script>
+</body>
+</html>
