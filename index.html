@@ -1,1080 +1,1533 @@
 <!DOCTYPE html>
-<html lang="en" class="light">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- SEO Meta Tags -->
-    <title>Fazal Said | Jasa Website & Backend Developer Laravel</title>
-    <meta name="title" content="Fazal Said | Jasa Website & Backend Developer Laravel">
-    <meta name="description"
-        content="Butuh jasa website? Fazal Said melayani jasa bikin web murah, profesional, dan terpercaya. Spesialis jasa web jogja dan backend developer Laravel untuk berbagai aplikasi Anda.">
-    <meta name="keywords"
-        content="jasa website, jasa bikin web murah, jasa web jogja, jasa pembuatan website, web developer laravel, programmer php jogja, bikin website murah profesional, jasa web design, web custom laravel, jasa web perusahaan, jasa web toko online">
+    <title>Fazal Said | Web Developer & Laravel Specialist — Yogyakarta</title>
+    <meta name="title" content="Fazal Said | Web Developer & Laravel Specialist">
+    <meta name="description" content="Fazal Said — Web Developer specializing in Laravel & PHP. 9+ years crafting scalable web applications. Based in Yogyakarta, Indonesia. Available for freelance projects.">
+    <meta name="keywords" content="jasa website, jasa bikin web murah, jasa web jogja, jasa pembuatan website, web developer laravel, programmer php jogja, bikin website murah profesional, jasa web design, web custom laravel, jasa web perusahaan">
     <meta name="author" content="Fazal Said">
     <meta name="robots" content="index, follow">
     <meta name="language" content="Indonesian">
-    <meta name="google-site-verification" content="kR5Kh7CEdZZP088S_FAQr7GYVFxZnaiRy-w0HmXdS5E" />
+    <meta name="google-site-verification" content="kR5Kh7CEdZZP088S_FAQr7GYVFxZnaiRy-w0HmXdS5E">
     <link rel="canonical" href="https://fazallsaid.github.io/">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://fazallsaid.github.io/">
-    <meta property="og:title" content="Fazal Said | Jasa Website & Backend Developer Laravel">
-    <meta property="og:description"
-        content="Mencari jasa bikin web murah dan berkualitas? Kami melayani jasa web jogja dan sekitarnya. Buat website custom: company profile, e-commerce, dan web app berbasis Laravel.">
+    <meta property="og:title" content="Fazal Said | Web Developer & Laravel Specialist">
+    <meta property="og:description" content="Fazal Said — Web Developer specializing in Laravel & PHP. Crafting scalable, timeless web applications.">
     <meta property="og:image" content="https://fazallsaid.github.io/logo/fazal.webp">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://fazallsaid.github.io/">
-    <meta property="twitter:title" content="Fazal Said | Jasa Website & Backend Developer Laravel">
-    <meta property="twitter:description"
-        content="Butuh website untuk bisnis? Fazal Said melayani jasa bikin web murah, profesional, dan terpercaya. Spesialis jasa web jogja dan Laravel developer.">
+    <meta property="twitter:title" content="Fazal Said | Web Developer & Laravel Specialist">
+    <meta property="twitter:description" content="Fazal Said — Web Developer specializing in Laravel & PHP. Crafting scalable, timeless web applications.">
     <meta property="twitter:image" content="https://fazallsaid.github.io/logo/fazal.webp">
 
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
 
+    <!-- Anime.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        primary: '#FF6B6B',
-                        secondary: '#4ECDC4',
-                        accent: '#45B7D1',
-                        dark: '#2C3E50',
-                        light: '#F7F9FC'
+                        gold: '#D4A843',
+                        'gold-light': '#E8C678',
+                        'off-white': '#F0EBE3',
+                        'warm-gray': '#9B9590',
+                        'dark-bg': '#0a0a0a',
+                        'dark-card': '#141414',
+                        'dark-surface': '#1a1a1a',
+                        'muted': '#6B6B6B',
+                    },
+                    fontFamily: {
+                        'display': ['Bebas Neue', 'sans-serif'],
+                        'sans': ['Inter', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
+
     <style>
-        @keyframes float {
-            0% {
-                transform: translateY(0);
-            }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
 
-            50% {
-                transform: translateY(-5px);
-            }
-
-            100% {
-                transform: translateY(0);
-            }
+        body {
+            background: #0a0a0a;
+            color: #F0EBE3;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
         }
 
-        .gradient-text {
-            background: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 50%, #45B7D1 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-size: 200% 200%;
-            animation: gradient 8s ease infinite;
+        /* Selection */
+        ::selection { background: #D4A843; color: #0a0a0a; }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 3px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #D4A843; border-radius: 2px; }
+
+        /* ===================== NAVBAR ===================== */
+        #navbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 1.75rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.4s ease;
         }
 
-        @keyframes gradient {
-            0% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-
-            100% {
-                background-position: 0% 50%;
-            }
+        #navbar.scrolled {
+            background: rgba(10, 10, 10, 0.96);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 1rem 3rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
-        .gradient-border {
-            position: relative;
-            background: linear-gradient(135deg, #FF6B6B, #4ECDC4, #45B7D1);
-            padding: 2px;
-            border-radius: 1.5rem;
+        .nav-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.9rem;
+            color: #D4A843;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            line-height: 1;
         }
 
-        .gradient-border::before {
-            content: '';
-            position: absolute;
+        .nav-links { display: flex; align-items: center; gap: 2.5rem; }
+
+        .nav-links a {
+            color: #6B6B6B;
+            text-decoration: none;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            transition: color 0.25s;
+        }
+
+        .nav-links a:hover { color: #F0EBE3; }
+
+        .nav-cta {
+            background: transparent;
+            border: 1px solid rgba(212, 168, 67, 0.6);
+            color: #D4A843;
+            padding: 0.55rem 1.4rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .nav-cta:hover { background: #D4A843; color: #0a0a0a; }
+
+        /* Mobile menu overlay */
+        #mobile-menu-overlay {
+            position: fixed;
             inset: 0;
-            background: linear-gradient(135deg, #FF6B6B, #4ECDC4, #45B7D1);
-            border-radius: 1.5rem;
-            z-index: -1;
-            opacity: 0.5;
-            filter: blur(10px);
+            background: #0a0a0a;
+            z-index: 200;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 3rem;
+            transform: translateX(100%);
+            transition: transform 0.45s cubic-bezier(0.77, 0, 0.175, 1);
         }
 
-        .project-card:hover .project-overlay {
-            transform: translateY(0);
-        }
+        #mobile-menu-overlay.active { transform: translateX(0); }
 
-        .project-overlay {
-            transition: transform 0.3s ease;
-            transform: translateY(100%);
-        }
-
-        .font-fira-code {
-            font-family: 'Fira Code';
-        }
-
-        /* New styles for mobile menu */
-        #mobile-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 300px;
-            height: 100vh;
-            background: white;
-            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
-            transition: right 0.3s ease;
-            z-index: 1000;
-        }
-
-        .dark #mobile-menu {
-            background: #2C3E50;
-        }
-
-        #mobile-menu.active {
-            right: 0;
-        }
-
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-            display: none;
-        }
-
-        .overlay.active {
+        .mobile-nav-link {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 15vw, 5rem);
+            color: #F0EBE3;
+            text-decoration: none;
+            line-height: 1;
+            transition: color 0.2s;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            padding: 1rem 0;
             display: block;
         }
 
-        .hover-gradient {
-            background: linear-gradient(135deg, #FF6B6B, #4ECDC4, #45B7D1);
-            background-size: 200% 200%;
+        .mobile-nav-link:hover { color: #D4A843; }
+
+        /* ===================== HERO ===================== */
+        #home {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 9rem 3rem 4rem;
+            position: relative;
+        }
+
+        .hero-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-label {
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #6B6B6B;
+            line-height: 1.6;
+        }
+
+        .hero-label .gold { color: #D4A843; }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 2rem;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-text-l {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(5.5rem, 13vw, 13rem);
+            line-height: 0.85;
+            letter-spacing: -0.01em;
+            color: #F0EBE3;
+        }
+
+        .hero-text-r {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(5.5rem, 13vw, 13rem);
+            line-height: 0.85;
+            letter-spacing: -0.01em;
+            color: #F0EBE3;
+            text-align: right;
+        }
+
+        .gold-accent { color: #D4A843; }
+
+        /* Photo box */
+        .hero-photo-box {
+            width: clamp(280px, 32vw, 480px);
+            aspect-ratio: 3/4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            overflow: hidden;
+            flex-shrink: 0;
+            position: relative;
+            /* Smooth bottom fade mask */
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 100%);
+            mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 100%);
+        }
+
+        .hero-photo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            display: block;
+            filter: grayscale(100%);
+            transition: filter 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .hero-photo-box:hover img {
+            filter: grayscale(0%);
+        }
+
+        .hero-photo-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+            color: rgba(212, 168, 67, 0.4);
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .hero-photo-placeholder p {
+            font-size: 0.55rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            line-height: 1.6;
+        }
+
+        .hero-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-top: 2.5rem;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .scroll-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #4a4a4a;
+        }
+
+        .scroll-line { width: 50px; height: 1px; background: #4a4a4a; }
+
+        /* ===================== MARQUEE ===================== */
+        .marquee-section {
+            border-top: 1px solid rgba(255,255,255,0.06);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            padding: 0.9rem 0;
+            overflow: hidden;
+            background: #0f0f0f;
+        }
+
+        .marquee-track {
+            display: flex;
+            gap: 0;
+            width: max-content;
+            animation: marqueeAnim 30s linear infinite;
+        }
+
+        .marquee-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #4a4a4a;
+            white-space: nowrap;
+            padding: 0 1.5rem;
+        }
+
+        .marquee-dot {
+            width: 4px;
+            height: 4px;
+            background: #D4A843;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        @keyframes marqueeAnim {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ===================== SECTION LABEL ===================== */
+        .section-label {
+            font-size: 0.62rem;
+            font-weight: 600;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: #D4A843;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 3rem;
+        }
+
+        .section-label::before {
+            content: '';
+            width: 28px;
+            height: 1px;
+            background: #D4A843;
+            flex-shrink: 0;
+        }
+
+        /* ===================== ABOUT ===================== */
+        .about-statement {
+            font-size: clamp(1.4rem, 3vw, 2.6rem);
+            font-weight: 300;
+            line-height: 1.35;
+            letter-spacing: -0.015em;
+            color: #F0EBE3;
+        }
+
+        .about-statement strong, .gold-text { color: #D4A843; font-weight: 600; }
+
+        .stat-num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.8rem;
+            color: #D4A843;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.6rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #4a4a4a;
+            margin-top: 0.25rem;
+        }
+
+        /* ===================== WORKS ===================== */
+        .work-item {
+            display: grid;
+            grid-template-columns: 55px 1fr auto 70px;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.6rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            cursor: pointer;
+            position: relative;
+            text-decoration: none;
+            color: inherit;
+            transition: background 0.3s ease;
+        }
+
+        .work-item:first-child { border-top: 1px solid rgba(255,255,255,0.05); }
+
+        .work-item::after {
+            content: '→';
+            position: absolute;
+            right: 0;
+            color: #D4A843;
+            font-size: 1.1rem;
+            opacity: 0;
+            transform: translateX(-8px);
             transition: all 0.3s ease;
         }
 
-        .hover-gradient:hover {
-            background-position: 100% 50%;
-            transform: translateY(-2px);
+        .work-item:hover::after { opacity: 1; transform: translateX(0); }
+        .work-item:hover .work-num { color: #D4A843; }
+
+        .work-item:hover .work-title {
+            color: #D4A843;
+            transform: translateX(6px);
         }
 
-        /* Modal Styles */
+        .work-num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.18);
+            letter-spacing: 0.08em;
+            transition: color 0.3s;
+        }
+
+        .work-title {
+            font-size: clamp(1rem, 2.2vw, 1.5rem);
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            transition: all 0.3s ease;
+        }
+
+        .work-category {
+            font-size: 0.6rem;
+            font-weight: 500;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: #4a4a4a;
+            text-align: right;
+        }
+
+        .work-year {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.18);
+            text-align: right;
+            letter-spacing: 0.05em;
+        }
+
+        /* Project hover image */
+        #work-hover-img {
+            position: fixed;
+            width: 240px;
+            height: 160px;
+            pointer-events: none;
+            z-index: 999;
+            opacity: 0;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            transform: scale(0.8) rotate(-3deg);
+        }
+
+        #work-hover-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+        /* ===================== PROCESS ===================== */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: rgba(255,255,255,0.06);
+        }
+
+        .process-card {
+            background: #0a0a0a;
+            padding: 2rem;
+            position: relative;
+            transition: background 0.3s ease;
+            min-height: 240px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .process-card:hover { background: #121212; }
+        .process-card:hover .process-card-border { opacity: 1; }
+
+        .process-card-border {
+            position: absolute;
+            inset: 0;
+            border: 1px solid rgba(212, 168, 67, 0.2);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .process-step-num {
+            font-size: 0.6rem;
+            font-weight: 600;
+            letter-spacing: 0.22em;
+            color: #D4A843;
+            margin-bottom: 2rem;
+        }
+
+        .process-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.2rem;
+            letter-spacing: 0.03em;
+            color: #F0EBE3;
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+
+        .process-desc {
+            font-size: 0.75rem;
+            font-weight: 400;
+            line-height: 1.75;
+            color: #4a4a4a;
+            flex: 1;
+        }
+
+        .process-icon {
+            width: 36px;
+            height: 36px;
+            border: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.25);
+            margin-top: 2rem;
+            align-self: flex-end;
+        }
+
+        /* ===================== CONTACT ===================== */
+        .contact-section { text-align: center; }
+
+        .contact-eyebrow {
+            font-size: 0.6rem;
+            font-weight: 600;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: #D4A843;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-headline {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3.5rem, 9vw, 8rem);
+            line-height: 0.88;
+            letter-spacing: -0.01em;
+            color: #F0EBE3;
+            margin-bottom: 2rem;
+        }
+
+        .contact-sub {
+            font-size: 0.82rem;
+            color: #4a4a4a;
+            max-width: 380px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+        }
+
+        /* Buttons */
+        .btn-gold {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: #D4A843;
+            color: #0a0a0a;
+            font-weight: 700;
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid #D4A843;
+        }
+
+        .btn-gold:hover { background: #E8C678; border-color: #E8C678; transform: translateY(-2px); }
+
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.15);
+            color: #9B9590;
+            font-weight: 500;
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline:hover { border-color: #D4A843; color: #D4A843; }
+
+        /* Social links */
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.6rem;
+            font-weight: 600;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: #4a4a4a;
+            text-decoration: none;
+            transition: color 0.25s;
+        }
+
+        .social-link:hover { color: #D4A843; }
+
+        /* ===================== FOOTER ===================== */
+        .footer-giant {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(5rem, 20vw, 20rem);
+            line-height: 0.82;
+            letter-spacing: -0.02em;
+            color: rgba(255,255,255,0.035);
+            white-space: nowrap;
+            overflow: hidden;
+            user-select: none;
+            pointer-events: none;
+        }
+
+        /* ===================== REVEAL ===================== */
+        .reveal {
+            opacity: 0;
+            will-change: transform, opacity;
+        }
+
+        /* ===================== MODAL ===================== */
         .modal {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.92);
             z-index: 1000;
+            align-items: center;
+            justify-content: center;
             opacity: 0;
             transition: opacity 0.3s ease;
         }
 
-        .modal.active {
-            display: flex;
-            opacity: 1;
-        }
+        .modal.active { display: flex; }
 
         .modal-content {
             position: relative;
             width: 90%;
             height: 90%;
-            margin: auto;
-            background: white;
-            border-radius: 1rem;
+            background: #111;
             overflow: hidden;
-            transform: scale(0.9);
-            transition: transform 0.3s ease;
         }
 
-        .modal.active .modal-content {
-            transform: scale(1);
-        }
-
-        .modal-iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
+        .modal-iframe { width: 100%; height: 100%; border: none; }
 
         .modal-close {
             position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 2.5rem;
-            height: 2.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            top: 1rem; right: 1rem;
+            background: rgba(10,10,10,0.8);
+            color: #D4A843;
+            border: 1px solid rgba(212,168,67,0.4);
+            width: 2.5rem; height: 2.5rem;
+            display: flex; align-items: center; justify-content: center;
             cursor: pointer;
-            transition: all 0.3s ease;
             z-index: 1001;
+            transition: all 0.3s;
         }
 
-        .modal-close:hover {
-            background: rgba(0, 0, 0, 0.8);
-            transform: rotate(90deg);
+        .modal-close:hover { background: #D4A843; color: #0a0a0a; }
+
+        /* ===================== RESPONSIVE ===================== */
+        @media (max-width: 900px) {
+            .process-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
-        .loading {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-size: 1.5rem;
+        @media (max-width: 768px) {
+            #navbar, #navbar.scrolled { padding: 1.2rem 1.5rem; }
+            #home { padding: 7.5rem 1.5rem 3rem; }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .hero-text-l, .hero-text-r {
+                font-size: clamp(5rem, 22vw, 8rem);
+                text-align: center;
+            }
+
+            .hero-photo-box { margin: 0 auto; width: 55%; }
+            .hero-bottom { flex-direction: column; align-items: flex-start; }
+
+            .work-item { grid-template-columns: 40px 1fr; gap: 1rem; }
+            .work-category, .work-year { display: none; }
+            .work-title { font-size: 1.05rem; }
+
+            .section-label { margin-bottom: 2rem; }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links, .nav-cta { display: none !important; }
+            .process-grid { grid-template-columns: 1fr; }
+            .hero-top { display: none; }
         }
     </style>
 </head>
+<body oncontextmenu="return false;">
 
-<body class="font-fira-code bg-white dark:bg-dark text-gray-900 dark:text-light transition-colors duration-300"
-    oncontextmenu="return false;">
-    <!-- Navbar -->
-    <nav class="fixed top-0 left-0 w-full p-6 bg-white dark:bg-dark shadow-md z-50 transition-colors duration-300">
-        <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <!-- Brand -->
-            <div class="gradient-text text-2xl font-bold">
-                <a href="./">
-                    <img src="../logo/fazal-dark.webp" class="block dark:hidden" style="width: 10%;"
-                        alt="Fazal Said Logo Light" width="200" height="50" />
-                    <img src="../logo/fazal-white.webp" class="hidden dark:block" style="width: 10%;"
-                        alt="Fazal Said Logo Dark" width="200" height="50" />
-                </a>
-            </div>
+    <!-- ============================================================ -->
+    <!-- NAVBAR -->
+    <!-- ============================================================ -->
+    <nav id="navbar">
+        <a href="./" class="nav-logo">
+            <img src="logo/fazal-white.png" alt="Fazal Said" style="height: 1.8rem; width: auto; display: inline-block;">
+        </a>
 
-            <!-- Center Menu -->
-            <div class="hidden md:flex space-x-8">
-                <a href="#home" class="hover:text-primary dark:hover:text-primary transition-colors">Home</a>
-                <a href="#about" class="hover:text-primary dark:hover:text-primary transition-colors">About</a>
-                <a href="#skills" class="hover:text-primary dark:hover:text-primary transition-colors">Skills</a>
-                <a href="freebies/" class="hover:text-primary dark:hover:text-primary transition-colors">Freebies</a>
-                <a href="#projects" class="hover:text-primary dark:hover:text-primary transition-colors">Projects</a>
-                <a href="#contact" class="hover:text-primary dark:hover:text-primary transition-colors">Contact</a>
-            </div>
-
-            <!-- Theme Toggle & Mobile Menu -->
-            <div class="flex gap-4">
-                <button id="theme-toggle"
-                    class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
-                    <svg id="theme-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path id="sun-icon" class="hidden dark:block" stroke-linecap="round" stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
-                        </path>
-                        <path id="moon-icon" class="block dark:hidden" stroke-linecap="round" stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
-                        </path>
-                    </svg>
-                </button>
-                <button class="md:hidden p-2" id="mobile-menu-btn">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
-            </div>
+        <div class="nav-links hidden md:flex">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#projects">Works</a>
+            <a href="#contact">Contact</a>
         </div>
 
-        <!-- Mobile Menu -->
-        <div id="mobile-menu">
-            <div class="flex flex-col gap-4 p-6">
-                <button id="close-menu" class="self-end p-2">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
-                        </path>
-                    </svg>
-                </button>
-                <a href="#home" class="hover:text-primary dark:hover:text-primary transition-colors">Home</a>
-                <a href="#about" class="hover:text-primary dark:hover:text-primary transition-colors">About</a>
-                <a href="#skills" class="hover:text-primary dark:hover:text-primary transition-colors">Skills</a>
-                <a href="freebies" class="hover:text-primary dark:hover:text-primary transition-colors">Freebies</a>
-                <a href="#projects" class="hover:text-primary dark:hover:text-primary transition-colors">Projects</a>
-                <a href="#contact" class="hover:text-primary dark:hover:text-primary transition-colors">Contact</a>
-            </div>
+        <div class="flex items-center gap-4">
+            <a href="https://wa.me/62895386138202" target="_blank" class="nav-cta hidden md:inline-flex">
+                Hire Me →
+            </a>
+            <button id="mobile-menu-btn" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Open navigation">
+                <span class="block w-6 h-px bg-off-white transition-all duration-300"></span>
+                <span class="block w-4 h-px bg-off-white transition-all duration-300"></span>
+                <span class="block w-6 h-px bg-off-white transition-all duration-300"></span>
+            </button>
         </div>
-        <div class="overlay"></div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex flex-col justify-center px-8 md:px-24 lg:px-48 pt-24">
-        <div class="max-w-2xl mx-auto text-center">
-            <h1 class="gradient-text text-5xl md:text-7xl font-bold mb-6">
-                Crafting a website as you need.
-            </h1>
-            <p class="text-gray-600 dark:text-gray-400 text-xl md:text-2xl mb-12 leading-relaxed">
-                Help you to increasing your income with website.
-            </p>
-            <div class="flex justify-center gap-6">
-                <a href="#projects" class="gradient-border group px-8 py-4 bg-white dark:bg-dark rounded-full shadow-lg 
-                              hover:shadow-xl transition-all overflow-hidden">
-                    <span class="relative z-10 font-bold text-gray-900 dark:text-gray-100">View Work</span>
-                    <span class="absolute inset-0 bg-gradient-to-r from-primary to-secondary 
-                              opacity-20 group-hover:opacity-50 transition-opacity"></span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-24 px-8 md:px-24 bg-gray-50 dark:bg-gray-800">
-        <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-12 items-center">
-            <div class="w-full md:w-1/2">
-                <img src="logo/fazal.webp" alt="Fazal Said"
-                    class="w-full rounded-3xl shadow-xl border-4 border-white dark:border-gray-800" width="400"
-                    height="400">
-            </div>
-            <div class="w-full md:w-1/2">
-                <h2 class="gradient-text text-4xl font-bold mb-6">About Me</h2>
-                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-6 text-justify"
-                    style="white-space: pre-line;">
-                    Web Developer focusing on PHP programming language, in Laravel framework.
-                    With 7+ years of experience in the language, I have created several websites with various purposes.
-                    Starting from websites for exams, reporting, music rental, etc.
-
-                    If you want to get a website at an affordable price, contact me.
-                </p>
-                <div class="flex gap-4 mt-6">
-                    <a href="https://github.com/fazallsaid" target="_blank"
-                        class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                        </svg>
-                    </a>
-                    <a href="https://instagram.com/fazallsaid" target="_blank"
-                        class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                        </svg>
-                    </a>
-                    <a href="https://tiktok.com/@fazallsaid" target="_blank"
-                        class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
-                        </svg>
-                    </a>
-                    <a href="https://twitter.com/fazallsaid__" target="_blank"
-                        class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
-                        </svg>
-                    </a>
-                    <a href="https://wa.me/62895386138202" target="_blank"
-                        class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.381l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                        </svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="py-24 px-8 md:px-24">
-        <h1 class="text-4xl font-bold text-center mb-12 gradient-text">Skills & Expertise</h1>
-        <div class="max-w-5xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Technical Stack -->
-                <div
-                    class="bg-gray-50 dark:bg-gray-800 p-8 rounded-3xl shadow-lg border border-gray-100 dark:border-gray-700 transform hover:-translate-y-2 transition-transform duration-300">
-                    <h3 class="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100 flex items-center gap-3">
-                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
-                        </svg>
-                        Technical Stack
-                    </h3>
-                    <div class="flex flex-wrap gap-3">
-                        <span
-                            class="px-5 py-2.5 bg-white dark:bg-dark text-gray-800 dark:text-gray-200 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 font-semibold hover-gradient hover:text-white hover:border-transparent transition-all cursor-default">PHP</span>
-                        <span
-                            class="px-5 py-2.5 bg-white dark:bg-dark text-gray-800 dark:text-gray-200 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 font-semibold hover-gradient hover:text-white hover:border-transparent transition-all cursor-default">Laravel</span>
-                        <span
-                            class="px-5 py-2.5 bg-white dark:bg-dark text-gray-800 dark:text-gray-200 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 font-semibold hover-gradient hover:text-white hover:border-transparent transition-all cursor-default">CodeIgniter
-                            3</span>
-                    </div>
-                </div>
-
-                <!-- Core Roles -->
-                <div
-                    class="bg-gray-50 dark:bg-gray-800 p-8 rounded-3xl shadow-lg border border-gray-100 dark:border-gray-700 transform hover:-translate-y-2 transition-transform duration-300">
-                    <h3 class="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100 flex items-center gap-3">
-                        <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
-                            </path>
-                        </svg>
-                        Core Roles
-                    </h3>
-                    <div class="flex flex-wrap gap-3">
-                        <span
-                            class="px-5 py-2.5 bg-white dark:bg-dark text-gray-800 dark:text-gray-200 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 font-semibold hover-gradient hover:text-white hover:border-transparent transition-all cursor-default">Web
-                            Developer</span>
-                        <span
-                            class="px-5 py-2.5 bg-white dark:bg-dark text-gray-800 dark:text-gray-200 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 font-semibold hover-gradient hover:text-white hover:border-transparent transition-all cursor-default">Backend
-                            Engineer</span>
-                    </div>
-                </div>
-
-                <!-- Specialized Expertise -->
-                <div
-                    class="bg-gray-50 dark:bg-gray-800 p-8 rounded-3xl shadow-lg border border-gray-100 dark:border-gray-700 md:col-span-2 transform hover:-translate-y-2 transition-transform duration-300">
-                    <h3
-                        class="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100 flex items-center gap-3 justify-center md:justify-start">
-                        <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z">
-                            </path>
-                        </svg>
-                        Specialized Expertise
-                    </h3>
-                    <div class="flex flex-wrap justify-center md:justify-start gap-4">
-                        <span
-                            class="px-6 py-3 bg-white dark:bg-dark text-gray-800 dark:text-gray-200 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 font-semibold hover-gradient hover:text-white hover:border-transparent transition-all cursor-default">Optimization
-                            Specialist</span>
-                        <span
-                            class="px-6 py-3 bg-white dark:bg-dark text-gray-800 dark:text-gray-200 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 font-semibold hover-gradient hover:text-white hover:border-transparent transition-all cursor-default">Tech
-                            Problem Solver</span>
-                        <span
-                            class="px-6 py-3 bg-white dark:bg-dark text-gray-800 dark:text-gray-200 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 font-semibold hover-gradient hover:text-white hover:border-transparent transition-all cursor-default">AI
-                            Engineer</span>
-                        <span
-                            class="px-6 py-3 bg-white dark:bg-dark text-gray-800 dark:text-gray-200 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 font-semibold hover-gradient hover:text-white hover:border-transparent transition-all cursor-default">AI
-                            Trainer</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="py-24 px-8 md:px-24">
-        <h1 class="text-4xl font-bold text-center mb-12 gradient-text">Projects</h1>
-        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-            <!-- Project cards with dark mode classes -->
-            <div class="project-card group rounded-3xl overflow-hidden shadow-lg 
-                       hover:shadow-2xl transition-shadow relative bg-white dark:bg-gray-800">
-                <img loading="lazy" width="600" height="400" src="projects/ang_property.webp" alt="Project" class="w-full h-64 object-cover transform transition-all 
-                            group-hover:scale-110">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">Ang Property</h3>
-                    <div class="flex gap-4 mb-4">
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">PHP</span>
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Laravel 11</span>
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">2025</span>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-400 mb-6">
-                        A marketing website for properties located in Indonesia, especially in West Java, DKI Jakarta
-                        and Banten.
-                    </p>
-                </div>
-            </div>
-            <div class="project-card group rounded-3xl overflow-hidden shadow-lg 
-                       hover:shadow-2xl transition-shadow relative bg-white dark:bg-gray-800">
-                <img loading="lazy" width="600" height="400" src="projects/udin_gallery.webp" alt="Project" class="w-full h-64 object-cover transform transition-all 
-                            group-hover:scale-110">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">Udin Gallery</h3>
-                    <div class="flex gap-4 mb-4">
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">PHP</span>
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Laravel 11</span>
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">2025</span>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-400 mb-6">
-                        An online shop website about art, which sells several art products.
-                    </p>
-                </div>
-            </div>
-
-            <div class="project-card group rounded-3xl overflow-hidden shadow-lg 
-                       hover:shadow-2xl transition-shadow relative bg-white dark:bg-gray-800">
-                <img loading="lazy" width="600" height="400" src="projects/kwas_system.webp" alt="Project" class="w-full h-64 object-cover transform transition-all 
-                            group-hover:scale-110">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">KWaS - An Data Backup System
-                    </h3>
-                    <div class="flex gap-4 mb-4">
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">PHP</span>
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Laravel 11</span>
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">2025</span>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-400 mb-6">
-                        A data backup website system and tracking system of product process and product delivery to
-                        suppliers who cooperate with KWaS factory.
-                    </p>
-                </div>
-            </div>
-
-            <div class="project-card group rounded-3xl overflow-hidden shadow-lg 
-                       hover:shadow-2xl transition-shadow relative bg-white dark:bg-gray-800">
-                <img loading="lazy" width="600" height="400" src="projects/stocarium.webp" alt="Project" class="w-full h-64 object-cover transform transition-all 
-                            group-hover:scale-110">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">Stocarium - An Inventory Website
-                    </h3>
-                    <div class="flex gap-4 mb-4">
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">PHP</span>
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Laravel 11</span>
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">2025</span>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-400 mb-6">
-                        An inventory website to facilitate a company in managing goods / products.
-                    </p>
-                </div>
-            </div>
-
-            <div class="project-card group rounded-3xl overflow-hidden shadow-lg 
-                       hover:shadow-2xl transition-shadow relative bg-white dark:bg-gray-800">
-                <img loading="lazy" width="600" height="400" src="projects/databankUniv.webp" alt="Project" class="w-full h-64 object-cover transform transition-all 
-                            group-hover:scale-110">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">Databank of Universities</h3>
-                    <div class="flex gap-4 mb-4">
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">PHP</span>
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Laravel 11</span>
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">2024</span>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-400 mb-6">
-                        Databank of Universities is an API-based web application that gives anyone access to university
-                        data across Indonesia. It is designed to help developers and others who want to integrate
-                        university information into their projects.
-                    </p>
-                    <!-- <button class="gradient-text font-bold flex items-center gap-2 preview-btn" 
-                            data-url="https://krsjawa3.com">
-                        Website Preview
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                        </svg>
-                    </button> -->
-                </div>
-            </div>
-
-            <div class="project-card group rounded-3xl overflow-hidden shadow-lg 
-                       hover:shadow-2xl transition-shadow relative bg-white dark:bg-gray-800">
-                <img loading="lazy" width="600" height="400" src="projects/krs_jawa.webp" alt="Project" class="w-full h-64 object-cover transform transition-all 
-                            group-hover:scale-110">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">Klinik Rumah Swadaya Jawa III
-                        (PUPR)</h3>
-                    <div class="flex gap-4 mb-4">
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">PHP</span>
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Laravel 11</span>
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">2024</span>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-400 mb-6">
-                        A goverment website to give more information for any citizens who want to build a house.
-                    </p>
-                    <button class="gradient-text font-bold flex items-center gap-2 preview-btn"
-                        data-url="https://krsjawa3.com">
-                        Website Preview
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-
-            <div class="project-card group rounded-3xl overflow-hidden shadow-lg 
-                       hover:shadow-2xl transition-shadow relative bg-white dark:bg-gray-800">
-                <img loading="lazy" width="600" height="400" src="projects/sihandarung.webp" alt="Project" class="w-full h-64 object-cover transform transition-all 
-                            group-hover:scale-110">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">Sihandarung</h3>
-                    <div class="flex gap-4 mb-4">
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">PHP</span>
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Laravel 11</span>
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">2024</span>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-400 mb-6">
-                        An internal company website that aims to facilitate the company and each division in making
-                        their work reports.
-                    </p>
-                    <!-- <button class="gradient-text font-bold flex items-center gap-2 preview-btn" 
-                            data-url="">
-                        Website Preview
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                        </svg>
-                    </button> -->
-                </div>
-            </div>
-
-            <div class="project-card group rounded-3xl overflow-hidden shadow-lg 
-                       hover:shadow-2xl transition-shadow relative bg-white dark:bg-gray-800">
-                <img loading="lazy" width="600" height="400" src="projects/menapak.webp" alt="Project" class="w-full h-64 object-cover transform transition-all 
-                            group-hover:scale-110">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">Menapak Indonesia</h3>
-                    <div class="flex gap-4 mb-4">
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">PHP</span>
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Laravel 11</span>
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">2024</span>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-400 mb-6">
-                        A humanitarian organization website, which aims to provide information related to the activities
-                        and latest news about the organization.
-                    </p>
-                    <button class="gradient-text font-bold flex items-center gap-2 preview-btn"
-                        data-url="https://menapak.org">
-                        Website Preview
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-
-            <div class="project-card group rounded-3xl overflow-hidden shadow-lg 
-                       hover:shadow-2xl transition-shadow relative bg-white dark:bg-gray-800">
-                <img loading="lazy" width="600" height="400" src="projects/threefalse.webp" alt="Project" class="w-full h-64 object-cover transform transition-all 
-                            group-hover:scale-110">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">Three False</h3>
-                    <div class="flex gap-4 mb-4">
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">PHP</span>
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Codeigniter 3</span>
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">2021</span>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-400 mb-6">
-                        A website for business promotion needs, namely tattoos. This tattoo business is located in Bali.
-                    </p>
-                    <!-- <button class="gradient-text font-bold flex items-center gap-2 preview-btn" 
-                            data-url="https://menapakindonesia.org">
-                        Website Preview
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                        </svg>
-                    </button> -->
-                </div>
-            </div>
-
-            <div class="project-card group rounded-3xl overflow-hidden shadow-lg 
-                       hover:shadow-2xl transition-shadow relative bg-white dark:bg-gray-800">
-                <img loading="lazy" width="600" height="400" src="projects/gm_musika.webp" alt="Project" class="w-full h-64 object-cover transform transition-all 
-                            group-hover:scale-110">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">Instruments Loan "GM Musika"
-                    </h3>
-                    <div class="flex gap-4 mb-4">
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">PHP</span>
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Codeigniter 3</span>
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">2020</span>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-400 mb-6">
-                        A website to make it easier for customers of GM Musika, to borrow musical instruments easily.
-                    </p>
-                    <!-- <button class="gradient-text font-bold flex items-center gap-2 preview-btn" 
-                            data-url="https://menapakindonesia.org">
-                        Website Preview
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                        </svg>
-                    </button> -->
-                </div>
-            </div>
-
-            <div class="project-card group rounded-3xl overflow-hidden shadow-lg 
-                       hover:shadow-2xl transition-shadow relative bg-white dark:bg-gray-800">
-                <img loading="lazy" width="600" height="400" src="projects/arwana_store.webp" alt="Project" class="w-full h-64 object-cover transform transition-all 
-                            group-hover:scale-110">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">Arwana Store</h3>
-                    <div class="flex gap-4 mb-4">
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">PHP</span>
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Codeigniter 3</span>
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">2019</span>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-400 mb-6">
-                        A website for an online store, where customers can easily buy Arowana fish.
-                    </p>
-                    <!-- <button class="gradient-text font-bold flex items-center gap-2 preview-btn" 
-                            data-url="https://menapakindonesia.org">
-                        Website Preview
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                        </svg>
-                    </button> -->
-                </div>
-            </div>
-
-            <div class="project-card group rounded-3xl overflow-hidden shadow-lg 
-                       hover:shadow-2xl transition-shadow relative bg-white dark:bg-gray-800">
-                <img loading="lazy" width="600" height="400" src="projects/srn.webp" alt="Project" class="w-full h-64 object-cover transform transition-all 
-                            group-hover:scale-110">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">Sambal Resep Njenot</h3>
-                    <div class="flex gap-4 mb-4">
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">PHP</span>
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Codeigniter 3</span>
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">2019</span>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-400 mb-6">
-                        A website for online shop purposes, where customers can easily buy Sambal Resep Njenot.
-                    </p>
-                    <!-- <button class="gradient-text font-bold flex items-center gap-2 preview-btn" 
-                            data-url="https://menapakindonesia.org">
-                        Website Preview
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                        </svg>
-                    </button> -->
-                </div>
-            </div>
-
-            <div class="project-card group rounded-3xl overflow-hidden shadow-lg 
-                       hover:shadow-2xl transition-shadow relative bg-white dark:bg-gray-800">
-                <img loading="lazy" width="600" height="400" src="projects/kompensasi.webp" alt="Project" class="w-full h-64 object-cover transform transition-all 
-                            group-hover:scale-110">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">Compensation for Lectures at
-                        STMIK Akakom</h3>
-                    <div class="flex gap-4 mb-4">
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">PHP</span>
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Codeigniter 3</span>
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">2018</span>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-400 mb-6">
-                        A website as a tool / intermediary for students and lecturers to take care of compensation.
-                    </p>
-                    <!-- <button class="gradient-text font-bold flex items-center gap-2 preview-btn" 
-                            data-url="https://menapakindonesia.org">
-                        Website Preview
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                        </svg>
-                    </button> -->
-                </div>
-            </div>
-
-            <div class="project-card group rounded-3xl overflow-hidden shadow-lg 
-                       hover:shadow-2xl transition-shadow relative bg-white dark:bg-gray-800">
-                <img loading="lazy" width="600" height="400" src="projects/ujian_online.webp" alt="Project" class="w-full h-64 object-cover transform transition-all 
-                            group-hover:scale-110">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">Online Exam Website</h3>
-                    <div class="flex gap-4 mb-4">
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">PHP</span>
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">No Framework</span>
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">2018</span>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-400 mb-6">
-                        A website that is used as a tool to conduct exams at MAN Sintang, especially for the End of
-                        Semester Exams.
-                    </p>
-                    <!-- <button class="gradient-text font-bold flex items-center gap-2 preview-btn" 
-                            data-url="https://menapakindonesia.org">
-                        Website Preview
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                        </svg>
-                    </button> -->
-                </div>
-            </div>
-
-            <div class="project-card group rounded-3xl overflow-hidden shadow-lg 
-                       hover:shadow-2xl transition-shadow relative bg-white dark:bg-gray-800">
-                <img loading="lazy" width="600" height="400" src="projects/po_budiman.webp" alt="Project" class="w-full h-64 object-cover transform transition-all 
-                            group-hover:scale-110">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">P.O Budiman Ticket Order With
-                        SMS Gateway</h3>
-                    <div class="flex gap-4 mb-4">
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">PHP</span>
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">No Framework</span>
-                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">2017</span>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-400 mb-6">
-                        A bus booking website, as well as a promotional media for P.O Budiman through SMS Gateway.
-                    </p>
-                    <!-- <button class="gradient-text font-bold flex items-center gap-2 preview-btn" 
-                            data-url="https://menapakindonesia.org">
-                        Website Preview
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                        </svg>
-                    </button> -->
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Collaboration Section -->
-    <section id="collab" class="py-24 px-8 md:px-24 bg-gray-50 dark:bg-gray-800">
-        <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-12 items-center">
-            <div class="w-full md:w-full">
-                <h2 class="gradient-text text-4xl font-bold mb-6 text-center">Collaboration</h2>
-                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-6 text-justify"
-                    style="white-space: pre-line;">
-                    I am open to collaborative projects, whether it's for a new project or an old project that I have
-                    developed, and one of them is the Databank of Universities project.
-
-                    This project focuses on developing API/Rest API for university data across Indonesia. The goal is,
-                    so that developers or parties who want to use this data, can access it easily (of course it must be
-                    used as wisely as possible).
-
-                    If you are interested in collaborating, you can contact me in the <a href="#about"
-                        class="text-[#1d2ef3] dark:text-[#85ff62]">About Me</a> section.
-                </p>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Media Section -->
-    <section id="touch" class="py-24 px-8 md:px-24 bg-gray-50 dark:bg-gray-800">
-        <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-12 items-center">
-            <div class="w-full md:w-full">
-                <h2 class="gradient-text text-4xl text-center font-bold mb-6">Touch Me</h2>
-                <iframe src="https://widget.tagembed.com/2171743" style="width:100%;height:600px;border:none;"></iframe>
-            </div>
-        </div>
-    </section>
-
-    <!-- Modal -->
-    <div class="modal" id="previewModal">
-        <div class="modal-content">
-
-            <button class="modal-close" id="closeModal" title="Close">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
-                    </path>
+    <!-- Mobile Full-Screen Menu -->
+    <div id="mobile-menu-overlay" role="dialog" aria-modal="true" aria-label="Navigation menu">
+        <button id="close-mobile-menu" class="absolute top-6 right-6 p-2 text-muted hover:text-off-white transition-colors" aria-label="Close menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+        </button>
+        <a href="#home" class="mobile-nav-link" data-close-menu>Home</a>
+        <a href="#about" class="mobile-nav-link" data-close-menu>About</a>
+        <a href="#projects" class="mobile-nav-link" data-close-menu>Works</a>
+        <a href="#contact" class="mobile-nav-link" data-close-menu>Contact</a>
+        <div class="mt-10 pt-8 border-t border-white/5">
+            <a href="https://wa.me/62895386138202" target="_blank" class="btn-gold">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.381l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
                 </svg>
-            </button>
-            <div class="loading">Loading...</div>
-            <iframe class="modal-iframe" id="previewFrame" allow="fullscreen"></iframe>
+                Hire Me
+            </a>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer id="contact" class="py-12 px-8 md:px-24 bg-white dark:bg-dark border-t dark:border-gray-800">
-        <div class="max-w-6xl mx-auto text-center">
-            <div class="flex justify-center gap-6 mb-8">
-                <a href="#"
-                    class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
-                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-                        <!-- GitHub Icon -->
-                    </svg>
-                </a>
-                <a href="#"
-                    class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
-                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-                        <!-- LinkedIn Icon -->
+
+    <!-- ============================================================ -->
+    <!-- HERO -->
+    <!-- ============================================================ -->
+    <section id="home">
+        <div class="hero-top opacity-0" id="hero-top-el">
+            <div class="hero-label">
+                <div><span class="gold">Based in</span> Yogyakarta, Indonesia</div>
+                <div style="margin-top:0.3rem;"><span class="gold">@</span> P.T. Royal D'Paragon Land</div>
+            </div>
+            <div class="hero-label text-right hidden md:block">
+                <div>Available for <span class="gold">Freelance</span></div>
+                <div style="margin-top:0.3rem;">Laravel & PHP Specialist</div>
+            </div>
+        </div>
+
+        <div class="hero-grid">
+            <!-- Left text -->
+            <div class="overflow-hidden">
+                <div class="hero-text-l opacity-0 transform translate-y-12" id="hero-text-1">CODE</div>
+                <div class="hero-text-l gold-accent opacity-0 transform translate-y-12" id="hero-text-2" style="font-size: clamp(3.5rem, 8vw, 8rem);">MEETS</div>
+            </div>
+
+            <!-- Center: Photo Placeholder -->
+            <div class="hero-photo-box opacity-0 scale-75" id="hero-photo">
+                <img src="logo/me_in_hero.png" alt="Fazal Said">
+            </div>
+
+            <!-- Right text -->
+            <div class="overflow-hidden">
+                <div class="hero-text-r opacity-0 transform translate-y-12" id="hero-text-3">DESIGN.</div>
+                <div class="hero-text-r opacity-0 transform translate-y-12" id="hero-text-4" style="font-family:'Bebas Neue';font-size:clamp(2rem,4vw,4rem);color:rgba(240,235,227,0.18);letter-spacing:0.08em;">&amp; LOGIC.</div>
+            </div>
+        </div>
+
+        <div class="hero-bottom opacity-0" id="hero-bottom-el">
+            <a href="#projects" class="btn-gold">
+                View My Work
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+            </a>
+            <div class="hero-label text-center hidden md:block">
+                <span class="gold">9+</span> Years &nbsp;·&nbsp; <span class="gold">30+</span> Projects
+            </div>
+            <div class="scroll-indicator hidden md:flex">
+                <div class="scroll-line"></div>
+                <span>Scroll</span>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================ -->
+    <!-- MARQUEE TICKER -->
+    <!-- ============================================================ -->
+    <div class="marquee-section" aria-hidden="true">
+        <div class="marquee-track">
+            <div class="marquee-item">PHP <span class="marquee-dot"></span></div>
+            <div class="marquee-item">Laravel <span class="marquee-dot"></span></div>
+            <div class="marquee-item">MySQL <span class="marquee-dot"></span></div>
+            <div class="marquee-item">REST API <span class="marquee-dot"></span></div>
+            <div class="marquee-item">Tailwind CSS <span class="marquee-dot"></span></div>
+            <div class="marquee-item">JavaScript <span class="marquee-dot"></span></div>
+            <div class="marquee-item">CodeIgniter <span class="marquee-dot"></span></div>
+            <div class="marquee-item">Git & GitHub <span class="marquee-dot"></span></div>
+            <div class="marquee-item">Backend Engineering <span class="marquee-dot"></span></div>
+            <div class="marquee-item">Web Development <span class="marquee-dot"></span></div>
+            <div class="marquee-item">Alpine.js <span class="marquee-dot"></span></div>
+            <div class="marquee-item">Livewire <span class="marquee-dot"></span></div>
+            <!-- Duplicate for seamless loop -->
+            <div class="marquee-item">PHP <span class="marquee-dot"></span></div>
+            <div class="marquee-item">Laravel <span class="marquee-dot"></span></div>
+            <div class="marquee-item">MySQL <span class="marquee-dot"></span></div>
+            <div class="marquee-item">REST API <span class="marquee-dot"></span></div>
+            <div class="marquee-item">Tailwind CSS <span class="marquee-dot"></span></div>
+            <div class="marquee-item">JavaScript <span class="marquee-dot"></span></div>
+            <div class="marquee-item">CodeIgniter <span class="marquee-dot"></span></div>
+            <div class="marquee-item">Git & GitHub <span class="marquee-dot"></span></div>
+            <div class="marquee-item">Backend Engineering <span class="marquee-dot"></span></div>
+            <div class="marquee-item">Web Development <span class="marquee-dot"></span></div>
+            <div class="marquee-item">Alpine.js <span class="marquee-dot"></span></div>
+            <div class="marquee-item">Livewire <span class="marquee-dot"></span></div>
+        </div>
+    </div>
+
+
+    <!-- ============================================================ -->
+    <!-- ABOUT -->
+    <!-- ============================================================ -->
+    <section id="about" class="py-24 px-6 md:px-16 lg:px-24" style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+        <div class="max-w-6xl mx-auto">
+            <div class="section-label reveal">About Me</div>
+
+            <div class="grid md:grid-cols-12 gap-12 lg:gap-20 items-start">
+                <!-- Left: Big statement -->
+                <div class="md:col-span-7 reveal">
+                    <p class="about-statement">
+                        Fazal Said is a <strong>web developer & backend engineer</strong> blending logic and
+                        design — building <span class="gold-text">scalable</span>, performant,
+                        and <span class="gold-text">timeless</span> digital products.
+                    </p>
+                    <p style="font-size:0.8rem;color:#4a4a4a;margin-top:2rem;line-height:1.85;max-width:480px;">
+                        From internal enterprise systems to public-facing booking platforms —
+                        every project is approached with the same level of precision and care.
+                        Code that works today, and still works tomorrow.
+                    </p>
+                </div>
+
+                <!-- Right: Bio + Stats -->
+                <div class="md:col-span-5 reveal">
+                    <p style="font-size:0.82rem;line-height:1.85;color:#6B6B6B;margin-bottom:2.5rem;">
+                        With <strong style="color:#F0EBE3;">9+ years</strong> of hands-on experience in PHP & Laravel,
+                        currently serving as <strong style="color:#F0EBE3;">Staff IT Web Developer</strong> at
+                        P.T. Royal D'Paragon Land, Sleman. Previously contributed to projects for
+                        Elnusa Petrofin (Pertamina Group), Ministry of Public Works (PUPR), and multiple SME clients across Indonesia.
+                    </p>
+
+                    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;border-top:1px solid rgba(255,255,255,0.06);padding-top:2rem;">
+                        <div>
+                            <div class="stat-num">9+</div>
+                            <div class="stat-label">Years Exp.</div>
+                        </div>
+                        <div>
+                            <div class="stat-num">30+</div>
+                            <div class="stat-label">Projects Done</div>
+                        </div>
+                        <div>
+                            <div class="stat-num">∞</div>
+                            <div class="stat-label">Dedication</div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top:2rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.06);display:flex;gap:1rem;flex-wrap:wrap;">
+                        <a href="#" onclick="openModal('cv.html', true); return false;" class="btn-outline" style="padding:0.65rem 1.2rem;font-size:0.65rem;">Download CV</a>
+                        <a href="#" onclick="openModal('porto.html'); return false;" class="btn-outline" style="padding:0.65rem 1.2rem;font-size:0.65rem;">Full Portfolio</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================ -->
+    <!-- SELECTED WORKS -->
+    <!-- ============================================================ -->
+    <section id="projects" class="py-20 px-6 md:px-16 lg:px-24">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex justify-between items-center" style="margin-bottom:3rem;">
+                <div class="section-label reveal" style="margin-bottom:0;">Selected Works</div>
+                <a href="porto.html" class="social-link reveal">
+                    View All
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                     </svg>
                 </a>
             </div>
-            <p class="text-gray-600 dark:text-gray-400">© 2025 Fazal Said. All rights reserved.</p>
+
+            <div class="reveal" id="works-list">
+                <!-- 01 -->
+                <a id="work-item-1" class="work-item" href="#" data-img="projects/ang_property.webp" data-url="">
+                    <div class="work-num">01</div>
+                    <div class="work-title">Ang Property</div>
+                    <div class="work-category">Property Marketing</div>
+                    <div class="work-year">2025</div>
+                </a>
+                <!-- 02 -->
+                <a id="work-item-2" class="work-item" href="#" data-img="projects/kwas_system.webp" data-url="">
+                    <div class="work-num">02</div>
+                    <div class="work-title">KWaS — PPIC Tracking System</div>
+                    <div class="work-category">Real-Time Logistics</div>
+                    <div class="work-year">2025</div>
+                </a>
+                <!-- 03 -->
+                <a id="work-item-3" class="work-item" href="#" data-img="projects/udin_gallery.webp" data-url="">
+                    <div class="work-num">03</div>
+                    <div class="work-title">Udin Gallery</div>
+                    <div class="work-category">E-Commerce</div>
+                    <div class="work-year">2025</div>
+                </a>
+                <!-- 04 -->
+                <a id="work-item-4" class="work-item" href="#" data-img="projects/krs_jawa.webp" data-url="https://krsjawa3.com">
+                    <div class="work-num">04</div>
+                    <div class="work-title">KRS PUPR Jawa III</div>
+                    <div class="work-category">Government Portal</div>
+                    <div class="work-year">2024</div>
+                </a>
+                <!-- 05 -->
+                <a id="work-item-5" class="work-item" href="#" data-img="projects/sihandarung.webp" data-url="">
+                    <div class="work-num">05</div>
+                    <div class="work-title">Sihandarung</div>
+                    <div class="work-category">Internal Reporting</div>
+                    <div class="work-year">2024</div>
+                </a>
+                <!-- 06 -->
+                <a id="work-item-6" class="work-item" href="#" data-img="projects/menapak.webp" data-url="https://menapak.org">
+                    <div class="work-num">06</div>
+                    <div class="work-title">Menapak Indonesia</div>
+                    <div class="work-category">Corporate Website</div>
+                    <div class="work-year">2024</div>
+                </a>
+                <!-- 07 -->
+                <a id="work-item-7" class="work-item" href="#" data-img="projects/java_bali_overland.webp" data-url="https://javabalioverland.com">
+                    <div class="work-num">07</div>
+                    <div class="work-title">Java Bali Overland</div>
+                    <div class="work-category">Tour Booking</div>
+                    <div class="work-year">2026</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================ -->
+    <!-- PROCESS -->
+    <!-- ============================================================ -->
+    <section id="process" class="py-20 px-6 md:px-16 lg:px-24" style="border-top:1px solid rgba(255,255,255,0.05);">
+        <div class="max-w-6xl mx-auto">
+            <div class="section-label reveal">How I Work</div>
+
+            <div class="reveal" style="margin-bottom:3rem;">
+                <p style="font-size:clamp(1.2rem,3vw,2rem);font-weight:300;line-height:1.4;color:#F0EBE3;max-width:580px;">
+                    From requirements to <span class="gold-text">deployment</span> — each step is designed to turn ideas
+                    into <span class="gold-text">scalable, reliable</span> web systems.
+                </p>
+            </div>
+
+            <div class="process-grid reveal">
+                <!-- Discover -->
+                <div class="process-card">
+                    <div class="process-card-border"></div>
+                    <div class="process-step-num">01 ·</div>
+                    <div class="process-title">Discover</div>
+                    <p class="process-desc">Understanding your business goals, user needs, and technical requirements before writing a single line of code.</p>
+                    <div class="process-icon">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Design -->
+                <div class="process-card">
+                    <div class="process-card-border"></div>
+                    <div class="process-step-num">02 ·</div>
+                    <div class="process-title">Design</div>
+                    <p class="process-desc">Architecting the system structure, database schema, and UI/UX flow that perfectly fits your workflow and users.</p>
+                    <div class="process-icon">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Develop -->
+                <div class="process-card">
+                    <div class="process-card-border"></div>
+                    <div class="process-step-num">03 ·</div>
+                    <div class="process-title">Develop</div>
+                    <p class="process-desc">Building with clean, maintainable code using Laravel & modern stacks — optimized for performance and scalability.</p>
+                    <div class="process-icon">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Deploy -->
+                <div class="process-card">
+                    <div class="process-card-border"></div>
+                    <div class="process-step-num">04 ·</div>
+                    <div class="process-title">Deploy</div>
+                    <p class="process-desc">Launching your product with proper testing, server config, and post-deployment support to ensure long-term stability.</p>
+                    <div class="process-icon">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 13l4 4L19 7"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================ -->
+    <!-- CONTACT -->
+    <!-- ============================================================ -->
+    <section id="contact" class="contact-section py-28 px-6 md:px-16 lg:px-24" style="border-top:1px solid rgba(255,255,255,0.05);">
+        <div class="max-w-4xl mx-auto">
+            <div class="contact-eyebrow reveal">Let's Talk</div>
+            <h2 class="contact-headline reveal">
+                Ready to Build<br>Something <span style="color:#D4A843;">Great?</span>
+            </h2>
+            <p class="contact-sub reveal">
+                Got a project in mind? A new web app, a buggy system that needs fixing,
+                or an idea you want to bring to life — let's make it happen.
+            </p>
+
+            <div class="flex justify-center gap-4 flex-wrap reveal">
+                <a href="https://wa.me/62895386138202" target="_blank" class="btn-gold" id="whatsapp-btn">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.381l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                    </svg>
+                    WhatsApp Me
+                </a>
+                <a href="mailto:fazalsaidw@gmail.com" class="btn-outline" id="email-btn">
+                    Send Email →
+                </a>
+            </div>
+
+            <!-- Social Links -->
+            <div class="flex justify-center flex-wrap gap-6 mt-12 reveal">
+                <a href="https://github.com/fazallsaid" target="_blank" class="social-link" id="github-link">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    GitHub
+                </a>
+                <a href="https://linkedin.com/in/fazalsaid" target="_blank" class="social-link" id="linkedin-link">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                    LinkedIn
+                </a>
+                <a href="https://instagram.com/fazallsaid" target="_blank" class="social-link" id="instagram-link">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                    Instagram
+                </a>
+                <a href="https://tiktok.com/@fazallsaid" target="_blank" class="social-link" id="tiktok-link">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                    </svg>
+                    TikTok
+                </a>
+                <a href="https://twitter.com/fazallsaid__" target="_blank" class="social-link" id="twitter-link">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                    </svg>
+                    Twitter
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================ -->
+    <!-- FOOTER -->
+    <!-- ============================================================ -->
+    <footer style="border-top:1px solid rgba(255,255,255,0.05);padding:3rem 3rem 2rem;overflow:hidden;">
+        <div class="footer-giant" aria-hidden="true">WEB DEVELOPER</div>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.05);margin-top:1rem;flex-wrap:wrap;gap:1rem;">
+            <a href="./" class="nav-logo">
+                <img src="logo/fazal-white.png" alt="Fazal Said" style="height: 1.5rem; width: auto; display: inline-block;">
+            </a>
+
+            <div style="display:flex;gap:2rem;flex-wrap:wrap;">
+                <a href="#" onclick="openModal('cv.html', true); return false;" class="social-link" id="footer-cv-link">CV</a>
+                <a href="#" onclick="openModal('porto.html'); return false;" class="social-link" id="footer-porto-link">Portfolio</a>
+                <a href="freebies/" class="social-link" id="footer-freebies-link">Freebies</a>
+            </div>
+
+            <p style="font-size:0.6rem;color:#3a3a3a;letter-spacing:0.12em;">© 2026 Fazal Said Wicaksono. All rights reserved.</p>
         </div>
     </footer>
 
+
+    <!-- ============================================================ -->
+    <!-- MODAL (Preserved & restyled) -->
+    <!-- ============================================================ -->
+    <div class="modal" id="previewModal" role="dialog" aria-modal="true" aria-label="Website preview">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal" title="Close preview">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+            <button id="printModalBtn" title="Print/Save CV" style="position: absolute; top: 1rem; right: 4rem; background: rgba(10,10,10,0.8); color: #D4A843; border: 1px solid rgba(212,168,67,0.4); width: auto; height: 2.5rem; padding: 0 1.2rem; display: none; align-items: center; gap: 0.5rem; cursor: pointer; z-index: 1001; transition: all 0.3s; font-size: 0.7rem; font-weight: bold; letter-spacing: 0.05em; text-transform: uppercase;">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="margin-right: 0.2rem;">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/>
+                </svg>
+                Print / Save PDF
+            </button>
+            <div id="modalLoading" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#4a4a4a;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;">Loading...</div>
+            <iframe class="modal-iframe" id="previewFrame" allow="fullscreen" title="Website preview"></iframe>
+        </div>
+    </div>
+
+    <!-- Hover image element for work items -->
+    <div id="work-hover-img" aria-hidden="true">
+        <img src="" alt="" id="work-hover-img-el">
+    </div>
+
+
+    <!-- ============================================================ -->
+    <!-- SCRIPTS -->
+    <!-- ============================================================ -->
     <script>
-        // Theme toggle functionality
-        const themeToggle = document.getElementById('theme-toggle');
-        const html = document.documentElement;
+        // ====== NAV SCROLL EFFECT ======
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 60);
+        }, { passive: true });
 
-        // Check for saved theme preference or use system preference
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            html.classList.add('dark');
-        } else {
-            html.classList.remove('dark');
-        }
+        // ====== MOBILE MENU ======
+        const mobileBtn    = document.getElementById('mobile-menu-btn');
+        const mobileOverlay = document.getElementById('mobile-menu-overlay');
+        const closeMobileBtn = document.getElementById('close-mobile-menu');
 
-        // Toggle theme
-        themeToggle.addEventListener('click', () => {
-            html.classList.toggle('dark');
-            localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+        mobileBtn.addEventListener('click', () => {
+            mobileOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
         });
 
-        // Cursor follower
-        const follower = document.querySelector('.follower');
+        const closeMobileMenu = () => {
+            mobileOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        };
 
-        if (follower) {
-            document.addEventListener('mousemove', (e) => {
-                follower.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-                follower.style.opacity = 1;
+        closeMobileBtn.addEventListener('click', closeMobileMenu);
+
+        document.querySelectorAll('[data-close-menu]').forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+
+        // ====== ANIME.JS: HERO ENTRANCE ======
+        window.addEventListener('DOMContentLoaded', () => {
+            const tl = anime.timeline({
+                easing: 'easeOutQuart'
             });
 
-            document.querySelectorAll('button, a').forEach(item => {
+            tl.add({
+                targets: '#hero-text-1',
+                translateY: [48, 0],
+                opacity: [0, 1],
+                duration: 800,
+            })
+            .add({
+                targets: '#hero-text-2',
+                translateY: [48, 0],
+                opacity: [0, 1],
+                duration: 800,
+            }, '-=600')
+            .add({
+                targets: '#hero-photo',
+                scale: [0.75, 1],
+                opacity: [0, 1],
+                duration: 1200,
+                easing: 'easeOutElastic(1, .8)'
+            }, '-=600')
+            .add({
+                targets: '#hero-text-3',
+                translateY: [48, 0],
+                opacity: [0, 1],
+                duration: 800,
+            }, '-=1000')
+            .add({
+                targets: '#hero-text-4',
+                translateY: [48, 0],
+                opacity: [0, 1],
+                duration: 800,
+            }, '-=600')
+            .add({
+                targets: ['#hero-top-el', '#hero-bottom-el'],
+                opacity: [0, 1],
+                duration: 800,
+            }, '-=400');
+        });
+
+        // ====== SCROLL REVEAL (ANIMEJS DYNAMIC TRIGGERS) ======
+        const revealEls = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const target = entry.target;
+                    
+                    // Case 1: Works List — staggered anime-style slash reveal
+                    if (target.id === 'works-list') {
+                        target.style.opacity = '1';
+                        anime({
+                            targets: target.querySelectorAll('.work-item'),
+                            opacity: [0, 1],
+                            translateX: [-150, 0],
+                            skewX: [-15, 0],
+                            delay: anime.stagger(100),
+                            duration: 900,
+                            easing: 'easeOutBack'
+                        });
+                    }
+                    // Case 2: Process Grid — elastic staggered pop up
+                    else if (target.classList.contains('process-grid')) {
+                        target.style.opacity = '1';
+                        anime({
+                            targets: target.querySelectorAll('.process-card'),
+                            opacity: [0, 1],
+                            translateY: [120, 0],
+                            scale: [0.8, 1],
+                            delay: anime.stagger(120),
+                            duration: 1200,
+                            easing: 'easeOutElastic(1, .7)'
+                        });
+                    }
+                    // Case 3: About Left (Statement) — slide from left with skew slash
+                    else if (target.classList.contains('md:col-span-7') || target.querySelector('.about-statement')) {
+                        anime({
+                            targets: target,
+                            opacity: [0, 1],
+                            translateX: [-120, 0],
+                            skewX: [-15, 0],
+                            duration: 1000,
+                            easing: 'easeOutBack'
+                        });
+                    }
+                    // Case 4: About Right (Bio / Stats) — slide from right with negative skew slash
+                    else if (target.classList.contains('md:col-span-5') || target.querySelector('.stat-num')) {
+                        anime({
+                            targets: target,
+                            opacity: [0, 1],
+                            translateX: [120, 0],
+                            skewX: [15, 0],
+                            duration: 1000,
+                            easing: 'easeOutBack'
+                        });
+                    }
+                    // Case 5: Default headers, labels, and generic items
+                    else {
+                        anime({
+                            targets: target,
+                            opacity: [0, 1],
+                            translateY: [40, 0],
+                            scale: [0.95, 1],
+                            duration: 800,
+                            easing: 'easeOutBack'
+                        });
+                    }
+                    revealObserver.unobserve(target);
+                }
+            });
+        }, { threshold: 0.05, rootMargin: '0px 0px -60px 0px' });
+
+        revealEls.forEach(el => revealObserver.observe(el));
+
+        // ====== WORK ITEMS — HOVER IMAGE + CLICK (ANIMEJS INTEGRATION) ======
+        const hoverBox   = document.getElementById('work-hover-img');
+        const hoverImg   = document.getElementById('work-hover-img-el');
+        let hoverAnimation = null;
+
+        document.querySelectorAll('.work-item').forEach(item => {
+            const imgSrc = item.dataset.img;
+            const url    = item.dataset.url;
+
+            if (imgSrc) {
                 item.addEventListener('mouseenter', () => {
-                    follower.style.transform = 'scale(2)';
+                    hoverImg.src = imgSrc;
+                    if (hoverAnimation) hoverAnimation.pause();
+                    
+                    hoverAnimation = anime({
+                        targets: hoverBox,
+                        scale: [0.8, 1],
+                        rotate: [-3, -1.5],
+                        opacity: [0, 1],
+                        duration: 350,
+                        easing: 'easeOutBack'
+                    });
                 });
+
+                item.addEventListener('mousemove', (e) => {
+                    const x = e.clientX + 24;
+                    const y = e.clientY - 80;
+                    const maxX = window.innerWidth - 260;
+                    const maxY = window.innerHeight - 180;
+                    hoverBox.style.left = Math.min(x, maxX) + 'px';
+                    hoverBox.style.top  = Math.max(0, Math.min(y, maxY)) + 'px';
+                });
+
                 item.addEventListener('mouseleave', () => {
-                    follower.style.transform = 'scale(1)';
+                    if (hoverAnimation) hoverAnimation.pause();
+                    
+                    hoverAnimation = anime({
+                        targets: hoverBox,
+                        scale: 0.8,
+                        rotate: -3,
+                        opacity: 0,
+                        duration: 200,
+                        easing: 'easeInQuad'
+                    });
                 });
-            });
-        }
+            }
 
-        // Mobile menu
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const overlay = document.querySelector('.overlay');
-        const closeMenuBtn = document.getElementById('close-menu');
-
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.add('active');
-            overlay.classList.add('active');
-        });
-
-        closeMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-            overlay.classList.remove('active');
-        });
-
-        overlay.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-            overlay.classList.remove('active');
-        });
-
-        // Modal functionality
-        const modal = document.getElementById('previewModal');
-        const previewFrame = document.getElementById('previewFrame');
-        const closeModal = document.getElementById('closeModal');
-        const loading = document.querySelector('.loading');
-        const previewButtons = document.querySelectorAll('.preview-btn');
-
-        const openModal = () => {
-            modal.classList.add('active');
-            loading.style.display = 'block';
-            previewFrame.style.display = 'none';
-            previewFrame.src = 'about:blank'; // Clear previous content
-            previewFrame.srcdoc = '';      // Clear previous content
-        };
-
-        const hideModal = () => {
-            modal.classList.remove('active');
-            previewFrame.src = 'about:blank';
-            previewFrame.srcdoc = '';
-        };
-
-        previewButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const url = button.getAttribute('data-url');
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
                 if (!url) return;
-                openModal();
-                previewFrame.src = url;
-                previewFrame.onload = () => {
-                    loading.style.display = 'none';
-                    previewFrame.style.display = 'block';
-                };
+
+                if (url.startsWith('http')) {
+                    openModal(url);
+                }
             });
         });
 
-        closeModal.addEventListener('click', hideModal);
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) hideModal();
-        });
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modal.classList.contains('active')) {
-                hideModal();
-            }
-        });
+        // ====== PROCESS CARDS HOVER ANIME ======
+        document.querySelectorAll('.process-card').forEach(card => {
+            const icon = card.querySelector('.process-icon');
+            let iconAnimation = null;
 
-        // GANTI DENGAN URL WEB APP APPS SCRIPT ANDA YANG SUDAH DI-DEPLOY
-        const visitorCountDisplay = document.getElementById('visitor-count-display');
-        const visitorLocationDisplay = document.getElementById('visitor-location-display');
-        const appsScriptUrl = 'https://script.google.com/macros/s/AKfycbwF9wpu8zAunfd0sKtZA10hnaSQGhqNwpx3nJIsxiS2jJy3mn_BQ8LW_gDgPORXx8wO/exec'; // Ganti dengan URL Google Apps Script Anda
-
-        async function fetchLocationAndLogVisitor() {
-            let locationInfo = {
-                city: 'Unknown',
-                region: 'Unknown',
-                country: 'Unknown'
-            };
-
-            try {
-                // 1. Dapatkan data lokasi dari API geolokasi IP menggunakan ipinfo.io
-                const ipinfoApiUrl = 'https://ipinfo.io/json?token=a32fa547659ba3'; // Ganti dengan token Anda
-                const ipinfoResponse = await fetch(ipinfoApiUrl);
-
-                if (ipinfoResponse.ok) {
-                    const ipinfoData = await ipinfoResponse.json();
-                    locationInfo.city = ipinfoData.city || 'Unknown';
-                    locationInfo.region = ipinfoData.region || 'Unknown';
-                    locationInfo.country = ipinfoData.country || 'Unknown';
-
-                    if (visitorLocationDisplay) {
-                        visitorLocationDisplay.textContent = `${locationInfo.city}, ${locationInfo.region}, ${locationInfo.country}`;
-                    }
-                } else {
-                    console.warn('API Geolokasi (ipinfo.io) gagal:', ipinfoResponse.status, await ipinfoResponse.text());
-                    if (visitorLocationDisplay) visitorLocationDisplay.textContent = 'Tidak diketahui (API Error)';
-                }
-            } catch (geoError) {
-                console.error('Error saat mengambil data geolokasi (ipinfo.io):', geoError);
-                if (visitorLocationDisplay) visitorLocationDisplay.textContent = 'Error mencari lokasi';
-            }
-
-            // 2. Kirim data ke Google Apps Script menggunakan POST
-            try {
-                const formData = new URLSearchParams();
-                formData.append('city', locationInfo.city);
-                formData.append('region', locationInfo.region);
-                formData.append('country', locationInfo.country);
-
-                const scriptResponse = await fetch(appsScriptUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: formData.toString()
+            card.addEventListener('mouseenter', () => {
+                if (iconAnimation) iconAnimation.pause();
+                iconAnimation = anime({
+                    targets: icon,
+                    translateY: -6,
+                    rotate: 15,
+                    color: '#D4A843',
+                    borderColor: '#D4A843',
+                    duration: 300,
+                    easing: 'easeOutQuad'
                 });
+            });
+            card.addEventListener('mouseleave', () => {
+                if (iconAnimation) iconAnimation.pause();
+                iconAnimation = anime({
+                    targets: icon,
+                    translateY: 0,
+                    rotate: 0,
+                    color: 'rgba(255,255,255,0.25)',
+                    borderColor: 'rgba(255,255,255,0.08)',
+                    duration: 300,
+                    easing: 'easeOutQuad'
+                });
+            });
+        });
 
-                if (scriptResponse.ok) {
-                    const data = await scriptResponse.json();
-                    if (data.status === "success") {
-                        console.log('Pengunjung berhasil dicatat (via ipinfo.io):', data);
-                        if (visitorCountDisplay && data.newCount !== undefined) {
-                            visitorCountDisplay.textContent = data.newCount;
-                        }
-                    } else {
-                        console.error('Apps Script melaporkan kegagalan:', data.message);
-                        if (visitorCountDisplay) visitorCountDisplay.textContent = 'Error';
-                    }
-                } else {
-                    console.warn('Panggilan ke Apps Script mungkin berhasil (data mungkin tercatat), tetapi respons tidak OK atau bukan JSON:', scriptResponse.status);
-                    if (visitorCountDisplay) {
-                        visitorCountDisplay.textContent = "Dicatat";
-                    }
-                    try {
-                        const errorData = await scriptResponse.json(); // Coba parse error jika ada
-                        console.error('Pesan error dari Apps Script:', errorData.message);
-                    } catch (e) { /* Tidak ada JSON error body */ }
+        // ====== DYNAMIC BUTTONS HOVER & CLICK PARTICLES (ANIMEJS) ======
+        function createClickParticle(x, y) {
+            const circle = document.createElement('div');
+            circle.style.position = 'fixed';
+            circle.style.left = x + 'px';
+            circle.style.top = y + 'px';
+            circle.style.width = anime.random(6, 12) + 'px';
+            circle.style.height = circle.style.width;
+            circle.style.background = anime.random(0, 2) === 0 ? '#D4A843' : '#F0EBE3';
+            circle.style.borderRadius = '50%';
+            circle.style.pointerEvents = 'none';
+            circle.style.zIndex = '10000';
+            circle.style.transform = 'translate(-50%, -50%)';
+            document.body.appendChild(circle);
+
+            const angle = Math.random() * Math.PI * 2;
+            const radius = anime.random(40, 100);
+            const destX = Math.cos(angle) * radius;
+            const destY = Math.sin(angle) * radius;
+
+            anime({
+                targets: circle,
+                translateX: destX,
+                translateY: destY,
+                scale: [1, 0],
+                opacity: [1, 0],
+                duration: anime.random(600, 1000),
+                easing: 'easeOutExpo',
+                complete: () => circle.remove()
+            });
+        }
+
+        document.addEventListener('mousedown', (e) => {
+            const target = e.target.closest('a, button, .work-item, .process-card');
+            if (target) {
+                for (let i = 0; i < 15; i++) {
+                    createClickParticle(e.clientX, e.clientY);
                 }
-            } catch (scriptError) {
-                console.error('Error saat mengirim data ke Apps Script:', scriptError);
-                if (visitorCountDisplay) visitorCountDisplay.textContent = 'Error';
+            }
+        });
+
+        // Elastic scaling for all interactive buttons
+        document.querySelectorAll('.btn-gold, .btn-outline').forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                anime({
+                    targets: btn,
+                    scale: 1.05,
+                    duration: 400,
+                    easing: 'easeOutElastic(1, .6)'
+                });
+            });
+            btn.addEventListener('mouseleave', () => {
+                anime({
+                    targets: btn,
+                    scale: 1,
+                    duration: 300,
+                    easing: 'easeOutQuad'
+                });
+            });
+        });
+
+        // ====== MODAL (ANIMEJS TRANSITIONS) ======
+        const modal        = document.getElementById('previewModal');
+        const modalContent = modal.querySelector('.modal-content');
+        const previewFrame = document.getElementById('previewFrame');
+        const closeModalBtn = document.getElementById('closeModal');
+        const printModalBtn = document.getElementById('printModalBtn');
+        const modalLoading  = document.getElementById('modalLoading');
+
+        function openModal(url, isCV = false) {
+            modalLoading.style.display = 'block';
+            previewFrame.src = url;
+            modal.classList.add('active');
+            
+            anime({
+                targets: modal,
+                opacity: [0, 1],
+                duration: 300,
+                easing: 'easeOutQuad'
+            });
+
+            anime({
+                targets: modalContent,
+                scale: [0.9, 1],
+                opacity: [0, 1],
+                duration: 450,
+                easing: 'easeOutBack'
+            });
+
+            document.body.style.overflow = 'hidden';
+
+            if (isCV) {
+                printModalBtn.style.display = 'flex';
+            } else {
+                printModalBtn.style.display = 'none';
             }
         }
 
-        window.addEventListener('load', fetchLocationAndLogVisitor);
+        function closeModal() {
+            anime({
+                targets: modal,
+                opacity: 0,
+                duration: 250,
+                easing: 'easeInQuad',
+                complete: () => {
+                    modal.classList.remove('active');
+                    previewFrame.src = '';
+                    modalLoading.style.display = 'none';
+                    document.body.style.overflow = '';
+                }
+            });
+
+            anime({
+                targets: modalContent,
+                scale: 0.9,
+                opacity: 0,
+                duration: 200,
+                easing: 'easeInQuad'
+            });
+        }
+
+        previewFrame.addEventListener('load', () => {
+            modalLoading.style.display = 'none';
+        });
+
+        closeModalBtn.addEventListener('click', closeModal);
+        printModalBtn.addEventListener('click', () => {
+            previewFrame.contentWindow.focus();
+            previewFrame.contentWindow.print();
+        });
+        modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
     </script>
-
-
 </body>
-
 </html>

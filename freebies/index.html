@@ -1,260 +1,356 @@
 <!DOCTYPE html>
-<html lang="en" class="light">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Freebies | Fazal Said</title>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+    <!-- Anime.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+    <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        primary: '#FF6B6B',
-                        secondary: '#4ECDC4',
-                        accent: '#45B7D1',
-                        dark: '#2C3E50',
-                        light: '#F7F9FC'
+                        gold: '#D4A843',
+                        'gold-light': '#E8C678',
+                        'off-white': '#F0EBE3',
+                        'warm-gray': '#9B9590',
+                        'dark-bg': '#0a0a0a',
+                        'dark-card': '#141414',
+                        'muted': '#6B6B6B',
+                    },
+                    fontFamily: {
+                        'display': ['Bebas Neue', 'sans-serif'],
+                        'sans': ['Inter', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
+    
     <style>
-        @keyframes float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-            100% { transform: translateY(0); }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: #0a0a0a;
+            color: #F0EBE3;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
         }
 
-        .gradient-text {
-            background: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 50%, #45B7D1 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-size: 200% 200%;
-            animation: gradient 8s ease infinite;
-        }
+        /* Selection */
+        ::selection { background: #D4A843; color: #0a0a0a; }
 
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 3px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #D4A843; border-radius: 2px; }
 
-        .gradient-border {
-            position: relative;
-            background: linear-gradient(135deg, #FF6B6B, #4ECDC4, #45B7D1);
-            padding: 2px;
-            border-radius: 1.5rem;
-        }
-
-        .gradient-border::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, #FF6B6B, #4ECDC4, #45B7D1);
-            border-radius: 1.5rem;
-            z-index: -1;
-            opacity: 0.5;
-            filter: blur(10px);
-        }
-
-        .font-fira-code {
-            font-family: 'Fira Code';
-        }
-
-        /* Mobile menu styles */
-        #mobile-menu {
+        /* ===================== NAVBAR ===================== */
+        #navbar {
             position: fixed;
-            top: 0;
-            right: -100%;
-            width: 300px;
-            height: 100vh;
-            background: white;
-            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
-            transition: right 0.3s ease;
-            z-index: 1000;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 10, 0.96);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
-        .dark #mobile-menu {
-            background: #2C3E50;
+        .nav-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.9rem;
+            color: #D4A843;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            line-height: 1;
         }
 
-        #mobile-menu.active {
-            right: 0;
+        .nav-links { display: flex; align-items: center; gap: 2.5rem; }
+
+        .nav-links a {
+            color: #6B6B6B;
+            text-decoration: none;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            transition: color 0.25s;
         }
 
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 999;
-            display: none;
+        .nav-links a:hover { color: #F0EBE3; }
+
+        .nav-cta {
+            background: transparent;
+            border: 1px solid rgba(212, 168, 67, 0.6);
+            color: #D4A843;
+            padding: 0.55rem 1.4rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
         }
 
-        .overlay.active {
-            display: block;
-        }
+        .nav-cta:hover { background: #D4A843; color: #0a0a0a; }
 
+        /* ===================== CARDS ===================== */
         .freebie-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: #111;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.35s ease;
         }
 
         .freebie-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            transform: translateY(-6px);
+            border-color: rgba(212, 168, 67, 0.35);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
         }
 
-        .download-btn {
+        /* Buttons */
+        .btn-gold {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            background: #D4A843;
+            color: #0a0a0a;
+            font-weight: 700;
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
             transition: all 0.3s ease;
+            border: 1px solid #D4A843;
         }
 
-        .download-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        .btn-gold:hover { background: #E8C678; border-color: #E8C678; }
+
+        /* ===================== FOOTER ===================== */
+        .footer-giant {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(5rem, 20vw, 20rem);
+            line-height: 0.82;
+            letter-spacing: -0.02em;
+            color: rgba(255,255,255,0.035);
+            white-space: nowrap;
+            overflow: hidden;
+            user-select: none;
+            pointer-events: none;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.6rem;
+            font-weight: 600;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: #4a4a4a;
+            text-decoration: none;
+            transition: color 0.25s;
+        }
+
+        .social-link:hover { color: #D4A843; }
+
+        @media (max-width: 768px) {
+            #navbar { padding: 1.2rem 1.5rem; }
+            .nav-links, .nav-cta { display: none !important; }
         }
     </style>
 </head>
-<body class="font-fira-code bg-white dark:bg-dark text-gray-900 dark:text-light transition-colors duration-300" oncontextmenu="return false;">
-    <!-- Navbar -->
-    <nav class="fixed top-0 left-0 w-full p-6 bg-white dark:bg-dark shadow-md z-50 transition-colors duration-300">
-        <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <!-- Brand -->
-            <div class="gradient-text text-2xl font-bold">
-                <a href="./">
-                    <img src="../logo/fazal-dark.png" class="block dark:hidden" style="width: 10%;" alt="Fazal Said Logo Light" />
-                    <img src="../logo/fazal-white.png" class="hidden dark:block" style="width: 10%;" alt="Fazal Said Logo Dark" />
-                </a>
-            </div>
+<body oncontextmenu="return false;">
 
-            <!-- Center Menu -->
-            <div class="hidden md:flex space-x-8">
-                <a href="../index.html/#home" class="hover:text-primary dark:hover:text-primary transition-colors">Home</a>
-                <a href="../index.html/#about" class="hover:text-primary dark:hover:text-primary transition-colors">About</a>
-                <a href="../freebies/" class="hover:text-primary dark:hover:text-primary transition-colors">Freebies</a>
-                <a href="../class/" class="hover:text-primary dark:hover:text-primary transition-colors">Class</a>
-                <a href="../index.html/#projects" class="hover:text-primary dark:hover:text-primary transition-colors">Projects</a>
-                <a href="../index.html/#contact" class="hover:text-primary dark:hover:text-primary transition-colors">Contact</a>
-            </div>
+    <!-- ============================================================ -->
+    <!-- NAVBAR -->
+    <!-- ============================================================ -->
+    <nav id="navbar">
+        <a href="../" class="nav-logo">
+            <img src="../logo/fazal-white.png" alt="Fazal Said" style="height: 1.8rem; width: auto; display: inline-block;">
+        </a>
 
-            <!-- Theme Toggle & Mobile Menu -->
-            <div class="flex gap-4">
-                <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
-                    <svg id="theme-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path id="sun-icon" class="hidden dark:block" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
-                        <path id="moon-icon" class="block dark:hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
-                    </svg>
-                </button>
-                <button class="md:hidden p-2" id="mobile-menu-btn">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
-            </div>
+        <div class="nav-links">
+            <a href="../#home">Home</a>
+            <a href="../#about">About</a>
+            <a href="../#projects">Works</a>
+            <a href="../#contact">Contact</a>
         </div>
 
-        <!-- Mobile Menu -->
-        <div id="mobile-menu">
-            <div class="flex flex-col gap-4 p-6">
-                <button id="close-menu" class="self-end p-2">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </button>
-                <a href="../index.html/#home" class="hover:text-primary dark:hover:text-primary transition-colors">Home</a>
-                <a href="../index.html/#about" class="hover:text-primary dark:hover:text-primary transition-colors">About</a>
-                <a href="../freebies" class="hover:text-primary dark:hover:text-primary transition-colors">Freebies</a>
-                <a href="../class" class="hover:text-primary dark:hover:text-primary transition-colors">Class</a>
-                <a href="../index.html/#projects" class="hover:text-primary dark:hover:text-primary transition-colors">Projects</a>
-                <a href="../index.html/#contact" class="hover:text-primary dark:hover:text-primary transition-colors">Contact</a>
-            </div>
-        </div>
-        <div class="overlay"></div>
+        <a href="https://wa.me/62895386138202" target="_blank" class="nav-cta">
+            Hire Me →
+        </a>
     </nav>
 
-    <!-- Freebies Section -->
-    <section class="pt-32 pb-24 px-8 md:px-24">
-        <div class="max-w-6xl mx-auto">
-            <h1 class="gradient-text text-4xl md:text-5xl font-bold text-center mb-4">Freebies</h1>
-            <p class="text-gray-600 dark:text-gray-400 text-center mb-12 text-lg">
-                Free resources and tools to help you in your development journey and your playground.
+    <!-- ============================================================ -->
+    <!-- FREEBIES HEADER -->
+    <!-- ============================================================ -->
+    <section class="pt-40 pb-16 px-6 md:px-16 lg:px-24">
+        <div class="max-w-6xl mx-auto text-center md:text-left">
+            <div style="font-size: 0.62rem; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; color: #D4A843; display: flex; align-items: center; justify-content: center; md:justify-content: start; gap: 0.75rem; margin-bottom: 1.5rem;">
+                Resources
+            </div>
+            <h1 class="font-display text-6xl md:text-8xl font-bold uppercase tracking-tight text-off-white leading-none mb-6">
+                FREE<span class="text-gold">BIES.</span>
+            </h1>
+            <p class="text-sm md:text-base text-muted max-w-xl leading-relaxed">
+                Free resources, snippets, and tools to assist you on your development journey. Handcrafted with love and logic.
             </p>
+        </div>
+    </section>
 
-            <!-- Freebies Grid -->
+    <!-- ============================================================ -->
+    <!-- GRID SECTION -->
+    <!-- ============================================================ -->
+    <section class="pb-32 px-6 md:px-16 lg:px-24">
+        <div class="max-w-6xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Freebie Card 1 -->
-                <div class="freebie-card bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg">
-                    <img src="../files/lyrics.png" alt="Laravel Starter Kit" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-gray-100">Song Lyrics with Python</h3>
-                        <p class="text-gray-600 dark:text-gray-400 mb-4">
-                            A script that can make a lyrics animation, whatever what you write in script.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Python</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Song Lyrics</span>
+                
+                <!-- Card 1 -->
+                <div class="freebie-card rounded-xl overflow-hidden flex flex-col">
+                    <div class="relative overflow-hidden aspect-video border-b border-white/5">
+                        <img src="../files/lyrics.png" alt="Song Lyrics with Python" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-display text-2xl font-bold tracking-wide text-off-white mb-2">Song Lyrics with Python</h3>
+                            <p class="text-xs text-muted leading-relaxed mb-6">
+                                A simple Python automation script to generate synchronized lyric animations on the terminal or video overlay. Easy to customize.
+                            </p>
                         </div>
-                        <a href="https://fazallsaid.gumroad.com/l/python-lyrics" target="_blank" class="download-btn gradient-border block text-center py-2 px-4 font-bold text-gray-900 dark:text-gray-100">
-                            Download Now
-                        </a>
+                        <div>
+                            <div class="flex gap-2 flex-wrap mb-6">
+                                <span class="px-2.5 py-0.5 bg-white/5 text-gold border border-white/5 rounded text-[10px] font-semibold">Python</span>
+                                <span class="px-2.5 py-0.5 bg-white/5 text-gold border border-white/5 rounded text-[10px] font-semibold">Lyrics Animation</span>
+                            </div>
+                            <a href="https://fazallsaid.gumroad.com/l/python-lyrics" target="_blank" class="btn-gold">
+                                Download Now
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Add more freebie cards as needed -->
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-12 px-8 md:px-24 bg-white dark:bg-dark border-t dark:border-gray-800">
-        <div class="max-w-6xl mx-auto text-center">
-            <p class="text-gray-600 dark:text-gray-400">© 2025 Fazal Said. All rights reserved.</p>
+    <!-- ============================================================ -->
+    <!-- FOOTER -->
+    <!-- ============================================================ -->
+    <footer style="border-top:1px solid rgba(255,255,255,0.05);padding:3rem 3rem 2rem;overflow:hidden;">
+        <div class="footer-giant" aria-hidden="true">WEB DEVELOPER</div>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.05);margin-top:1rem;flex-wrap:wrap;gap:1rem;">
+            <a href="../" class="nav-logo">
+                <img src="../logo/fazal-white.png" alt="Fazal Said" style="height: 1.5rem; width: auto; display: inline-block;">
+            </a>
+
+            <div style="display:flex;gap:2rem;flex-wrap:wrap;">
+                <a href="../cv.html" class="social-link" onclick="alert('Buka landing page untuk mengunduh CV dalam modal!'); return false;">CV</a>
+                <a href="../porto.html" class="social-link" onclick="alert('Buka landing page untuk melihat Portfolio dalam modal!'); return false;">Portfolio</a>
+                <a href="./" class="social-link">Freebies</a>
+            </div>
+
+            <p style="font-size:0.6rem;color:#3a3a3a;letter-spacing:0.12em;">© 2026 Fazal Said Wicaksono. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-        // Theme toggle functionality
-        const themeToggle = document.getElementById('theme-toggle');
-        const html = document.documentElement;
-        
-        // Check for saved theme preference or use system preference
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            html.classList.add('dark');
-        } else {
-            html.classList.remove('dark');
+        // ====== DYNAMIC BUTTONS HOVER & CLICK PARTICLES (ANIMEJS) ======
+        function createClickParticle(x, y) {
+            const circle = document.createElement('div');
+            circle.style.position = 'fixed';
+            circle.style.left = x + 'px';
+            circle.style.top = y + 'px';
+            circle.style.width = anime.random(6, 12) + 'px';
+            circle.style.height = circle.style.width;
+            circle.style.background = anime.random(0, 2) === 0 ? '#D4A843' : '#F0EBE3';
+            circle.style.borderRadius = '50%';
+            circle.style.pointerEvents = 'none';
+            circle.style.zIndex = '10000';
+            circle.style.transform = 'translate(-50%, -50%)';
+            document.body.appendChild(circle);
+
+            const angle = Math.random() * Math.PI * 2;
+            const radius = anime.random(40, 100);
+            const destX = Math.cos(angle) * radius;
+            const destY = Math.sin(angle) * radius;
+
+            anime({
+                targets: circle,
+                translateX: destX,
+                translateY: destY,
+                scale: [1, 0],
+                opacity: [1, 0],
+                duration: anime.random(600, 1000),
+                easing: 'easeOutExpo',
+                complete: () => circle.remove()
+            });
         }
 
-        // Toggle theme
-        themeToggle.addEventListener('click', () => {
-            html.classList.toggle('dark');
-            localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+        document.addEventListener('mousedown', (e) => {
+            const target = e.target.closest('a, button, .freebie-card');
+            if (target) {
+                for (let i = 0; i < 15; i++) {
+                    createClickParticle(e.clientX, e.clientY);
+                }
+            }
         });
 
-        // Mobile menu
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const overlay = document.querySelector('.overlay');
-        const closeMenuBtn = document.getElementById('close-menu');
-
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.add('active');
-            overlay.classList.add('active');
+        // Elastic scaling for all interactive buttons
+        document.querySelectorAll('.btn-gold, .btn-outline, .nav-cta').forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                anime({
+                    targets: btn,
+                    scale: 1.05,
+                    duration: 400,
+                    easing: 'easeOutElastic(1, .6)'
+                });
+            });
+            btn.addEventListener('mouseleave', () => {
+                anime({
+                    targets: btn,
+                    scale: 1,
+                    duration: 300,
+                    easing: 'easeOutQuad'
+                });
+            });
         });
 
-        closeMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-            overlay.classList.remove('active');
-        });
-
-        overlay.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-            overlay.classList.remove('active');
+        // Fade in freebie cards on load
+        window.addEventListener('DOMContentLoaded', () => {
+            anime({
+                targets: '.freebie-card',
+                opacity: [0, 1],
+                translateY: [40, 0],
+                scale: [0.95, 1],
+                delay: anime.stagger(100),
+                duration: 800,
+                easing: 'easeOutBack'
+            });
         });
     </script>
 </body>
-</html> 
+</html>
