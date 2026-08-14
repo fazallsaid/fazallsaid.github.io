@@ -383,6 +383,11 @@
       display: flex;
       justify-content: space-between;
     }
+    /* loading spin */
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
   </style>
 </head>
 <body>
@@ -448,115 +453,136 @@
 
 <script>
   // ── CONFIG ──────────────────────────────────────────────────────────────
-  const HASH = "9e864ba77d5cd0f93c1da1db84cc42db3c79589ca0e096dab4175ad61327bb33";
+  const HASH        = "9e864ba77d5cd0f93c1da1db84cc42db3c79589ca0e096dab4175ad61327bb33";
   const SESSION_KEY = "fm_auth";
+  const REPO        = "fazallsaid/fazallsaid.github.io";
+  const BRANCH      = "main";
+  const BASE_PATH   = "files"; // folder root yg ditampilin di file manager
+  const TREE_CACHE  = "fm_tree_cache";
+  const CACHE_TTL   = 5 * 60 * 1000; // 5 menit
 
-  // ── FILE TREE ────────────────────────────────────────────────────────────
-  const TREE = {
-    "~": {
-      type: "dir",
-      children: {
-        "assets": {
-          type: "dir",
-          children: {
-            "images": {
-              type: "dir",
-              children: {
-                "mascott": {
-                  type: "dir",
-                  children: {
-                    "ventyra": {
-                      type: "dir",
-                      children: {
-                        "1768227877.png":           { type: "file", path: "assets/images/mascott/ventyra/1768227877.png" },
-                        "1768227927.png":           { type: "file", path: "assets/images/mascott/ventyra/1768227927.png" },
-                        "1768228033.png":           { type: "file", path: "assets/images/mascott/ventyra/1768228033.png" },
-                        "1768228069.png":           { type: "file", path: "assets/images/mascott/ventyra/1768228069.png" },
-                        "Bengong_Tomori.png":       { type: "file", path: "assets/images/mascott/ventyra/Bengong_Tomori.png" },
-                        "Confused_Tomori.png":      { type: "file", path: "assets/images/mascott/ventyra/Confused_Tomori.png" },
-                        "Failed_Tomori.png":        { type: "file", path: "assets/images/mascott/ventyra/Failed_Tomori.png" },
-                        "Giving_a_Tips_Tomori.png": { type: "file", path: "assets/images/mascott/ventyra/Giving_a_Tips_Tomori.png" },
-                        "handling_a_laptop_tomori.png": { type: "file", path: "assets/images/mascott/ventyra/handling_a_laptop_tomori.png" },
-                        "Happy_Tomori.png":         { type: "file", path: "assets/images/mascott/ventyra/Happy_Tomori.png" },
-                        "misaka_on_the_laptop.png": { type: "file", path: "assets/images/mascott/ventyra/misaka_on_the_laptop.png" },
-                        "Panic_Tomori.png":         { type: "file", path: "assets/images/mascott/ventyra/Panic_Tomori.png" },
-                        "Sad_Tomori.png":           { type: "file", path: "assets/images/mascott/ventyra/Sad_Tomori.png" },
-                        "tyra_normal_chibi.png":    { type: "file", path: "assets/images/mascott/ventyra/tyra_normal_chibi.png" },
-                        "tyra_normal.png":          { type: "file", path: "assets/images/mascott/ventyra/tyra_normal.png" },
-                        "Tyra_Profile_Photo.png":   { type: "file", path: "assets/images/mascott/ventyra/Tyra_Profile_Photo.png" },
-                      }
-                    },
-                    "cute_tomori.png":            { type: "file", path: "assets/images/mascott/cute_tomori.png" },
-                    "failed_processing_tomori.png":{ type: "file", path: "assets/images/mascott/failed_processing_tomori.png" },
-                    "happy_tomori.png":            { type: "file", path: "assets/images/mascott/happy_tomori.png" },
-                    "misaka_natal.png":            { type: "file", path: "assets/images/mascott/misaka_natal.png" },
-                    "normal_tomori.png":           { type: "file", path: "assets/images/mascott/normal_tomori.png" },
-                    "panic_tomori.png":            { type: "file", path: "assets/images/mascott/panic_tomori.png" },
-                    "processing_data_tomori.png":  { type: "file", path: "assets/images/mascott/processing_data_tomori.png" },
-                    "promotion_tomori.png":        { type: "file", path: "assets/images/mascott/promotion_tomori.png" },
-                    "thinking_tomori.png":         { type: "file", path: "assets/images/mascott/thinking_tomori.png" },
-                  }
-                },
-                "others": {
-                  type: "dir",
-                  children: {
-                    "christmas_sale": {
-                      type: "dir",
-                      children: {
-                        "sale.png": { type: "file", path: "assets/images/others/christmas_sale/sale.png" },
-                      }
-                    },
-                    "hutri81": {
-                      type: "dir",
-                      children: {
-                        "HUTRI81_FA_Logo__Logo Sekunder Hitam Latar Putih.png":    { type: "file", path: "assets/images/others/hutri81/HUTRI81_FA_Logo__Logo Sekunder Hitam Latar Putih.png" },
-                        "HUTRI81_FA_Logo__Logo Sekunder Merah Hitam Latar Putih.png": { type: "file", path: "assets/images/others/hutri81/HUTRI81_FA_Logo__Logo Sekunder Merah Hitam Latar Putih.png" },
-                        "HUTRI81_FA_Logo__Logo Sekunder Putih Latar Merah.png":    { type: "file", path: "assets/images/others/hutri81/HUTRI81_FA_Logo__Logo Sekunder Putih Latar Merah.png" },
-                        "HUTRI81_FA_Logo__Logo Tersier Hitam Latar Putih.png":     { type: "file", path: "assets/images/others/hutri81/HUTRI81_FA_Logo__Logo Tersier Hitam Latar Putih.png" },
-                        "HUTRI81_FA_Logo__Logo Tersier Putih Latar Merah.png":     { type: "file", path: "assets/images/others/hutri81/HUTRI81_FA_Logo__Logo Tersier Putih Latar Merah.png" },
-                        "HUTRI81_FA_Logo__Logo Tersier merah Hitam latar Putih.png": { type: "file", path: "assets/images/others/hutri81/HUTRI81_FA_Logo__Logo Tersier merah Hitam latar Putih.png" },
-                        "HUTRI81_FA_Logo__Main Logo Hitam Latar Putih.png":        { type: "file", path: "assets/images/others/hutri81/HUTRI81_FA_Logo__Main Logo Hitam Latar Putih.png" },
-                        "HUTRI81_FA_Logo__Main Logo Merah Hitam Latar Putih.png":  { type: "file", path: "assets/images/others/hutri81/HUTRI81_FA_Logo__Main Logo Merah Hitam Latar Putih.png" },
-                        "HUTRI81_FA_Logo__Main logo Putih Latar Merah.png":        { type: "file", path: "assets/images/others/hutri81/HUTRI81_FA_Logo__Main logo Putih Latar Merah.png" },
-                      }
-                    },
-                    "ft_blue.png":              { type: "file", path: "assets/images/others/ft_blue.png" },
-                    "ft_white.png":             { type: "file", path: "assets/images/others/ft_white.png" },
-                    "just_logo.png":            { type: "file", path: "assets/images/others/just_logo.png" },
-                    "logo_ventyra.png":         { type: "file", path: "assets/images/others/logo_ventyra.png" },
-                    "logo_ventyra_white.png":   { type: "file", path: "assets/images/others/logo_ventyra_white.png" },
-                    "ventyra_labs_blue.png":    { type: "file", path: "assets/images/others/ventyra_labs_blue.png" },
-                    "ventyra_labs_white.png":   { type: "file", path: "assets/images/others/ventyra_labs_white.png" },
-                    "ventyra_logo_with_bg.png": { type: "file", path: "assets/images/others/ventyra_logo_with_bg.png" },
-                  }
-                }
-              }
-            }
+  // ── DYNAMIC TREE via GITHUB API ─────────────────────────────────────────
+  let TREE = null; // will be populated after login
+
+  async function fetchTree() {
+    // cek cache dulu
+    try {
+      const cached = sessionStorage.getItem(TREE_CACHE);
+      if (cached) {
+        const { ts, data } = JSON.parse(cached);
+        if (Date.now() - ts < CACHE_TTL) {
+          TREE = data;
+          return;
+        }
+      }
+    } catch(_) {}
+
+    showLoading(true);
+    try {
+      const url = `https://api.github.com/repos/${REPO}/git/trees/${BRANCH}?recursive=1`;
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`GitHub API error: ${res.status}`);
+      const json = await res.json();
+
+      // build tree dari flat list
+      TREE = buildTree(json.tree);
+
+      // simpan ke cache
+      sessionStorage.setItem(TREE_CACHE, JSON.stringify({ ts: Date.now(), data: TREE }));
+    } catch (err) {
+      showError("Gagal memuat file tree: " + err.message);
+    } finally {
+      showLoading(false);
+    }
+  }
+
+  function buildTree(items) {
+    // filter hanya path yg berada di bawah BASE_PATH
+    const filtered = items.filter(item =>
+      item.path.startsWith(BASE_PATH + "/") || item.path === BASE_PATH
+    );
+
+    const root = { "~": { type: "dir", children: {} } };
+
+    for (const item of filtered) {
+      // hapus prefix BASE_PATH dari path
+      const rel = item.path.slice(BASE_PATH.length + 1); // e.g. "assets/images/others/hutri81/logo.png"
+      if (!rel) continue;
+
+      const parts = rel.split("/");
+      let cur = root["~"].children;
+
+      for (let i = 0; i < parts.length; i++) {
+        const part = parts[i];
+        const isLast = i === parts.length - 1;
+
+        if (isLast) {
+          if (item.type === "blob") {
+            // file
+            cur[part] = {
+              type: "file",
+              path: BASE_PATH + "/" + rel,
+            };
           }
-        },
-        "class": {
-          type: "dir",
-          children: {
-            "pdf": {
-              type: "dir",
-              children: {
-                "Theory_1_-_Folder_Structure.pdf": { type: "file", path: "class/pdf/Theory_1_-_Folder_Structure.pdf" }
-              }
-            },
-            "pptx": {
-              type: "dir",
-              children: {
-                "meet1.pptx": { type: "file", path: "class/pptx/meet1.pptx" }
-              }
-            }
+          // jika tree (folder) sudah dibuat oleh child sebelumnya, skip
+        } else {
+          // folder — buat kalau belum ada
+          if (!cur[part]) {
+            cur[part] = { type: "dir", children: {} };
           }
-        },
-        "list_tampilan.csv":     { type: "file", path: "list_tampilan.csv" },
-        "lyrics.png":            { type: "file", path: "lyrics.png" },
-        "lyrics_source_code.zip":{ type: "file", path: "lyrics_source_code.zip" },
+          cur = cur[part].children;
+        }
       }
     }
-  };
+
+    return root;
+  }
+
+  function showLoading(show) {
+    const grid  = document.getElementById("file-grid");
+    const list  = document.getElementById("file-list");
+    let loader  = document.getElementById("api-loader");
+
+    if (show) {
+      if (!loader) {
+        loader = document.createElement("div");
+        loader.id = "api-loader";
+        loader.innerHTML = `
+          <div style="text-align:center;padding:60px 20px;color:#555">
+            <div style="font-size:2.5rem;margin-bottom:12px;animation:spin 1s linear infinite;display:inline-block">⟳</div>
+            <div style="font-size:0.9rem">Memuat file tree dari GitHub...</div>
+          </div>
+        `;
+        document.getElementById("content").prepend(loader);
+      }
+      loader.style.display = "block";
+      grid.style.display = "none";
+      list.style.display = "none";
+    } else {
+      if (loader) loader.style.display = "none";
+    }
+  }
+
+  function showError(msg) {
+    const content = document.getElementById("content");
+    let err = document.getElementById("api-error");
+    if (!err) {
+      err = document.createElement("div");
+      err.id = "api-error";
+      err.style.cssText = "text-align:center;padding:40px;color:#f07070;font-size:0.9rem";
+      content.prepend(err);
+    }
+    err.innerHTML = `⚠️ ${msg}<br><br><button onclick="retryFetch()" style="background:#5b6af0;color:#fff;border:none;padding:8px 18px;border-radius:6px;cursor:pointer">Coba Lagi</button>`;
+    err.style.display = "block";
+  }
+
+  async function retryFetch() {
+    sessionStorage.removeItem(TREE_CACHE);
+    const err = document.getElementById("api-error");
+    if (err) err.style.display = "none";
+    await fetchTree();
+    if (TREE) renderCurrent();
+  }
 
   // ── AUTH ─────────────────────────────────────────────────────────────────
   async function sha256(str) {
@@ -569,7 +595,7 @@
     const h   = await sha256(val);
     if (h === HASH) {
       sessionStorage.setItem(SESSION_KEY, "1");
-      showApp();
+      await showApp();
     } else {
       const err = document.getElementById("login-error");
       err.style.display = "block";
@@ -579,6 +605,8 @@
 
   function doLogout() {
     sessionStorage.removeItem(SESSION_KEY);
+    sessionStorage.removeItem(TREE_CACHE);
+    TREE = null;
     document.getElementById("app").style.display = "none";
     document.getElementById("login-screen").style.display = "block";
     document.getElementById("pw-input").value = "";
@@ -602,6 +630,7 @@
   function getNode(pathArr) {
     let node = TREE["~"];
     for (let i = 1; i < pathArr.length; i++) {
+      if (!node.children) return null;
       node = node.children[pathArr[i]];
       if (!node) return null;
     }
@@ -662,6 +691,8 @@
 
   // ── RENDER ───────────────────────────────────────────────────────────────
   function renderCurrent() {
+    if (!TREE) return;
+
     const node   = getNode(currentPath);
     const query  = document.getElementById("search-box").value.toLowerCase();
     const grid   = document.getElementById("file-grid");
@@ -670,6 +701,10 @@
 
     grid.innerHTML = "";
     list.innerHTML = "";
+
+    // restore view
+    grid.style.display = viewMode === "grid" ? "grid" : "none";
+    document.getElementById("file-list").style.display = viewMode === "list" ? "block" : "none";
 
     // breadcrumb
     const bc = document.getElementById("breadcrumb");
@@ -759,7 +794,6 @@
 
   function openFile(path, name) {
     if (isImage(name)) {
-      // kumpulkan semua gambar di folder ini untuk navigasi
       const node = getNode(currentPath);
       previewList = Object.entries(node.children)
         .filter(([n, v]) => v.type === "file" && isImage(n))
@@ -810,16 +844,18 @@
   }
 
   // ── INIT ─────────────────────────────────────────────────────────────────
-  function showApp() {
+  async function showApp() {
     document.getElementById("login-screen").style.display = "none";
     document.getElementById("app").style.display = "flex";
     document.body.style.alignItems = "flex-start";
-    renderCurrent();
+    await fetchTree();
+    if (TREE) renderCurrent();
   }
 
   if (sessionStorage.getItem(SESSION_KEY) === "1") {
     showApp();
   }
+
 </script>
 </body>
 </html>
