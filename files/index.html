@@ -518,10 +518,10 @@
 
         if (isLast) {
           if (item.type === "blob") {
-            // file
+            // file — path relatif dari dalam folder files/
             cur[part] = {
               type: "file",
-              path: BASE_PATH + "/" + rel,
+              path: rel,
             };
           }
           // jika tree (folder) sudah dibuat oleh child sebelumnya, skip
