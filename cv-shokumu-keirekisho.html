@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>職務経歴書 - Fazal Said Wicaksono</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Noto Sans JP', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @page { size: A4; margin: 0; }
+        body { 
+            -webkit-print-color-adjust: exact !important; 
+            print-color-adjust: exact !important; 
+        }
+        .print-area { 
+            width: 210mm; 
+            min-height: 297mm; 
+            background: white; 
+            margin: 0 auto; 
+        }
+        
+        @media print { 
+            body { background: white; } 
+            .print-area { box-shadow: none; margin: 0; width: 100%; height: 100%; }
+            .no-print { display: none; }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans antialiased">
+
+    <div class="print-area p-8 mx-auto shadow-lg relative">
+        
+        <!-- Header -->
+        <div class="mb-6">
+            <h1 class="text-2xl font-bold border-b-2 border-black pb-2 mb-4">職務経歴書</h1>
+            <div class="flex justify-between text-sm">
+                <div>
+                    <p>作成日：令和<span class="underline w-16 inline-block text-center"></span>年<span class="underline w-10 inline-block text-center"></span>月<span class="underline w-10 inline-block text-center"></span>日</p>
+                </div>
+                <div class="text-right">
+                    <p class="font-bold">ファザル・サイド・ウィカクソノ</p>
+                    <p class="text-xs">生年月日：西暦<span class="underline w-20 inline-block text-center"></span>年<span class="underline w-10 inline-block text-center"></span>月<span class="underline w-10 inline-block text-center"></span>日生</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Professional Summary -->
+        <div class="mb-6">
+            <h2 class="text-lg font-bold border-b-2 border-black pb-1 mb-3">職務要約</h2>
+            <div class="border border-gray-400 p-4 text-xs leading-relaxed">
+                <p>Web開発者として<strong>9年以上</strong>の経験を持ち、スケーラブルなWebアプリケーションの構築に従事。<strong>Laravel</strong>および<strong>CodeIgniter</strong>を用いたバックエンド開発、<strong>Tailwind CSS</strong>を活用したモダンなフロントエンド実装を得意とする。ヴェントラ・ラボ（旧ファステクノロジー）を創業し、リード開発者としてカスタムソフトウェアソリューションの提供を行う。要件定義から設計、実装、テスト、デプロイまでのフルSDLCを管理。10名以上のインターン育成経験、職業訓練校の外部試験官を務めるなど、技術指導・人材育成にも実績あり。</p>
+            </div>
+        </div>
+
+        <!-- Work Experience Details -->
+        <div class="mb-6">
+            <h2 class="text-lg font-bold border-b-2 border-black pb-1 mb-3">職務経歴詳細</h2>
+            
+            <!-- Current: PT Royal D'Paragon Land -->
+            <div class="mb-6 p-4 border border-gray-300 bg-gray-50">
+                <div class="flex justify-between items-start mb-2">
+                    <div>
+                        <p class="font-bold text-base">PT. ロイヤル・ディ・パラゴン・ランド</p>
+                        <p class="text-xs text-gray-600">インドネシア、ジョグジャカルタ特別州スレマン県</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-bold text-sm">2026年3月 〜 現在</p>
+                        <p class="text-xs text-gray-600">ITスタッフ Web開発者</p>
+                    </div>
+                </div>
+                <ul class="list-disc ml-4 text-xs text-gray-700 space-y-1">
+                    <li>Laravelおよびモダンフロントエンドスタックを用いた社内Webアプリケーションの開発・保守</li>
+                    <li>バグの診断・修正によるシステム安定性とパフォーマンスの向上</li>
+                    <li>クロスファンクショナルチームと連携し、ビジネス要件に基づく新機能の実装</li>
+                    <li>定期的なコードレビュー実施、データベースクエリの最適化による効率化</li>
+                </ul>
+            </div>
+
+            <!-- Ventrya Labs -->
+            <div class="mb-6 p-4 border border-gray-300">
+                <div class="flex justify-between items-start mb-2">
+                    <div>
+                        <p class="font-bold text-base">ヴェントラ・ラボ（Ventyra Labs / 旧ファステクノロジー）</p>
+                        <p class="text-xs text-gray-600">インドネシア、ジョグジャカルタ</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-bold text-sm">2016年1月 〜 現在</p>
+                        <p class="text-xs text-gray-600">創業者・リードWeb開発者</p>
+                    </div>
+                </div>
+                <ul class="list-disc ml-4 text-xs text-gray-700 space-y-1">
+                    <li>Webエージェンシーを創業、カスタムソフトウェアソリューションの提供を牽引</li>
+                    <li>LaravelおよびMySQLを用いたスケーラブルなバックエンドアーキテクチャの設計・構築</li>
+                    <li>Tailwind CSSおよびAlpine.jsを用いたモダンなUI/UXの実装</li>
+                    <li>要件定義からデプロイまでのフルSDLC管理、クライアント折衝・プロジェクト管理</li>
+                </ul>
+            </div>
+
+            <!-- Seven Inc - PHP Mentor -->
+            <div class="mb-6 p-4 border border-gray-300">
+                <div class="flex justify-between items-start mb-2">
+                    <div>
+                        <p class="font-bold text-base">セブン社ジョグジャカルタ支社（Seven Inc Jogja）</p>
+                        <p class="text-xs text-gray-600">インドネシア、バントゥル県、ジョグジャカルタ特別州</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-bold text-sm">2023年8月 〜 2024年8月</p>
+                        <p class="text-xs text-gray-600">PHPメンター兼プログラマー</p>
+                    </div>
+                </div>
+                <ul class="list-disc ml-4 text-xs text-gray-700 space-y-1">
+                    <li>10名以上のインターン生に対し、PHPおよびWeb開発ベストプラクティスを指導</li>
+                    <li>職業訓練校の外部<strong>職業能力検定試験官</strong>として実技試験の評価を担当</li>
+                </ul>
+            </div>
+
+            <!-- Seven Inc - Intern -->
+            <div class="mb-6 p-4 border border-gray-300">
+                <div class="flex justify-between items-start mb-2">
+                    <div>
+                        <p class="font-bold text-base">セブン社ジョグジャカルタ支社（Seven Inc Jogja）</p>
+                        <p class="text-xs text-gray-600">インドネシア、バントゥル県、ジョグジャカルタ特別州</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-bold text-sm">2023年4月 〜 2023年7月</p>
+                        <p class="text-xs text-gray-600">Web開発インターン</p>
+                    </div>
+                </div>
+                <ul class="list-disc ml-4 text-xs text-gray-700 space-y-1">
+                    <li><strong>CodeIgniter 3 (CI3)</strong>を用いたWebアプリケーションの開発・保守</li>
+                    <li>シニア開発者と連携し、モジュール実装を担当</li>
+                </ul>
+            </div>
+
+            <!-- CV Karya Wahana Sentosa -->
+            <div class="mb-6 p-4 border border-gray-300">
+                <div class="flex justify-between items-start mb-2">
+                    <div>
+                        <p class="font-bold text-base">CV. カリヤ・ワハナ・セントサ（CV. Karya Wahana Sentosa）</p>
+                        <p class="text-xs text-gray-600">インドネシア、バントゥル県</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-bold text-sm">2025年4月 〜 2025年8月</p>
+                        <p class="text-xs text-gray-600">Web開発インターン</p>
+                    </div>
+                </div>
+                <ul class="list-disc ml-4 text-xs text-gray-700 space-y-1">
+                    <li><strong>リアルタイム物流追跡システム（PPIC）</strong>の開発</li>
+                    <li>Google Maps APIを統合し、サプライヤー納品のリアルタイム追跡機能を実装</li>
+                    <li>LaravelおよびTailwind CSSを用いた在庫管理ダッシュボードの構築</li>
+                </ul>
+            </div>
+
+            <!-- Ministry of Public Works -->
+            <div class="mb-6 p-4 border border-gray-300">
+                <div class="flex justify-between items-start mb-2">
+                    <div>
+                        <p class="font-bold text-base">公共事業省（Ministry of Public Works / PUPR）</p>
+                        <p class="text-xs text-gray-600">インドネシア、スレマン県</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-bold text-sm">2024年10月 〜 2025年2月</p>
+                        <p class="text-xs text-gray-600">Web開発インターン</p>
+                    </div>
+                </div>
+                <ul class="list-disc ml-4 text-xs text-gray-700 space-y-1">
+                    <li>部門ニーズに基づく社内Webポータルの機能拡張・改修</li>
+                    <li>データベースクエリの最適化によるレポート生成速度の向上</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Technical Skills -->
+        <div class="mb-6">
+            <h2 class="text-lg font-bold border-b-2 border-black pb-1 mb-3">技術スキル</h2>
+            <div class="grid grid-cols-2 gap-4 text-xs">
+                <div class="p-3 border border-gray-300">
+                    <p class="font-bold mb-2">バックエンド</p>
+                    <div class="space-y-1">
+                        <p>・PHP <span class="font-bold text-indigo-700">（エキスパート）</span></p>
+                        <p>・Laravel <span class="font-bold text-indigo-700">（エキスパート）</span></p>
+                        <p>・CodeIgniter 3/4</p>
+                        <p>・MySQL（クエリ最適化、インデックス設計）</p>
+                        <p>・REST API設計・実装</p>
+                    </div>
+                </div>
+                <div class="p-3 border border-gray-300">
+                    <p class="font-bold mb-2">フロントエンド</p>
+                    <div class="space-y-1">
+                        <p>・Tailwind CSS <span class="font-bold text-indigo-700">（エキスパート）</span></p>
+                        <p>・HTML5 / CSS3</p>
+                        <p>・JavaScript（Vanilla、Alpine.js）</p>
+                        <p>・レスポンシブデザイン</p>
+                    </div>
+                </div>
+                <div class="p-3 border border-gray-300">
+                    <p class="font-bold mb-2">ツール・環境</p>
+                    <div class="space-y-1">
+                        <p>・Git / GitHub（ブランチ戦略、PR運用）</p>
+                        <p>・VS Code</p>
+                        <p>・Postman（APIテスト）</p>
+                        <p>・Linuxサーバー基礎操作</p>
+                        <p>・Docker基礎</p>
+                    </div>
+                </div>
+                <div class="p-3 border border-gray-300">
+                    <p class="font-bold mb-2">ソフトスキル・その他</p>
+                    <div class="space-y-1">
+                        <p>・チームリード・マネジメント経験</p>
+                        <p>・技術指導・メンタリング（10名以上）</p>
+                        <p>・クライアント折衝・要件定義</p>
+                        <p>・プロジェクト管理（アジャイル/ウォーターフォール）</p>
+                        <p>・インドネシア語（ネイティブ）、英語（中級）</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Projects -->
+        <div class="mb-6">
+            <h2 class="text-lg font-bold border-b-2 border-black pb-1 mb-3">主要プロジェクト実績</h2>
+            <div class="space-y-4 text-xs">
+                <div class="p-3 border border-gray-300">
+                    <p class="font-bold">リアルタイム物流追跡システム（PPIC）</p>
+                    <p class="text-gray-600">CV. Karya Wahana Sentosa | 2025年4月〜8月</p>
+                    <p>Laravel + Tailwind CSS + Google Maps APIを用い、サプライヤーからの納品状況を地図上でリアルタイム可視化するシステムを開発。在庫管理ダッシュボードも併せて構築。</p>
+                </div>
+                <div class="p-3 border border-gray-300">
+                    <p class="font-bold">社内Webポータル機能拡張</p>
+                    <p class="text-gray-600">公共事業省（PUPR） | 2024年10月〜2025年2月</p>
+                    <p>部門ごとの業務フローに合わせたポータル機能の追加・改修。DBクエリ最適化によりレポート生成時間を大幅短縮。</p>
+                </div>
+                <div class="p-3 border border-gray-300">
+                    <p class="font-bold">複数クライアント向けカスタムWebシステム</p>
+                    <p class="text-gray-600">ヴェントラ・ラボ | 2016年〜現在</p>
+                    <p>ECサイト、業務管理システム、予約システム、社内ポータル等、多岐にわたるWebシステムをLaravelベースで設計・構築・納品。保守運用フェーズも継続対応。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Education -->
+        <div class="mb-6">
+            <h2 class="text-lg font-bold border-b-2 border-black pb-1 mb-3">学歴</h2>
+            <table class="w-full text-xs border-collapse border border-gray-400">
+                <thead>
+                    <tr class="bg-gray-100">
+                        <th class="border border-gray-400 py-2 px-2 font-bold text-center w-24">期間</th>
+                        <th class="border border-gray-400 py-2 px-2 font-bold">学校名・専攻</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="border border-gray-400 py-1 px-2 text-center">2022年4月 〜 2026年5月</td>
+                        <td class="border border-gray-400 py-1 px-2">インドネシア工科大学（Universitas Teknologi Digital Indonesia）<br>情報システム学科 卒業（学士号取得）</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Language -->
+        <div class="mb-6">
+            <h2 class="text-lg font-bold border-b-2 border-black pb-1 mb-3">語学力</h2>
+            <table class="w-full text-xs border-collapse border border-gray-400">
+                <thead>
+                    <tr class="bg-gray-100">
+                        <th class="border border-gray-400 py-2 px-2 font-bold text-center w-24">言語</th>
+                        <th class="border border-gray-400 py-2 px-2 font-bold text-center">レベル</th>
+                        <th class="border border-gray-400 py-2 px-2 font-bold">備考</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="border border-gray-400 py-1 px-2 text-center">インドネシア語</td>
+                        <td class="border border-gray-400 py-1 px-2 text-center">ネイティブ</td>
+                        <td class="border border-gray-400 py-1 px-2">母国語</td>
+                    </tr>
+                    <tr>
+                        <td class="border border-gray-400 py-1 px-2 text-center">英語</td>
+                        <td class="border border-gray-400 py-1 px-2 text-center">中級（TOEIC相当 600-700点）</td>
+                        <td class="border border-gray-400 py-1 px-2">ビジネスメール・技術文書読解可能</td>
+                    </tr>
+                    <tr>
+                        <td class="border border-gray-400 py-1 px-2 text-center">日本語</td>
+                        <td class="border border-gray-400 py-1 px-2 text-center">学習中（N5〜N4レベル目標）</td>
+                        <td class="border border-gray-400 py-1 px-2">ひらがな・カタカナ習得済み、基本会話学習中</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Self PR -->
+        <div class="mb-6">
+            <h2 class="text-lg font-bold border-b-2 border-black pb-1 mb-3">自己PR</h2>
+            <div class="border border-gray-400 p-4 text-xs leading-relaxed">
+                <p>9年以上のWeb開発経験を通じ、Laravelを中心としたバックエンド設計からTailwind CSSによるモダンフロントエンド実装まで、フルスタックでの開発を一貫して担ってきました。自社サービスの立ち上げからクライアントワークまで、要件定義・設計・実装・テスト・デプロイ・保守の全工程を経験しています。</p>
+                <p class="mt-2">特に<strong>チームリード・メンタリング</strong>には注力しており、インターン生10名以上の技術指導、職業訓練校の外部試験官として次世代エンジニアの育成に貢献してきました。また、クライアントとの折衝を通じた要件整理、アジャイル/ウォーターフォール双方でのプロジェクト管理経験も豊富です。</p>
+                <p class="mt-2">現在は日本での就業を目指し、日本語学習に取り組んでいます。技術力と現場経験を活かし、貴社の開発チームに即戦力として貢献したいと考えております。</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="no-print text-center my-4">
+        <button onclick="window.print()" class="bg-indigo-700 text-white px-6 py-2 rounded hover:bg-indigo-800">印刷 / PDF保存</button>
+    </div>
+
+</body>
+</html>
