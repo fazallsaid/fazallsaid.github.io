@@ -1,2 +1,609 @@
 <!DOCTYPE html>
-<html><head><title>BengkelPrima</title></head><body><h1>Work in Progress: BengkelPrima</h1></body></html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BengkelPrima - Bengkel Spesialis Servis Mobil & Motor Profesional</title>
+    <meta name="description" content="BengkelPrima melayani servis berkala, tune-up, ganti oli, kelistrikan, hingga overhaul mesin mobil dan motor dengan teknisi bersertifikat dan garansi servis.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: {
+                            900: '#0A0C10',
+                            800: '#12151C',
+                            700: '#1C212B',
+                            600: '#282F3D',
+                        },
+                        amber: {
+                            400: '#F59E0B',
+                            500: '#D97706',
+                            600: '#B45309',
+                        },
+                        accent: '#E65100',
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        display: ['"Bebas Neue"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+        body {
+            background-color: #0A0C10;
+            color: #E2E8F0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .hero-pattern {
+            background-image: radial-gradient(rgba(245, 158, 11, 0.12) 1px, transparent 1px),
+                              radial-gradient(rgba(255, 255, 255, 0.04) 1px, #0A0C10 1px);
+            background-size: 32px 32px;
+            background-position: 0 0, 16px 16px;
+        }
+
+        .glass-panel {
+            background: rgba(18, 21, 28, 0.75);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-panel:hover {
+            border-color: rgba(245, 158, 11, 0.4);
+            box-shadow: 0 12px 30px -10px rgba(245, 158, 11, 0.15);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #FDE68A 0%, #F59E0B 50%, #D97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .active-tab {
+            background-color: #F59E0B;
+            color: #0A0C10;
+            font-weight: 700;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0A0C10; }
+        ::-webkit-scrollbar-thumb { background: #F59E0B; border-radius: 3px; }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <!-- ================= NAVBAR ================= -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-white/5 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-dark-900 font-extrabold shadow-lg shadow-amber-500/20 group-hover:scale-105 transition-transform">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/>
+                    </svg>
+                </div>
+                <div>
+                    <span class="font-display text-2xl tracking-wider text-white block leading-none">BENGKEL<span class="text-amber-400">PRIMA</span></span>
+                    <span class="text-[10px] tracking-widest uppercase text-slate-400 font-bold block mt-0.5">Mobil & Motor Service</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-300">
+                <a href="#layanan" class="hover:text-amber-400 transition-colors">Layanan</a>
+                <a href="#keunggulan" class="hover:text-amber-400 transition-colors">Keunggulan</a>
+                <a href="#kalkulator" class="hover:text-amber-400 transition-colors">Estimasi Biaya</a>
+                <a href="#testimoni" class="hover:text-amber-400 transition-colors">Testimoni</a>
+                <a href="#kontak" class="hover:text-amber-400 transition-colors">Lokasi</a>
+            </nav>
+
+            <!-- Action Button -->
+            <div class="flex items-center gap-4">
+                <a href="tel:081234567890" class="hidden lg:flex items-center gap-2 text-xs font-bold text-slate-300 hover:text-amber-400 transition-colors">
+                    <div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+                    <span>0812-3456-7890 (Buka Hari Ini)</span>
+                </a>
+                <a href="#booking" class="px-5 py-2.5 rounded-full bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-dark-900 font-bold text-xs uppercase tracking-wider shadow-lg shadow-amber-500/25 transition-all transform hover:-translate-y-0.5">
+                    Booking Servis
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= HERO SECTION ================= -->
+    <section class="relative pt-36 pb-24 lg:pt-44 lg:pb-32 hero-pattern overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Text -->
+                <div class="lg:col-span-7 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/20 text-amber-400 text-xs font-semibold uppercase tracking-wider mb-6">
+                        <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+                        Solusi Servis Bergaransi & Transparan
+                    </div>
+
+                    <h1 class="font-display text-5xl sm:text-7xl lg:text-8xl font-black text-white leading-none tracking-tight mb-6">
+                        PERFORMA <span class="gradient-text">PRIMA.</span><br>
+                        BERKENDARA <span class="text-white">TANPA RAGU.</span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-slate-400 max-w-2xl leading-relaxed mb-8 mx-auto lg:mx-0">
+                        Bengkel modern spesialis perawatan rutin, tune-up komputer, overhaul mesin, hingga kelistrikan mobil dan motor. Dikerjakan mekanik berpengalaman dengan alat mutakhir dan garansi 30 hari.
+                    </p>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-wrap gap-4 justify-center lg:justify-start items-center mb-10">
+                        <a href="#booking" class="px-8 py-4 rounded-xl bg-amber-500 hover:bg-amber-400 text-dark-900 font-extrabold text-sm uppercase tracking-wider shadow-xl shadow-amber-500/30 transition-all transform hover:-translate-y-1">
+                            Jadwalkan Servis Sekarang →
+                        </a>
+                        <a href="#layanan" class="px-7 py-4 rounded-xl bg-dark-800 hover:bg-dark-700 text-slate-200 border border-white/10 font-bold text-sm tracking-wide transition-all">
+                            Lihat Menu Servis
+                        </a>
+                    </div>
+
+                    <!-- Micro Trust Highlights -->
+                    <div class="grid grid-cols-3 gap-4 pt-8 border-t border-white/10 text-center lg:text-left">
+                        <div>
+                            <div class="font-display text-3xl font-bold text-amber-400 leading-none">15K+</div>
+                            <div class="text-xs text-slate-400 mt-1">Kendaraan Ditangani</div>
+                        </div>
+                        <div>
+                            <div class="font-display text-3xl font-bold text-white leading-none">100%</div>
+                            <div class="text-xs text-slate-400 mt-1">Sparepart Asli</div>
+                        </div>
+                        <div>
+                            <div class="font-display text-3xl font-bold text-amber-400 leading-none">30 HARI</div>
+                            <div class="text-xs text-slate-400 mt-1">Jaminan Garansi Servis</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Quick Booking Card -->
+                <div class="lg:col-span-5">
+                    <div class="glass-panel p-6 sm:p-8 rounded-2xl relative shadow-2xl" id="booking">
+                        <div class="flex items-center justify-between pb-4 mb-6 border-b border-white/10">
+                            <div>
+                                <h3 class="text-lg font-bold text-white">Booking Cepat Online</h3>
+                                <p class="text-xs text-slate-400 mt-0.5">Bebas antre, langsung ditangani mekanik</p>
+                            </div>
+                            <span class="px-2.5 py-1 rounded bg-emerald-500/10 text-emerald-400 text-[10px] font-bold border border-emerald-500/20 uppercase">
+                                Slot Tersedia
+                            </span>
+                        </div>
+
+                        <form id="bookingForm" onsubmit="event.preventDefault(); alert('Terima kasih! Jadwal booking servis Anda berhasil terkirim. CS BengkelPrima akan menghubungi via WhatsApp dalam 5 menit.');" class="space-y-4 text-left">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1.5">Kategori Kendaraan</label>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <label class="cursor-pointer">
+                                        <input type="radio" name="vehicle_type" value="mobil" class="peer sr-only" checked>
+                                        <div class="p-3 rounded-xl border border-white/10 text-center peer-checked:border-amber-400 peer-checked:bg-amber-400/10 peer-checked:text-amber-400 font-semibold text-xs transition-all">
+                                            🚗 Mobil
+                                        </div>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input type="radio" name="vehicle_type" value="motor" class="peer sr-only">
+                                        <div class="p-3 rounded-xl border border-white/10 text-center peer-checked:border-amber-400 peer-checked:bg-amber-400/10 peer-checked:text-amber-400 font-semibold text-xs transition-all">
+                                            🛵 Motor
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1.5">Nama & Kontak WhatsApp</label>
+                                <input type="text" required placeholder="Contoh: Budi (08123456789)" class="w-full bg-dark-900 border border-white/10 rounded-xl px-4 py-3 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-amber-400 transition-colors">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1.5">Tipe & Seri Kendaraan</label>
+                                <input type="text" required placeholder="Contoh: Honda HR-V 2020 / NMAX 155" class="w-full bg-dark-900 border border-white/10 rounded-xl px-4 py-3 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-amber-400 transition-colors">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1.5">Paket Servis yang Diinginkan</label>
+                                <select class="w-full bg-dark-900 border border-white/10 rounded-xl px-4 py-3 text-xs text-slate-200 focus:outline-none focus:border-amber-400 transition-colors">
+                                    <option>Tune Up + Gurah Mesin</option>
+                                    <option>Ganti Oli & Filter Berkala</option>
+                                    <option>Servis Rem & Kaki-kaki</option>
+                                    <option>Scan Komputer & Kelistrikan</option>
+                                    <option>Overhaul / Keluhan Berat Mesin</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-dark-900 font-extrabold text-xs uppercase tracking-wider shadow-lg shadow-amber-500/25 transition-all mt-2">
+                                Konfirmasi Booking Sekarang
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= LAYANAN SECTION ================= -->
+    <section id="layanan" class="py-24 bg-dark-800/60 border-y border-white/5 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-amber-400 font-bold text-xs uppercase tracking-widest">Menu Servis Komprehensif</span>
+                <h2 class="font-display text-4xl sm:text-6xl font-bold text-white tracking-tight mt-2 mb-4">
+                    LAYANAN <span class="text-amber-400">UNGGULAN KAMI</span>
+                </h2>
+                <p class="text-slate-400 text-sm sm:text-base">
+                    Semua jenis pengerjaan didukung peralatan diagnostik modern dan dikerjakan mekanik handal sesuai SOP pabrikan.
+                </p>
+
+                <!-- Filter Tabs -->
+                <div class="inline-flex p-1.5 bg-dark-900 rounded-xl border border-white/10 mt-8">
+                    <button class="filter-btn active-tab px-5 py-2 rounded-lg text-xs font-semibold transition-all" onclick="filterServices('all', this)">Semua</button>
+                    <button class="filter-btn text-slate-400 hover:text-white px-5 py-2 rounded-lg text-xs font-semibold transition-all" onclick="filterServices('mobil', this)">Servis Mobil</button>
+                    <button class="filter-btn text-slate-400 hover:text-white px-5 py-2 rounded-lg text-xs font-semibold transition-all" onclick="filterServices('motor', this)">Servis Motor</button>
+                </div>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Card 1 -->
+                <div class="service-card glass-panel p-6 rounded-2xl flex flex-col justify-between" data-category="mobil motor">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-amber-400/10 text-amber-400 flex items-center justify-center text-xl mb-5">
+                            ⚙️
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Tune Up & Gurah Mesin</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                            Membersihkan kerak karbon pada ruang bakar, klep, dan throttle body. Tarikan kembali enteng, konsumsi bensin jadi lebih irit.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                        <span class="text-xs font-bold text-amber-400">Mulai Rp 150.000</span>
+                        <a href="#booking" class="text-xs font-semibold text-slate-300 hover:text-white flex items-center gap-1">Booking →</a>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="service-card glass-panel p-6 rounded-2xl flex flex-col justify-between" data-category="mobil motor">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-amber-400/10 text-amber-400 flex items-center justify-center text-xl mb-5">
+                            🛢️
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Ganti Oli & Filter Asli</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                            Penggantian oli mesin, oli gardan, atau oli transmisi manual & matic dengan produk 100% jaminan original dari distributor resmi.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                        <span class="text-xs font-bold text-amber-400">Mulai Rp 60.000</span>
+                        <a href="#booking" class="text-xs font-semibold text-slate-300 hover:text-white flex items-center gap-1">Booking →</a>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="service-card glass-panel p-6 rounded-2xl flex flex-col justify-between" data-category="mobil">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-amber-400/10 text-amber-400 flex items-center justify-center text-xl mb-5">
+                            ❄️
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Servis AC & Fogging Bakteri</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                            Flushing kompresor AC, cuci evaporator tanpa bongkar dashboard, ganti filter kabin, dan isi freon R134a murni agar kabin sejuk dingin.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                        <span class="text-xs font-bold text-amber-400">Mulai Rp 200.000</span>
+                        <a href="#booking" class="text-xs font-semibold text-slate-300 hover:text-white flex items-center gap-1">Booking →</a>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="service-card glass-panel p-6 rounded-2xl flex flex-col justify-between" data-category="mobil motor">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-amber-400/10 text-amber-400 flex items-center justify-center text-xl mb-5">
+                            🛑
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Rem & Kaki-kaki</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                            Pembersihan kampas rem, kuras minyak rem bertekanan, perbaikan shockbreaker, tie rod, ball joint, dan balancing stabil.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                        <span class="text-xs font-bold text-amber-400">Mulai Rp 90.000</span>
+                        <a href="#booking" class="text-xs font-semibold text-slate-300 hover:text-white flex items-center gap-1">Booking →</a>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="service-card glass-panel p-6 rounded-2xl flex flex-col justify-between" data-category="mobil motor">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-amber-400/10 text-amber-400 flex items-center justify-center text-xl mb-5">
+                            💻
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Diagnosa Komputer Scanner</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                            Pengecekan check engine menyala, pembacaan error sensor injeksi, kalibrasi sistem rem ABS & airbag secara presisi.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                        <span class="text-xs font-bold text-amber-400">Mulai Rp 75.000</span>
+                        <a href="#booking" class="text-xs font-semibold text-slate-300 hover:text-white flex items-center gap-1">Booking →</a>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="service-card glass-panel p-6 rounded-2xl flex flex-col justify-between" data-category="mobil motor">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-amber-400/10 text-amber-400 flex items-center justify-center text-xl mb-5">
+                            🔧
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Overhaul & Turun Mesin</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                            Perbaikan total mesin ngebul, oli berkurang, suara berisik, hingga peremajaan transmisi CVT / matic dengan garansi tertulis.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                        <span class="text-xs font-bold text-amber-400">Estimasi Personal</span>
+                        <a href="#booking" class="text-xs font-semibold text-slate-300 hover:text-white flex items-center gap-1">Konsultasi →</a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================= KEUNGGULAN SECTION ================= -->
+    <section id="keunggulan" class="py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <div>
+                    <span class="text-amber-400 font-bold text-xs uppercase tracking-widest">Kenapa BengkelPrima?</span>
+                    <h2 class="font-display text-4xl sm:text-6xl font-bold text-white tracking-tight mt-2 mb-6">
+                        STANDAR TINGGI, <br><span class="text-amber-400">BIAYA TETAP MASUK AKAL.</span>
+                    </h2>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-8">
+                        Kami menjunjung tinggi kejujuran dan transparansi. Tidak ada pergantian sparepart siluman tanpa persetujuan Anda di awal pengerjaan.
+                    </p>
+
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4 p-4 rounded-xl glass-panel">
+                            <div class="w-10 h-10 rounded-lg bg-amber-400/10 text-amber-400 flex items-center justify-center font-bold flex-shrink-0">
+                                01
+                            </div>
+                            <div>
+                                <h4 class="text-base font-bold text-white">Transparansi Nota & Part Bekas</h4>
+                                <p class="text-xs text-slate-400 mt-1">Seluruh part rusak yang diganti akan dikembalikan ke Anda sebagai bukti nyata pengerjaan.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 rounded-xl glass-panel">
+                            <div class="w-10 h-10 rounded-lg bg-amber-400/10 text-amber-400 flex items-center justify-center font-bold flex-shrink-0">
+                                02
+                            </div>
+                            <div>
+                                <h4 class="text-base font-bold text-white">Garansi Servis 30 Hari</h4>
+                                <p class="text-xs text-slate-400 mt-1">Jika keluhan yang sama terulang kembali dalam masa garansi, kami perbaiki tanpa biaya jasa tambahan.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 rounded-xl glass-panel">
+                            <div class="w-10 h-10 rounded-lg bg-amber-400/10 text-amber-400 flex items-center justify-center font-bold flex-shrink-0">
+                                03
+                            </div>
+                            <div>
+                                <h4 class="text-base font-bold text-white">Lounge Nyaman AC + Free Wi-Fi</h4>
+                                <p class="text-xs text-slate-400 mt-1">Sambil menunggu kendaraan diservis, santai di ruang ber-AC dengan sajian kopi gratis dan monitor live CCTV bengkel.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cost Calculator Widget -->
+                <div id="kalkulator" class="glass-panel p-8 rounded-3xl border border-amber-500/20 shadow-2xl relative">
+                    <div class="absolute -top-3 right-6 bg-amber-400 text-dark-900 font-extrabold text-[10px] uppercase tracking-wider px-3 py-1 rounded-full shadow">
+                        Simulasi Transparan
+                    </div>
+
+                    <h3 class="font-display text-3xl text-white tracking-wide mb-2">KALKULATOR ESTIMASI BIAYA</h3>
+                    <p class="text-xs text-slate-400 mb-6">Hitung perkiraan biaya servis kendaraan Anda secara instan.</p>
+
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Jenis Kendaraan</label>
+                            <select id="calcType" onchange="calculateEstimate()" class="w-full bg-dark-900 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-slate-200">
+                                <option value="motor">Motor Bebek / Matic Standar</option>
+                                <option value="motor_sport">Motor Matic Besar / Sport 150-250cc</option>
+                                <option value="mobil_small">Mobil City Car / Hatchback (1000 - 1300cc)</option>
+                                <option value="mobil_suv">Mobil MPV / SUV / Sedan (1500cc ke atas)</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Pilihan Paket Servis</label>
+                            <select id="calcPackage" onchange="calculateEstimate()" class="w-full bg-dark-900 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-slate-200">
+                                <option value="ringan">Servis Berkala Ringan + Cek 25 Titik</option>
+                                <option value="oli">Paket Ganti Oli + Filter + Tune Up</option>
+                                <option value="lengkap">Servis Komplit (Rem, Gurah Mesin, Oli & Scanner)</option>
+                            </select>
+                        </div>
+
+                        <div class="p-5 rounded-2xl bg-dark-900/90 border border-white/5 mt-6 text-center">
+                            <span class="text-[11px] uppercase tracking-widest text-slate-400 block mb-1">Perkiraan Biaya (Jasa & Bahan Standar)</span>
+                            <div class="font-display text-4xl text-amber-400 font-bold tracking-tight" id="calcResult">Rp 95.000 - Rp 140.000</div>
+                            <span class="text-[10px] text-slate-500 block mt-1">*Belum termasuk penggantian sparepart khusus jika ada keausan</span>
+                        </div>
+
+                        <a href="#booking" class="block text-center w-full py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-dark-900 font-bold text-xs uppercase tracking-wider transition-all">
+                            Booking Sesuai Estimasi Ini
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= TESTIMONI ================= -->
+    <section id="testimoni" class="py-24 bg-dark-800/40 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-amber-400 font-bold text-xs uppercase tracking-widest">Apa Kata Mereka</span>
+                <h2 class="font-display text-4xl sm:text-6xl font-bold text-white tracking-tight mt-2">
+                    KEPUASAN <span class="text-amber-400">PELANGGAN KAMI</span>
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="glass-panel p-6 rounded-2xl">
+                    <div class="flex text-amber-400 text-sm mb-3">★★★★★</div>
+                    <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                        "Mobil Innova saya tarikannya sempat brebet pas tanjakan. Dibawa ke BengkelPrima langsung ketahuan sensor kotor dan busi aus. Pengerjaan rapi dan transparan banget!"
+                    </p>
+                    <div class="flex items-center gap-3 pt-3 border-t border-white/5">
+                        <div class="w-8 h-8 rounded-full bg-amber-400/20 text-amber-400 flex items-center justify-center font-bold text-xs">R</div>
+                        <div>
+                            <div class="text-xs font-bold text-white">Rendra Pratama</div>
+                            <div class="text-[10px] text-slate-400">Toyota Kijang Innova Reborn</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-panel p-6 rounded-2xl">
+                    <div class="flex text-amber-400 text-sm mb-3">★★★★★</div>
+                    <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                        "Servis rutin motor PCX di sini puas banget. CVT yang biasanya getar sekarang halus mulus. Ruang tunggunya juga adem ber-AC, bisa sambil kerja remote."
+                    </p>
+                    <div class="flex items-center gap-3 pt-3 border-t border-white/5">
+                        <div class="w-8 h-8 rounded-full bg-amber-400/20 text-amber-400 flex items-center justify-center font-bold text-xs">D</div>
+                        <div>
+                            <div class="text-xs font-bold text-white">Dian Anggraini</div>
+                            <div class="text-[10px] text-slate-400">Honda PCX 160</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-panel p-6 rounded-2xl">
+                    <div class="flex text-amber-400 text-sm mb-3">★★★★★</div>
+                    <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                        "Mekaniknya ramah dan ngejelasin detail sebelum ganti sparepart. Harganya bersahabat dibanding bengkel resmi tapi kualitas kerjanya sama presisinya."
+                    </p>
+                    <div class="flex items-center gap-3 pt-3 border-t border-white/5">
+                        <div class="w-8 h-8 rounded-full bg-amber-400/20 text-amber-400 flex items-center justify-center font-bold text-xs">F</div>
+                        <div>
+                            <div class="text-xs font-bold text-white">Fajar Hidayat</div>
+                            <div class="text-[10px] text-slate-400">Yamaha NMAX & Honda Jazz</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FOOTER / KONTAK ================= -->
+    <footer id="kontak" class="py-16 bg-dark-900 border-t border-white/10 text-xs text-slate-400">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-9 h-9 rounded-lg bg-amber-400 flex items-center justify-center text-dark-900 font-extrabold">
+                            ⚙️
+                        </div>
+                        <span class="font-display text-2xl tracking-wider text-white">BENGKEL<span class="text-amber-400">PRIMA</span></span>
+                    </div>
+                    <p class="max-w-md leading-relaxed mb-4">
+                        Solusi perawatan dan perbaikan kendaraan mobil serta motor Anda dengan mekanik profesional, suku cadang original, serta jaminan garansi 30 hari.
+                    </p>
+                    <p class="text-slate-500">Jl. Otomotif Raya No. 88, Kawasan Bengkel Terpadu, Jakarta</p>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-4 uppercase tracking-wider text-[11px]">Jam Operasional</h4>
+                    <ul class="space-y-2">
+                        <li>Senin - Sabtu: <span class="text-slate-200">08:00 - 17:30</span></li>
+                        <li>Minggu: <span class="text-amber-400 font-semibold">09:00 - 15:00</span></li>
+                        <li class="pt-2 text-emerald-400 font-semibold">Layanan Darurat / Derek 24 Jam</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-4 uppercase tracking-wider text-[11px]">Hubungi Kami</h4>
+                    <ul class="space-y-2">
+                        <li>WhatsApp: <a href="https://wa.me/6281234567890" class="text-amber-400 hover:underline">0812-3456-7890</a></li>
+                        <li>Telepon: (021) 555-8989</li>
+                        <li>Email: halo@bengkelprima.id</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <p>© 2026 BengkelPrima. Dibuat untuk Fazal Said Web Templates Collection.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-amber-400 transition-colors">Privasi</a>
+                    <a href="#" class="hover:text-amber-400 transition-colors">Ketentuan Garansi</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script Interaktif Halaman -->
+    <script>
+        function filterServices(category, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => {
+                b.classList.remove('active-tab');
+                b.classList.add('text-slate-400');
+            });
+            btn.classList.add('active-tab');
+            btn.classList.remove('text-slate-400');
+
+            const cards = document.querySelectorAll('.service-card');
+            cards.forEach(card => {
+                const cats = card.dataset.category.split(' ');
+                if (category === 'all' || cats.includes(category)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function calculateEstimate() {
+            const type = document.getElementById('calcType').value;
+            const pkg = document.getElementById('calcPackage').value;
+            const resultEl = document.getElementById('calcResult');
+
+            const rates = {
+                motor: { ringan: 'Rp 65.000 - Rp 95.000', oli: 'Rp 110.000 - Rp 160.000', lengkap: 'Rp 220.000 - Rp 310.000' },
+                motor_sport: { ringan: 'Rp 95.000 - Rp 135.000', oli: 'Rp 180.000 - Rp 270.000', lengkap: 'Rp 350.000 - Rp 480.000' },
+                mobil_small: { ringan: 'Rp 200.000 - Rp 350.000', oli: 'Rp 450.000 - Rp 650.000', lengkap: 'Rp 750.000 - Rp 1.100.000' },
+                mobil_suv: { ringan: 'Rp 300.000 - Rp 480.000', oli: 'Rp 650.000 - Rp 950.000', lengkap: 'Rp 1.100.000 - Rp 1.750.000' }
+            };
+
+            resultEl.textContent = rates[type][pkg];
+        }
+    </script>
+
+    <!-- Template ZIP Downloader -->
+    <script src="../../../template-downloader.js" data-template="automotive/bengkel-mobil-motor/bengkelprima"></script>
+</body>
+</html>
