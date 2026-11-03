@@ -414,6 +414,7 @@
   <div class="toolbar">
     <button class="nav-btn" id="btn-back" onclick="goBack()" disabled>← Back</button>
     <button class="nav-btn" id="btn-up"   onclick="goUp()"   disabled>↑ Up</button>
+    <button class="nav-btn" id="btn-refresh" onclick="refreshTree()" title="Segarkan file tree">⟳ Refresh</button>
     <div id="breadcrumb">~</div>
     <div class="view-toggle">
       <button id="btn-grid" class="active" onclick="setView('grid')" title="Grid">⊞</button>
@@ -584,6 +585,48 @@
     if (TREE) renderCurrent();
   }
 
+  async function refreshTree() {
+    sessionStorage.removeItem(TREE_CACHE);
+    const btn = document.getElementById("btn-refresh");
+    const origText = btn ? btn.innerHTML : "⟳ Refresh";
+    if (btn) {
+      btn.disabled = true;
+      btn.innerHTML = `<span style="display:inline-block;animation:spin 1s linear infinite">⟳</span> Memuat...`;
+    }
+    await fetchTree();
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = origText;
+    }
+    if (TREE) renderCurrent();
+  }
+
+  function handleThumbError(img) {
+    if (!img.dataset.retried) {
+      img.dataset.retried = "1";
+      // Auto-retry sekali setelah 2.5s jika deploy GitHub Pages masih berlangsung
+      setTimeout(() => {
+        try {
+          const url = new URL(img.src, window.location.href);
+          url.searchParams.set("t", Date.now());
+          img.src = url.href;
+        } catch (_) {}
+      }, 2500);
+    } else {
+      img.style.display = "none";
+      if (img.nextElementSibling) {
+        img.nextElementSibling.style.display = "block";
+      }
+    }
+  }
+
+  function handleThumbLoad(img) {
+    img.style.display = "block";
+    if (img.nextElementSibling) {
+      img.nextElementSibling.style.display = "none";
+    }
+  }
+
   // ── AUTH ─────────────────────────────────────────────────────────────────
   async function sha256(str) {
     const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
@@ -744,7 +787,7 @@
         const el = document.createElement("div");
         el.className = "file-item";
         const img = (node.type === "file" && isImage(name))
-          ? `<img class="file-thumb" src="${node.path}" alt="${name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" /><span class="file-icon" style="display:none">${getIcon(name, node.type)}</span>`
+          ? `<img class="file-thumb" src="${node.path}" alt="${name}" loading="lazy" onload="handleThumbLoad(this)" onerror="handleThumbError(this)" /><span class="file-icon" style="display:none">${getIcon(name, node.type)}</span>`
           : `<span class="file-icon">${getIcon(name, node.type)}</span>`;
         if (node.type === "file" && isImage(name)) el.classList.add("has-thumb");
         el.innerHTML = `
