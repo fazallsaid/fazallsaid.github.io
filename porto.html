@@ -38,7 +38,7 @@
     <style>
         @page { size: A4; margin: 0; }
         body { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-        .print-area { width: 210mm; min-height: 297mm; background: white; margin: 0 auto; padding: 35px; overflow: hidden; }
+        .print-area { width: 210mm; min-height: 297mm; background: white; margin: 0 auto; padding: 28px 32px; overflow: hidden; }
         
         /* Custom Styles */
         .project-card { break-inside: avoid; }
@@ -55,7 +55,7 @@
 
     <div class="print-area relative flex flex-col h-full">
         
-        <header class="border-b-4 border-brand-900 pb-5 mb-6 flex justify-between items-end">
+        <header class="border-b-4 border-brand-900 pb-4 mb-4 flex justify-between items-end">
             <div>
                 <h1 class="font-display text-4xl font-extrabold uppercase text-brand-900 tracking-tight">Fazal Said <span class="text-brand-600">Wicaksono</span></h1>
                 <p class="text-sm text-gray-600 font-bold mt-1 font-display tracking-wide uppercase">Lead Web Developer & Laravel Specialist</p>
@@ -69,11 +69,29 @@
 
         <div class="grid grid-cols-12 gap-6 flex-grow">
             
-            <div class="col-span-7 flex flex-col gap-5">
+            <div class="col-span-7 flex flex-col gap-3.5">
                 
                 <div class="flex items-center gap-2 mb-1">
                     <span class="bg-brand-900 text-white font-bold px-2 py-1 rounded text-[10px]">HIGHLIGHTS</span>
                     <h2 class="font-display text-lg font-bold text-gray-800 uppercase">Enterprise & Corporate</h2>
+                </div>
+
+                <div class="project-card border-l-4 border-accent-500 pl-4 py-1">
+                    <div class="flex justify-between items-start mb-1">
+                        <h3 class="font-display font-bold text-sm text-brand-900">Hospital Queue &amp; Kiosk System</h3>
+                        <span class="text-[9px] font-bold bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded">2026</span>
+                    </div>
+                    <p class="text-[10px] font-bold text-gray-500 uppercase mb-1.5">Client: RS UIN Syarif Hidayatullah Jakarta</p>
+                    <p class="text-[10px] leading-relaxed text-gray-700 mb-2 text-justify">
+                        Architected an <strong>offline-first hybrid desktop kiosk &amp; central ticketing system</strong>. Features touchscreen self-service registration, virtual keypad (NIK/RM), ESC/POS thermal printing, multi-counter staff calling station with Indonesian TTS voice synthesis, and automatic 23:00 WIB batch sync to central SIMRS.
+                    </p>
+                    <div class="flex gap-1 flex-wrap">
+                        <span class="bg-brand-50 text-brand-800 px-1.5 py-0.5 rounded text-[9px] font-semibold border border-brand-100">Tauri v2</span>
+                        <span class="bg-brand-50 text-brand-800 px-1.5 py-0.5 rounded text-[9px] font-semibold border border-brand-100">React 19</span>
+                        <span class="bg-brand-50 text-brand-800 px-1.5 py-0.5 rounded text-[9px] font-semibold border border-brand-100">Laravel 13</span>
+                        <span class="bg-brand-50 text-brand-800 px-1.5 py-0.5 rounded text-[9px] font-semibold border border-brand-100">SQLite WAL</span>
+                        <span class="bg-brand-50 text-brand-800 px-1.5 py-0.5 rounded text-[9px] font-semibold border border-brand-100">ESC/POS</span>
+                    </div>
                 </div>
 
                 <div class="project-card border-l-4 border-brand-600 pl-4 py-1">
@@ -152,7 +170,7 @@
 
             </div>
 
-            <div class="col-span-5 flex flex-col gap-6 border-l border-dashed border-gray-300 pl-6">
+            <div class="col-span-5 flex flex-col gap-5 border-l border-dashed border-gray-300 pl-6">
                 
                 <section>
                     <h2 class="font-display text-xs font-bold text-gray-800 uppercase mb-3 border-b border-gray-200 pb-1">Public Sector</h2>

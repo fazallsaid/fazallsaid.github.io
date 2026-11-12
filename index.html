@@ -926,50 +926,57 @@
 
             <div class="reveal" id="works-list">
                 <!-- 01 -->
-                <a id="work-item-1" class="work-item" href="#" data-img="projects/java_bali_overland.webp" data-url="https://javabalioverland.com">
+                <a id="work-item-1" class="work-item" href="#" data-img="projects/rs_hidayatullah_ticketing.webp" data-url="" data-desc="Offline-First Desktop Kiosk (Tauri v2 · React 19 · SQLite WAL) &amp; Central Calling API (Laravel 13 · MySQL) with ESC/POS thermal printing and Indonesian TTS voice synthesis.">
                     <div class="work-num">01</div>
+                    <div class="work-title">RS UIN Syarif Hidayatullah</div>
+                    <div class="work-category">Hospital Queue &amp; Kiosk</div>
+                    <div class="work-year">2026</div>
+                </a>
+                <!-- 02 -->
+                <a id="work-item-2" class="work-item" href="#" data-img="projects/java_bali_overland.webp" data-url="https://javabalioverland.com">
+                    <div class="work-num">02</div>
                     <div class="work-title">Java Bali Overland</div>
                     <div class="work-category">Tour Booking</div>
                     <div class="work-year">2026</div>
                 </a>
-                <!-- 02 -->
-                <a id="work-item-2" class="work-item" href="#" data-img="projects/ang_property.webp" data-url="">
-                    <div class="work-num">02</div>
+                <!-- 03 -->
+                <a id="work-item-3" class="work-item" href="#" data-img="projects/ang_property.webp" data-url="">
+                    <div class="work-num">03</div>
                     <div class="work-title">Ang Property</div>
                     <div class="work-category">Property Marketing</div>
                     <div class="work-year">2025</div>
                 </a>
-                <!-- 03 -->
-                <a id="work-item-3" class="work-item" href="#" data-img="projects/kwas_system.webp" data-url="">
-                    <div class="work-num">03</div>
+                <!-- 04 -->
+                <a id="work-item-4" class="work-item" href="#" data-img="projects/kwas_system.webp" data-url="">
+                    <div class="work-num">04</div>
                     <div class="work-title">KWaS — PPIC Tracking System</div>
                     <div class="work-category">Real-Time Logistics</div>
                     <div class="work-year">2025</div>
                 </a>
-                <!-- 04 -->
-                <a id="work-item-4" class="work-item" href="#" data-img="projects/udin_gallery.webp" data-url="">
-                    <div class="work-num">04</div>
+                <!-- 05 -->
+                <a id="work-item-5" class="work-item" href="#" data-img="projects/udin_gallery.webp" data-url="">
+                    <div class="work-num">05</div>
                     <div class="work-title">Udin Gallery</div>
                     <div class="work-category">E-Commerce</div>
                     <div class="work-year">2025</div>
                 </a>
-                <!-- 05 -->
-                <a id="work-item-5" class="work-item" href="#" data-img="projects/krs_jawa.webp" data-url="https://krsjawa3.com">
-                    <div class="work-num">05</div>
+                <!-- 06 -->
+                <a id="work-item-6" class="work-item" href="#" data-img="projects/krs_jawa.webp" data-url="https://krsjawa3.com">
+                    <div class="work-num">06</div>
                     <div class="work-title">KRS PUPR Jawa III</div>
                     <div class="work-category">Government Portal</div>
                     <div class="work-year">2024</div>
                 </a>
-                <!-- 06 -->
-                <a id="work-item-6" class="work-item" href="#" data-img="projects/sihandarung.webp" data-url="">
-                    <div class="work-num">06</div>
+                <!-- 07 -->
+                <a id="work-item-7" class="work-item" href="#" data-img="projects/sihandarung.webp" data-url="">
+                    <div class="work-num">07</div>
                     <div class="work-title">Sihandarung</div>
                     <div class="work-category">Internal Reporting</div>
                     <div class="work-year">2024</div>
                 </a>
-                <!-- 07 -->
-                <a id="work-item-7" class="work-item" href="#" data-img="projects/menapak.webp" data-url="https://menapak.org">
-                    <div class="work-num">07</div>
+                <!-- 08 -->
+                <a id="work-item-8" class="work-item" href="#" data-img="projects/menapak.webp" data-url="https://menapak.org">
+                    <div class="work-num">08</div>
                     <div class="work-title">Menapak Indonesia</div>
                     <div class="work-category">Corporate Website</div>
                     <div class="work-year">2024</div>
@@ -1155,6 +1162,11 @@
             </button>
             <div id="modalLoading" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#4a4a4a;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;">Loading...</div>
             <iframe class="modal-iframe" id="previewFrame" allow="fullscreen" title="Website preview"></iframe>
+            <div id="previewImageContainer" style="display:none;width:100%;height:100%;flex-direction:column;align-items:center;justify-content:center;padding:2.5rem 2rem;background:#0a0a0a;overflow:auto;">
+                <img id="previewImageEl" src="" alt="Project Preview" style="max-width:100%;max-height:calc(100% - 4.5rem);object-fit:contain;border:1px solid rgba(255,255,255,0.08);box-shadow:0 20px 60px rgba(0,0,0,0.6);">
+                <div id="previewImageCaption" style="margin-top:1.25rem;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:#D4A843;font-weight:600;text-align:center;"></div>
+                <div id="previewImageDesc" style="margin-top:0.45rem;font-size:0.75rem;color:#9B9590;text-align:center;max-width:650px;line-height:1.5;"></div>
+            </div>
         </div>
     </div>
 
@@ -1361,10 +1373,15 @@
 
             item.addEventListener('click', (e) => {
                 e.preventDefault();
-                if (!url) return;
-
-                if (url.startsWith('http')) {
+                if (url && url.startsWith('http')) {
                     openModal(url);
+                } else if (imgSrc) {
+                    const title = item.querySelector('.work-title')?.textContent?.trim() || '';
+                    const cat   = item.querySelector('.work-category')?.textContent?.trim() || '';
+                    const year  = item.querySelector('.work-year')?.textContent?.trim() || '';
+                    const caption = [title, cat, year].filter(Boolean).join(' · ');
+                    const desc = item.dataset.desc || '';
+                    openImageModal(imgSrc, caption, desc);
                 }
             });
         });
@@ -1462,14 +1479,20 @@
         });
 
         // ====== MODAL (ANIMEJS TRANSITIONS) ======
-        const modal        = document.getElementById('previewModal');
-        const modalContent = modal.querySelector('.modal-content');
-        const previewFrame = document.getElementById('previewFrame');
-        const closeModalBtn = document.getElementById('closeModal');
-        const printModalBtn = document.getElementById('printModalBtn');
-        const modalLoading  = document.getElementById('modalLoading');
+        const modal                 = document.getElementById('previewModal');
+        const modalContent          = modal.querySelector('.modal-content');
+        const previewFrame          = document.getElementById('previewFrame');
+        const previewImageContainer = document.getElementById('previewImageContainer');
+        const previewImageEl        = document.getElementById('previewImageEl');
+        const previewImageCaption   = document.getElementById('previewImageCaption');
+        const previewImageDesc      = document.getElementById('previewImageDesc');
+        const closeModalBtn         = document.getElementById('closeModal');
+        const printModalBtn         = document.getElementById('printModalBtn');
+        const modalLoading          = document.getElementById('modalLoading');
 
         function openModal(url, isCV = false) {
+            previewImageContainer.style.display = 'none';
+            previewFrame.style.display = 'block';
             modalLoading.style.display = 'block';
             previewFrame.src = url;
             modal.classList.add('active');
@@ -1498,6 +1521,36 @@
             }
         }
 
+        function openImageModal(imgSrc, caption, desc = '') {
+            modalLoading.style.display = 'none';
+            previewFrame.style.display = 'none';
+            previewFrame.src = '';
+            previewImageEl.src = imgSrc;
+            previewImageCaption.textContent = caption;
+            previewImageDesc.textContent = desc;
+            previewImageDesc.style.display = desc ? 'block' : 'none';
+            previewImageContainer.style.display = 'flex';
+            printModalBtn.style.display = 'none';
+            modal.classList.add('active');
+
+            anime({
+                targets: modal,
+                opacity: [0, 1],
+                duration: 300,
+                easing: 'easeOutQuad'
+            });
+
+            anime({
+                targets: modalContent,
+                scale: [0.9, 1],
+                opacity: [0, 1],
+                duration: 450,
+                easing: 'easeOutBack'
+            });
+
+            document.body.style.overflow = 'hidden';
+        }
+
         function closeModal() {
             anime({
                 targets: modal,
@@ -1507,6 +1560,8 @@
                 complete: () => {
                     modal.classList.remove('active');
                     previewFrame.src = '';
+                    previewImageEl.src = '';
+                    previewImageContainer.style.display = 'none';
                     modalLoading.style.display = 'none';
                     document.body.style.overflow = '';
                 }
