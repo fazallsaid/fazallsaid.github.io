@@ -256,34 +256,152 @@
     .file-item.has-thumb .file-icon { display: none; }
 
     .file-item { position: relative; }
-    .dl-btn {
+    .file-actions {
       position: absolute;
       top: 6px; right: 6px;
-      background: rgba(15,17,23,.75);
+      display: flex;
+      gap: 4px;
+      opacity: 0;
+      transition: opacity .15s;
+      z-index: 2;
+    }
+    .file-item:hover .file-actions { opacity: 1; }
+    .item-btn {
+      background: rgba(15,17,23,.85);
       border: 1px solid #2e3147;
       color: #aaa;
       border-radius: 5px;
-      padding: 2px 6px;
-      font-size: 0.7rem;
+      padding: 3px 6px;
+      font-size: 0.72rem;
       cursor: pointer;
-      opacity: 0;
-      transition: opacity .15s, color .15s;
-      z-index: 2;
+      transition: all .15s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
     }
-    .file-item:hover .dl-btn { opacity: 1; }
-    .dl-btn:hover { color: #5b6af0; border-color: #5b6af0; }
+    .item-btn:hover { color: #5b6af0; border-color: #5b6af0; background: #1a1d27; }
 
-    .row-dl {
+    .file-type-badge.size {
+      background: #1e2235;
+      color: #a0aec0;
+      margin-left: 3px;
+    }
+
+    .row-copy, .row-dl {
       background: none;
       border: 1px solid #2e3147;
-      color: #666;
+      color: #aaa;
       border-radius: 5px;
       padding: 3px 8px;
       font-size: 0.75rem;
       cursor: pointer;
       transition: all .15s;
     }
-    .row-dl:hover { color: #5b6af0; border-color: #5b6af0; }
+    .row-copy { margin-right: 6px; }
+    .row-copy:hover, .row-dl:hover { color: #5b6af0; border-color: #5b6af0; }
+
+    /* ── NON-IMAGE PREVIEW CARD ── */
+    #preview-card {
+      background: #1a1d27;
+      border: 1px solid #2e3147;
+      border-radius: 14px;
+      padding: 32px 28px;
+      max-width: 460px;
+      width: 90vw;
+      text-align: center;
+      box-shadow: 0 10px 40px rgba(0,0,0,.6);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    .pcard-icon {
+      font-size: 3.5rem;
+      margin-bottom: 4px;
+      line-height: 1;
+    }
+    .pcard-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #fff;
+      word-break: break-word;
+      line-height: 1.3;
+    }
+    .pcard-badges {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .pcard-badge {
+      font-size: 0.72rem;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: #2e3147;
+      color: #5b6af0;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .pcard-badge.size {
+      color: #a0aec0;
+      background: #25283a;
+    }
+    .pcard-desc {
+      font-size: 0.82rem;
+      color: #888;
+      line-height: 1.5;
+      margin-top: 4px;
+    }
+    .pcard-path {
+      font-size: 0.72rem;
+      color: #666;
+      word-break: break-all;
+      background: #0f1117;
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #22263a;
+      width: 100%;
+    }
+
+    #preview-copy {
+      background: none;
+      border: 1px solid #2e3147;
+      color: #ccc;
+      border-radius: 6px;
+      padding: 6px 14px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    #preview-copy:hover { border-color: #5b6af0; color: #5b6af0; }
+
+    /* ── TOAST NOTIFICATION ── */
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(70px);
+      background: #1a1d27;
+      border: 1px solid #5b6af0;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    #toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
 
     /* ── PREVIEW MODAL ── */
     #preview-modal {
@@ -444,12 +562,29 @@
     <button class="pnav-btn" onclick="previewNav(1);  event.stopPropagation()">›</button>
   </div>
   <img id="preview-img" src="" alt="" />
+  <!-- Card Preview for Non-Images (like .exe, archives, docs) -->
+  <div id="preview-card" style="display:none;" onclick="event.stopPropagation()">
+    <div id="pcard-icon" class="pcard-icon">💻</div>
+    <div id="pcard-title" class="pcard-title"></div>
+    <div class="pcard-badges">
+      <span id="pcard-type" class="pcard-badge">EXE</span>
+      <span id="pcard-size" class="pcard-badge size"></span>
+    </div>
+    <p id="pcard-desc" class="pcard-desc"></p>
+    <div id="pcard-path" class="pcard-path"></div>
+  </div>
   <div id="preview-bar" onclick="event.stopPropagation()">
     <span id="preview-name"></span>
+    <button id="preview-copy" onclick="copyCurrentPreviewLink()">🔗 Salin Link</button>
     <button id="preview-open" onclick="window.open(previewList[previewIdx].path,'_blank')">Buka asli ↗</button>
     <button id="preview-dl"   onclick="downloadFile(previewList[previewIdx].path, previewList[previewIdx].name)">⬇ Download</button>
     <button id="preview-close" onclick="closePreview()">✕ Tutup</button>
   </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast">
+  <span>📋</span> <span id="toast-msg">Tautan berhasil disalin!</span>
 </div>
 
 <script>
@@ -459,7 +594,7 @@
   const REPO        = "fazallsaid/fazallsaid.github.io";
   const BRANCH      = "main";
   const BASE_PATH   = "files"; // folder root yg ditampilin di file manager
-  const TREE_CACHE  = "fm_tree_cache_v2";
+  const TREE_CACHE  = "fm_tree_cache_v3";
   const CACHE_TTL   = 5 * 60 * 1000; // 5 menit
 
   // ── DYNAMIC TREE via GITHUB API ─────────────────────────────────────────
@@ -523,6 +658,7 @@
             cur[part] = {
               type: "file",
               path: rel,
+              size: item.size || 0,
             };
           }
           // jika tree (folder) sudah dibuat oleh child sebelumnya, skip
@@ -723,6 +859,7 @@
       mp3:"🎵", wav:"🎵",
       html:"🌐", css:"🎨", js:"⚙️", ts:"⚙️", php:"🐘",
       csv:"📋", txt:"📃", json:"📋", xml:"📋",
+      exe:"💻", msi:"📦", apk:"📱", dmg:"💿", iso:"💿",
     };
     return map[ext] || "📎";
   }
@@ -730,6 +867,63 @@
   function getExt(name) {
     const parts = name.split(".");
     return parts.length > 1 ? parts.pop().toUpperCase() : "—";
+  }
+
+  // ── HELPERS: FORMAT & COPY ──────────────────────────────────────────────
+  function formatBytes(bytes) {
+    if (!bytes || bytes <= 0) return "";
+    const k = 1024;
+    const sizes = ["B", "KB", "MB", "GB"];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + " " + sizes[i];
+  }
+
+  function copyFileLink(path, name) {
+    const fullUrl = new URL(path, window.location.href).href;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(fullUrl).then(() => {
+        showToast(`Tautan "${name || 'file'}" berhasil disalin!`);
+      }).catch(() => {
+        fallbackCopy(fullUrl, name);
+      });
+    } else {
+      fallbackCopy(fullUrl, name);
+    }
+  }
+
+  function fallbackCopy(text, name) {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand("copy");
+      showToast(`Tautan "${name || 'file'}" berhasil disalin!`);
+    } catch (_) {
+      prompt("Salin tautan berikut:", text);
+    }
+    ta.remove();
+  }
+
+  let toastTimer = null;
+  function showToast(msg) {
+    const toast = document.getElementById("toast");
+    const toastMsg = document.getElementById("toast-msg");
+    if (!toast) return;
+    toastMsg.textContent = msg;
+    toast.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      toast.classList.remove("show");
+    }, 2800);
+  }
+
+  function copyCurrentPreviewLink() {
+    if (!previewList.length || !previewList[previewIdx]) return;
+    const f = previewList[previewIdx];
+    copyFileLink(f.path, f.name);
   }
 
   // ── RENDER ───────────────────────────────────────────────────────────────
@@ -793,8 +987,16 @@
         el.innerHTML = `
           ${img}
           <div class="file-name">${name}</div>
-          <span class="file-type-badge">${node.type === "dir" ? "folder" : getExt(name)}</span>
-          ${node.type === "file" ? `<button class="dl-btn" title="Download">⬇</button>` : ""}
+          <div style="display:flex;align-items:center;justify-content:center;gap:4px;margin-top:4px;">
+            <span class="file-type-badge">${node.type === "dir" ? "folder" : getExt(name)}</span>
+            ${node.type === "file" && node.size ? `<span class="file-type-badge size">${formatBytes(node.size)}</span>` : ""}
+          </div>
+          ${node.type === "file" ? `
+            <div class="file-actions">
+              <button class="item-btn copy-btn" title="Salin Link">🔗</button>
+              <button class="item-btn dl-btn" title="Download">⬇</button>
+            </div>
+          ` : ""}
         `;
         el.onclick = () => node.type === "dir" ? navigate(name) : openFile(node.path, name);
         if (node.type === "file") {
@@ -802,20 +1004,31 @@
             e.stopPropagation();
             downloadFile(node.path, name);
           };
+          el.querySelector(".copy-btn").onclick = e => {
+            e.stopPropagation();
+            copyFileLink(node.path, name);
+          };
         }
         grid.appendChild(el);
       } else {
         const tr = document.createElement("tr");
         tr.innerHTML = `
           <td><span class="row-icon">${getIcon(name, node.type)}</span>${name}</td>
-          <td>${node.type === "dir" ? "Folder" : getExt(name)}</td>
-          <td>${node.type === "file" ? `<button class="row-dl">⬇ Download</button>` : ""}</td>
+          <td>${node.type === "dir" ? "Folder" : getExt(name) + (node.size ? " · " + formatBytes(node.size) : "")}</td>
+          <td style="text-align:right;">${node.type === "file" ? `
+            <button class="row-copy" title="Salin Link">🔗 Salin Link</button>
+            <button class="row-dl" title="Download">⬇ Download</button>
+          ` : ""}</td>
         `;
         tr.onclick = () => node.type === "dir" ? navigate(name) : openFile(node.path, name);
         if (node.type === "file") {
           tr.querySelector(".row-dl").onclick = e => {
             e.stopPropagation();
             downloadFile(node.path, name);
+          };
+          tr.querySelector(".row-copy").onclick = e => {
+            e.stopPropagation();
+            copyFileLink(node.path, name);
           };
         }
         list.appendChild(tr);
@@ -832,38 +1045,95 @@
   }
 
   // ── PREVIEW ──────────────────────────────────────────────────────────────
-  let previewList = [];
-  let previewIdx  = 0;
+  let previewList   = [];
+  let previewIdx    = 0;
+  let isCardPreview = false;
 
   function openFile(path, name) {
+    const node = getNode(currentPath);
+    const entry = node?.children?.[name];
     if (isImage(name)) {
-      const node = getNode(currentPath);
+      isCardPreview = false;
       previewList = Object.entries(node.children)
         .filter(([n, v]) => v.type === "file" && isImage(n))
-        .map(([n, v]) => ({ name: n, path: v.path }));
+        .map(([n, v]) => ({ name: n, path: v.path, size: v.size }));
       previewIdx = previewList.findIndex(f => f.path === path);
       showPreview();
     } else {
-      window.open(path, "_blank");
+      isCardPreview = true;
+      previewList = [{
+        name: name,
+        path: path,
+        size: entry?.size || 0
+      }];
+      previewIdx = 0;
+      showPreview();
     }
   }
 
   function showPreview() {
     const f = previewList[previewIdx];
-    document.getElementById("preview-img").src  = f.path;
-    document.getElementById("preview-name").textContent = f.name;
-    document.getElementById("preview-modal").classList.add("open");
+    if (!f) return;
+    const modal     = document.getElementById("preview-modal");
+    const img       = document.getElementById("preview-img");
+    const card      = document.getElementById("preview-card");
+    const nav       = document.getElementById("preview-nav");
+    const nameEl    = document.getElementById("preview-name");
+
+    nameEl.textContent = f.name;
+
+    if (isCardPreview) {
+      img.style.display  = "none";
+      nav.style.display  = "none";
+      card.style.display = "flex";
+
+      const ext = f.name.split(".").pop().toLowerCase();
+      document.getElementById("pcard-icon").textContent  = getIcon(f.name, "file");
+      document.getElementById("pcard-title").textContent = f.name;
+      document.getElementById("pcard-type").textContent  = ext ? `${ext.toUpperCase()} File` : "File";
+      
+      const sizeBadge = document.getElementById("pcard-size");
+      if (f.size) {
+        sizeBadge.textContent   = formatBytes(f.size);
+        sizeBadge.style.display = "inline-block";
+      } else {
+        sizeBadge.style.display = "none";
+      }
+
+      const descEl = document.getElementById("pcard-desc");
+      if (ext === "exe") {
+        descEl.textContent = "Aplikasi desktop installer Windows (.exe). Unduh file setup ini untuk menginstal atau menjalankan aplikasi di komputer Windows.";
+      } else if (ext === "zip" || ext === "rar" || ext === "7z") {
+        descEl.textContent = "Berkas arsip terkompresi. Ekstrak setelah mengunduh untuk mengakses file di dalamnya.";
+      } else if (ext === "pdf" || ext === "docx" || ext === "xlsx") {
+        descEl.textContent = "Berkas dokumen. Klik Download atau Buka Asli untuk melihat isi dokumen.";
+      } else {
+        descEl.textContent = "Berkas dapat diunduh langsung atau disalin tautannya untuk dibagikan.";
+      }
+
+      document.getElementById("pcard-path").textContent = f.path;
+    } else {
+      card.style.display = "none";
+      img.style.display  = "block";
+      img.src            = f.path;
+      nav.style.display  = previewList.length > 1 ? "flex" : "none";
+    }
+
+    modal.classList.add("open");
     document.body.style.overflow = "hidden";
   }
 
   function closePreview(e) {
-    if (e && e.target !== document.getElementById("preview-modal")) return;
-    document.getElementById("preview-modal").classList.remove("open");
+    if (e && e.target !== document.getElementById("preview-modal") && e.target !== document.getElementById("preview-close")) return;
+    const modal = document.getElementById("preview-modal");
+    modal.classList.remove("open");
     document.getElementById("preview-img").src = "";
+    document.getElementById("preview-card").style.display = "none";
     document.body.style.overflow = "";
   }
 
   function previewNav(dir) {
+    if (!previewList.length || isCardPreview) return;
     previewIdx = (previewIdx + dir + previewList.length) % previewList.length;
     showPreview();
   }
